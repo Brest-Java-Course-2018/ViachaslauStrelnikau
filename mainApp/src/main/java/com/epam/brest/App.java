@@ -15,5 +15,10 @@ public class App
         dbUtils dbutils = new dbUtils();
         Connection con;
         con=dbutils.getConnection();
+        dbutils.createUsertable(con);
+        dbutils.addUser(con,"admin","password","cool admin");
+        dbutils.addUser(con,"admin2","password","cool admin");
+        dbutils.addUser(con,"admin3","password","cool admin");
+        dbutils.getUsers(con);
     }
 }
