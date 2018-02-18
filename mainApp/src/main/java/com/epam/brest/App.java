@@ -20,5 +20,7 @@ public class App
         dbutils.addUser(con,"admin2","password","cool admin");
         dbutils.addUser(con,"admin3","password","cool admin");
         dbutils.getUsers(con);
+        dbutils.deleteUser(con,10);
+
     }
 }
