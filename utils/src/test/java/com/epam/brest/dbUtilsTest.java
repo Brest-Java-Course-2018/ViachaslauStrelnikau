@@ -19,22 +19,7 @@ public class dbUtilsTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     //--------------------------------------------------------------------
-    // tesing  getConnection method
-    @After
-    public void testgetConnectionEND() throws SQLException {
-// Closing connection after test end
-        connection.close();
-    }
 
-    @Test
-    public void getConnectionTEST() throws SQLException, ClassNotFoundException {
-        //connection test
-        connection = dbutils.getConnection();
-        assertNotNull(connection);
-    }
-
-    //------------------------------------------------------------------------------
-// tesing  addUser method
     @Before
     public void testAddUserSetup() throws SQLException, ClassNotFoundException {
         System.setOut(new PrintStream(outContent));
@@ -48,7 +33,19 @@ public class dbUtilsTest {
         System.setOut(System.out);
         connection.close();
     }
+    //--------------------------------------------------------------------
+    // tesing  getConnection method
+    @Test
+    public void getConnectionTEST() throws SQLException, ClassNotFoundException {
+        //connection test
+        connection = dbutils.getConnection();
+        assertNotNull(connection);
+    }
 
+    //------------------------------------------------------------------------------
+
+
+    // tesing  addUser method
     @Test
     public void AddUserTESTS() throws SQLException, ClassNotFoundException {
 
