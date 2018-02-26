@@ -12,8 +12,7 @@
     <url>http://maven.apache.org</url>
 
     <modules>
-        <module>utils</module>
-        <module>mainApp</module>
+        <module>model</module>
     </modules>
 
     <distributionManagement>
@@ -29,11 +28,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>com.epam.brest</groupId>
-                <artifactId>utils</artifactId>
-                <version>1.0-SNAPSHOT</version>
-            </dependency>
+
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
@@ -46,7 +41,6 @@
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>1.4.196</version>
-
             </dependency>
 
         </dependencies>
@@ -150,6 +144,7 @@
                             <encoding>UTF-8</encoding>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>false</failsOnError>
+                            <!--не соберется пока все не исправить если true-->
                             <failOnViolation>false</failOnViolation>
                             <linkXRef>false</linkXRef>
                         </configuration>
@@ -284,7 +279,6 @@
                         </reports>
                     </reportSet>
                 </reportSets>
-
             </plugin>
 
             <plugin>
