@@ -8,7 +8,13 @@ import java.util.List;
  * Department access methods interface
  */
 public interface DepartmentDao {
-    List<Department>getDepartments();
-    Department getDepartmentById(Integer departmentId);
+    /**
+     * Get list of departments
+     */
+    List<Department> getDepartments();
+    /**
+     * Get department by ID
+     */
+    Department getDepartmentById(final Integer departmentId);
 
 }

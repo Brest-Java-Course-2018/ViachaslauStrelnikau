@@ -12,7 +12,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     }
 
     @Override
-    public Department getDepartmentById(Integer departmentId) {
+    public Department getDepartmentById(final Integer departmentId) {
         return null;
     }
 }
