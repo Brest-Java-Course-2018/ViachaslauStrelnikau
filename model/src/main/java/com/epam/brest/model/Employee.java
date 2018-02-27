@@ -4,12 +4,13 @@ package com.epam.brest.model;
  *Employee class dao.
  */
 public class Employee {
-    /**
-     * @
-     */
+    /**Property employeeId.*/
     private Integer employeeId;
+    /** Property employeeName.*/
     private String employeeName;
+    /** Property employeeSalary.*/
     private Integer employeeSalary;
+    /** Property departmenyId.*/
     private Integer departmenyId;
 
     /**
@@ -43,31 +44,31 @@ public class Employee {
     }
     /**
      * Set Employees  id.
-     * @param employeeId new Employees  id
+     * @param employeeid new Employees  id
      */
-    public void setEmployeeId(final Integer employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployeeId(final Integer employeeid) {
+        this.employeeId = employeeid;
     }
     /**
      * Set Employees  name.
-     * @param employeeName new Employees  name
+     * @param employeename new Employees  name
      */
-    public void setEmployeeName(final String employeeName) {
-        this.employeeName = employeeName;
+    public void setEmployeeName(final String employeename) {
+        this.employeeName = employeename;
     }
     /**
      * Set Employees  salary.
-     * @param employeeSalary new Employees  salary
+     * @param employeesalary new Employees  salary
      */
-    public void setEmployeeSalary(final Integer employeeSalary) {
-        this.employeeSalary = employeeSalary;
+    public void setEmployeeSalary(final Integer employeesalary) {
+        this.employeeSalary = employeesalary;
     }
     /**
      * Set Employees  DepartmenyId.
-     * @param departmenyId new Departmeny Id
+     * @param departmenyid new Departmeny Id
      */
-    public void setDepartmenyId(final Integer departmenyId) {
-        this.departmenyId = departmenyId;
+    public void setDepartmenyId(final Integer departmenyid) {
+        this.departmenyId = departmenyid;
     }
     /**
      * Set Generates string with all employee fields.

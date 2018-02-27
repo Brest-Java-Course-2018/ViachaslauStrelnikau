@@ -1,50 +1,55 @@
 package com.epam.brest.model;
-
+/**
+ * Department class.
+ */
 public class Department {
+    /**Property departmentId.*/
     private Integer departmentId;
+    /**Property departmentName.*/
     private String departmentName;
-    private  String descririon;
+    /**Property description.*/
+    private  String description;
     /**
-     * Get Department id
+     * Get Department id.
      * @return DepartmentId
      */
     public Integer getDepartmentId() {
         return departmentId;
     }
     /**
-     * Get Department Name
+     * Get Department Name.
      * @return DepartmentName
      */
     public String getDepartmentName() {
         return departmentName;
     }
     /**
-     * Get Department Descririon
-     * @return Descririon
+     * Get Department description.
+     * @return description
      */
-    public String getDescririon() {
-        return descririon;
+    public String getDescription() {
+        return description;
     }
     /**
-     * set Department Id
-     * @return
+     * set Department Id.
+     * @param departmentid new Department Id
      */
-    public void setDepartmentId(final Integer departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartmentId(final Integer departmentid) {
+        this.departmentId = departmentid;
     }
     /**
-     * set Department Name
-     * @return
+     * set Department Name.
+     * @param departmentname new Department Name
      */
-    public void setDepartmentName(final String departmentName) {
-        this.departmentName = departmentName;
+    public void setDepartmentName(final String departmentname) {
+        this.departmentName = departmentname;
     }
     /**
-     * set Department Descririon
-     * @return
+     * set Department Descririon.
+     * @param descriptioN new department description
      */
-    public void setDescririon(final String descririon) {
-        this.descririon = descririon;
+    public void setDescririon(final String descriptioN) {
+        this.description = descriptioN;
     }
 
     @Override
@@ -52,7 +57,7 @@ public class Department {
         return "Department{"
                 + "departmentId=" + departmentId
                 + ", departmentName='" + departmentName + '\''
-                + ", descririon='" + descririon + '\''
+                + ", descririon='" + description + '\''
                 + '}';
     }
 }
