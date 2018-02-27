@@ -1,4 +1,6 @@
-package com.epam.brest;
+package com.epam.brest.model;
+
+import com.epam.brest.model.Employee;
 
 import static org.junit.Assert.*;
 

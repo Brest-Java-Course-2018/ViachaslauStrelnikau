@@ -1,7 +1,7 @@
-package com.epam.brest;
+package com.epam.brest.model;
 /**
  * *
- *Employee class model
+ *Employee class dao
  */
 public class Employee {
     private Integer employeeId;

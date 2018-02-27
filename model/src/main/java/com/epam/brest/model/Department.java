@@ -1,4 +1,4 @@
-package com.epam.brest;
+package com.epam.brest.model;
 
 public class Department {
     private Integer departmentId;
