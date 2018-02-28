@@ -2,6 +2,7 @@ package com.epam.brest.dao;
 
 import com.epam.brest.model.Department;
 
+
 import java.util.List;
 
 /**
@@ -19,5 +20,7 @@ public interface DepartmentDao {
      * @return Department object
      */
     Department getDepartmentById(final Integer departmentId);
-
+    Department addDepartment(Department department);
+    void updateDepartment(Department department);
+    boolean removeDepartmentById(int departmentid);
 }
