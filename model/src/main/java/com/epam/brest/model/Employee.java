@@ -5,19 +5,19 @@ package com.epam.brest.model;
  */
 public class Employee {
     /**Property employeeId.*/
-    private Integer employeeId;
+    private int employeeId;
     /** Property employeeName.*/
     private String employeeName;
     /** Property employeeSalary.*/
-    private Integer employeeSalary;
+    private int employeeSalary;
     /** Property departmenyId.*/
-    private Integer departmenyId;
+    private int departmenyId;
 
     /**
      * Get Employee id.
      * @return EmployeeId
      */
-    public Integer getEmployeeId() {
+    public int getEmployeeId() {
         return employeeId;
     }
     /**
@@ -32,21 +32,21 @@ public class Employee {
      * Get Employee Salary.
      * @return salary amount
      */
-    public Integer getEmployeeSalary() {
+    public int getEmployeeSalary() {
         return employeeSalary;
     }
     /**
      * Get Employees Department id.
      * @return departentId
      */
-    public Integer getDepartmenyId() {
+    public int getDepartmenyId() {
         return departmenyId;
     }
     /**
      * Set Employees  id.
      * @param employeeid new Employees  id
      */
-    public void setEmployeeId(final Integer employeeid) {
+    public void setEmployeeId(final int employeeid) {
         this.employeeId = employeeid;
     }
     /**
@@ -60,14 +60,14 @@ public class Employee {
      * Set Employees  salary.
      * @param employeesalary new Employees  salary
      */
-    public void setEmployeeSalary(final Integer employeesalary) {
+    public void setEmployeeSalary(final int employeesalary) {
         this.employeeSalary = employeesalary;
     }
     /**
      * Set Employees  DepartmenyId.
      * @param departmenyid new Departmeny Id
      */
-    public void setDepartmenyId(final Integer departmenyid) {
+    public void setDepartmenyId(final int departmenyid) {
         this.departmenyId = departmenyid;
     }
     /**

@@ -4,7 +4,7 @@ package com.epam.brest.model;
  */
 public class Department {
     /**Property departmentId.*/
-    private Integer departmentId;
+    private int departmentId;
     /**Property departmentName.*/
     private String departmentName;
     /**Property description.*/
@@ -13,7 +13,7 @@ public class Department {
      * Get Department id.
      * @return DepartmentId
      */
-    public Integer getDepartmentId() {
+    public int getDepartmentId() {
         return departmentId;
     }
     /**
@@ -34,7 +34,7 @@ public class Department {
      * set Department Id.
      * @param departmentid new Department Id
      */
-    public void setDepartmentId(final Integer departmentid) {
+    public void setDepartmentId(final int departmentid) {
         this.departmentId = departmentid;
     }
     /**
