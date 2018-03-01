@@ -43,8 +43,15 @@ public class DepartmentDaoImplTest {
         Department newDepartmebt = new Department();
         newDepartmebt.setDepartmentName("Testing");
         newDepartmebt.setDescririon("Tests everything");
+
         Department department = departmentDAO.addDepartment(newDepartmebt);
         Assert.assertTrue(newDepartmebt.getDepartmentName().equals(department.getDepartmentName()));
         Assert.assertTrue(newDepartmebt.getDescription().equals(department.getDescription()));
+
+        Department newDepartmebt2 = new Department();
+        newDepartmebt.setDepartmentName("Testing");
+        newDepartmebt.setDescririon("Tests everything");
+        Department department2 = departmentDAO.addDepartment(newDepartmebt);
+        Assert.assertNull(department2);
     }
 }
