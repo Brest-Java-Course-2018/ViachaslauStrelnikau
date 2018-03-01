@@ -25,6 +25,9 @@ public class DepartmentDaoImpl implements DepartmentDao {
             "values (:department_name,:description);";
     private final String get_department_by_name_sql="select department_id,department_name, description " +
             "from department where department_name=:department_name";
+    private final String update_department_sql="UPDATE department\n" +
+            "SET department_name = :department_name, description = :description\n" +
+            "WHERE department_id=:department_id;";
     private DepartmentDaoImpl(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.namedParameterJdbcTemplate= new NamedParameterJdbcTemplate(dataSource);
@@ -74,11 +77,23 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
     @Override
     public void updateDepartment(Department department) {
+        Department department_old = getDepartmentById(department.getDepartmentId());
+        String departmentNametoUpdate=department.getDepartmentName();
 
+        Department department_byname = getDepartmentByName(department.getDepartmentName());
+        // checking are we gona update record to department name that is already exists
+        if(department_byname!=null&&(department_byname.getDepartmentId()!=department.getDepartmentId()))
+            departmentNametoUpdate=department_old.getDepartmentName();
+
+        SqlParameterSource namedParametres = new MapSqlParameterSource("department_name",departmentNametoUpdate);
+        ((MapSqlParameterSource)namedParametres).addValue("description",department.getDescription());
+        ((MapSqlParameterSource)namedParametres).addValue("department_id",department.getDepartmentId());
+        namedParameterJdbcTemplate.execute(update_department_sql,namedParametres,  new PreparedStatementcallback());
     }
 
     @Override
     public boolean removeDepartmentById(int departmentid) {
+
         return false;
     }
 
