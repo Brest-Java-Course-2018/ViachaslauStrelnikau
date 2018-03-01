@@ -93,5 +93,14 @@ public class DepartmentDaoImplTest {
         Assert.assertTrue(department2_2.getDescription().equals("Something changed in my desription!"));
         Assert.assertFalse(department2_2.getDepartmentName().equals("New Department"));
     }
+    /**
+     * Testing removeDepartmentById() method of DepartmentDao.
+     */
+    @Test
+    public void removeDepartment()
+    {
+        Assert.assertTrue(departmentDAO.removeDepartmentById(1));
+        Assert.assertFalse(departmentDAO.removeDepartmentById(1));
+    }
 
 }
