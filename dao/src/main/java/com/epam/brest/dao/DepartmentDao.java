@@ -20,7 +20,9 @@ public interface DepartmentDao {
      * @return Department object
      */
     Department getDepartmentById(final Integer departmentId);
+    Department getDepartmentByName(final String departmentName);
     Department addDepartment(Department department);
     void updateDepartment(Department department);
     boolean removeDepartmentById(int departmentid);
+
 }
