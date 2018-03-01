@@ -11,18 +11,25 @@ import java.util.List;
 public interface DepartmentDao {
     /**
      * Get list of departments.
-     * @return  List<Department>
+     *
+     * @return List<Department>
      */
     List<Department> getDepartments();
+
     /**
      * Get department by ID.
+     *
      * @param departmentId
      * @return Department object
      */
     Department getDepartmentById(final Integer departmentId);
+
     Department getDepartmentByName(final String departmentName);
+
     Department addDepartment(Department department);
+
     void updateDepartment(Department department);
+
     boolean removeDepartmentById(int departmentid);
 
 }

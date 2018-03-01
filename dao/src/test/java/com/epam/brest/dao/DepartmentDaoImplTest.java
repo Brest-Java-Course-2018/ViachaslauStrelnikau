@@ -38,6 +38,7 @@ public class DepartmentDaoImplTest {
         Assert.assertTrue(department.getDepartmentName().equals("Destribution"));
         Assert.assertTrue(department.getDescription().equals("Destribute something"));
     }
+
     /**
      * Testing getDepartmentName() method of DepartmentDao.
      */
@@ -48,12 +49,12 @@ public class DepartmentDaoImplTest {
         Assert.assertTrue(department.getDepartmentName().equals("Destribution"));
         Assert.assertTrue(department.getDescription().equals("Destribute something"));
     }
+
     /**
      * Testing addDepartment() method of DepartmentDao.
      */
     @Test
-    public void addDepartment()
-    {
+    public void addDepartment() {
         Department newDepartmebt = new Department();
         newDepartmebt.setDepartmentName("Testing");
         newDepartmebt.setDescririon("Tests everything");
@@ -68,18 +69,18 @@ public class DepartmentDaoImplTest {
         Department department2 = departmentDAO.addDepartment(newDepartmebt);
         Assert.assertNull(department2);
     }
+
     /**
      * Testing updateDepartment() method of DepartmentDao.
      */
     @Test
-    public void updateDepartment()
-    {
+    public void updateDepartment() {
         Department department = departmentDAO.getDepartmentById(1);
         department.setDescririon("Something changed in my desription!");
         department.setDepartmentName("New Department");
 
         departmentDAO.updateDepartment(department);
-        Department department2=departmentDAO.getDepartmentById(department.getDepartmentId());
+        Department department2 = departmentDAO.getDepartmentById(department.getDepartmentId());
 
         Assert.assertTrue(department2.getDescription().equals("Something changed in my desription!"));
         Assert.assertTrue(department2.getDepartmentName().equals("New Department"));
@@ -89,16 +90,16 @@ public class DepartmentDaoImplTest {
         department_2.setDepartmentName("New Department");
 
         departmentDAO.updateDepartment(department_2);
-        Department department2_2=departmentDAO.getDepartmentById(department_2.getDepartmentId());
+        Department department2_2 = departmentDAO.getDepartmentById(department_2.getDepartmentId());
         Assert.assertTrue(department2_2.getDescription().equals("Something changed in my desription!"));
         Assert.assertFalse(department2_2.getDepartmentName().equals("New Department"));
     }
+
     /**
      * Testing removeDepartmentById() method of DepartmentDao.
      */
     @Test
-    public void removeDepartment()
-    {
+    public void removeDepartment() {
         Assert.assertTrue(departmentDAO.removeDepartmentById(1));
         Assert.assertFalse(departmentDAO.removeDepartmentById(1));
     }
