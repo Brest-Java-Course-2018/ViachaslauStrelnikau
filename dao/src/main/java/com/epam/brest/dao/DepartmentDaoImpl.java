@@ -4,6 +4,7 @@ import com.epam.brest.model.Department;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -35,38 +36,38 @@ public class DepartmentDaoImpl implements DepartmentDao {
      * Property get_department_by_id_sql sql statement.
      */
     private final String get_department_by_id_sql =
-            "select department_id,department_name, description " +
-                    "from department where department_id = :department_id";
+            "select department_id,department_name, description "
+                    + "from department where department_id = :department_id";
     /**
      * Property add_department_sql sql statement.
      */
     private final String add_department_sql =
-            "insert into department(department_name,description)\n" +
-                    "values (:department_name,:description);";
+            "insert into department(department_name,description)\n"
+                    + "values (:department_name,:description);";
     /**
      * Property get_department_by_name_sql sql statement.
      */
     private final String get_department_by_name_sql =
-            "select department_id,department_name, description " +
-                    "from department where department_name = :department_name";
+            "select department_id,department_name, description "
+                    + "from department where department_name = :department_name";
     /**
      * Property update_department_sql sql statement.
      */
-    private final String update_department_sql = "UPDATE department\n" +
-            "SET department_name = :department_name, description = :description\n" +
+    private final String update_department_sql = "UPDATE department\n"
+            + "SET department_name = :department_name, description = :description\n" +
             "WHERE department_id = :department_id;";
     /**
      * Property remove_department_by_id_sql sql statement.
      */
-    private final String remove_department_by_id_sql = "DELETE FROM department\n" +
-            "WHERE department_id = :department_id;";
+    private final String remove_department_by_id_sql = "DELETE FROM department\n"
+            + "WHERE department_id = :department_id;";
 
     /**
      * Constructor of DepartmentDaoImpl class.
      *
      * @param dataSource
      */
-    private DepartmentDaoImpl(DataSource dataSource) {
+    private DepartmentDaoImpl(final DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
@@ -83,19 +84,20 @@ public class DepartmentDaoImpl implements DepartmentDao {
     }
 
     /**
-     * method getDepartments is created to get department by its id.
+     * method getDepartmentById is created to get department by its id.
      *
      * @param departmentId id of department to find
      * @return Department searched department
      */
     @Override
-    public Department getDepartmentById(final Integer departmentId) {
-        SqlParameterSource namedParametres = new MapSqlParameterSource("department_id", departmentId);
+    public Department getDepartmentById(final int departmentId) {
+        SqlParameterSource namedParametres =
+                new MapSqlParameterSource("department_id", departmentId);
         return namedParameterJdbcTemplate.queryForObject(get_department_by_id_sql, namedParametres, new DepartmentrowMapper());
     }
 
     /**
-     * method addDepartment is created to get department by its name.
+     * method getDepartmentByName is created to get department by its name.
      *
      * @param departmentName name of department to find
      * @return Department searched department
@@ -105,7 +107,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
         SqlParameterSource namedParametres = new MapSqlParameterSource("department_name", departmentName);
         Department department;
         try {
-            department = namedParameterJdbcTemplate.queryForObject(get_department_by_name_sql, namedParametres, new DepartmentrowMapper());
+            department =
+                    namedParameterJdbcTemplate.queryForObject(get_department_by_name_sql, namedParametres, new DepartmentrowMapper());
         } catch (Exception e) {
             return null;
         }
@@ -159,24 +162,26 @@ public class DepartmentDaoImpl implements DepartmentDao {
      * method removeDepartmentById is created to remove department from record.
      *
      * @param departmentid id of department to remove
+     * @return flag of operation  coalition
      */
     @Override
-    public boolean removeDepartmentById(int departmentid) {
+    public boolean removeDepartmentById(final int departmentid) {
 
         SqlParameterSource namedParametres = new MapSqlParameterSource("department_id", departmentid);
         Object o = namedParameterJdbcTemplate.execute(remove_department_by_id_sql, namedParametres, new PreparedStatementcallback());
-        if ((Integer) o == 1)
+        if ((Integer) o == 1) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     /**
      * Class DepartmentrowMapper is entire class that mapa ResaultSet records to Department objects.
      */
-    private class DepartmentrowMapper implements org.springframework.jdbc.core.RowMapper<Department> {
+    private class DepartmentrowMapper implements RowMapper<Department> {
         @Override
-        public Department mapRow(ResultSet resultSet, int i) throws SQLException {
+        public Department mapRow(final ResultSet resultSet, final int i) throws SQLException {
             Department department = new Department();
             department.setDepartmentId(resultSet.getInt(1));
             department.setDepartmentName(resultSet.getString(2));
