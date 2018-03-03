@@ -93,7 +93,13 @@ public class DepartmentDaoImpl implements DepartmentDao {
     public Department getDepartmentById(final int departmentId) {
         SqlParameterSource namedParametres =
                 new MapSqlParameterSource("department_id", departmentId);
-        return namedParameterJdbcTemplate.queryForObject(get_department_by_id_sql, namedParametres, new DepartmentrowMapper());
+        Department department;
+        try {
+            department = namedParameterJdbcTemplate.queryForObject(get_department_by_id_sql, namedParametres, new DepartmentrowMapper());
+        } catch (Exception e) {
+            return null;
+        }
+        return department;
     }
 
     /**
@@ -104,7 +110,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
      */
     @Override
     public Department getDepartmentByName(final String departmentName) {
-        SqlParameterSource namedParametres = new MapSqlParameterSource("department_name", departmentName);
+        SqlParameterSource namedParametres =
+                new MapSqlParameterSource("department_name", departmentName);
         Department department;
         try {
             department =
@@ -147,7 +154,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
         String departmentNametoUpdate = department.getDepartmentName();
 
         Department department_byname = getDepartmentByName(department.getDepartmentName());
-        // checking are we gona update record to department name that is already exists
+        // checking are we going to update record to department name that is already exists
         if (department_byname != null && department_old.getDepartmentId() != department_byname.getDepartmentId()) {
             departmentNametoUpdate = department_old.getDepartmentName();
         }
@@ -168,8 +175,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
     public boolean removeDepartmentById(final int departmentid) {
 
         SqlParameterSource namedParametres = new MapSqlParameterSource("department_id", departmentid);
-        Object o = namedParameterJdbcTemplate.execute(remove_department_by_id_sql, namedParametres, new PreparedStatementcallback());
-        if ((Integer) o == 1) {
+        int result = (int) namedParameterJdbcTemplate.execute(remove_department_by_id_sql, namedParametres, new PreparedStatementcallback());
+        if (result == 1) {
             return true;
         } else {
             return false;
