@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BS 4 template</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark text-light">
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarsNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a href="department.html" class="navbar-brand"><img src="images/icon.svg" width="64" height="32"> </a>
+    <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="#">Departments <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="#">Employees</a>
+    </div>
+</nav>
+<header>
+
+    <nav class=" p-0 pl-2 navbar navbar-expand-sm navbar-light bg-light text-dark">
+        <a href="department.html" class="navbar-brand text-uppercase mr-auto">
+            Departments
+        </a>
+
+        <ul class="navbar-nav float-right">
+            <li class="nav-item">
+                <a href="#" class="btn btn-sm btn-outline-secondary"
+                   data-toggle="tooltip" data-placement="right"
+                   title="Tooltip on right"><i class="fa fa-plus">
+
+                </i>Add</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<section id="departmets">
+    <div class="modal fade" id="ConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="Cancel" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>Title</th>
+                        <th>Avg salary</th>
+                        <th></th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>CEO</td>
+                        <td>100</td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"  data-target="ConfirmDelete"  data-placement="right"
+                               title="Tooltip on right"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fa fa-remove"></i><span class="d-none d-md-inline"> Delete</span></a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CEO</td>
+                        <td>100</td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-outline-secondary" data-toggle="modal"  data-placement="right"
+                               title="Tooltip on right"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
+                            <a href="#" class="btn btn-sm btn-outline-secondary"><i class="fa fa-remove"></i><span class="d-none d-md-inline"> Delete</span></a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+        $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+    </script>
+</body>
+</html>

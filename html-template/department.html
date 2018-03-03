@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BS 4 template</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark text-light">
+
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarsNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a href="department.html" class="navbar-brand"><img src="images/icon.svg" width="64" height="32"> </a>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#">Departments <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#">Employees</a>
+        </div>
+    </nav>
+    <header>
+
+        <nav class=" p-0 pl-2 navbar navbar-expand-sm navbar-light bg-light text-dark">
+            <ul class="navbar-nav float-left">
+                <li class="nav-item">
+                    <a href="#" class="btn btn-sm btn-outline-secondary"
+                       data-toggle="tooltip" data-placement="left"
+                       title="Tooltip on right"><i class="fa fa-remove">
+
+                    </i>Cancel</a>
+                </li>
+            </ul>
+            <a href="department.html" class="navbar-brand text-uppercase mr-auto">
+                Departments
+            </a>
+            <ul class="navbar-nav float-right">
+                <li class="nav-item">
+                    <a href="#" class="btn btn-sm btn-outline-secondary"
+                       data-toggle="tooltip" data-placement="right"
+                       title="Tooltip on right"><i class="fa fa-plus">
+
+                    </i>Save</a>
+                </li>
+            </ul>
+
+
+        </nav>
+    </header>
+    <section id="departmet">
+
+        <div class="card w-50">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="DepartmentName">Email address</label>
+                    <input type="text" class="form-control" id="DepartmentName" placeholder="Department name">
+                    <label for="DepartmentDesc">Email address</label>
+                    <input type="text" class="form-control" id="DepartmentDesc" placeholder="Description">
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+    </script>
+</body>
+</html>
