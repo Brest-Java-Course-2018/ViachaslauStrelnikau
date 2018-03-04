@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HR Test Template</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!--Header-->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark text-light">
+
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarsNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a href="editEmployee.html" class="navbar-brand"><img src="images/icon.svg" width="64" height="32"> </a>
+    <h1 class="display-4">HR</h1>
+    <div class="navbar-nav">
+        <a class="nav-item nav-link " href="#">Departments </a>
+        <a class="nav-item nav-link active" href="#">Employees<span class="sr-only">(current)</span></a>
+    </div>
+</nav>
+<header>
+    <!--Back arrow-->
+    <nav class=" p-0 pl-2 navbar navbar-expand-sm navbar-light bg-light text-dark">
+        <ul class="navbar-nav float-left">
+            <li class="nav-item">
+                <a href="employees.html" class="btn btn-sm btn-outline-secondary"
+                   data-toggle="tooltip" data-placement="top"
+                   title="Back"><i class="fa fa-arrow-circle-left">
+
+                </i></a>
+            </li>
+        </ul>
+        <!--titele-->
+        <a href="editEmployee.html" class="navbar-brand text-uppercase mr-auto">
+            Edit Employee
+        </a>
+        <ul class="navbar-nav float-right">
+            <li class="nav-item">
+                <a href="#" class="btn btn-sm btn-outline-secondary"
+                   data-toggle="tooltip" data-placement="top"
+                   title="Save"><i class="fa fa-save">
+
+                </i>Save</a>
+            </li>
+        </ul>
+
+
+    </nav>
+</header>
+<section id="departmet">
+
+    <div class="card">
+        <div class="card-body" >
+            <div class="form-group" >
+                <label for="Name">Name</label>
+                <input type="text" class="form-control" id="Name" placeholder="Name" >
+                <p></p>
+                <label for="Email">Email</label>
+                <input type="text" class="form-control" id="Email" placeholder="Email">
+
+                <p></p>
+                <label for="Departments_list">Department</label>
+
+                <div class="input-group" id="Departments_list" >
+                    <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" placeholder="Department">
+                    <div class="input-group-append" >
+                        <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">CEO</a>
+                            <a class="dropdown-item" href="#">Testing</a>
+                            <a class="dropdown-item" href="#">Development</a>
+                            <a class="dropdown-item" href="#">Management</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+</body>
+</html>
+
+
+

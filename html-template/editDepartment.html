@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BS 4 template</title>
+    <title>HR Test Template</title>
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
+<!--Header-->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark text-light">
 
         <button class="navbar-toggler"
@@ -19,32 +19,34 @@
                 data-target="#navbarsNav">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a href="department.html" class="navbar-brand"><img src="images/icon.svg" width="64" height="32"> </a>
+        <a href="editDepartment.html" class="navbar-brand"><img src="images/icon.svg" width="64" height="32"> </a>
+        <h1 class="display-4">HR</h1>
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="#">Departments <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="#">Employees</a>
         </div>
     </nav>
     <header>
-
+<!--Back arrow-->
         <nav class=" p-0 pl-2 navbar navbar-expand-sm navbar-light bg-light text-dark">
             <ul class="navbar-nav float-left">
                 <li class="nav-item">
-                    <a href="#" class="btn btn-sm btn-outline-secondary"
-                       data-toggle="tooltip" data-placement="left"
-                       title="Tooltip on right"><i class="fa fa-remove">
+                    <a href="departmets.html" class="btn btn-sm btn-outline-secondary"
+                       data-toggle="tooltip" data-placement="top"
+                       title="Back"><i class="fa fa-arrow-circle-left">
 
-                    </i>Cancel</a>
+                    </i></a>
                 </li>
             </ul>
-            <a href="department.html" class="navbar-brand text-uppercase mr-auto">
-                Departments
+            <!--titele-->
+            <a href="editDepartment.html" class="navbar-brand text-uppercase mr-auto">
+                Edit Department
             </a>
             <ul class="navbar-nav float-right">
                 <li class="nav-item">
                     <a href="#" class="btn btn-sm btn-outline-secondary"
-                       data-toggle="tooltip" data-placement="right"
-                       title="Tooltip on right"><i class="fa fa-plus">
+                       data-toggle="tooltip" data-placement="top"
+                       title="Save"><i class="fa fa-save">
 
                     </i>Save</a>
                 </li>
@@ -55,12 +57,13 @@
     </header>
     <section id="departmet">
 
-        <div class="card w-50">
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="DepartmentName">Email address</label>
-                    <input type="text" class="form-control" id="DepartmentName" placeholder="Department name">
-                    <label for="DepartmentDesc">Email address</label>
+        <div class="card">
+            <div class="card-body" >
+                <div class="form-group" >
+                    <label for="DepartmentName">Department name</label>
+                    <input type="text" class="form-control" id="DepartmentName" placeholder="Department name" >
+                    <p></p>
+                    <label for="DepartmentDesc">Description</label>
                     <input type="text" class="form-control" id="DepartmentDesc" placeholder="Description">
 
                 </div>
