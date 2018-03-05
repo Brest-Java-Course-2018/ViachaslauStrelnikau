@@ -30,6 +30,13 @@ public class Department {
     public String getDescription() {
         return description;
     }
+
+    public Department( String departmentName, String description) {
+        this.departmentName = departmentName;
+        this.description = description;
+    }
+    public Department(){}
+
     /**
      * set Department Id.
      * @param departmentid new Department Id

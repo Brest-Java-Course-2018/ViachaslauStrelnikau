@@ -6,7 +6,18 @@
 
 
     <bean name="departmentDAO" class="com.epam.brest.dao.DepartmentDaoImpl">
-        <constructor-arg ref="datasource"/>
+        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+
+        <property name="dataSource" ref="datasource"/>
+    </bean>
+
+    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+
+        <constructor-arg name="dataSource" ref="datasource"/>
     </bean>
 
 </beans>
