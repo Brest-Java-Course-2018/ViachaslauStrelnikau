@@ -29,7 +29,7 @@ public interface DepartmentDao {
      * @param departmentName name of department to find
      * @return Department searched department
      */
-    Department getDepartmentByName(final String departmentName);
+//    Department getDepartmentByName(final String departmentName);
     /**
      * method addDepartment is created to add department.
      *
@@ -47,8 +47,7 @@ public interface DepartmentDao {
      * method removeDepartmentById is created to remove department from record.
      *
      * @param departmentid id of department to remove
-     * @return flag of operation  coalition
      */
-    boolean removeDepartmentById(final int departmentid);
+    void removeDepartmentById(final int departmentid);
 
 }

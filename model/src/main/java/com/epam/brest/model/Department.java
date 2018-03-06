@@ -53,10 +53,10 @@ public class Department {
     }
     /**
      * set Department Descririon.
-     * @param descriptioN new department description
+     * @param description new department description
      */
-    public void setDescririon(final String descriptioN) {
-        this.description = descriptioN;
+    public void setDescription(final String description) {
+        this.description = description;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class Department {
         return "Department{"
                 + "departmentId=" + departmentId
                 + ", departmentName='" + departmentName + '\''
-                + ", descririon='" + description + '\''
+                + ", description='" + description + '\''
                 + '}';
     }
 }

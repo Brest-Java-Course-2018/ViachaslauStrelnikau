@@ -4,20 +4,20 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
-    <bean name="departmentDAO" class="com.epam.brest.dao.DepartmentDaoImpl">
-        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
-
+    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
+
+
+    <bean name="departmentDao" class="com.epam.brest.dao.DepartmentDaoImpl">
+        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+    </bean>
+
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-
-        <property name="dataSource" ref="datasource"/>
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
 
-        <constructor-arg name="dataSource" ref="datasource"/>
-    </bean>
 
 </beans>
