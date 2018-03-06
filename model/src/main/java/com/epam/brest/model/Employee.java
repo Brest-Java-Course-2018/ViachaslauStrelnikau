@@ -11,12 +11,12 @@ public class Employee {
     /** Property employeeSalary.*/
     private int employeeSalary;
     /** Property departmenyId.*/
-    private int departmenyId;
+    private int departmentId;
 
-    public Employee(String employeeName, int employeeSalary, int departmenyId) {
+    public Employee(String employeeName, int employeeSalary, int departmentId) {
         this.employeeName = employeeName;
         this.employeeSalary = employeeSalary;
-        this.departmenyId = departmenyId;
+        this.departmentId = departmentId;
     }
     public Employee()
     {}
@@ -47,8 +47,8 @@ public class Employee {
      * Get Employees Department id.
      * @return departentId
      */
-    public int getDepartmenyId() {
-        return departmenyId;
+    public int getDepartmentId() {
+        return departmentId;
     }
     /**
      * Set Employees  id.
@@ -59,10 +59,10 @@ public class Employee {
     }
     /**
      * Set Employees  name.
-     * @param employeename new Employees  name
+     * @param employeeName new Employees  name
      */
-    public void setEmployeeName(final String employeename) {
-        this.employeeName = employeename;
+    public void setEmployeeName(final String employeeName) {
+        this.employeeName = employeeName;
     }
     /**
      * Set Employees  salary.
@@ -73,10 +73,10 @@ public class Employee {
     }
     /**
      * Set Employees  DepartmenyId.
-     * @param departmenyid new Departmeny Id
+     * @param departmentId new Departmeny Id
      */
-    public void setDepartmenyId(final int departmenyid) {
-        this.departmenyId = departmenyid;
+    public void setDepartmentId(final int departmentId) {
+        this.departmentId = departmentId;
     }
     /**
      * Set Generates string with all employee fields.
@@ -88,7 +88,7 @@ public class Employee {
                 + "employeeId=" + employeeId
                 + ", employeeName='" + employeeName + '\''
                 + ", employeeSalary=" + employeeSalary
-                + ", departmenyId=" + departmenyId
+                + ", departmenyId=" + departmentId
                 + '}';
     }
 }

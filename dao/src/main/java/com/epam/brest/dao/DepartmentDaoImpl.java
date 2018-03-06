@@ -117,9 +117,10 @@ public class DepartmentDaoImpl implements DepartmentDao {
         Integer result = namedParameterJdbcTemplate.queryForObject(departmentCheck, namedParametres1, Integer.class);
 
         if (result == 0) {
-            SqlParameterSource namedParametres =
-                    new MapSqlParameterSource(NAME, department.getDepartmentName());
-            ((MapSqlParameterSource) namedParametres).addValue(DESCRIPTION, department.getDescription());
+            MapSqlParameterSource namedParametres =new MapSqlParameterSource();
+
+            namedParametres.addValue(NAME, department.getDepartmentName());
+            namedParametres.addValue(DESCRIPTION, department.getDescription());
 
             KeyHolder generateKey = new GeneratedKeyHolder();
             namedParameterJdbcTemplate.update(departmentInsert, namedParametres, generateKey);
@@ -143,7 +144,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     }
 
     /**
-     * method removeDepartmentById is created to remove department from record.
+     * method removeDepartmentById is created to remove department from base.
      *
      * @param departmentid id of department to remove
      */
