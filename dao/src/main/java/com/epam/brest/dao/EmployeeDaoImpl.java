@@ -12,7 +12,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import java.util.List;
 
-public class EmployeeDaoImpl implements EmployeeDao{
+public class EmployeeDaoImpl implements EmployeeDao {
     /**
      * Property const DEPARTMENT_ID .
      */
@@ -50,9 +50,10 @@ public class EmployeeDaoImpl implements EmployeeDao{
      */
     @Override
     public List<Employee> getEmployees() {
-        List<Employee> Employees=namedParameterJdbcTemplate.getJdbcOperations().query(employeeSelect, BeanPropertyRowMapper.newInstance(Employee.class));
+        List<Employee> Employees = namedParameterJdbcTemplate.getJdbcOperations().query(employeeSelect, BeanPropertyRowMapper.newInstance(Employee.class));
         return Employees;
     }
+
     /**
      * method getEmployeeById is created to get employee by its id.
      *
@@ -69,6 +70,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
                         namedParametres, BeanPropertyRowMapper.newInstance(Employee.class));
         return employee;
     }
+
     /**
      * method addEmployee is created to add employee.
      *
@@ -83,6 +85,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
         employee.setEmployeeId(generatedKeyHolder.getKey().intValue());
         return employee;
     }
+
     /**
      * method updateEmployee is created to update employee record.
      *
@@ -94,6 +97,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 
         namedParameterJdbcTemplate.update(employeeUpadate, namedParametres);
     }
+
     /**
      * method removeEmployeeById is created to remove employee from base.
      *
