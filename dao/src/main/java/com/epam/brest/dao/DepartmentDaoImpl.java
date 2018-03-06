@@ -27,20 +27,6 @@ public class DepartmentDaoImpl implements DepartmentDao {
     public static final String DEPARTMENT_ID = "department_id";
     public static final String NAME = "department_name";
     public static final String DESCRIPTION = "description";
-    /**
-     * Property jdbcTemplate.
-     */
-  //  private JdbcTemplate jdbcTemplate;
-
-    public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-    }
-
-//    /**
-//     * Property namedParameterJdbcTemplate.
-//     */
-//
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Value("${department.select}")
     private String departmentSelect;
@@ -59,6 +45,17 @@ public class DepartmentDaoImpl implements DepartmentDao {
 
     @Value("${department.remove}")
     private String departmentRemove;
+
+
+    /**
+     * Property namedParameterJdbcTemplate.
+     */
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
+
 
     /**
      * method getDepartments is created to get all departments.
@@ -100,9 +97,9 @@ public class DepartmentDaoImpl implements DepartmentDao {
     public Department addDepartment(Department department) {
         SqlParameterSource namedParametres1 =
                 new MapSqlParameterSource(NAME, department.getDepartmentName());
-       Integer res= namedParameterJdbcTemplate.queryForObject(departmentCheck,namedParametres1,  Integer.class);
+       Integer result= namedParameterJdbcTemplate.queryForObject(departmentCheck,namedParametres1,  Integer.class);
 
-       if(res==0)
+       if(result==0)
        {
            SqlParameterSource namedParametres =
                    new MapSqlParameterSource(NAME, department.getDepartmentName());
@@ -115,8 +112,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
        else
        throw new IllegalArgumentException("Record is in base");
 
-       return
-               department;
+       return  department;
     }
 
     /**
@@ -139,16 +135,4 @@ public class DepartmentDaoImpl implements DepartmentDao {
     public void removeDepartmentById(final int departmentid) {
         namedParameterJdbcTemplate.getJdbcOperations().update(departmentRemove,departmentid);
     }
-
-    /**
-     * Class PreparedStatementcallback is entire class that executes SQL PreparedStatemets .
-     */
-    private class PreparedStatementcallback implements PreparedStatementCallback {
-        @Override
-        public Object doInPreparedStatement(PreparedStatement ps)
-                throws SQLException, DataAccessException {
-            return ps.executeUpdate();
-        }
-    }
-
 }
