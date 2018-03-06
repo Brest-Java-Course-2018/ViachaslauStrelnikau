@@ -2,11 +2,7 @@ package com.epam.brest.dao;
 
 import com.epam.brest.model.Department;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCallback;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -14,35 +10,54 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import javax.sql.DataSource;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
  * Department access methods .
  */
 public class DepartmentDaoImpl implements DepartmentDao {
+    /**
+     * Property const DEPARTMENT_ID .
+     */
     public static final String DEPARTMENT_ID = "department_id";
+    /**
+     * Property const NAME .
+     */
     public static final String NAME = "department_name";
+    /**
+     * Property const DESCRIPTION .
+     */
     public static final String DESCRIPTION = "description";
 
+    /**
+     * SQL statement to select all departments .
+     */
     @Value("${department.select}")
     private String departmentSelect;
 
+    /**
+     * SQL statement to select department by id .
+     */
     @Value("${department.slectByid}")
     private String departmentSelectbyId;
-
+    /**
+     * SQL statement to check unique of department name .
+     */
     @Value("${department.checkdepartment}")
     private String departmentCheck;
-
+    /**
+     * SQL statement to insert department.
+     */
     @Value("${department.insert}")
     private String departmentInsert;
-
+    /**
+     * SQL statement to update department.
+     */
     @Value("${department.update}")
     private String departmentUpadate;
-
+    /**
+     * SQL statement to remove department.
+     */
     @Value("${department.remove}")
     private String departmentRemove;
 
@@ -52,15 +67,19 @@ public class DepartmentDaoImpl implements DepartmentDao {
      */
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    /**
+     * method setNamedParameterJdbcTemplate seter method for namedParameterJdbcTemplate property.
+     *
+     * @param namedParameterJdbcTemplate input value
+     */
+    public void setNamedParameterJdbcTemplate(final NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
-
 
     /**
      * method getDepartments is created to get all departments.
      *
-     * @return List<Department> List of all Departments
+     * @return List List of all Departments
      */
     @Override
     public List<Department> getDepartments() {
@@ -76,11 +95,10 @@ public class DepartmentDaoImpl implements DepartmentDao {
      */
     // нельзя возвращать null
     @Override
-    public Department getDepartmentById(final int departmentId)
-    {
+    public Department getDepartmentById(final int departmentId) {
         SqlParameterSource namedParametres =
                 new MapSqlParameterSource(DEPARTMENT_ID, departmentId);
-        Department department=
+        Department department =
                 namedParameterJdbcTemplate.queryForObject(departmentSelectbyId,
                         namedParametres, BeanPropertyRowMapper.newInstance(Department.class));
         return department;
@@ -92,27 +110,25 @@ public class DepartmentDaoImpl implements DepartmentDao {
      * @param department object to add into database
      * @return Department added object
      */
-    // проверка через количество привести в один ригистр
     @Override
     public Department addDepartment(Department department) {
         SqlParameterSource namedParametres1 =
                 new MapSqlParameterSource(NAME, department.getDepartmentName());
-       Integer result= namedParameterJdbcTemplate.queryForObject(departmentCheck,namedParametres1,  Integer.class);
+        Integer result = namedParameterJdbcTemplate.queryForObject(departmentCheck, namedParametres1, Integer.class);
 
-       if(result==0)
-       {
-           SqlParameterSource namedParametres =
-                   new MapSqlParameterSource(NAME, department.getDepartmentName());
-           ((MapSqlParameterSource) namedParametres).addValue(DESCRIPTION, department.getDescription());
+        if (result == 0) {
+            SqlParameterSource namedParametres =
+                    new MapSqlParameterSource(NAME, department.getDepartmentName());
+            ((MapSqlParameterSource) namedParametres).addValue(DESCRIPTION, department.getDescription());
 
-           KeyHolder generateKey = new GeneratedKeyHolder() ;
-           namedParameterJdbcTemplate.update(departmentInsert,namedParametres,generateKey);
-           department.setDepartmentId(generateKey.getKey().intValue());
-     }
-       else
-       throw new IllegalArgumentException("Record is in base");
+            KeyHolder generateKey = new GeneratedKeyHolder();
+            namedParameterJdbcTemplate.update(departmentInsert, namedParametres, generateKey);
+            department.setDepartmentId(generateKey.getKey().intValue());
+        } else {
+            throw new IllegalArgumentException("Record is in base");
+        }
 
-       return  department;
+        return department;
     }
 
     /**
@@ -122,8 +138,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
      */
     @Override
     public void updateDepartment(Department department) {
-        SqlParameterSource namedParametres =new BeanPropertySqlParameterSource(department);
-        namedParameterJdbcTemplate.update(departmentUpadate,namedParametres);
+        SqlParameterSource namedParametres = new BeanPropertySqlParameterSource(department);
+        namedParameterJdbcTemplate.update(departmentUpadate, namedParametres);
     }
 
     /**
@@ -133,6 +149,6 @@ public class DepartmentDaoImpl implements DepartmentDao {
      */
     @Override
     public void removeDepartmentById(final int departmentid) {
-        namedParameterJdbcTemplate.getJdbcOperations().update(departmentRemove,departmentid);
+        namedParameterJdbcTemplate.getJdbcOperations().update(departmentRemove, departmentid);
     }
 }

@@ -13,6 +13,14 @@ public class Employee {
     /** Property departmenyId.*/
     private int departmenyId;
 
+    public Employee(String employeeName, int employeeSalary, int departmenyId) {
+        this.employeeName = employeeName;
+        this.employeeSalary = employeeSalary;
+        this.departmenyId = departmenyId;
+    }
+    public Employee()
+    {}
+
     /**
      * Get Employee id.
      * @return EmployeeId

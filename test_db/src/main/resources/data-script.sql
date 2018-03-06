@@ -9,3 +9,9 @@ values ('Development','Develop something');
 
 insert into department(department_name,description)
 values ('HR','HR something');
+
+insert into employee(employee_name,employeeSalary,department_id)
+values ('Vasia Pupkin',1000, 1);
+
+
+

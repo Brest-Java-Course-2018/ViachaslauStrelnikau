@@ -62,17 +62,20 @@ public class DepartmentDaoImplTest {
         Assert.assertTrue((size_before+1)== departmentDAO.getDepartments().size());
         Assert.assertTrue(res.getDepartmentName().equals(obj.getDepartmentName()));
         Assert.assertTrue(res.getDescription ().equals(obj.getDescription()));
-
     }
+    /**
+     * Testing addDepartment() method of DepartmentDao.
+     */
     @Test(expected = IllegalArgumentException.class)
     public void addDepartment2()
     {
         Department obj = new Department("Educational","Educate");
         departmentDAO.addDepartment(obj);
         departmentDAO.addDepartment(obj);
-
     }
-
+    /**
+     * Testing addDepartment() method of DepartmentDao.
+     */
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     @Test
@@ -83,7 +86,6 @@ public class DepartmentDaoImplTest {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Record is in base");
         departmentDAO.addDepartment(obj);
-
     }
 
     /**
@@ -100,7 +102,6 @@ public class DepartmentDaoImplTest {
         Assert.assertTrue(newDepartment.getDepartmentId()==updDepartment.getDepartmentId());
         Assert.assertTrue(newDepartment.getDepartmentName().equals(updDepartment.getDepartmentName()));
         Assert.assertTrue(newDepartment.getDescription().equals(updDepartment.getDescription()));
-
     }
 
     /**
@@ -116,7 +117,5 @@ public class DepartmentDaoImplTest {
         int size_before=departments.size();
         departmentDAO.removeDepartmentById(obj.getDepartmentId());
         Assert.assertTrue((size_before-1)== departmentDAO.getDepartments().size());
-
     }
-
 }

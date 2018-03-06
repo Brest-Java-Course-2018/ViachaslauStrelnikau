@@ -9,6 +9,13 @@ public class Department {
     private String departmentName;
     /**Property description.*/
     private  String description;
+
+    public Department( String departmentName, String description) {
+        this.departmentName = departmentName;
+        this.description = description;
+    }
+    public Department(){}
+
     /**
      * Get Department id.
      * @return DepartmentId
@@ -31,18 +38,12 @@ public class Department {
         return description;
     }
 
-    public Department( String departmentName, String description) {
-        this.departmentName = departmentName;
-        this.description = description;
-    }
-    public Department(){}
-
     /**
      * set Department Id.
-     * @param departmentid new Department Id
+     * @param departmentId new Department Id
      */
-    public void setDepartmentId(final int departmentid) {
-        this.departmentId = departmentid;
+    public void setDepartmentId(final int departmentId) {
+        this.departmentId = departmentId;
     }
     /**
      * set Department Name.

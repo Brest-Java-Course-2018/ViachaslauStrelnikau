@@ -12,7 +12,7 @@ public interface DepartmentDao {
     /**
      * method getDepartments is created to get all departments.
      *
-     * @return List<Department> List of all Departments
+     * @return List List of all Departments
      */
     List<Department> getDepartments();
 
@@ -23,13 +23,6 @@ public interface DepartmentDao {
      * @return Department searched department
      */
     Department getDepartmentById(final int departmentId);
-    /**
-     * method getDepartmentByName is created to get department by its name.
-     *
-     * @param departmentName name of department to find
-     * @return Department searched department
-     */
-//    Department getDepartmentByName(final String departmentName);
     /**
      * method addDepartment is created to add department.
      *
