@@ -1,6 +1,8 @@
 package com.epam.brest.dao;
 
 import com.epam.brest.model.Department;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -16,6 +18,8 @@ import java.util.List;
  * Department access methods .
  */
 public class DepartmentDaoImpl implements DepartmentDao {
+    private static final Logger LOGGER= LogManager.getLogger();
+
     /**
      * Property const DEPARTMENT_ID .
      */
@@ -83,6 +87,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
      */
     @Override
     public List<Department> getDepartments() {
+        LOGGER.debug("getDepartments");
         List<Department> departments = namedParameterJdbcTemplate.getJdbcOperations().query(departmentSelect, BeanPropertyRowMapper.newInstance(Department.class));
         return departments;
     }
@@ -96,6 +101,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
     // нельзя возвращать null
     @Override
     public Department getDepartmentById(final int departmentId) {
+        LOGGER.debug("getDepartmentById {}",departmentId);
+
         SqlParameterSource namedParametres =
                 new MapSqlParameterSource(DEPARTMENT_ID, departmentId);
         Department department =
@@ -112,10 +119,12 @@ public class DepartmentDaoImpl implements DepartmentDao {
      */
     @Override
     public Department addDepartment(Department department) {
+        LOGGER.debug("addDepartment {}",department);
         SqlParameterSource namedParametres1 =
                 new MapSqlParameterSource(NAME, department.getDepartmentName());
         Integer result = namedParameterJdbcTemplate.queryForObject(departmentCheck, namedParametres1, Integer.class);
 
+        LOGGER.debug("Result = {}",result);
         if (result == 0) {
             MapSqlParameterSource namedParametres =new MapSqlParameterSource();
 
@@ -149,7 +158,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
      * @param departmentid id of department to remove
      */
     @Override
-    public void removeDepartmentById(final int departmentid) {
+    public Department removeDepartmentById(final int departmentid) {
         namedParameterJdbcTemplate.getJdbcOperations().update(departmentRemove, departmentid);
+        return null;
     }
 }

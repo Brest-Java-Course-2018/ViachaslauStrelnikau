@@ -41,6 +41,6 @@ public interface DepartmentDao {
      *
      * @param departmentid id of department to remove
      */
-    void removeDepartmentById(final int departmentid);
+    Department removeDepartmentById(final int departmentid);
 
 }
