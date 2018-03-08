@@ -1,10 +1,10 @@
 <Configuration xmlns="http://logging.apache.org/log4j/2.0/config">
     <Appenders>
         <Console name="Console" target="System.out">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS}[%t]%-5level %logger{36} -%msg%n"/>
+            <PatternLayout pattern="%d{DATE}[%t]%-5level %logger{36} -%msg%n"/>
         </Console>
         <File name="File" fileName="logs/server.log">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS}[%t]%-5level %logger{36} -%msg%n"/>
+            <PatternLayout pattern="%d{DATE}[%t]%-5level %logger{36} -%msg%n"/>
         </File>
     </Appenders>
 
@@ -16,6 +16,6 @@
         </Root>
         
         <Logger name="com.epam" level="DEBUG"/>
-        <Logger name="org.springframework" level="INFO"/>
+        <!--<Logger name="org.springframework" level="INFO"/>-->
     </Loggers>
 </Configuration>

@@ -1,6 +1,8 @@
 package com.epam.brest.dao;
 
 import com.epam.brest.model.Employee;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -17,6 +19,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
      * Property const DEPARTMENT_ID .
      */
     public static final String EMPLOYEE_ID = "employee_id";
+    private static final Logger LOGGER= LogManager.getLogger();
 
     @Value("${employee.select}")
     private String employeeSelect;
@@ -50,6 +53,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
      */
     @Override
     public List<Employee> getEmployees() {
+        LOGGER.debug("getEmployees");
         List<Employee> Employees = namedParameterJdbcTemplate.getJdbcOperations().query(employeeSelect, BeanPropertyRowMapper.newInstance(Employee.class));
         return Employees;
     }
@@ -62,7 +66,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
      */
     @Override
     public Employee getEmployeeById(int employeeId) {
-
+        LOGGER.debug("getEmployeeById {}",employeeId);
         SqlParameterSource namedParametres =
                 new MapSqlParameterSource(EMPLOYEE_ID, employeeId);
         Employee employee =
@@ -79,6 +83,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
      */
     @Override
     public Employee addEmployee(Employee employee) {
+        LOGGER.debug("addEmployee {}",employee);
         SqlParameterSource namedParametres = new BeanPropertySqlParameterSource(employee);
         KeyHolder generatedKeyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(employeeInsert, namedParametres, generatedKeyHolder);
@@ -93,6 +98,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
      */
     @Override
     public void updateEmployee(Employee employee) {
+        LOGGER.debug("updateEmployee {}",employee);
         SqlParameterSource namedParametres = new BeanPropertySqlParameterSource(employee);
 
         namedParameterJdbcTemplate.update(employeeUpadate, namedParametres);
@@ -105,6 +111,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
      */
     @Override
     public void removeEmployeeById(int employeeId) {
+        LOGGER.debug("removeEmployeeById {}",employeeId);
         namedParameterJdbcTemplate.getJdbcOperations().update(employeeRemove, employeeId);
     }
 }

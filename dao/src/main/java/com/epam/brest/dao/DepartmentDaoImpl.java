@@ -88,6 +88,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     @Override
     public List<Department> getDepartments() {
         LOGGER.debug("getDepartments");
+
         List<Department> departments = namedParameterJdbcTemplate.getJdbcOperations().query(departmentSelect, BeanPropertyRowMapper.newInstance(Department.class));
         return departments;
     }
@@ -120,6 +121,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     @Override
     public Department addDepartment(Department department) {
         LOGGER.debug("addDepartment {}",department);
+
         SqlParameterSource namedParametres1 =
                 new MapSqlParameterSource(NAME, department.getDepartmentName());
         Integer result = namedParameterJdbcTemplate.queryForObject(departmentCheck, namedParametres1, Integer.class);
@@ -135,6 +137,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
             namedParameterJdbcTemplate.update(departmentInsert, namedParametres, generateKey);
             department.setDepartmentId(generateKey.getKey().intValue());
         } else {
+            LOGGER.error("Record is in base");
             throw new IllegalArgumentException("Record is in base");
         }
 
@@ -148,6 +151,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
      */
     @Override
     public void updateDepartment(Department department) {
+        LOGGER.debug("updateDepartment {}",department);
+
         SqlParameterSource namedParametres = new BeanPropertySqlParameterSource(department);
         namedParameterJdbcTemplate.update(departmentUpadate, namedParametres);
     }
@@ -159,6 +164,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
      */
     @Override
     public Department removeDepartmentById(final int departmentid) {
+        LOGGER.debug("removeDepartmentById {}",departmentid);
+        
         namedParameterJdbcTemplate.getJdbcOperations().update(departmentRemove, departmentid);
         return null;
     }
