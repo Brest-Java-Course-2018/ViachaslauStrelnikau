@@ -12,6 +12,10 @@ values ('HR','HR something');
 
 insert into employee(employee_name,employeeSalary,department_id)
 values ('Vasia Pupkin',1000, 1);
+insert into employee(employee_name,employeeSalary,department_id)
+values ('Petis Petin',2000, 1);
+insert into employee(employee_name,employeeSalary,department_id)
+values ('Kolia Kolin',3000, 1);
 
 
 

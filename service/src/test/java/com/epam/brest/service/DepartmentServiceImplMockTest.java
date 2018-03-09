@@ -29,7 +29,9 @@ public class DepartmentServiceImplMockTest {
     @Test
     public void updateDepartmentDescription() {
         EasyMock.expect(mockDepartmentDao.getDepartmentById(EasyMock.anyInt())).andReturn(DEPARTMENT);
+
         Capture<Department> captureArgument = Capture.newInstance();
+
         mockDepartmentDao.updateDepartment(EasyMock.capture(captureArgument));
         EasyMock.expectLastCall();
         EasyMock.replay(mockDepartmentDao);
