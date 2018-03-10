@@ -43,6 +43,9 @@ public class EmployeeServiceImplMockTest {
 
         employeeService.riseAllSallerysByPercent(10);
         EasyMock.verify(mockEmployeeDao);
+        Assert.assertEquals(1100,employees.get(0).getEmployeeSalary());
+        Assert.assertEquals(2200,employees.get(1).getEmployeeSalary());
+        Assert.assertEquals(3300,employees.get(2).getEmployeeSalary());
 
     }
 }
