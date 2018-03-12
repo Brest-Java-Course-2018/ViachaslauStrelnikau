@@ -5,8 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Hello thymeleaf</title>
 
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!--<link rel="stylesheet" href="../../resorces/static/css/font-awesome.min.css">-->
+        <!--<link rel="stylesheet" href="../../resorces/static/css/bootstrap.css">-->
+        <!--<link rel="stylesheet" href="../../resorces/static/css/style.css">-->
+    <link rel="stylesheet" href="../../resorces/static/css/font-awesome.min.css"
+          th:href="@{/resources/static/css/font-awesome.min.css}">
+    <link rel="stylesheet" href="../../resorces/static/css/bootstrap.css"
+          th:href="@{/resources/static/css/bootstrap.css}">
+    <link rel="stylesheet" href="../../resources/static/css/style.css"
+          th:href="@{/resources/static/css/bootstrap.css}">
+
 </head>
 <body>
+<div class="container">
 <h1 th:text="'Hello ' + ${name} + '!'">Hello sample</h1>
+</div>
+
+<script src="../../resorces/static/js/jquery.min.js"
+        th:src="@{/resources/static/js/jquery.min.js}"></script>
+
+<script src="../../resorces/static/js/popper.min.js"
+    th:src="@{/resorces/static/js/popper/min.js}"></script>
+
+<script src="../../resorces/static/js/bootstrap.min.js"
+        th:src="@{/resorces/static/js/bootstrap/min.js}"></script>
+
 </body>
 </html>
