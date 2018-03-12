@@ -1,0 +1,16 @@
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config">
+    <Appenders>
+        <Console name="Console" target="System.out">
+            <PatternLayout pattern="%d{DATE}[%t]%-5level %logger{36} -%msg%n"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level="ERROR">
+            <AppenderRef ref="Console"/>
+        </Root>
+        
+        <Logger name="com.epam" level="DEBUG"/>
+        <!--<Logger name="org.springframework" level="INFO"/>-->
+    </Loggers>
+</Configuration>
