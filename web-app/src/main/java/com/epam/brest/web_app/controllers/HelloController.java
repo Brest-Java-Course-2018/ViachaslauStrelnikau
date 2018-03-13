@@ -10,7 +10,7 @@ public class HelloController {
 
     @GetMapping(value = "/")
     public String defaultPageRedirect() {
-        return "redirect:hello";
+        return "redirect:departments";
     }
 
     @GetMapping(value = "/hello")
