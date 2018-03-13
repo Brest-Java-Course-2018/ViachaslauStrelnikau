@@ -5,6 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * HelloController class.
+ * Designed to test
+ */
 @Controller
 public class HelloController {
 
@@ -15,7 +19,7 @@ public class HelloController {
 
     @GetMapping(value = "/hello")
     public String hello(@RequestParam(value = "name", required = false, defaultValue = "World") String name,
-                        Model model) {
+                        final Model model) {
         model.addAttribute("name", name);
         return "hello";
     }
