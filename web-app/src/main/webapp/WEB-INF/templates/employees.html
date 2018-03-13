@@ -1,40 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HR Test Template</title>
-    <link rel="stylesheet" href="../../resorces/static/css/font-awesome.min.css"
+    <link rel="stylesheet"
+          href="../../resources/static/css/font-awesome.min.css"
           th:href="@{/resources/static/css/font-awesome.min.css}">
-    <link rel="stylesheet" href="../../resorces/static/css/bootstrap.css"
+    <link rel="stylesheet"
+          href="../../resources/static/css/bootstrap.css"
           th:href="@{/resources/static/css/bootstrap.css}">
-    <link rel="stylesheet" href="../../resources/static/css/style.css"
-          th:href="@{/resources/static/css/bootstrap.css}">
+    <link rel="stylesheet"
+          href="../../resources/static/css/style.css"
+          th:href="@{/resources/static/css/style.css}">
 </head>
 <body>
 
 <!--Top navibar-->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark text-light">
-    <a href="departmets.html" class="navbar-brand"><img src="images/icon.svg" width="64" height="32"> </a>
+    <!--<button class="navbar-toggler"-->
+            <!--type="button"-->
+            <!--data-toggle="collapse"-->
+            <!--data-target="#navbarsNav">-->
+        <!--<span class="navbar-toggler-icon"></span>-->
+    <!--</button>-->
+    <a href="employees.html" class="navbar-brand"><img src="../../resources/static/images/icon.svg" width="64" height="32"> </a>
     <h1 class="display-4">HR</h1>
     <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="departmets.html">Departments <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="employees.html">Employees</a>
+        <a class="nav-item nav-link " href="departments.html">Departments </a>
+        <a class="nav-item nav-link active" href="employees.html">Employees<span class="sr-only">(current)</span></a>
     </div>
 </nav>
 
 <header>
     <nav class=" p-0 pl-2 navbar navbar-expand-sm navbar-light bg-light text-dark">
-        <a href="departmets.html" class="navbar-brand text-uppercase mr-auto">
-            DEPARTMENTS
+        <a href="employees.html" class="navbar-brand text-uppercase mr-auto">
+            EMPLOYEES
         </a>
-<!--right Add button -->
+        <!--right Add button -->
         <ul class="navbar-nav float-right">
             <li class="nav-item">
                 <a href="#" class="btn btn-sm btn-outline-secondary"
                    data-toggle="tooltip" data-placement="top"
-                   title="Add department"><i class="fa fa-plus">
+                   title="Add employee"><i class="fa fa-plus">
 
                 </i>Add</a>
             </li>
@@ -69,18 +78,20 @@
                 <table class="table table-striped">
                     <thead class="thead-inverse">
                     <tr>
-                        <th>Title</th>
-                        <th>Avg salary</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Salary</th>
                         <th></th>
 
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>CEO</td>
-                        <td>100</td>
+                        <td>Vasia Pupkin</td>
+                        <td>Vasia@mail.ru</td>
+                        <td>1000</td>
                         <td>
-                            <a href="editDepartment.html" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
+                            <a href="editEmployee.html" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
                                title="Edit record"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
 
                             <span data-toggle="modal" data-target="#ConfirmDelete">
@@ -92,10 +103,26 @@
                     </tr>
 
                     <tr>
-                        <td>Testing</td>
-                        <td>1000</td>
+                        <td>Petia Petin</td>
+                        <td>Petia@mail.ru</td>
+                        <td>2000</td>
                         <td>
-                            <a href="editDepartment.html" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
+                            <a href="editEmployee.html" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
+                               title="Edit record"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
+
+                            <span data-toggle="modal" data-target="#ConfirmDelete">
+                            <a href="#" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"   data-placement="top"
+                               title="Delete record"  >
+                                <i class="fa fa-remove"></i><span class="d-none d-md-inline"> Delete</span></a>
+                                </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kolia Ivanov</td>
+                        <td>Ivanov@mail.ru</td>
+                        <td>2100</td>
+                        <td>
+                            <a href="editEmployee.html" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
                                title="Edit department"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
 
                             <span data-toggle="modal" data-target="#ConfirmDelete">
@@ -106,24 +133,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Development</td>
-                        <td>1000</td>
+                        <td>Stepan Bogdanov</td>
+                        <td>Bogdanov@mail.ru</td>
+                        <td>800</td>
                         <td>
-                            <a href="editDepartment.html" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
-                               title="Edit department"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
-
-                            <span data-toggle="modal" data-target="#ConfirmDelete">
-                            <a href="#" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"   data-placement="top"
-                               title="Delete department"  >
-                                <i class="fa fa-remove"></i><span class="d-none d-md-inline"> Delete</span></a>
-                                </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Managment</td>
-                        <td>1000</td>
-                        <td>
-                            <a href="editDepartment.html" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
+                            <a href="editEmployee.html" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
                                title="Edit department"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
 
                             <span data-toggle="modal" data-target="#ConfirmDelete">
@@ -142,18 +156,16 @@
 
     </div>
 </section>
-<script src="../../resorces/static/js/jquery.min.js"
+<script src="../../resources/static/js/jquery.min.js"
         th:src="@{/resources/static/js/jquery.min.js}"></script>
-
-<script src="../../resorces/static/js/popper.min.js"
-        th:src="@{/resorces/static/js/popper/min.js}"></script>
-
-<script src="../../resorces/static/js/bootstrap.min.js"
-        th:src="@{/resorces/static/js/bootstrap/min.js}"></script>
+<script src="../../resources/static/js/popper.min.js"
+        th:src="@{/resources/static/js/popper.min.js}"></script>
+<script src="../../resources/static/js/bootstrap.min.js"
+        th:src="@{/resources/static/js/bootstrap.min.js}"></script>
 <script>
-        $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-    </script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
 </body>
 </html>

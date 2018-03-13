@@ -11,6 +11,6 @@
         </Root>
         
         <Logger name="com.epam" level="DEBUG"/>
-        <!--<Logger name="org.springframework" level="INFO"/>-->
+        <Logger name="org.springframework" level="INFO"/>
     </Loggers>
 </Configuration>
