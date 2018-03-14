@@ -6,6 +6,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Collection;
+import java.util.List;
+
 public class DepartmentServiceImpl implements DepartmentService {
 
     private static final Logger LOGGER= LogManager.getLogger();
@@ -30,6 +33,12 @@ public class DepartmentServiceImpl implements DepartmentService {
         department.setDescription(newDescription);
         departmentDao.updateDepartment(department);
 
+    }
+
+    @Override
+    public Collection<Department> getDepartments() {
+        LOGGER.debug("getDepartments");
+        return departmentDao.getDepartments();
     }
 
 

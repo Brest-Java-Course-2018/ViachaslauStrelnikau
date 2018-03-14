@@ -72,6 +72,7 @@
                 <table class="table table-striped">
                     <thead class="thead-inverse">
                     <tr>
+
                         <th>Title</th>
                         <th>Avg salary</th>
                         <th></th>
@@ -83,7 +84,8 @@
                         <td>CEO</td>
                         <td>100</td>
                         <td>
-                            <a href="editDepartment.html" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
+                            <a href="editDepartment.html"
+                               th:href="@{/editDepartment/2}"  class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
                                title="Edit record"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
 
                             <span data-toggle="modal" data-target="#ConfirmDelete">

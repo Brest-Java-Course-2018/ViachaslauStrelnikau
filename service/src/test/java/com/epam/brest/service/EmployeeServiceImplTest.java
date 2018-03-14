@@ -38,6 +38,5 @@ public class EmployeeServiceImplTest {
             Assert.assertEquals(employees_before.get(count).getEmployeeId(),employees_after.get(count).getEmployeeId());
             Assert.assertEquals(employees_before.get(count).getDepartmentId(),employees_after.get(count).getDepartmentId());
         }
-
     }
 }

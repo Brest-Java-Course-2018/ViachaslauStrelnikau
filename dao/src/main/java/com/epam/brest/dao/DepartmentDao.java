@@ -3,6 +3,7 @@ package com.epam.brest.dao;
 import com.epam.brest.model.Department;
 
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ public interface DepartmentDao {
      *
      * @return List List of all Departments
      */
-    List<Department> getDepartments();
+    Collection<Department> getDepartments();
 
     /**
      * method getDepartmentById is created to get department by its id.

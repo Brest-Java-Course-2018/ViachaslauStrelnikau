@@ -23,6 +23,14 @@
         </dependency>
         <dependency>
             <groupId>com.epam.brest</groupId>
+            <artifactId>model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.brest</groupId>
+            <artifactId>service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.brest</groupId>
             <artifactId>test_db</artifactId>
         </dependency>
 
@@ -63,6 +71,10 @@
             <groupId>org.easymock</groupId>
             <artifactId>easymock</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.brest</groupId>
+            <artifactId>service</artifactId>
         </dependency>
 
 
