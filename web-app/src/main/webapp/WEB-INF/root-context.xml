@@ -10,25 +10,36 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!-- Use spring servlet for all requests, including static resources -->
+    <mvc:default-servlet-handler/>
+
+    <!-- Use @MVC annotations -->
     <mvc:annotation-driven/>
+    <!-- Component scan for @Controller, @Service... annotations -->
+    <context:component-scan base-package="com.epam.brest.*"/>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
-    <bean id="templateResolver"
-          class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
-        <property name="prefix" value="/WEB-INF/templates/"/>
-        <property name="suffix" value=".html"/>
-        <property name="templateMode" value="HTML5"/>
+    <!-- Thymeleaf Template Resolver -->
+    <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="/WEB-INF/templates/" />
+        <property name="suffix" value=".html" />
+        <property name="templateMode" value="HTML" />
     </bean>
 
-    <bean id="templateEngine"
-          class="org.thymeleaf.spring4.SpringTemplateEngine">
-        <property name="templateResolver" ref="templateResolver"/>
+    <!-- Thymeleaf Template Engine (Spring4-specific version) -->
+    <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <property name="templateResolvers">
+            <set>
+                <ref bean="templateResolver" />
+            </set>
+        </property>
     </bean>
 
-    <bean id="viewResolver"
-          class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
-        <property name="templateEngine" ref="templateEngine"/>
+    <!-- Thymeleaf View Resolver - implementation of Spring's ViewResolver interface -->
+    <bean id="viewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine" />
+        <property name="characterEncoding" value="UTF-8" />
     </bean>
 
 
