@@ -48,6 +48,9 @@
     <bean name="departmentDao" class="com.epam.brest.dao.DepartmentDaoImpl">
         <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
+    <bean name="departmentAvgDao" class="com.epam.brest.dao.DepartmentAVGsalaryDaoImpl">
+        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+    </bean>
     <bean id="departmentService" class="com.epam.brest.service.DepartmentServiceImpl">
         <constructor-arg ref="departmentDao"/>
     </bean>
