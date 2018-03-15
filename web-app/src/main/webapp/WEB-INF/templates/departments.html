@@ -35,7 +35,7 @@
         <!--right Add button -->
         <ul class="navbar-nav float-right">
             <li class="nav-item">
-                <a href="#" class="btn btn-sm btn-outline-secondary"
+                <a href="#" th:href="'/addDepartment/'" class="btn btn-sm btn-outline-secondary"
                    data-toggle="tooltip" data-placement="top"
                    title="Add department"><i class="fa fa-plus">
 
@@ -84,8 +84,8 @@
                         <td th:text ="${department.departmentName}">CEO</td>
                         <td>100</td>
                         <td>
-                            <a href="editDepartment.html"
-                               th:href="@{/editDepartment/2}"  class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
+                            <a href="editDepartment.html" th:href="'/editDepartment/' + ${department.departmentId}"
+                               class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
                                title="Edit record"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
 
                             <span data-toggle="modal" data-target="#ConfirmDelete">

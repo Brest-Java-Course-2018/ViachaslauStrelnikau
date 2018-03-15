@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
 
@@ -35,6 +37,22 @@ public class DepartmentController {
     public String getDepartmentById(@PathVariable Integer id, final Model model) {
         Department department = departmentService.getDepartmentById(id);
         model.addAttribute  ("department",department);
+        model.addAttribute  ("Title","Edit Department");
         return "editDepartment";
     }
+    @GetMapping(value = "/addDepartment")
+    public String addDepartment(final Model model)
+    {
+        Department department =new Department();
+        model.addAttribute  ("department",department);
+        model.addAttribute  ("Title","Add Department");
+        return "editDepartment";
+    }
+    @PostMapping(value = "/saveEditedDepartment")
+    public String saveEditedDepartment(@RequestParam String department, final Model model) {
+     //   Department department = departmentService.getDepartmentById(id);
+        model.addAttribute  ("department",new Department());
+        return "editDepartment";
+    }
+
 }
