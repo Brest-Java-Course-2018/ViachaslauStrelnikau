@@ -13,7 +13,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Department access methods .
@@ -90,7 +89,7 @@ public class DepartmentDaoImpl implements DepartmentDao {
     public Collection<Department> getDepartments() {
         LOGGER.debug("getDepartments");
 
-        List<Department> departments = namedParameterJdbcTemplate.getJdbcOperations().query(departmentSelect, BeanPropertyRowMapper.newInstance(Department.class));
+        Collection<Department> departments = namedParameterJdbcTemplate.getJdbcOperations().query(departmentSelect, BeanPropertyRowMapper.newInstance(Department.class));
         return departments;
     }
 

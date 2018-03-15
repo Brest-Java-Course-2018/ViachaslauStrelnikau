@@ -24,6 +24,9 @@ public class EmployeeServiceImplTest {
     @Autowired
     EmployeeService employeeService;
 
+    /**
+     * Testing riseAllSallerysByPercent() method of EmployeeService.
+     */
     @Test
     public void riseAllSallerysByPercent() {
         List<Employee> employees_before =employeeService.getEmployees();

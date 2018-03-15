@@ -1,6 +1,7 @@
 package com.epam.brest.web_app.controllers;
 
 import com.epam.brest.model.Department;
+import com.epam.brest.model.DepartmentAVGsalary;
 import com.epam.brest.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +25,8 @@ public class DepartmentController {
 
     @GetMapping(value = "/departments")
     public String departments( final Model model) {
-        Collection<Department> getDepartments = departmentService.getDepartments();
-        model.addAttribute  ("departments",getDepartments);
+        Collection<DepartmentAVGsalary> departmentAVGsalaries = departmentService.getDepartmentsAVGSalary();
+        model.addAttribute  ("departments",departmentAVGsalaries);
         return "departments";
     }
 //    @GetMapping(value = "/editDepartment")

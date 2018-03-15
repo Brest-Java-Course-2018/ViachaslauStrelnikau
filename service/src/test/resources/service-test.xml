@@ -21,7 +21,9 @@
     <bean id="employeeService" class="com.epam.brest.service.EmployeeServiceImpl">
         <constructor-arg ref="employeeDao"/>
     </bean>
-
+    <bean name="departmentAvgDao" class="com.epam.brest.dao.DepartmentAVGsalaryDaoImpl">
+        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+    </bean>
 
 
     <!--Проверить-->

@@ -11,6 +11,11 @@
         <constructor-arg value="com.epam.brest.dao.EmployeeDao"/>
     </bean>
 
+    <bean name="departmentAvgDao" class="org.easymock.EasyMock" factory-method="createMock">
+        <constructor-arg value="com.epam.brest.dao.DepartmentAVGsalaryDao"/>
+    </bean>
+
+
     <bean id="departmentService" class="com.epam.brest.service.DepartmentServiceImpl">
 <constructor-arg ref="departmentDao"/>
 

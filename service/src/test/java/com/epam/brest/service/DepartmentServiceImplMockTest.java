@@ -26,6 +26,9 @@ public class DepartmentServiceImplMockTest {
     @Autowired
     private DepartmentDao mockDepartmentDao;
 
+    /**
+     * Testing updateDepartmentDescription() method of DepartmentService.
+     */
     @Test
     public void updateDepartmentDescription() {
         EasyMock.expect(mockDepartmentDao.getDepartmentById(EasyMock.anyInt())).andReturn(DEPARTMENT);
