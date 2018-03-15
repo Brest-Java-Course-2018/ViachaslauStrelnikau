@@ -67,6 +67,13 @@
         <button type="submit" name="save">Add Seed Starter</button>
     </div>
 </form>
+
+<form ACTION="#" th:action="@{/saveEditedDepartment}" th:object="${department}" method="POST">
+    <td th:text="${department.departmentName}">"asdasd"</td>
+    <td th:text="${department.description}">1111</td>
+    <!-- ADD ALL THE OTHER FIELDS THAT ARE PART OF THE OBJECT -->
+    <button type="submit">Submit</button>
+</form>
     <section id="departmet">
 
         <div class="card">

@@ -23,11 +23,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         this.departmentDao = departmentDao;
     }
 
-    @Override
-    public Department getDepartmentById(int departmentId) {
-        LOGGER.debug("getDepartmentById{}",departmentId);
-        return departmentDao.getDepartmentById(departmentId);
-    }
+
 
     @Override
     public void updateDepartmentDescription(int departmentId, String newDescription) {
@@ -38,16 +34,45 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     }
 
+    /**
+     * method getDepartmentById is created to get department by its id.
+     *
+     * @param departmentId id of department to find
+     * @return Department searched department
+     */
+    @Override
+    public Department getDepartmentById(int departmentId) {
+        LOGGER.debug("getDepartmentById{}",departmentId);
+        return departmentDao.getDepartmentById(departmentId);
+    }
+    /**
+     * method getDepartments is created to get all departments.
+     *
+     * @return List List of all Departments
+     */
     @Override
     public Collection<Department> getDepartments() {
         LOGGER.debug("getDepartments");
         return departmentDao.getDepartments();
     }
-
+    /**
+     * method getDepartments is created to get all departments.
+     *
+     * @return Collection  of all Departments avg Salary
+     */
     @Override
     public Collection<DepartmentAVGsalary> getDepartmentsAVGSalary() {
         LOGGER.debug("getDepartmentsAVGSalary");
         return departmentAVGsalaryDao.getDepartmentsAVGSalary();
+    }
+    /**
+     * method removeDepartmentById is created to remove department from record.
+     *
+     * @param departmentid id of department to remove
+     */
+    @Override
+    public Department removeDepartmentById(int departmentid) {
+        return departmentDao.removeDepartmentById(departmentid);
     }
 
 

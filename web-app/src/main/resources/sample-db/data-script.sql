@@ -16,6 +16,3 @@ insert into employee(employee_name,employeeSalary,department_id)
 values ('Petis Petin',2000, 2);
 insert into employee(employee_name,employeeSalary,department_id)
 values ('Kolia Kolin',3000, 1);
-
-
-

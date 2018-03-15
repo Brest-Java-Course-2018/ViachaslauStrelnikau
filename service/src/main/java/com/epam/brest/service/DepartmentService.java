@@ -8,9 +8,17 @@ import java.util.Collection;
 
 @Service
 public interface DepartmentService {
-    Department getDepartmentById(final int departmentId);
+
+
 
     void updateDepartmentDescription(int departmentId,String newDescription);
+    /**
+     * method getDepartmentById is created to get department by its id.
+     *
+     * @param departmentId id of department to find
+     * @return Department searched department
+     */
+    Department getDepartmentById(final int departmentId);
     /**
      * method getDepartments is created to get all departments.
      *
@@ -23,4 +31,10 @@ public interface DepartmentService {
      * @return Collection  of all Departments avg Salary
      */
     Collection<DepartmentAVGsalary> getDepartmentsAVGSalary();
+    /**
+     * method removeDepartmentById is created to remove department from record.
+     *
+     * @param departmentid id of department to remove
+     */
+    Department removeDepartmentById(final int departmentid);
 }
