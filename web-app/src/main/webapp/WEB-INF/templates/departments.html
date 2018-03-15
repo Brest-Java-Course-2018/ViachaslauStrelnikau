@@ -80,8 +80,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>CEO</td>
+                    <tr th:each="department : ${departments}">
+                        <td th:text ="${department.departmentName}">CEO</td>
                         <td>100</td>
                         <td>
                             <a href="editDepartment.html"
@@ -96,7 +96,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr th:remove="all">
                         <td>Testing</td>
                         <td>1000</td>
                         <td>
@@ -110,7 +110,8 @@
                                 </span>
                         </td>
                     </tr>
-                    <tr>
+
+                    <tr th:remove="all">
                         <td>Development</td>
                         <td>1000</td>
                         <td>
@@ -124,7 +125,8 @@
                                 </span>
                         </td>
                     </tr>
-                    <tr>
+
+                    <tr th:remove="all">
                         <td>Managment</td>
                         <td>1000</td>
                         <td>

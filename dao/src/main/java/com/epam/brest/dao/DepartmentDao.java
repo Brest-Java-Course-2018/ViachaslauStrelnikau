@@ -1,10 +1,7 @@
 package com.epam.brest.dao;
 
 import com.epam.brest.model.Department;
-
-
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Department access methods interface.

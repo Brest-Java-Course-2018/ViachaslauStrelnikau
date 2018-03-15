@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * DepartmentController class.
@@ -24,7 +23,7 @@ public class DepartmentController {
     @GetMapping(value = "/departments")
     public String departments( final Model model) {
         Collection<Department> getDepartments = departmentService.getDepartments();
-        model.addAttribute  ("departmenta",getDepartments);
+        model.addAttribute  ("departments",getDepartments);
         return "departments";
     }
 //    @GetMapping(value = "/editDepartment")
