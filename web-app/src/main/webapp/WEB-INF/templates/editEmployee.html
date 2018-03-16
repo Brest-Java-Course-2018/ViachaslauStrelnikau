@@ -81,17 +81,24 @@
                 <input type="text" class="form-control" id="Salary" placeholder="Salary" th:value="${employee.employeeSalary}">
                 <p></p>
                 <label for="Departments_select">Department</label>
+                <!--<div class="input-group">-->
+                    <!--<select class="custom-select" id="Departments_select" th:each="department : ${departments}">-->
+                        <!--<option selected>Department</option>-->
+                        <!--<option th:value ="${department.departmentName}">CEO</option>-->
+                        <!--&lt;!&ndash;<option value="2">Testing</option>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<option value="3">Management</option>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<option value="4">Management</option>&ndash;&gt;-->
+                    <!--</select>-->
+
+                <!--</div>-->
                 <div class="input-group">
-                    <select class="custom-select" id="Departments_select">
-                        <option selected>Department</option>
-                        <option value="1">CEO</option>
-                        <option value="2">Testing</option>
-                        <option value="3">Management</option>
-                        <option value="4">Management</option>
+                <select class="custom-select" id="Departments_select"  th:field="*{departments}">
+                    <option type="text" value="NONE">---- Select Department----</option>
+                    <option th:each="department : ${departments}"
+                            th:value="${department.departmentId}"
+                            th:text="${department.departmentName}">Englishy</option>
                     </select>
-
                 </div>
-
             </div>
 
         </div>
