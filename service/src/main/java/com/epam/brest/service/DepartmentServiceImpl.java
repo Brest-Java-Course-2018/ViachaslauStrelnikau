@@ -72,6 +72,7 @@ public class DepartmentServiceImpl implements DepartmentService {
      */
     @Override
     public Department removeDepartmentById(int departmentid) {
+        LOGGER.debug("removeDepartmentById");
         return departmentDao.removeDepartmentById(departmentid);
     }
 

@@ -10,13 +10,15 @@ import java.util.List;
 
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private static final Logger LOGGER= LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
     @Autowired
     private EmployeeDao employeeDao;
 
-    public EmployeeServiceImpl(EmployeeDao employeeDao) { this.employeeDao=employeeDao;
+    public EmployeeServiceImpl(EmployeeDao employeeDao) {
+        this.employeeDao = employeeDao;
     }
+
     /**
      * method riseAllSallerysByPercent is created to rise Salary by percent value for all Employees.
      *
@@ -24,21 +26,21 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public void riseAllSallerysByPercent(int percent) {
-        LOGGER.debug("riseAllSallerysByPercent {}",percent);
-        List<Employee> employees=employeeDao.getEmployees();
-        for (Employee employee:employees
-             )
-        {
+        LOGGER.debug("riseAllSallerysByPercent {}", percent);
+        List<Employee> employees = employeeDao.getEmployees();
+        for (Employee employee : employees
+                ) {
 
-           int new_salary= employee.getEmployeeSalary();
-            LOGGER.debug("Employee: {}:{} Old salary: {}",employee.getEmployeeName(),employee.getEmployeeId(),new_salary);
-            new_salary+=new_salary*percent/100;
-            LOGGER.debug("Employee: {}:{} New salary: {}",employee.getEmployeeName(),employee.getEmployeeId(),new_salary);
-           employee.setEmployeeSalary(new_salary);
-           employeeDao.updateEmployee(employee);
+            int new_salary = employee.getEmployeeSalary();
+            LOGGER.debug("Employee: {}:{} Old salary: {}", employee.getEmployeeName(), employee.getEmployeeId(), new_salary);
+            new_salary += new_salary * percent / 100;
+            LOGGER.debug("Employee: {}:{} New salary: {}", employee.getEmployeeName(), employee.getEmployeeId(), new_salary);
+            employee.setEmployeeSalary(new_salary);
+            employeeDao.updateEmployee(employee);
         }
 
     }
+
     /**
      * method getEmployees is created to get all Employees.
      *
@@ -46,8 +48,10 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public List<Employee> getEmployees() {
+        LOGGER.debug("getEmployees");
         return employeeDao.getEmployees();
     }
+
     /**
      * method getEmployeeById is created to get employee by its id.
      *
@@ -58,11 +62,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getEmployeeById(int employeeId) {
         return employeeDao.getEmployeeById(employeeId);
     }
+
     /**
      * method removeEmployeeById is created to remove employee from base.
      *
      * @param employeeId id of department to remove
      */
-    public void removeEmployeeById(final int employeeId)
-    {employeeDao.removeEmployeeById(employeeId);}
+    public void removeEmployeeById(final int employeeId) {
+        LOGGER.debug("removeEmployeeById");
+        employeeDao.removeEmployeeById(employeeId);
+    }
 }

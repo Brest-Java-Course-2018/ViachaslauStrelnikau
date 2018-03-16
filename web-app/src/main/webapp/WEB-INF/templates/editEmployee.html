@@ -68,6 +68,7 @@
 
     <div class="card">
         <div class="card-body" >
+
             <div class="form-group" >
                 <label for="Name">Name</label>
                 <input type="text" class="form-control" id="Name" placeholder="Name" th:value="${employee.employeeName}" >
@@ -93,12 +94,14 @@
                 <!--</div>-->
                 <div class="input-group">
                 <select class="custom-select" id="Departments_select"  th:field="*{departments}">
-                    <option type="text" value="NONE">---- Select Department----</option>
+                    <option th:value="${employee.departmentId}" th:text="${DepartmentName}">---- Select Department----</option>
                     <option th:each="department : ${departments}"
                             th:value="${department.departmentId}"
                             th:text="${department.departmentName}">Englishy</option>
                     </select>
+
                 </div>
+
             </div>
 
         </div>
