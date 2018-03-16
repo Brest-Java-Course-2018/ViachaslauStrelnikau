@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HelloController {
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/*")
     public String defaultPageRedirect() {
         return "redirect:departments";
     }
