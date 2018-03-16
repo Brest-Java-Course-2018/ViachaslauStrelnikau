@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -32,9 +33,11 @@ public class EmployeeController {
         return "employees";
     }
 
-    @GetMapping(value = "/editEmployee")
-    public String employee(final Model model) {
-
+    @GetMapping(value = "/editEmployee/{id}")
+    public String employee(@PathVariable Integer id, final Model model) {
+        Employee employee= employeeService.getEmployeeById(id);
+        model.addAttribute  ("employee",employee);
+        model.addAttribute  ("Title","Edit Employee");
         return "editEmployee";
     }
 }

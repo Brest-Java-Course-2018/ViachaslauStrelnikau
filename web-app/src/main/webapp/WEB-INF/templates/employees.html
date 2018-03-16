@@ -79,7 +79,7 @@
                     <thead class="thead-inverse">
                     <tr>
                         <th>Name</th>
-                        <!--<th>Email</th>-->
+                        <th>Email</th>
                         <th>Salary</th>
                         <th></th>
 
@@ -91,7 +91,8 @@
                         <td th:text ="${employee.employeeEmail}">VasiaPupkin@mail.ru</td>
                         <td th:text ="${employee.employeeSalary}">1000</td>
                         <td>
-                            <a href="editEmployee.html" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
+                            <a href="editEmployee.html" th:href="'/editEmployee/' + ${employee.employeeId}"
+                               class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
                                title="Edit record"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
 
                             <span data-toggle="modal" data-target="#ConfirmDelete">

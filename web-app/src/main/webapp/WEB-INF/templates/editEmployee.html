@@ -45,8 +45,10 @@
             </li>
         </ul>
         <!--titele-->
+
         <a href="editEmployee.html" class="navbar-brand text-uppercase mr-auto">
-            Edit Employee
+            <p th:text="${Title} "class="navbar-brand text-uppercase mr-auto" />
+            <!--Edit Employee-->
         </a>
         <ul class="navbar-nav float-right">
             <li class="nav-item">
@@ -68,11 +70,15 @@
         <div class="card-body" >
             <div class="form-group" >
                 <label for="Name">Name</label>
-                <input type="text" class="form-control" id="Name" placeholder="Name" >
+                <input type="text" class="form-control" id="Name" placeholder="Name" th:value="${employee.employeeName}" >
                 <p></p>
-                <label for="Email">Email</label>
-                <input type="text" class="form-control" id="Email" placeholder="Email">
 
+                <label for="Email">Email</label>
+                <input type="text" class="form-control" id="Email" placeholder="Email" th:value="${employee.employeeEmail}">
+                <p></p>
+
+                <label for="Salary">Salary</label>
+                <input type="text" class="form-control" id="Salary" placeholder="Salary" th:value="${employee.employeeSalary}">
                 <p></p>
                 <label for="Departments_select">Department</label>
                 <div class="input-group">

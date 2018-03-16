@@ -48,4 +48,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> getEmployees() {
         return employeeDao.getEmployees();
     }
+    /**
+     * method getEmployeeById is created to get employee by its id.
+     *
+     * @param employeeId id of department to find
+     * @return Employee searched employee
+     */
+    @Override
+    public Employee getEmployeeById(int employeeId) {
+        return employeeDao.getEmployeeById(employeeId);
+    }
 }
