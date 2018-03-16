@@ -38,13 +38,21 @@ public class EmployeeController {
     }
 
     @GetMapping(value = "/editEmployee/{id}")
-    public String employee(@PathVariable Integer id, final Model model) {
+    public String editEmployee(@PathVariable Integer id, final Model model) {
         Employee employee= employeeService.getEmployeeById(id);
         Collection<Department> departments=departmentService.getDepartments();
         model.addAttribute  ("employee",employee);
         model.addAttribute  ("Title","Edit Employee");
         model.addAttribute  ("departments",departments);
-
         return "editEmployee";
     }
+
+    @GetMapping(value = "/removeEmployee/{id}")
+    public String removeEmployee(@PathVariable Integer id, final Model model) {
+        employeeService.removeEmployeeById(id);
+        List<Employee> employees =employeeService.getEmployees();
+        model.addAttribute ("employees",employees);
+        return "employees";
+    }
+
 }

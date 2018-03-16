@@ -25,11 +25,11 @@
             data-target="#navbarsNav">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a href="editEmployee.html" class="navbar-brand"><img src="../../resources/static/images/icon.svg" width="64" height="32"> </a>
+    <a href="editEmployee.html" th:href="'/employees'" class="navbar-brand"><img src="../../resources/static/images/icon.svg" width="64" height="32"> </a>
     <h1 class="display-4">HR</h1>
     <div class="navbar-nav">
-        <a class="nav-item nav-link " href="departmets.html">Departments </a>
-        <a class="nav-item nav-link active" href="employees.html">Employees<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link " href="departmets.html " th:href="'/departments'">Departments </a>
+        <a class="nav-item nav-link active" href="employees.html" th:href="'/employees'">Employees<span class="sr-only">(current)</span></a>
     </div>
 </nav>
 <header>
@@ -37,7 +37,7 @@
     <nav class=" p-0 pl-2 navbar navbar-expand-sm navbar-light bg-light text-dark">
         <ul class="navbar-nav float-left">
             <li class="nav-item">
-                <a href="employees.html" class="btn btn-sm btn-outline-secondary"
+                <a href="employees.html" th:href="'/employees'" class="btn btn-sm btn-outline-secondary"
                    data-toggle="tooltip" data-placement="top"
                    title="Back"><i class="fa fa-arrow-circle-left">
 
@@ -46,7 +46,7 @@
         </ul>
         <!--titele-->
 
-        <a href="editEmployee.html" class="navbar-brand text-uppercase mr-auto">
+        <a href="editEmployee.html" th:href="'/employees'" class="navbar-brand text-uppercase mr-auto">
             <p th:text="${Title} "class="navbar-brand text-uppercase mr-auto" />
             <!--Edit Employee-->
         </a>

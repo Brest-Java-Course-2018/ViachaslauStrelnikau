@@ -58,4 +58,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getEmployeeById(int employeeId) {
         return employeeDao.getEmployeeById(employeeId);
     }
+    /**
+     * method removeEmployeeById is created to remove employee from base.
+     *
+     * @param employeeId id of department to remove
+     */
+    public void removeEmployeeById(final int employeeId)
+    {employeeDao.removeEmployeeById(employeeId);}
 }

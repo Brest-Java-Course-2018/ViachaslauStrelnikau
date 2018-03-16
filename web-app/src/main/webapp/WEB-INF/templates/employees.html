@@ -25,17 +25,17 @@
             <!--data-target="#navbarsNav">-->
         <!--<span class="navbar-toggler-icon"></span>-->
     <!--</button>-->
-    <a href="employees.html" class="navbar-brand"><img src="../../resources/static/images/icon.svg" width="64" height="32"> </a>
+    <a href="employees.html" th:href="'/employees'" class="navbar-brand"><img src="../../resources/static/images/icon.svg" width="64" height="32"> </a>
     <h1 class="display-4">HR</h1>
     <div class="navbar-nav">
-        <a class="nav-item nav-link " href="departments.html">Departments </a>
-        <a class="nav-item nav-link active" href="employees.html">Employees<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link " href="departments.html" th:href="'/departments'">Departments </a>
+        <a class="nav-item nav-link active" href="employees.html" th:href="'/employees'">Employees<span class="sr-only">(current)</span></a>
     </div>
 </nav>
 
 <header>
     <nav class=" p-0 pl-2 navbar navbar-expand-sm navbar-light bg-light text-dark">
-        <a href="employees.html" class="navbar-brand text-uppercase mr-auto">
+        <a href="employees.html" th:href="'/employees'" class="navbar-brand text-uppercase mr-auto">
             EMPLOYEES
         </a>
         <!--right Add button -->
@@ -66,7 +66,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Delete</button>
+                    <a class="btn btn-primary" id="departmentId" name="departmentId"  href="" role="button" >Delete</a>
                 </div>
             </div>
         </div>
@@ -96,54 +96,8 @@
                                title="Edit record"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
 
                             <span data-toggle="modal" data-target="#ConfirmDelete">
-                            <a href="#" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"   data-placement="top"
+                            <a href="#" class="open-DelDialog btn btn-sm btn-outline-secondary" data-toggle="tooltip"   data-placement="top" th:data-id=${employee.employeeId}
                                title="Delete record"  >
-                                <i class="fa fa-remove"></i><span class="d-none d-md-inline"> Delete</span></a>
-                                </span>
-                        </td>
-                    </tr>
-
-                    <tr th:remove="all">
-                        <td>Petia Petin</td>
-                        <td>Petia@mail.ru</td>
-                        <td>2000</td>
-                        <td>
-                            <a href="editEmployee.html" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
-                               title="Edit record"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
-
-                            <span data-toggle="modal" data-target="#ConfirmDelete">
-                            <a href="#" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"   data-placement="top"
-                               title="Delete record"  >
-                                <i class="fa fa-remove"></i><span class="d-none d-md-inline"> Delete</span></a>
-                                </span>
-                        </td>
-                    </tr>
-                    <tr th:remove="all">
-                        <td>Kolia Ivanov</td>
-                        <td>Ivanov@mail.ru</td>
-                        <td>2100</td>
-                        <td>
-                            <a href="editEmployee.html" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
-                               title="Edit department"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
-
-                            <span data-toggle="modal" data-target="#ConfirmDelete">
-                            <a href="#" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"   data-placement="top"
-                               title="Delete department"  >
-                                <i class="fa fa-remove"></i><span class="d-none d-md-inline"> Delete</span></a>
-                                </span>
-                        </td>
-                    </tr>
-                    <tr th:remove="all">
-                        <td>Stepan Bogdanov</td>
-                        <td>Bogdanov@mail.ru</td>
-                        <td>800</td>
-                        <td>
-                            <a href="editEmployee.html" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
-                               title="Edit department"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
-
-                            <span data-toggle="modal" data-target="#ConfirmDelete">
-                            <a href="#" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"   data-placement="top"
-                               title="Delete department"  >
                                 <i class="fa fa-remove"></i><span class="d-none d-md-inline"> Delete</span></a>
                                 </span>
                         </td>
@@ -167,6 +121,13 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
+</script>
+<script>
+    $(document).on("click", ".open-DelDialog", function () {
+        var myBookId = $(this).data('id');
+        $(".modal-footer #departmentId").attr("href",'/removeEmployee/'+myBookId);
+
+    });
 </script>
 </body>
 </html>

@@ -24,4 +24,10 @@ public interface EmployeeService {
      * @return Employee searched employee
      */
     Employee getEmployeeById(final int employeeId);
+    /**
+     * method removeEmployeeById is created to remove employee from base.
+     *
+     * @param employeeId id of department to remove
+     */
+    void removeEmployeeById(final int employeeId);
 }
