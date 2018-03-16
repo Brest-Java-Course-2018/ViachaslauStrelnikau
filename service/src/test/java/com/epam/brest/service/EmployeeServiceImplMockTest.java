@@ -29,9 +29,9 @@ public class EmployeeServiceImplMockTest {
     @Test
     public void riseAllSallerysByPercent() {
         List<Employee> employees= new ArrayList<>();
-        employees.add(new Employee("Vasia Pupkin",1000,1));
-        employees.add(new Employee("Petis Petin",2000,1));
-        employees.add(new Employee("Kolia Kolin",3000,1));
+        employees.add(new Employee("Vasia Pupkin","VasiaPupkin@mail.ru",1000,1));
+        employees.add(new Employee("Petis Petin","PetisPetin@mail.ru",2000,1));
+        employees.add(new Employee("Kolia Kolin","KoliaKolin@mail.ru",3000,1));
 
         EasyMock.expect(mockEmployeeDao.getEmployees()).andReturn(employees);
 

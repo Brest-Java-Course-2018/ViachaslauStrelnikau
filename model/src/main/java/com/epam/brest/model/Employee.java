@@ -8,15 +8,21 @@ public class Employee {
     private int employeeId;
     /** Property employeeName.*/
     private String employeeName;
+    /** Property employeeEmail.*/
+    private String employeeEmail;
     /** Property employeeSalary.*/
     private int employeeSalary;
     /** Property departmenyId.*/
     private int departmentId;
 
-    public Employee(String employeeName, int employeeSalary, int departmentId) {
+
+
+    public Employee(String employeeName, String employeeEmail, int employeeSalary, int departmentId) {
         this.employeeName = employeeName;
+        this.employeeEmail=employeeEmail;
         this.employeeSalary = employeeSalary;
         this.departmentId = departmentId;
+
     }
     public Employee()
     {}
@@ -27,6 +33,15 @@ public class Employee {
      */
     public int getEmployeeId() {
         return employeeId;
+    }
+
+    /**
+     * get Employee Email .
+     * @return employeeEmail
+
+     */
+    public String getEmployeeEmail() {
+        return employeeEmail;
     }
     /**
      * Get Employee Name.
@@ -79,16 +94,26 @@ public class Employee {
         this.departmentId = departmentId;
     }
     /**
+     * Set Employees  employee Email.
+     * @param employeeEmail new Employees Email
+     */
+    public void setEmployeeEmail(String employeeEmail) {
+        this.employeeEmail = employeeEmail;
+    }
+
+    /**
      * Set Generates string with all employee fields.
+     *
      * @return String with all employee class propertys
      */
     @Override
     public String toString() {
-        return "Employee{"
-                + "employeeId=" + employeeId
-                + ", employeeName='" + employeeName + '\''
-                + ", employeeSalary=" + employeeSalary
-                + ", departmenyId=" + departmentId
-                + '}';
+        return "Employee{" +
+                "employeeId=" + employeeId +
+                ", employeeName='" + employeeName + '\'' +
+                ", employeeEmail='" + employeeEmail + '\'' +
+                ", employeeSalary=" + employeeSalary +
+                ", departmentId=" + departmentId +
+                '}';
     }
 }

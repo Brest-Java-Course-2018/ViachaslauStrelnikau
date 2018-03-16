@@ -79,17 +79,17 @@
                     <thead class="thead-inverse">
                     <tr>
                         <th>Name</th>
-                        <th>Email</th>
+                        <!--<th>Email</th>-->
                         <th>Salary</th>
                         <th></th>
 
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Vasia Pupkin</td>
-                        <td>Vasia@mail.ru</td>
-                        <td>1000</td>
+                    <tr th:each="employee : ${employees}">
+                        <td th:text ="${employee.employeeName}">Vasia Pupkin</td>
+                        <td th:text ="${employee.employeeEmail}">VasiaPupkin@mail.ru</td>
+                        <td th:text ="${employee.employeeSalary}">1000</td>
                         <td>
                             <a href="editEmployee.html" class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
                                title="Edit record"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
@@ -102,7 +102,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr th:remove="all">
                         <td>Petia Petin</td>
                         <td>Petia@mail.ru</td>
                         <td>2000</td>
@@ -117,7 +117,7 @@
                                 </span>
                         </td>
                     </tr>
-                    <tr>
+                    <tr th:remove="all">
                         <td>Kolia Ivanov</td>
                         <td>Ivanov@mail.ru</td>
                         <td>2100</td>
@@ -132,7 +132,7 @@
                                 </span>
                         </td>
                     </tr>
-                    <tr>
+                    <tr th:remove="all">
                         <td>Stepan Bogdanov</td>
                         <td>Bogdanov@mail.ru</td>
                         <td>800</td>

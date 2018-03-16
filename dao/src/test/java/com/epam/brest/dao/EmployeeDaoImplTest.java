@@ -53,7 +53,7 @@ public class EmployeeDaoImplTest {
         List<Employee> employees = employeeDao.getEmployees();
         int size_before = employees.size();
 
-        Employee new_Employee = new Employee("Piotr Vasiliev", 2000, 1);
+        Employee new_Employee = new Employee("Piotr Vasiliev","Piotr_Vasiliev@mail.ru", 2000, 1);
         Employee res = employeeDao.addEmployee(new_Employee);
 
         Assert.assertNotNull(res);
@@ -68,7 +68,7 @@ public class EmployeeDaoImplTest {
      */
     @Test
     public void updateEmployee() {
-        Employee obj = new Employee("Semen Semenov", 2000, 1);
+        Employee obj = new Employee("Semen Semenov","Semen@mail.ru", 2000, 1);
         Employee new_Employee = employeeDao.addEmployee(obj);
         new_Employee.setEmployeeName("Semen Petrov");
         new_Employee.setEmployeeSalary(1000);
@@ -87,7 +87,7 @@ public class EmployeeDaoImplTest {
      */
     @Test
     public void removeEmployeeById() {
-        Employee employee = new Employee("Ivanov Ivan", 500, 1);
+        Employee employee = new Employee("Ivanov Ivan","Ivanov_Ivan@mail.ru", 500, 1);
         employeeDao.addEmployee(employee);
         List<Employee> list_emp = employeeDao.getEmployees();
         int size_before = list_emp.size();

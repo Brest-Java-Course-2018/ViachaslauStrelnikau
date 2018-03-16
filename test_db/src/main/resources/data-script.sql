@@ -10,12 +10,12 @@ values ('Development','Develop something');
 insert into department(department_name,description)
 values ('HR','HR something');
 
-insert into employee(employee_name,employeeSalary,department_id)
-values ('Vasia Pupkin',1000, 1);
-insert into employee(employee_name,employeeSalary,department_id)
-values ('Petis Petin',2000, 2);
-insert into employee(employee_name,employeeSalary,department_id)
-values ('Kolia Kolin',3000, 1);
+insert into employee(employee_name,employeeEmail,employeeSalary,department_id)
+values ('Vasia Pupkin','Vasia@mail.ru',1000, 1);
+insert into employee(employee_name,employeeEmail,employeeSalary,department_id)
+values ('Petis Petin','Petis@mail.ru',2000, 2);
+insert into employee(employee_name,employeeEmail,employeeSalary,department_id)
+values ('Kolia Kolin','Kolia@mail.ru',3000, 1);
 
 
 

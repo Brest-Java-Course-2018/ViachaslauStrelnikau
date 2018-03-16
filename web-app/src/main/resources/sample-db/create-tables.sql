@@ -10,6 +10,7 @@ drop table if exists employee;
 create table employee (
 employee_id int not null auto_increment,
 employee_name varchar(255) not null,
+employeeEmail varchar(255) null,
 employeeSalary int not null,
 department_id  int NOT NULL,
 primary key(employee_id),
