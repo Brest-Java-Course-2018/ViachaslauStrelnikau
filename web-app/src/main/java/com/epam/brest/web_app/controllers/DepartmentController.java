@@ -19,18 +19,25 @@ public class DepartmentController {
 
     @Autowired
     DepartmentService departmentService;
-
+    /**
+     * method departments mapping /departments reqest and get list  departments with average salary and send to view.
+     *
+     * @param model attributes map
+     * @return template name
+     */
     @GetMapping(value = "/departments")
     public String departments( final Model model) {
         Collection<DepartmentAVGsalary> departmentAVGsalaries = departmentService.getDepartmentsAVGSalary();
         model.addAttribute  ("departments",departmentAVGsalaries);
         return "departments";
     }
-//    @GetMapping(value = "/editDepartment")
-//    public String editDepartment(final Model model) {
-//
-//        return "editDepartment";
-//    }
+    /**
+     * method editDepartment mapping /editDepartment reqest and get department by Id and send to view.
+     *
+     * @param model attributes map
+     * @param id id of department to edit
+     * @return template name
+     */
     @GetMapping(value = "/editDepartment/{id}")
     public String editDepartment(@PathVariable Integer id, final Model model) {
         Department department = departmentService.getDepartmentById(id);
@@ -38,6 +45,13 @@ public class DepartmentController {
         model.addAttribute  ("Title","Edit Department");
         return "editDepartment";
     }
+    /**
+     * method removeDepartment mapping /removeDepartment reqest and remove department by Id list  departments with average salary and send to view .
+     *
+     * @param model attributes map
+     * @param id id of department to edit
+     * @return template name
+     */
     @GetMapping(value = "/removeDepartment/{id}")
     public String removeDepartment(@PathVariable Integer id, final Model model) {
         departmentService.removeDepartmentById(id);

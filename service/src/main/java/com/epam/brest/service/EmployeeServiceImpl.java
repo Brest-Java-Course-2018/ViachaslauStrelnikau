@@ -17,7 +17,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public EmployeeServiceImpl(EmployeeDao employeeDao) { this.employeeDao=employeeDao;
     }
-
+    /**
+     * method riseAllSallerysByPercent is created to rise Salary by percent value for all Employees.
+     *
+     * @param percent percent of rising
+     */
     @Override
     public void riseAllSallerysByPercent(int percent) {
         LOGGER.debug("riseAllSallerysByPercent {}",percent);
@@ -35,7 +39,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
 
     }
-
+    /**
+     * method getEmployees is created to get all Employees.
+     *
+     * @return List  of all Employees
+     */
     @Override
     public List<Employee> getEmployees() {
         return employeeDao.getEmployees();
