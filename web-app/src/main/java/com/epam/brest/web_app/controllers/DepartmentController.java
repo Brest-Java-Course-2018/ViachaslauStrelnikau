@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 /**
@@ -73,10 +74,12 @@ public class DepartmentController {
 
 
     @PostMapping(value = "/saveDepartment")
-    public String saveEditedDepartment(Department department,  BindingResult result) {
+    public String saveEditedDepartment(@Valid Department department, BindingResult result, final Model model) {
 
         if (result.hasErrors()){
-            return "/departments";
+            model.addAttribute  ("department",department);
+            model.addAttribute  ("Title","Error in entered values!");
+            return "editDepartment";
         }else {
             if(department.getDepartmentId()==0)
                 departmentService.addDepartment(department);

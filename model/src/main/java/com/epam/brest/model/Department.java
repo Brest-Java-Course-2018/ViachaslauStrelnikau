@@ -1,4 +1,8 @@
 package com.epam.brest.model;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * Department class.
  */
@@ -6,9 +10,13 @@ public class Department {
     /**Property departmentId.*/
     private int departmentId;
     /**Property departmentName.*/
-    private String departmentName="";
+    @NotNull
+    @Size(min=2, max=40)
+    private String departmentName;
     /**Property description.*/
-    private  String description="";
+    @NotNull
+    @Size(min=2, max=200)
+    private  String description;
 
     public Department( String departmentName, String description) {
         this.departmentName = departmentName;
