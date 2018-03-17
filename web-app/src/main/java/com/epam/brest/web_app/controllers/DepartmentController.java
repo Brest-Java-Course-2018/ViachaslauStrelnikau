@@ -59,7 +59,6 @@ public class DepartmentController {
         model.addAttribute  ("departments",departmentAVGsalaries);
         return "departments";
 
-
     }
 
 
@@ -70,7 +69,7 @@ public class DepartmentController {
     {
         Department department =new Department();
         model.addAttribute  ("department",department);
-        model.addAttribute  ("Title","Add Department");
+        model.addAttribute  ("IsNew",true);
         return "editDepartment";
     }
 

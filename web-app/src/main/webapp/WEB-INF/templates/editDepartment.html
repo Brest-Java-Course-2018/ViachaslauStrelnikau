@@ -45,7 +45,10 @@
                 </li>
             </ul>
             <!--titele-->
-            <p th:text="${Title} "class="navbar-brand text-uppercase mr-auto" />
+            <!--<p th:text="${Title} "class="navbar-brand text-uppercase mr-auto" />-->
+            <span class="navbar-brand text-uppercase mr-auto"
+                  th:text="${isNew} ? 'Edit department':'New department' "></span>
+
             <!--<a href="editDepartment.html" class="navbar-brand text-uppercase mr-auto">-->
                 <!--Edit Department-->
             <!--</a>-->
