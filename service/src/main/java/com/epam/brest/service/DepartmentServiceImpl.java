@@ -76,5 +76,15 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentDao.removeDepartmentById(departmentid);
     }
 
+    /**
+     * method addDepartment is created to add department.
+     *
+     * @param department object to add into database
+     * @return Department added object
+     */
+    public Department addDepartment(Department department) {
+        return departmentDao.addDepartment(department);
+    }
+
 
 }

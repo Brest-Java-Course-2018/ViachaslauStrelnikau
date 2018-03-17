@@ -55,7 +55,10 @@
 
             <ul class="navbar-nav float-right">
                 <li class="nav-item">
-                    <a href="#" class="btn btn-sm btn-outline-secondary"
+                    <a href="#"
+                       th:href="@{/saveDepartment}"
+                       th:onclick="@{document.forms['departmentForm'].submit(); return false;}"
+                       class="btn btn-sm btn-outline-secondary"
                        data-toggle="tooltip" data-placement="top"
                        title="Save"><i class="fa fa-save">
                     </i>Save</a>
@@ -81,15 +84,27 @@
 
         <div class="card">
             <div class="card-body" >
+                <form id="departmentForm"
+                      th:object="${department}"
+                      action="departments.html"
+                      th:action="@{/saveDepartment}"
+                      th:method="@{post}">
+                    <input id="departmentId"
+                           name=""
+                           type="hidden"
+                           th:field="*{departmentId}"/>
+
                 <div class="form-group" >
-                    <label for="DepartmentName">Department name</label>
-                    <input type="text" class="form-control" id="DepartmentName" placeholder="Department name" th:value="${department.departmentName}"/>
+
+                    <label for="departmentName">Department name</label>
+                    <input type="text" class="form-control" id="departmentName" placeholder="Department name" th:field="${department.departmentName}">
+
                     <p></p>
-                    <label for="DepartmentDesc">Description</label>
-                    <input type="text" class="form-control" id="DepartmentDesc" placeholder="Description" th:value="${department.description}"/>
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" id="description" placeholder="Description" th:field="${department.description}">
 
                 </div>
-
+                </form>
             </div>
         </div>
 

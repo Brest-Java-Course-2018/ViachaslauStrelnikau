@@ -37,4 +37,11 @@ public interface DepartmentService {
      * @param departmentid id of department to remove
      */
     Department removeDepartmentById(final int departmentid);
+    /**
+     * method addDepartment is created to add department.
+     *
+     * @param department object to add into database
+     * @return Department added object
+     */
+    Department addDepartment(Department department);
 }

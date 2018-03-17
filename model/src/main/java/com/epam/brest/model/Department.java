@@ -6,9 +6,9 @@ public class Department {
     /**Property departmentId.*/
     private int departmentId;
     /**Property departmentName.*/
-    private String departmentName;
+    private String departmentName="";
     /**Property description.*/
-    private  String description;
+    private  String description="";
 
     public Department( String departmentName, String description) {
         this.departmentName = departmentName;

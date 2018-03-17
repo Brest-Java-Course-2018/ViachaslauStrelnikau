@@ -6,6 +6,7 @@ import com.epam.brest.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -68,16 +69,23 @@ public class DepartmentController {
     public String addDepartment(final Model model)
     {
         Department department =new Department();
+        department.setDepartmentId(123);
         model.addAttribute  ("department",department);
         model.addAttribute  ("IsNew",true);
         return "editDepartment";
     }
 
-    @PostMapping(value = "/saveEditedDepartment")
-    public String saveEditedDepartment(@ModelAttribute("SpringWeb") Department department, final Model model) {
-     //   Department department = departmentService.getDepartmentById(id);
-        model.addAttribute  ("department",new Department());
-        return "editDepartment";
+
+    @PostMapping(value = "/saveDepartment")
+    public String saveEditedDepartment(Department department,  BindingResult result) {
+
+        if (result.hasErrors()){
+            return "/department";
+        }else {
+            departmentService.addDepartment(department);
+            return "redirect:/departments";
+        }
+
     }
 
 }
