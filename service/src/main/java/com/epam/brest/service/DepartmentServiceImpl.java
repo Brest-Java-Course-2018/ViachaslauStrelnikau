@@ -71,9 +71,9 @@ public class DepartmentServiceImpl implements DepartmentService {
      * @param departmentid id of department to remove
      */
     @Override
-    public Department removeDepartmentById(int departmentid) {
+    public void removeDepartmentById(int departmentid) {
         LOGGER.debug("removeDepartmentById");
-        return departmentDao.removeDepartmentById(departmentid);
+        departmentDao.removeDepartmentById(departmentid);
     }
 
     /**
@@ -84,6 +84,16 @@ public class DepartmentServiceImpl implements DepartmentService {
      */
     public Department addDepartment(Department department) {
         return departmentDao.addDepartment(department);
+    }
+
+    /**
+     * method updateDepartment is created to update department record.
+     *
+     * @param department object to update
+     */
+    @Override
+    public void updateDepartment(Department department) {
+        departmentDao.updateDepartment(department);
     }
 
 

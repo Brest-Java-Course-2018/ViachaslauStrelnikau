@@ -47,13 +47,13 @@
             <!--titele-->
             <!--<p th:text="${Title} "class="navbar-brand text-uppercase mr-auto" />-->
             <span class="navbar-brand text-uppercase mr-auto"
-                  th:text="${isNew} ? 'Edit department':'New department' "></span>
+                  th:text="${Title} "></span>
 
             <!--<a href="editDepartment.html" class="navbar-brand text-uppercase mr-auto">-->
                 <!--Edit Department-->
             <!--</a>-->
 
-            <ul class="navbar-nav float-right">
+            <ul class="p-2 navbar-nav float-right">
                 <li class="nav-item">
                     <a href="#"
                        th:href="@{/saveDepartment}"

@@ -37,8 +37,7 @@ public interface DepartmentDao {
     /**
      * method removeDepartmentById is created to remove department from record.
      *
-     * @param departmentid id of department to remove
      */
-    Department removeDepartmentById(final int departmentid);
+    void removeDepartmentById(final int departmentid);
 
 }

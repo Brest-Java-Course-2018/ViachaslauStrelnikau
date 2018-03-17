@@ -36,7 +36,7 @@ public interface DepartmentService {
      *
      * @param departmentid id of department to remove
      */
-    Department removeDepartmentById(final int departmentid);
+    void removeDepartmentById(final int departmentid);
     /**
      * method addDepartment is created to add department.
      *
@@ -44,4 +44,10 @@ public interface DepartmentService {
      * @return Department added object
      */
     Department addDepartment(Department department);
+    /**
+     * method updateDepartment is created to update department record.
+     *
+     * @param department object to update
+     */
+    void updateDepartment(Department department);
 }

@@ -43,7 +43,7 @@ public class DepartmentController {
     public String editDepartment(@PathVariable Integer id, final Model model) {
         Department department = departmentService.getDepartmentById(id);
         model.addAttribute  ("department",department);
-        model.addAttribute  ("Title","Edit Department");
+        model.addAttribute  ("Title","EDIT DEPARTMENT");
         return "editDepartment";
     }
     /**
@@ -59,19 +59,15 @@ public class DepartmentController {
         Collection<DepartmentAVGsalary> departmentAVGsalaries = departmentService.getDepartmentsAVGSalary();
         model.addAttribute  ("departments",departmentAVGsalaries);
         return "departments";
-
     }
-
-
 
 
     @GetMapping(value = "/addDepartment")
     public String addDepartment(final Model model)
     {
         Department department =new Department();
-        department.setDepartmentId(123);
         model.addAttribute  ("department",department);
-        model.addAttribute  ("IsNew",true);
+        model.addAttribute  ("Title","ADD DEPARTMENT");
         return "editDepartment";
     }
 
@@ -80,9 +76,12 @@ public class DepartmentController {
     public String saveEditedDepartment(Department department,  BindingResult result) {
 
         if (result.hasErrors()){
-            return "/department";
+            return "/departments";
         }else {
-            departmentService.addDepartment(department);
+            if(department.getDepartmentId()==0)
+                departmentService.addDepartment(department);
+            else
+                departmentService.updateDepartment(department);
             return "redirect:/departments";
         }
 

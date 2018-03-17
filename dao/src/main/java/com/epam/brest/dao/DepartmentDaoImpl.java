@@ -163,10 +163,9 @@ public class DepartmentDaoImpl implements DepartmentDao {
      * @param departmentid id of department to remove
      */
     @Override
-    public Department removeDepartmentById(final int departmentid) {
+    public void removeDepartmentById(final int departmentid) {
         LOGGER.debug("removeDepartmentById {}",departmentid);
         
         namedParameterJdbcTemplate.getJdbcOperations().update(departmentRemove, departmentid);
-        return null;
     }
 }
