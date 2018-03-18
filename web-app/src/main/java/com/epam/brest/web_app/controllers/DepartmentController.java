@@ -49,6 +49,7 @@ public class DepartmentController {
      */
     @GetMapping(value = "/editDepartment/{id}")
     public String editDepartment(@PathVariable Integer id, final Model model) {
+        LOGGER.debug("DepartmentController.editDepartment {}",id);
         Department department = departmentService.getDepartmentById(id);
         model.addAttribute  ("department",department);
         model.addAttribute  ("Title","EDIT DEPARTMENT");
@@ -63,6 +64,7 @@ public class DepartmentController {
      */
     @GetMapping(value = "/removeDepartment/{id}")
     public String removeDepartment(@PathVariable Integer id, final Model model) {
+        LOGGER.debug("DepartmentController.removeDepartment {}",id);
         departmentService.removeDepartmentById(id);
         Collection<DepartmentAVGsalary> departmentAVGsalaries = departmentService.getDepartmentsAVGSalary();
         model.addAttribute  ("departments",departmentAVGsalaries);
@@ -77,6 +79,7 @@ public class DepartmentController {
     @GetMapping(value = "/addDepartment")
     public String addDepartment(final Model model)
     {
+        LOGGER.debug("DepartmentController.addDepartment");
         Department department =new Department();
         model.addAttribute  ("department",department);
         model.addAttribute  ("Title","ADD DEPARTMENT");
@@ -92,7 +95,7 @@ public class DepartmentController {
      */
     @PostMapping(value = "/saveDepartment")
     public String saveEditedDepartment(@Valid Department department, BindingResult result, final Model model) {
-
+        LOGGER.debug("DepartmentController.removeDepartment {}",department.getDepartmentId());
         if (result.hasErrors()){
             model.addAttribute  ("department",department);
             model.addAttribute  ("Title","Error in entered values!");

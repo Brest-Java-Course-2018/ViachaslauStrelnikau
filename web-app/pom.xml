@@ -29,6 +29,7 @@
             <groupId>com.epam.brest</groupId>
             <artifactId>service</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.epam.brest</groupId>
             <artifactId>test_db</artifactId>
@@ -72,11 +73,13 @@
             <artifactId>easymock</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.epam.brest</groupId>
-            <artifactId>service</artifactId>
-        </dependency>
 
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
 

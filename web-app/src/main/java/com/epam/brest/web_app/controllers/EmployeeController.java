@@ -4,6 +4,8 @@ import com.epam.brest.model.Department;
 import com.epam.brest.model.Employee;
 import com.epam.brest.service.DepartmentService;
 import com.epam.brest.service.EmployeeService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +28,7 @@ public class EmployeeController {
     EmployeeService employeeService;
     @Autowired
     DepartmentService departmentService;
-
+    private static final Logger LOGGER= LogManager.getLogger();
     /**
      * method employees mapping /employees reqest and get list  employees.
      *
@@ -35,7 +37,7 @@ public class EmployeeController {
      */
     @GetMapping(value = "/employees")
     public String employees(final Model model) {
-
+        LOGGER.debug("EmployeeController.employees");
         List<Employee> employees = employeeService.getEmployees();
         model.addAttribute("employees", employees);
         return "employees";
@@ -48,6 +50,7 @@ public class EmployeeController {
      */
     @GetMapping(value = "/addEmployee")
     public String addEmployee(final Model model) {
+        LOGGER.debug("EmployeeController.addEmployee");
         Employee new_employee = new Employee();
         Collection<Department> departments = departmentService.getDepartments();
 
@@ -66,6 +69,7 @@ public class EmployeeController {
      */
     @GetMapping(value = "/editEmployee/{id}")
     public String editEmployee(@PathVariable Integer id, final Model model) {
+        LOGGER.debug("EmployeeController.editEmployee {}",id);
         String DepartmentName = "";
         Employee employee = employeeService.getEmployeeById(id);
         Collection<Department> departments = departmentService.getDepartments();
@@ -93,6 +97,7 @@ public class EmployeeController {
      */
     @GetMapping(value = "/removeEmployee/{id}")
     public String removeEmployee(@PathVariable Integer id, final Model model) {
+        LOGGER.debug("EmployeeController.removeEmployee {}",id);
         employeeService.removeEmployeeById(id);
         List<Employee> employees = employeeService.getEmployees();
         model.addAttribute("employees", employees);
@@ -110,7 +115,7 @@ public class EmployeeController {
      */
     @PostMapping(value = "/saveEmployee")
     public String saveEditedEmployee(@Valid Employee employee, BindingResult result, final Model model) {
-
+        LOGGER.debug("EmployeeController.saveEditedEmployee {}",employee.getEmployeeId());
         if (result.hasErrors()){
             Collection<Department> departments = departmentService.getDepartments();
             model.addAttribute  ("employee",employee);
