@@ -1,8 +1,7 @@
 package com.epam.brest.model;
 
-import com.epam.brest.model.Employee;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class EmployeeTest {
 

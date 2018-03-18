@@ -72,4 +72,24 @@ public class EmployeeServiceImpl implements EmployeeService {
         LOGGER.debug("removeEmployeeById");
         employeeDao.removeEmployeeById(employeeId);
     }
+    /**
+     * method addEmployee is created to add employee.
+     *
+     * @param employee object to add into database
+     * @return Department added object
+     */
+    @Override
+    public Employee addEmployee(Employee employee) {
+        return employeeDao.addEmployee(employee);
+    }
+    /**
+     * method updateEmployee is created to update employee record.
+     *
+     * @param employee object to update
+     */
+    @Override
+    public void updateEmployee(Employee employee) {
+         employeeDao.updateEmployee(employee);
+    }
+
 }

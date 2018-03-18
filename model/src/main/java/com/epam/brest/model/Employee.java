@@ -1,4 +1,8 @@
 package com.epam.brest.model;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 /**
  * *
  *Employee class dao.
@@ -7,6 +11,8 @@ public class Employee {
     /**Property employeeId.*/
     private int employeeId;
     /** Property employeeName.*/
+    @NotEmpty
+    @Size(min = 2, max = 50)
     private String employeeName;
     /** Property employeeEmail.*/
     private String employeeEmail;

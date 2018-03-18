@@ -3,11 +3,15 @@ package com.epam.brest.web_app.controllers;
 import com.epam.brest.model.Department;
 import com.epam.brest.model.DepartmentAVGsalary;
 import com.epam.brest.service.DepartmentService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 import java.util.Collection;
@@ -19,6 +23,8 @@ import java.util.Collection;
 @Controller
 public class DepartmentController {
 
+    private static final Logger LOGGER= LogManager.getLogger();
+
     @Autowired
     DepartmentService departmentService;
     /**
@@ -29,6 +35,7 @@ public class DepartmentController {
      */
     @GetMapping(value = "/departments")
     public String departments( final Model model) {
+        LOGGER.debug("DepartmentController.departments");
         Collection<DepartmentAVGsalary> departmentAVGsalaries = departmentService.getDepartmentsAVGSalary();
         model.addAttribute  ("departments",departmentAVGsalaries);
         return "departments";
@@ -61,8 +68,12 @@ public class DepartmentController {
         model.addAttribute  ("departments",departmentAVGsalaries);
         return "departments";
     }
-
-
+    /**
+     * method addDepartment mapping /addDepartment reqest and prepares add Department view .
+     *
+     * @param model attributes map
+     * @return template name
+     */
     @GetMapping(value = "/addDepartment")
     public String addDepartment(final Model model)
     {
@@ -71,8 +82,14 @@ public class DepartmentController {
         model.addAttribute  ("Title","ADD DEPARTMENT");
         return "editDepartment";
     }
-
-
+    /**
+     * method saveEditedDepartment mapping /saveEditedDepartment reqest and save department record to DB .
+     *
+     * @param model attributes map
+     * @param  department added/edited department
+     * @param result check errors result
+     * @return template name
+     */
     @PostMapping(value = "/saveDepartment")
     public String saveEditedDepartment(@Valid Department department, BindingResult result, final Model model) {
 
@@ -87,7 +104,7 @@ public class DepartmentController {
                 departmentService.updateDepartment(department);
             return "redirect:/departments";
         }
-
     }
+
 
 }

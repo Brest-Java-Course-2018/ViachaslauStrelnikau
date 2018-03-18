@@ -1,6 +1,5 @@
 package com.epam.brest.service;
 
-import com.epam.brest.dao.EmployeeDao;
 import com.epam.brest.model.Employee;
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,8 +11,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:test-db-spring.xml", "classpath:dao.xml", "classpath:service-test.xml"})

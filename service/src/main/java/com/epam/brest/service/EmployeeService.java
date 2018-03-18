@@ -30,4 +30,17 @@ public interface EmployeeService {
      * @param employeeId id of department to remove
      */
     void removeEmployeeById(final int employeeId);
+    /**
+     * method addEmployee is created to add employee.
+     *
+     * @param employee object to add into database
+     * @return Department added object
+     */
+    Employee addEmployee(Employee employee);
+    /**
+     * method updateEmployee is created to update employee record.
+     *
+     * @param employee object to update
+     */
+    void updateEmployee(Employee employee);
 }

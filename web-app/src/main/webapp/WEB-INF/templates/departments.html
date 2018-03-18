@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +27,7 @@
         <a class="nav-item nav-link active" href="departments.html " th:href="'/departments'">Departments <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" href="employees.html" th:href="'/employees'">Employees</a>
     </div>
+    <div th:text="#{helloworld}"></div>
 </nav>
 
 <header>
@@ -32,6 +35,7 @@
         <a href="departments.html" th:href="'/departments'" class="navbar-brand text-uppercase mr-auto">
             DEPARTMENTS
         </a>
+
         <!--right Add button -->
         <ul class="navbar-nav float-right">
             <li class="nav-item">

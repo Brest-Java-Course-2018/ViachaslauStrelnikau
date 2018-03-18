@@ -27,7 +27,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void updateDepartmentDescription(int departmentId, String newDescription) {
-        LOGGER.debug("updateDepartmentDescription({},{})",departmentId,newDescription);
+        LOGGER.debug("Service.updateDepartmentDescription({},{})",departmentId,newDescription);
         Department department=departmentDao.getDepartmentById(departmentId);
         department.setDescription(newDescription);
         departmentDao.updateDepartment(department);
@@ -42,7 +42,7 @@ public class DepartmentServiceImpl implements DepartmentService {
      */
     @Override
     public Department getDepartmentById(int departmentId) {
-        LOGGER.debug("getDepartmentById{}",departmentId);
+        LOGGER.debug("Service.getDepartmentById{}",departmentId);
         return departmentDao.getDepartmentById(departmentId);
     }
     /**
@@ -52,7 +52,7 @@ public class DepartmentServiceImpl implements DepartmentService {
      */
     @Override
     public Collection<Department> getDepartments() {
-        LOGGER.debug("getDepartments");
+        LOGGER.debug("Service.getDepartments");
         return departmentDao.getDepartments();
     }
     /**
@@ -62,7 +62,7 @@ public class DepartmentServiceImpl implements DepartmentService {
      */
     @Override
     public Collection<DepartmentAVGsalary> getDepartmentsAVGSalary() {
-        LOGGER.debug("getDepartmentsAVGSalary");
+        LOGGER.debug("Service.getDepartmentsAVGSalary");
         return departmentAVGsalaryDao.getDepartmentsAVGSalary();
     }
     /**
@@ -72,7 +72,7 @@ public class DepartmentServiceImpl implements DepartmentService {
      */
     @Override
     public void removeDepartmentById(int departmentid) {
-        LOGGER.debug("removeDepartmentById");
+        LOGGER.debug("Service.removeDepartmentById");
         departmentDao.removeDepartmentById(departmentid);
     }
 
@@ -83,6 +83,7 @@ public class DepartmentServiceImpl implements DepartmentService {
      * @return Department added object
      */
     public Department addDepartment(Department department) {
+        LOGGER.debug("Service.addDepartment {}",department);
         return departmentDao.addDepartment(department);
     }
 
@@ -93,6 +94,7 @@ public class DepartmentServiceImpl implements DepartmentService {
      */
     @Override
     public void updateDepartment(Department department) {
+        LOGGER.debug("Service.updateDepartment {}",department);
         departmentDao.updateDepartment(department);
     }
 

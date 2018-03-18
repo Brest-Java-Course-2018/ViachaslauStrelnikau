@@ -45,13 +45,11 @@
                 </li>
             </ul>
             <!--titele-->
-            <!--<p th:text="${Title} "class="navbar-brand text-uppercase mr-auto" />-->
+
             <span class="navbar-brand text-uppercase mr-auto"
                   th:text="${Title} "></span>
 
-            <!--<a href="editDepartment.html" class="navbar-brand text-uppercase mr-auto">-->
-                <!--Edit Department-->
-            <!--</a>-->
+
 
             <ul class="p-2 navbar-nav float-right">
                 <li class="nav-item">
@@ -68,18 +66,7 @@
 
         </nav>
     </header>
-<!--<form action="#" th:action="@{/saveEditedDepartment}" th:object="${department.departmentName}" method="post">-->
-    <!--<div class="submit">-->
-        <!--<button type="submit" name="save">Add Seed Starter</button>-->
-    <!--</div>-->
-<!--</form>-->
 
-<!--<form ACTION="#" th:action="@{/saveEditedDepartment}" th:object="${department}" method="POST">-->
-    <!--<td th:text="${department.departmentName}">"asdasd"</td>-->
-    <!--<td th:text="${department.description}">1111</td>-->
-    <!--&lt;!&ndash; ADD ALL THE OTHER FIELDS THAT ARE PART OF THE OBJECT &ndash;&gt;-->
-    <!--<button type="submit">Submit</button>-->
-<!--</form>-->
     <section id="departmet">
 
         <div class="card">
@@ -87,7 +74,6 @@
                 <form id="departmentForm"
                       th:object="${department}"
                       action="departments.html"
-                      th:action="@{/saveDepartment}"
                       th:method="@{post}">
                     <input id="departmentId"
                            name=""
