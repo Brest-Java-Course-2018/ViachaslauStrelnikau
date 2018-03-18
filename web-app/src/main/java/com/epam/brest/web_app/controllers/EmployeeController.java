@@ -96,6 +96,7 @@ public class EmployeeController {
         employeeService.removeEmployeeById(id);
         List<Employee> employees = employeeService.getEmployees();
         model.addAttribute("employees", employees);
+
         return "employees";
     }
 
@@ -111,8 +112,10 @@ public class EmployeeController {
     public String saveEditedEmployee(@Valid Employee employee, BindingResult result, final Model model) {
 
         if (result.hasErrors()){
+            Collection<Department> departments = departmentService.getDepartments();
             model.addAttribute  ("employee",employee);
             model.addAttribute  ("Title","Error in entered values!");
+            model.addAttribute("departments", departments);
             return "editEmployee";
         }else {
             if(employee.getEmployeeId()==0)
