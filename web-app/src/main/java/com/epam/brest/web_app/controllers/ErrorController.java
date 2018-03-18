@@ -1,10 +1,9 @@
 package com.epam.brest.web_app.controllers;
 
+import org.omg.CosNaming.NamingContextPackage.NotFound;
+import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,47 +20,18 @@ public class ErrorController extends RuntimeException {
     }
 
 
-    @RequestMapping(value = "errors", method = RequestMethod.GET)
-    public String ErrorPage(HttpServletRequest httpRequest, Model model) {
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFound.class)
+    public String ErrorPage(Model model) {
 
-        ModelAndView errorPage = new ModelAndView("errorPage");
-        String errorMsg = "";
-        int httpErrorCode = getErrorCode(httpRequest);
-
-        switch (httpErrorCode) {
-            case 400: {
-                errorMsg = "Http Error Code: 400. Bad Request";
-                model.addAttribute  ("Title","400");
-                model.addAttribute  ("Text",errorMsg);
-                break;
-            }
-            case 401: {
-                errorMsg = "Http Error Code: 401. Unauthorized";
-                model.addAttribute  ("Title","401");
-                model.addAttribute  ("Text",errorMsg);
-                break;
-            }
-            case 404: {
-                errorMsg = "Http Error Code: 404. Resource not found";
+                String errorMsg = "Http Error Code: 404. Resource not found";
                 model.addAttribute  ("Title","404");
                 model.addAttribute  ("Text",errorMsg);
-                break;
-            }
-            case 500: {
-                errorMsg = "Http Error Code: 500. Internal Server Error";
-                model.addAttribute  ("Title","500");
-                model.addAttribute  ("Text",errorMsg);
-                break;
-            }
-        }
-        errorPage.addObject("errorMsg", errorMsg);
-        return "exception";
+
+               return "exception";
     }
 
-    private int getErrorCode(HttpServletRequest httpRequest) {
-        return (Integer) httpRequest
-                .getAttribute("javax.servlet.error.status_code");
-    }
+
 
 
 }

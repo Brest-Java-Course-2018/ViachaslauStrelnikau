@@ -79,7 +79,6 @@ public class EmployeeController {
             if (department.getDepartmentId() == employee.getDepartmentId()) {
                 DepartmentName = department.getDepartmentName();
             }
-
         }
         model.addAttribute("employee", employee);
         model.addAttribute("Title", "Edit Employee");

@@ -8,14 +8,13 @@ import javax.validation.constraints.Size;
  */
 public class Department {
     /**Property departmentId.*/
+
     private int departmentId;
     /**Property departmentName.*/
-    @NotNull
-    @Size(min=2, max=40)
+
     private String departmentName;
     /**Property description.*/
-    @NotNull
-    @Size(min=2, max=200)
+
     private  String description;
 
     public Department( String departmentName, String description) {

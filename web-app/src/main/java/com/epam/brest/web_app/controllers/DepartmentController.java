@@ -97,6 +97,7 @@ public class DepartmentController {
     public String saveEditedDepartment(@Valid Department department, BindingResult result, final Model model) {
         LOGGER.debug("DepartmentController.removeDepartment {}",department.getDepartmentId());
         if (result.hasErrors()){
+
             model.addAttribute  ("department",department);
             model.addAttribute  ("Title","Error in entered values!");
             return "editDepartment";
