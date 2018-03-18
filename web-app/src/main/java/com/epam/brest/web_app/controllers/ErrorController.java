@@ -31,8 +31,5 @@ public class ErrorController extends RuntimeException {
                return "exception";
     }
 
-
-
-
 }
 
