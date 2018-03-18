@@ -4,16 +4,20 @@ import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
 
 
 @ControllerAdvice
 public class ErrorController extends RuntimeException {
 
+    /**
+     * method handleException handle app exceptions
+     *
+     * @param model attributes map
+     * @param ex Exception
+     * @return template name
+     */
     @ExceptionHandler(Exception.class)
-    public String handleResourceNotFoundException( Exception  ex,Model model) {
+    public String handleException( Exception  ex,Model model) {
         model.addAttribute  ("Title","Exception occured");
         model.addAttribute  ("Text",ex.toString());
         return "exception";
