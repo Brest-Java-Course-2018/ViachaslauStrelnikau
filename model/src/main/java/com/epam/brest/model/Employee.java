@@ -1,7 +1,6 @@
 package com.epam.brest.model;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 /**
  * *
@@ -11,17 +10,22 @@ public class Employee {
     /**Property employeeId.*/
     private int employeeId;
     /** Property employeeName.*/
-    @NotEmpty
+    @NotEmpty(message="Name must be not blank")
     @Size(min = 2, max = 50)
     private String employeeName;
     /** Property employeeEmail.*/
+    @NotNull(message="Email must be not blank")
+    @Pattern(regexp = "^(?:[a-zA-Z0-9_'^&/+-])+(?:\\.(?:[a-zA-Z0-9_'^&/+-])+)" +
+            "*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.)" +
+            "{3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)" +
+            "+(?:[a-zA-Z]){2,}\\.?)$",
+            message = "Illegal email")
     private String employeeEmail;
     /** Property employeeSalary.*/
+    @DecimalMin("1")
     private int employeeSalary;
     /** Property departmenyId.*/
     private int departmentId;
-
-
 
     public Employee(String employeeName, String employeeEmail, int employeeSalary, int departmentId) {
         this.employeeName = employeeName;

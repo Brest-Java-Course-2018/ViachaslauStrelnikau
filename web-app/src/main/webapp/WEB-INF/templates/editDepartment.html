@@ -74,6 +74,7 @@
                 <form id="departmentForm"
                       th:object="${department}"
                       action="departments.html"
+                      th:action="@{/saveDepartment}"
                       th:method="@{post}">
                     <input id="departmentId"
                            name=""

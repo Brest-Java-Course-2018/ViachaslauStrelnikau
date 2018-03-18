@@ -98,8 +98,16 @@ public class DepartmentController {
             model.addAttribute  ("Title","Error in entered values!");
             return "editDepartment";
         }else {
-            if(department.getDepartmentId()==0)
-                departmentService.addDepartment(department);
+            if(department.getDepartmentId()==0) {
+                try{
+                departmentService.addDepartment(department);}
+                catch (IllegalArgumentException e)
+                {
+                    model.addAttribute  ("department",department);
+                    model.addAttribute  ("Title","Record with that name is allready in base!");
+                    return "editDepartment";
+                }
+            }
             else
                 departmentService.updateDepartment(department);
             return "redirect:/departments";
