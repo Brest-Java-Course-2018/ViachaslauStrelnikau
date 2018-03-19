@@ -6,12 +6,15 @@ import com.epam.brest.service.DepartmentService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.thymeleaf.spring4.view.ThymeleafView;
 
 import javax.validation.Valid;
 import java.util.Collection;
@@ -68,7 +71,7 @@ public class DepartmentController {
         departmentService.removeDepartmentById(id);
         Collection<DepartmentAVGsalary> departmentAVGsalaries = departmentService.getDepartmentsAVGSalary();
         model.addAttribute  ("departments",departmentAVGsalaries);
-        return "departments";
+        return "content-part";
     }
     /**
      * method addDepartment mapping /addDepartment reqest and prepares add Department view .
@@ -118,5 +121,14 @@ public class DepartmentController {
         }
     }
 
+    @Bean(name="content-part")
+    @Scope("prototype")
+    public ThymeleafView someViewBean() {
+
+        ThymeleafView view = new ThymeleafView("departments"); // templateName = 'index'
+
+        view.setMarkupSelector("content");
+        return view;
+    }
 
 }

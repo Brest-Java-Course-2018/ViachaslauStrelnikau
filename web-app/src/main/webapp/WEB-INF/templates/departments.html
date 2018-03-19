@@ -81,6 +81,7 @@
         </div>
     </div>
     <!--main body-->
+
     <div class="container-fluid">
         <div class="row">
             <div class="col">
@@ -94,6 +95,8 @@
 
                     </tr>
                     </thead>
+                    <div th:fragment="content">
+
                     <tbody>
                     <tr th:each="department : ${departments}">
                         <td th:text ="${department.departmentName}">CEO</td>
@@ -110,11 +113,14 @@
                                 </span>
                         </td>
                     </tr>
-
                     </tbody>
+
+                    </div>
+
                 </table>
             </div>
         </div>
+
 
 
     </div>
