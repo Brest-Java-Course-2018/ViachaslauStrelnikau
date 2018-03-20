@@ -9,15 +9,23 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context.xsd">
-    <import resource="sample-test_db-spring.xml"/>
+
+    <!--Sample in memory database for application-->
+    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:mem:test_db;DB_CLOSE_DELAY=-1"/>
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
+
     <!-- Use spring servlet for all requests, including static resources -->
     <mvc:default-servlet-handler/>
 
     <!-- Use @MVC annotations -->
     <mvc:annotation-driven/>
     <!-- Component scan for @Controller, @Service... annotations -->
-    <context:component-scan base-package="com.epam.brest.rest.*"/>
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <context:component-scan base-package="com.epam.brest.rest"/>
+    <mvc:resources mapping="/resources/**" location=" /resources"/>
 
     <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <constructor-arg name="dataSource" ref="dataSource"/>
@@ -40,24 +48,13 @@
         <constructor-arg ref="employeeDao"/>
     </bean>
 
-    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:mem:test_db;DB_CLOSE_DELAY=-1"/>
-        <property name="username" value="sa"/>
-        <property name="password" value=""/>
-    </bean>
-
-
-
-
-
 
     <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
         <property name="locations">
             <list>
 
                 <value>classpath:sql.properties</value>
-                <value>classpath:application.properties</value>
+                <!--<value>classpath:application.properties</value>-->
                 <!--<value>classpath:i18n/messages.properties</value>-->
             </list>
         </property>
