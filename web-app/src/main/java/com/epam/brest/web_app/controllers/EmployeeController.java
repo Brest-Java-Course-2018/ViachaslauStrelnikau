@@ -55,7 +55,7 @@ public class EmployeeController {
         Collection<Department> departments = departmentService.getDepartments();
 
         model.addAttribute("employee", new_employee);
-        model.addAttribute("Title", "Add Employee");
+//        model.addAttribute("Title", "Add Employee");
         model.addAttribute("isNew", true);
         model.addAttribute("departments", departments);
         return "editEmployee";
@@ -81,7 +81,7 @@ public class EmployeeController {
             }
         }
         model.addAttribute("employee", employee);
-        model.addAttribute("Title", "Edit Employee");
+//        model.addAttribute("Title", "Edit Employee");
         model.addAttribute("isNew", false);
         model.addAttribute("departments", departments);
         model.addAttribute("DepartmentName", DepartmentName);
@@ -118,7 +118,7 @@ public class EmployeeController {
         if (result.hasErrors()){
             Collection<Department> departments = departmentService.getDepartments();
             model.addAttribute  ("employee",employee);
-            model.addAttribute  ("Title","Error in entered values!");
+//            model.addAttribute  ("Title","Error in entered values!");
             model.addAttribute("departments", departments);
             return "editEmployee";
         }else {

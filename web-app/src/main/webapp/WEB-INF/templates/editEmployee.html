@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,10 +28,10 @@
     </button>
     <a href="editEmployee.html" th:href="'/employees'" class="navbar-brand"><img
             src="../../resources/static/images/icon.svg" width="64" height="32"> </a>
-    <h1 class="display-4">HR</h1>
+    <h1 class="display-4"th:text="#{logo}">HR_temp</h1>
     <div class="navbar-nav">
-        <a class="nav-item nav-link " href="departmets.html " th:href="'/departments'">Departments </a>
-        <a class="nav-item nav-link active" href="employees.html" th:href="'/employees'">Employees<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link " href="departmets.html " th:href="'/departments' "th:text="#{depHead}" >Departments_temp</a>
+        <a class="nav-item nav-link active" href="employees.html" th:href="'/employees'"th:text="#{empHead}" >Employees_temp<span class="sr-only">(current)</span></a>
     </div>
 </nav>
 <header>
@@ -48,9 +49,9 @@
         <!--titele-->
 
         <a href="editEmployee.html" th:href="'/employees'" class="navbar-brand text-uppercase mr-auto">
-            <p th:text="${Title} " class="navbar-brand text-uppercase mr-auto"/>
-            <p th:text="${isNew} ? 'New employee' : 'Edit employee'">
-                <!--Edit Employee-->
+            <!--<p th:text="${Title} " class="navbar-brand text-uppercase mr-auto"/>-->
+            <div th:if="${isNew} == true" th:text="#{new_employee}"> </div>
+            <div th:if="${isNew} == false" th:text="#{edit_employee}"> </div>
         </a>
 
         <ul class="p-2 navbar-nav float-right">
@@ -82,25 +83,33 @@
                        type="hidden"
                        th:field="*{employeeId}"/>
 
-
-
                 <div class="form-group">
-
 
                     <label for="employeeName">Name</label>
                     <input type="text" class="form-control" id="employeeName" placeholder="Employee Name"
                            th:field="*{employeeName}">
+                    <label class="d-none d-sm-inline text-danger"
+                           for="employeeName"
+                           th:if="${#fields.hasErrors('employeeName')}"
+                           th:text="#{Emp_name_error}">error</label>
                     <p></p>
 
                     <label for="Email">Email</label>
                     <input type="text"
-
                            class="form-control" id="Email" placeholder="Email" th:field="*{employeeEmail}">
+                    <label class="d-none d-sm-inline text-danger"
+                           for="Email"
+                           th:if="${#fields.hasErrors('employeeEmail')}"
+                           th:text="#{Emp_email_error}">error</label>
                     <p></p>
 
                     <label for="Salary">Salary</label>
                     <input type="text" class="form-control" id="Salary" placeholder="Salary"
                            th:field="*{employeeSalary}">
+                    <label class="d-none d-sm-inline text-danger"
+                           for="Salary"
+                           th:if="${#fields.hasErrors('employeeSalary')}"
+                           th:text="#{Emp_salary_error}">error</label>
                     <p></p>
                 </div>
 

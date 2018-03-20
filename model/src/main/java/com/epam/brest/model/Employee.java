@@ -10,12 +10,10 @@ public class Employee {
     /**Property employeeId.*/
     private int employeeId;
     /** Property employeeName.*/
-    @NotEmpty(message="Name must be not blank")
     @Size(min = 2, max = 50)
     private String employeeName;
     /** Property employeeEmail.*/
-    @NotNull(message="Email must be not blank")
-    @Size(min = 4, max = 50)
+    @Size(min = 4, max = 50,message = "Email enter error")
     @Pattern(regexp = "^(?:[a-zA-Z0-9_'^&/+-])+(?:\\.(?:[a-zA-Z0-9_'^&/+-])+)" +
             "*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.)" +
             "{3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)" +
