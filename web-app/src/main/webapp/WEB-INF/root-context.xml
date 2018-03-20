@@ -102,6 +102,7 @@
         <property name="paramName" value="lang" />
     </bean>
 
+
     <!--<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">-->
         <!--<property name="interceptors">-->
             <!--<list>-->

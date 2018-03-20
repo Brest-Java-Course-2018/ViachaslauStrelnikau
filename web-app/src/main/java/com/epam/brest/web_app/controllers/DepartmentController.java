@@ -2,6 +2,7 @@ package com.epam.brest.web_app.controllers;
 
 import com.epam.brest.model.Department;
 import com.epam.brest.model.DepartmentAVGsalary;
+import com.epam.brest.model.DepartmentValidator;
 import com.epam.brest.service.DepartmentService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.thymeleaf.spring4.view.ThymeleafView;
 
-import javax.validation.Valid;
 import java.util.Collection;
 
 /**
@@ -97,10 +97,11 @@ public class DepartmentController {
      * @return template name
      */
     @PostMapping(value = "/saveDepartment")
-    public String saveEditedDepartment(@Valid Department department, BindingResult result, final Model model) {
+    public String saveEditedDepartment(Department department, BindingResult result, final Model model) {
         LOGGER.debug("DepartmentController.removeDepartment {}",department.getDepartmentId());
+        DepartmentValidator departmentValidator = new DepartmentValidator();
+        departmentValidator.validate(department,result);
         if (result.hasErrors()){
-
             model.addAttribute  ("department",department);
             model.addAttribute  ("Title","Error in entered values!");
             return "editDepartment";

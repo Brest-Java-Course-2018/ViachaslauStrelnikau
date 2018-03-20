@@ -35,6 +35,8 @@
         <thymeleaf-spring4.version>3.0.9.RELEASE</thymeleaf-spring4.version>
         <jackson-core.version>2.9.4</jackson-core.version>
         <servlet-api.version>3.1.0</servlet-api.version>
+        <validation-api.version>2.0.1.Final</validation-api.version>
+        <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
     </properties>
 
 
@@ -61,7 +63,12 @@
             <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
-                <version>2.0.1.Final</version>
+                <version>${validation-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate-validator.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.thymeleaf</groupId>
