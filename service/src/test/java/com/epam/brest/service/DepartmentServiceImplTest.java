@@ -1,5 +1,6 @@
 package com.epam.brest.service;
 
+import com.epam.brest.dao.DepartmentDaoImpl;
 import com.epam.brest.model.Department;
 import com.epam.brest.model.DepartmentAVGsalary;
 import org.junit.Assert;
@@ -35,6 +36,21 @@ public class DepartmentServiceImplTest {
     public void getAvgDepartmentsSalary() {
         Collection<DepartmentAVGsalary> departmentsAVGSalary = departmentService.getDepartmentsAVGSalary();
         Assert.assertFalse(departmentsAVGSalary.isEmpty());
+    }
+    /**
+     * Testing addDepartment() method of departmentService.
+     */
+    @Test
+    public void addDepartment() {
+
+        Department department=new Department();
+        department.setDepartmentId(1000);
+        department.setDepartmentName("Test");
+        department.setDescription("TestDescription");
+        Department department1=departmentService.addDepartment(department);
+
+        Assert.assertTrue(department1.getDepartmentName().equals(department.getDepartmentName()));
+        Assert.assertTrue(department1.getDescription ().equals(department.getDescription()));
     }
 
 }

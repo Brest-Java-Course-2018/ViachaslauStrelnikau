@@ -44,4 +44,23 @@ public class DepartmentServiceImplMockTest {
         Department department= captureArgument.getValue();
         Assert.assertTrue(department.getDescription().equals(description));
     }
+    @Test
+    public void updateDepartmentTest()
+    {
+        mockDepartmentDao.updateDepartment(DEPARTMENT);
+        EasyMock.replay(mockDepartmentDao);
+        departmentService.updateDepartment(DEPARTMENT);
+        EasyMock.verify(mockDepartmentDao);
+    }
+
+    @Test
+    public void removeDepartmentByIdTest()
+    {
+        mockDepartmentDao.removeDepartmentById(ID);
+        EasyMock.replay(mockDepartmentDao);
+        departmentService.removeDepartmentById(ID);
+        EasyMock.verify(mockDepartmentDao);
+    }
+
+
 }
