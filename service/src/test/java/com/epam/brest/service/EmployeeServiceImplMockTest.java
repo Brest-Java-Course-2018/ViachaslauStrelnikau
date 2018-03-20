@@ -2,10 +2,10 @@ package com.epam.brest.service;
 
 import com.epam.brest.dao.EmployeeDao;
 import com.epam.brest.model.Employee;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.easymock.Capture;
 import org.easymock.EasyMock;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +20,15 @@ import java.util.List;
 public class EmployeeServiceImplMockTest {
 
     private static final Employee EMPLOYEE= new Employee("Test","Test@test.test",1000,1);
-    private static final int ID=1;
     @Autowired
     EmployeeService employeeService;
 
     @Autowired
     private EmployeeDao mockEmployeeDao;
+    @Before
+    public void before() {
+        EasyMock.reset(mockEmployeeDao);
+    }
     /**
      * Testing riseAllSallerysByPercent() method of EmployeeService.
      */
@@ -62,25 +65,14 @@ public class EmployeeServiceImplMockTest {
         EasyMock.verify(mockEmployeeDao);
     }
     /**
-     * Testing updateEmployee() method of EmployeeService.
+     * Testing addDepartmentTest() method of EmployeeService.
      */
     @Test
-    public void updateEmployeeTest()
+    public void addUpdateTest()
     {
         mockEmployeeDao.updateEmployee(EMPLOYEE);
         EasyMock.replay(mockEmployeeDao);
         employeeService.updateEmployee(EMPLOYEE);
-        EasyMock.verify(mockEmployeeDao);
-    }
-    /**
-     * Testing GetEmployeeById() method of EmployeeService.
-     */
-    @Test
-    public void GetEmployeeById()
-    {
-        EasyMock.expect(mockEmployeeDao.getEmployeeById(ID)).andReturn(EMPLOYEE);
-        EasyMock.replay(mockEmployeeDao);
-        employeeService.getEmployeeById(ID);
-        EasyMock.verify(mockEmployeeDao);
+
     }
 }

@@ -5,6 +5,7 @@ import com.epam.brest.model.Department;
 import org.easymock.Capture;
 import org.easymock.EasyMock;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,10 @@ public class DepartmentServiceImplMockTest {
     @Autowired
     private DepartmentDao mockDepartmentDao;
 
+    @Before
+    public void before() {
+        EasyMock.reset(mockDepartmentDao);
+    }
     /**
      * Testing updateDepartmentDescription() method of DepartmentService.
      */
