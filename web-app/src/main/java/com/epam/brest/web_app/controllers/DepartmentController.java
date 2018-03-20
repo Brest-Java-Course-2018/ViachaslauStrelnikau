@@ -71,7 +71,8 @@ public class DepartmentController {
         departmentService.removeDepartmentById(id);
         Collection<DepartmentAVGsalary> departmentAVGsalaries = departmentService.getDepartmentsAVGSalary();
         model.addAttribute  ("departments",departmentAVGsalaries);
-        return "content-part";
+       // return "content-part";
+        return "departments";
     }
     /**
      * method addDepartment mapping /addDepartment reqest and prepares add Department view .

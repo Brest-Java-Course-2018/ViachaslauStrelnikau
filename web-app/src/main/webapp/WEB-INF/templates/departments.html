@@ -100,8 +100,12 @@
                     <tbody>
                     <tr th:each="department : ${departments}">
                         <td th:text ="${department.departmentName}">CEO</td>
-                        <td th:text ="${department.avgSalary}">100</td>
-                        <td>
+                        <!--<td  th:text ="${department.avgSalary}">100</td>-->
+                        <td th:if="${department.avgSalary} == -1" th:text="0">
+
+                        </td>
+                        <td th:unless="${department.avgSalary} == -1" th:text="${department.avgSalary}"> </td>
+                        <td th:if="${department.avgSalary} == -1">
                             <a href="editDepartment.html" th:href="'/editDepartment/' + ${department.departmentId}"
                                class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
                                title="Edit record"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
@@ -112,6 +116,19 @@
                                 <i class="fa fa-remove"></i><span class="d-none d-md-inline"> Delete</span></a>
                                 </span>
                         </td>
+
+                        <td th:unless="${department.avgSalary} == -1">
+                            <a href="editDepartment.html" th:href="'/editDepartment/' + ${department.departmentId}"
+                               class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
+                               title="Edit record"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
+
+
+                            <a href="#" class="open-DelDialog btn btn-sm btn-outline-secondary disabled" data-toggle="tooltip"   data-placement="top" th:data-id=${department.departmentId}
+                               title="Delete record"  >
+                                <i class="fa fa-remove"></i><span class="d-none d-md-inline"> Delete</span></a>
+
+                        </td>
+
                     </tr>
                     </tbody>
 
