@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:service-mock-test.xml"})
 public class DepartmentServiceImplMockTest {
@@ -49,6 +52,9 @@ public class DepartmentServiceImplMockTest {
         Department department= captureArgument.getValue();
         Assert.assertTrue(department.getDescription().equals(description));
     }
+    /**
+     * Testing updateDepartment() method of DepartmentService.
+     */
     @Test
     public void updateDepartmentTest()
     {
@@ -57,13 +63,38 @@ public class DepartmentServiceImplMockTest {
         departmentService.updateDepartment(DEPARTMENT);
         EasyMock.verify(mockDepartmentDao);
     }
-
+    /**
+     * Testing removeDepartmentById() method of DepartmentService.
+     */
     @Test
     public void removeDepartmentByIdTest()
     {
         mockDepartmentDao.removeDepartmentById(ID);
         EasyMock.replay(mockDepartmentDao);
         departmentService.removeDepartmentById(ID);
+        EasyMock.verify(mockDepartmentDao);
+    }
+    /**
+     * Testing getDepartmentById() method of DepartmentService.
+     */
+    @Test
+    public void getDepartmentByIdTest()
+    {
+        EasyMock.expect( mockDepartmentDao.getDepartmentById(ID)).andReturn(DEPARTMENT);
+        EasyMock.replay(mockDepartmentDao);
+        departmentService.getDepartmentById(ID);
+        EasyMock.verify(mockDepartmentDao);
+    }
+    /**
+     * Testing getDepartments() method of DepartmentService.
+     */
+    @Test
+    public void getDepartmentsTest()
+    {
+        Collection<Department> departments =new ArrayList<>();
+        EasyMock.expect( mockDepartmentDao.getDepartments()).andReturn(departments);
+        EasyMock.replay(mockDepartmentDao);
+        departmentService.getDepartments();
         EasyMock.verify(mockDepartmentDao);
     }
 

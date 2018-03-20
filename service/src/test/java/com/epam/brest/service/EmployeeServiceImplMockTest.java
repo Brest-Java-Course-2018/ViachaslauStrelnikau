@@ -20,6 +20,7 @@ import java.util.List;
 public class EmployeeServiceImplMockTest {
 
     private static final Employee EMPLOYEE= new Employee("Test","Test@test.test",1000,1);
+    private static final int ID=1;
     @Autowired
     EmployeeService employeeService;
 
@@ -68,11 +69,36 @@ public class EmployeeServiceImplMockTest {
      * Testing addDepartmentTest() method of EmployeeService.
      */
     @Test
-    public void addUpdateTest()
+    public void UpdateEmployeeTest()
     {
         mockEmployeeDao.updateEmployee(EMPLOYEE);
         EasyMock.replay(mockEmployeeDao);
         employeeService.updateEmployee(EMPLOYEE);
 
     }
+    /**
+     * Testing removeEmployeeById() method of EmployeeService.
+     */
+    @Test
+    public void RemoveEmployeeTest()
+    {
+        mockEmployeeDao.removeEmployeeById(ID);
+        EasyMock.replay(mockEmployeeDao);
+        employeeService.removeEmployeeById(ID);
+        EasyMock.verify(mockEmployeeDao);
+
+    }
+    /**
+     * Testing getEmployeeById() method of EmployeeService.
+     */
+    @Test
+    public void GetEmployeeTest()
+    {
+        EasyMock.expect(mockEmployeeDao.getEmployeeById(ID)).andReturn(EMPLOYEE);
+        EasyMock.replay(mockEmployeeDao);
+        employeeService.getEmployeeById(ID);
+        EasyMock.verify(mockEmployeeDao);
+
+    }
+
 }
