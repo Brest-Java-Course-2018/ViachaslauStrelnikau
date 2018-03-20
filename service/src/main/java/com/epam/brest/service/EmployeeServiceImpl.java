@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public void riseAllSallerysByPercent(int percent) {
-        LOGGER.debug("riseAllSallerysByPercent {}", percent);
+        LOGGER.debug("EmployeeService.riseAllSallerysByPercent {}", percent);
         List<Employee> employees = employeeDao.getEmployees();
         for (Employee employee : employees
                 ) {
@@ -38,7 +38,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.setEmployeeSalary(new_salary);
             employeeDao.updateEmployee(employee);
         }
-
     }
 
     /**
@@ -48,7 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public List<Employee> getEmployees() {
-        LOGGER.debug("getEmployees");
+        LOGGER.debug("EmployeeService.getEmployees");
         return employeeDao.getEmployees();
     }
 
@@ -60,6 +59,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public Employee getEmployeeById(int employeeId) {
+        LOGGER.debug("EmployeeService.getEmployeeById {}",employeeId);
         return employeeDao.getEmployeeById(employeeId);
     }
 
@@ -69,7 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param employeeId id of department to remove
      */
     public void removeEmployeeById(final int employeeId) {
-        LOGGER.debug("removeEmployeeById");
+        LOGGER.debug("EmployeeService.removeEmployeeById {}",employeeId);
         employeeDao.removeEmployeeById(employeeId);
     }
     /**
@@ -80,6 +80,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public Employee addEmployee(Employee employee) {
+        LOGGER.debug("EmployeeService.addEmployee {}",employee);
         return employeeDao.addEmployee(employee);
     }
     /**
@@ -89,7 +90,8 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public void updateEmployee(Employee employee) {
-         employeeDao.updateEmployee(employee);
+        LOGGER.debug("EmployeeService.updateEmployee {}",employee);
+        employeeDao.updateEmployee(employee);
     }
 
 }
