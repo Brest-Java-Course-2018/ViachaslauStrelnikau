@@ -25,16 +25,18 @@
                 data-target="#navbarsNav">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a href="editDepartment.html" th:href="'/departments'" class="navbar-brand"><img src="../../resources/static/images/icon.svg" width="64" height="32"> </a>
+        <a href="editDepartment.html" th:href="'/departments'" class="navbar-brand"><img
+                src="../../resources/static/images/icon.svg" width="64" height="32"> </a>
         <h1 class="display">HR</h1>
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="departments.html" th:href="'/departments'">Departments <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="departments.html" th:href="'/departments'">Departments <span
+                    class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="employees.html" th:href="'/employees'">Employees</a>
         </div>
     </nav>
 
     <header>
-<!--Back arrow-->
+        <!--Back arrow-->
         <nav class=" p-0 pl-2 navbar navbar-expand-sm navbar-light bg-light text-dark">
             <ul class="navbar-nav float-left">
                 <li class="nav-item">
@@ -69,7 +71,7 @@
     <section id="departmet">
 
         <div class="card">
-            <div class="card-body" >
+            <div class="card-body">
                 <form id="departmentForm"
                       th:object="${department}"
                       action="departments.html"
@@ -80,34 +82,34 @@
                            type="hidden"
                            th:field="*{departmentId}"/>
 
-                <div class="form-group" >
+                    <div class="form-group">
 
-                    <label for="departmentName">Department name</label>
-                    <input type="text" class="form-control" id="departmentName" placeholder="Department name"
-                           th:field="${department.departmentName}">
+                        <label for="departmentName">Department name</label>
+                        <input type="text" class="form-control" id="departmentName" placeholder="Department name"
+                               th:field="${department.departmentName}">
 
-                    <p></p>
-                    <label for="description">Description</label>
-                    <input type="text" class="form-control" id="description" placeholder="Description"
-                           th:field="${department.description}">
+                        <p></p>
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" placeholder="Description"
+                               th:field="${department.description}">
 
-                </div>
+                    </div>
                 </form>
             </div>
         </div>
 
     </section>
-<script src="../../resources/static/js/jquery.min.js"
-        th:src="@{/resources/static/js/jquery.min.js}"></script>
-<script src="../../resources/static/js/popper.min.js"
-        th:src="@{/resources/static/js/popper.min.js}"></script>
-<script src="../../resources/static/js/bootstrap.min.js"
-        th:src="@{/resources/static/js/bootstrap.min.js}"></script>
-<script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
+    <script src="../../resources/static/js/jquery.min.js"
+            th:src="@{/resources/static/js/jquery.min.js}"></script>
+    <script src="../../resources/static/js/popper.min.js"
+            th:src="@{/resources/static/js/popper.min.js}"></script>
+    <script src="../../resources/static/js/bootstrap.min.js"
+            th:src="@{/resources/static/js/bootstrap.min.js}"></script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 </div>
 </body>
 </html>

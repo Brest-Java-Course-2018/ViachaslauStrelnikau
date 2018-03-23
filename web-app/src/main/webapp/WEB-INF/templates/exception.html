@@ -18,23 +18,24 @@
 <body>
 
 <!--Top navibar-->
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark text-light">
-
-    <a href="employees.html" th:href="'/departments'" class="navbar-brand"><img src="../../resources/static/images/icon.svg" width="64" height="32"> </a>
+<div class="container-fluid">
+<nav class="navbar navbar-expand-sm navbar-dark bg-info text-light">
+    <a href="employees.html" th:href="'/departments'" class="navbar-brand"><img
+            src="../../resources/static/images/icon.svg" width="64" height="32"> </a>
     <h1 class="display-4">HR</h1>
     <div class="navbar-nav">
             <span class="navbar-brand text-uppercase mr-auto"
                   th:text="${Title} ">Error title</span>
     </div>
 </nav>
-
+</div>
 <header>
     <div class="container-fluid">
             <span class="navbar-brand text-uppercase mr-auto"
                   th:text="${Text} ">Error text</span>
     </div>
 </header>
-    <!--main body-->
+<!--main body-->
 
 </section>
 <script src="../../resources/static/js/jquery.min.js"

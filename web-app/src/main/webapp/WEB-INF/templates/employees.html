@@ -19,31 +19,33 @@
 
 <!--Top navibar-->
 <div class="container-fluid">
-<nav class="navbar navbar-expand-sm navbar-dark bg-info text-light">
-    <a href="employees.html" th:href="'/employees'" class="navbar-brand"><img src="../../resources/static/images/icon.svg" width="64" height="32"> </a>
-    <h1 class="display">HR</h1>
-    <div class="navbar-nav">
-        <a class="nav-item nav-link " href="departments.html" th:href="'/departments'">Departments </a>
-        <a class="nav-item nav-link active" href="employees.html" th:href="'/employees'">Employees<span class="sr-only">(current)</span></a>
-    </div>
-</nav>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-info text-light">
+        <a href="employees.html" th:href="'/employees'" class="navbar-brand"><img
+                src="../../resources/static/images/icon.svg" width="64" height="32"> </a>
+        <h1 class="display">HR</h1>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link " href="departments.html" th:href="'/departments'">Departments </a>
+            <a class="nav-item nav-link active" href="employees.html" th:href="'/employees'">Employees<span
+                    class="sr-only">(current)</span></a>
+        </div>
+    </nav>
 </div>
 <header>
     <div class="container-fluid">
-    <nav class=" p-0 pl-4 navbar navbar-expand-sm navbar-light bg-light text-dark">
-        <a href="employees.html" th:href="'/employees'" class="navbar-brand text-uppercase mr-auto">
-            EMPLOYEES
-        </a>
-        <!--right Add button -->
-        <ul class="p-2 navbar-nav float-right">
-            <li class="nav-item">
-                <a href="#" th:href="'/addEmployee'" class="btn btn-sm btn-outline-secondary"
-                   data-toggle="tooltip" data-placement="top"
-                   title="Add employee"><i class="fa fa-plus">
-                </i>Add</a>
-            </li>
-        </ul>
-    </nav>
+        <nav class=" p-0 pl-4 navbar navbar-expand-sm navbar-light bg-light text-dark">
+            <a href="employees.html" th:href="'/employees'" class="navbar-brand text-uppercase mr-auto">
+                EMPLOYEES
+            </a>
+            <!--right Add button -->
+            <ul class="p-2 navbar-nav float-right">
+                <li class="nav-item">
+                    <a href="#" th:href="'/addEmployee'" class="btn btn-sm btn-outline-secondary"
+                       data-toggle="tooltip" data-placement="top"
+                       title="Add employee"><i class="fa fa-plus">
+                    </i>Add</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </header>
 <!--modal-delete-dialog-->
@@ -53,43 +55,45 @@
         <div class="row">
             <div class="col">
                 <div class="card">
-                <table class="table table-striped">
-                    <thead class="thead-inverse">
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Salary</th>
-                        <th></th>
+                    <table class="table table-striped">
+                        <thead class="thead-inverse">
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Salary</th>
+                            <th></th>
 
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="employee : ${employees}">
-                        <td th:text ="${employee.employeeName}">Vasia Pupkin</td>
-                        <td th:text ="${employee.employeeEmail}">VasiaPupkin@mail.ru</td>
-                        <td th:text ="${employee.employeeSalary}">1000</td>
-                        <td>
-                            <a href="editEmployee.html" th:href="'/editEmployee/' + ${employee.employeeId}"
-                               class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
-                               title="Edit record"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="employee : ${employees}">
+                            <td th:text="${employee.employeeName}">Vasia Pupkin</td>
+                            <td th:text="${employee.employeeEmail}">VasiaPupkin@mail.ru</td>
+                            <td th:text="${employee.employeeSalary}">1000</td>
+                            <td>
+                                <a href="editEmployee.html" th:href="'/editEmployee/' + ${employee.employeeId}"
+                                   class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
+                                   title="Edit record"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline"> Edit</span></a>
 
-                            <span data-toggle="modal" data-target="#ConfirmDelete">
-                            <a href="#" class="open-DelDialog btn btn-sm btn-outline-secondary" data-toggle="tooltip"   data-placement="top" th:data-id=${employee.employeeId}
-                               title="Delete record"  >
+                                <span data-toggle="modal" data-target="#ConfirmDelete">
+                            <a href="#" class="open-DelDialog btn btn-sm btn-outline-secondary" data-toggle="tooltip"
+                               data-placement="top" th:data-id=${employee.employeeId}
+                               title="Delete record">
                                 <i class="fa fa-remove"></i><span class="d-none d-md-inline"> Delete</span></a>
                                 </span>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
     </div>
     </div>
-    <div class="modal fade" id="ConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="ConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -103,7 +107,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" id="departmentId" name="departmentId"  href="" role="button" >Delete</a>
+                    <a class="btn btn-primary" id="departmentId" name="departmentId" href="" role="button">Delete</a>
                 </div>
             </div>
         </div>
@@ -123,7 +127,7 @@
 <script>
     $(document).on("click", ".open-DelDialog", function () {
         var myBookId = $(this).data('id');
-        $(".modal-footer #departmentId").attr("href",'/removeEmployee/'+myBookId);
+        $(".modal-footer #departmentId").attr("href", '/removeEmployee/' + myBookId);
 
     });
 </script>

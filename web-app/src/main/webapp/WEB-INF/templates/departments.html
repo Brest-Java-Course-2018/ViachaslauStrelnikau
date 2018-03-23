@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,103 +18,117 @@
 </head>
 <body>
 <div class="container-fluid">
-<!--Top navibar-->
-<nav class="navbar navbar-expand-sm navbar-dark bg-info text-light">
-    <a href="departments.html" class="navbar-brand"><img src="../../resources/static/images/icon.svg" width="64" height="32"> </a>
+    <!--Top navibar-->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-info text-light">
+        <a href="departments.html" class="navbar-brand"><img src="../../resources/static/images/icon.svg" width="64"
+                                                             height="32"> </a>
 
-    <h1 class="display" th:text="#{logo}">HR_temp</h1>
-    <div class="navbar-nav">
-        <a class="nav-item nav-link active"  href="departments.html " th:href="'/departments' "th:text="#{depHead}">Departments_temp <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="employees.html" th:href="'/employees'" th:text="#{empHead}" >Employees_temp</a>
-    </div>
+        <h1 class="display" th:text="#{logo}">HR_temp</h1>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="departments.html " th:href="'/departments' " th:text="#{depHead}">Departments_temp
+                <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="employees.html" th:href="'/employees'" th:text="#{empHead}">Employees_temp</a>
+        </div>
 
-</nav>
+    </nav>
 </div>
 
 <header>
     <div class="container-fluid">
-    <nav class=" p-0 pl-4 navbar navbar-expand-sm navbar-light bg-light text-dark">
-        <a href="departments.html" th:href="'/departments'" class="navbar-brand text-uppercase mr-auto"th:text="#{depHeadCAPS}">
-            DEPARTMENTS_temp
-        </a>
+        <nav class=" p-0 pl-4 navbar navbar-expand-sm navbar-light bg-light text-dark">
+            <a href="departments.html" th:href="'/departments'" class="navbar-brand text-uppercase mr-auto"
+               th:text="#{depHeadCAPS}">
+                DEPARTMENTS_temp
+            </a>
 
-        <!--right Add button -->
-        <ul class="p-0 pr-4 navbar-nav float-right">
-            <li class="nav-item">
-                <a href="#" th:href="'/addDepartment'" class="btn btn-sm btn-outline-secondary"
-                   data-toggle="tooltip" data-placement="top"
-                   title="Add department" ><i class="fa fa-plus" th:text="#{add_button}">
-                </i></a>
-            </li>
-        </ul>
-    </nav>
+            <!--right Add button -->
+            <ul class="p-0 pr-4 navbar-nav float-right">
+                <li class="nav-item">
+                    <a href="#" th:href="'/addDepartment'" class="btn btn-sm btn-outline-secondary"
+                       data-toggle="tooltip" data-placement="top"
+                       title="Add department"><i class="fa fa-plus" th:text="#{add_button}">
+                    </i></a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </header>
 
-    <!--main body-->
+<!--main body-->
 <section id="departments">
     <div class="container-fluid">
         <div class="row">
             <div class="col">
                 <div class="card">
-                <table class="table table-striped">
-                    <thead class="thead-inverse">
-                    <tr>
+                    <table class="table table-striped">
+                        <thead class="thead-inverse">
+                        <tr>
 
-                        <th th:text="#{table_title}">Title_temp</th>
-                        <th th:text="#{table_avg_salary}">Avg salary_temp</th>
-                        <th></th>
+                            <th th:text="#{table_title}">Title_temp</th>
+                            <th th:text="#{table_avg_salary}">Avg salary_temp</th>
+                            <th></th>
 
-                    </tr>
-                    </thead>
-                    <div th:fragment="content">
+                        </tr>
+                        </thead>
+                        <div th:fragment="content">
 
-                    <tbody>
-                    <tr th:each="department : ${departments}">
-                        <td th:text ="${department.departmentName}">CEO</td>
-                        <td th:if="${department.avgSalary} == -1" th:text="0">
+                            <tbody>
+                            <tr th:each="department : ${departments}">
+                                <td th:text="${department.departmentName}">CEO</td>
+                                <td th:if="${department.avgSalary} == -1" th:text="0">
 
-                        </td>
-                        <td th:unless="${department.avgSalary} == -1" th:text="${department.avgSalary}"> </td>
-                        <td th:if="${department.avgSalary} == -1">
-                            <a href="editDepartment.html" th:href="'/editDepartment/' + ${department.departmentId}"
-                               class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
-                               title="Edit record" th:title="#{edit_button}"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline" th:text="#{edit_button}"> Edit</span></a>
+                                </td>
+                                <td th:unless="${department.avgSalary} == -1" th:text="${department.avgSalary}"></td>
+                                <td th:if="${department.avgSalary} == -1">
+                                    <a href="editDepartment.html"
+                                       th:href="'/editDepartment/' + ${department.departmentId}"
+                                       class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="Edit record" th:title="#{edit_button}"><i class="fa fa-pencil"></i> <span
+                                            class="d-none d-md-inline" th:text="#{edit_button}"> Edit</span></a>
 
-                            <span data-toggle="modal" data-target="#ConfirmDelete">
-                            <a href="#" class="open-DelDialog btn btn-sm btn-outline-secondary" data-toggle="tooltip"   data-placement="top" th:data-id=${department.departmentId}
-                               title="Delete record" th:title="#{delete_button}" >
+                                    <span data-toggle="modal" data-target="#ConfirmDelete">
+                            <a href="#" class="open-DelDialog btn btn-sm btn-outline-secondary" data-toggle="tooltip"
+                               data-placement="top" th:data-id=${department.departmentId}
+                               title="Delete record" th:title="#{delete_button}">
                                 <i class="fa fa-remove"></i><span class="d-none d-md-inline" th:text="#{delete_button}"> Delete</span></a>
                                 </span>
-                        </td>
+                                </td>
 
-                        <td th:unless="${department.avgSalary} == -1">
-                            <a href="editDepartment.html" th:href="'/editDepartment/' + ${department.departmentId}"
-                               class="btn btn-sm btn-outline-secondary" data-toggle="tooltip" data-placement="top"
-                               title="Edit record" th:title="#{edit_button}"><i class="fa fa-pencil"></i> <span class="d-none d-md-inline" th:text="#{edit_button}"> Edit</span></a>
+                                <td th:unless="${department.avgSalary} == -1">
+                                    <a href="editDepartment.html"
+                                       th:href="'/editDepartment/' + ${department.departmentId}"
+                                       class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"
+                                       data-placement="top"
+                                       title="Edit record" th:title="#{edit_button}"><i class="fa fa-pencil"></i> <span
+                                            class="d-none d-md-inline" th:text="#{edit_button}"> Edit</span></a>
 
 
-                            <a href="#" class="open-DelDialog btn btn-sm btn-outline-secondary disabled" data-toggle="tooltip"   data-placement="top" th:data-id=${department.departmentId}
-                               title="Delete record" th:title="#{delete_button}" >
-                                <i class="fa fa-remove"></i><span class="d-none d-md-inline" th:text="#{delete_button}"> Delete</span></a>
-                        </td>
-                    </tr>
-                    </tbody>
+                                    <a href="#" class="open-DelDialog btn btn-sm btn-outline-secondary disabled"
+                                       data-toggle="tooltip" data-placement="top" th:data-id=${department.departmentId}
+                                       title="Delete record" th:title="#{delete_button}">
+                                        <i class="fa fa-remove"></i><span class="d-none d-md-inline"
+                                                                          th:text="#{delete_button}"> Delete</span></a>
+                                </td>
+                            </tr>
+                            </tbody>
 
-                    </div>
+                        </div>
 
-                </table>
+                    </table>
                 </div>
             </div>
         </div>
 
         <!--modal-delete-dialog-->
 
-        <div class="modal fade" id="ConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="ConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel" title="" th:text="#{delete_title}">Delete record_temp</h5>
+                        <h5 class="modal-title" id="exampleModalLabel" title="" th:text="#{delete_title}">Delete
+                            record_temp</h5>
                         <button type="button" class="Cancel" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -123,15 +136,18 @@
                     <div class="modal-body" th:text="#{modal_dep_del}">
 
                         Are you sure, you want to delete this record?___temp
-                        <input type="text"  value=""/>
+                        <input type="text" value=""/>
 
                         <!--<a class="btndel btn-primary" id="departmentId" name="departmentId"  ref="" role="button">Link</a>-->
                     </div>
 
-                    <div class="modal-footer" >
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" th:text="#{cancel_button}">Cancel</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" th:text="#{cancel_button}">
+                            Cancel
+                        </button>
                         <!--<button type="button" class="btn btn-primary"   >Delete</button>-->
-                        <a class="btn btn-primary" id="departmentId" name="departmentId"  href="" role="button" th:text="#{delete_button}">Delete</a>
+                        <a class="btn btn-primary" id="departmentId" name="departmentId" href="" role="button"
+                           th:text="#{delete_button}">Delete</a>
                     </div>
                 </div>
             </div>
@@ -153,7 +169,7 @@
 <script>
     $(document).on("click", ".open-DelDialog", function () {
         var myBookId = $(this).data('id');
-        $(".modal-footer #departmentId").attr("href",'/removeDepartment/'+myBookId);
+        $(".modal-footer #departmentId").attr("href", '/removeDepartment/' + myBookId);
 
     });
 </script>
