@@ -1,6 +1,7 @@
 package com.epam.brest.dao;
 
 import com.epam.brest.model.Department;
+import com.epam.brest.model.DepartmentAVGsalary;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -65,6 +66,8 @@ public class DepartmentDaoImpl implements DepartmentDao {
     @Value("${department.remove}")
     private String departmentRemove;
 
+    @Value("${department.avg}")
+    private String departmentAvgSelect;
 
     /**
      * Property namedParameterJdbcTemplate.
@@ -168,4 +171,16 @@ public class DepartmentDaoImpl implements DepartmentDao {
         
         namedParameterJdbcTemplate.getJdbcOperations().update(departmentRemove, departmentid);
     }
+    /**
+     * method getDepartments is created to get all departments.
+     *
+     * @return Collection  of all Departments avg Salary
+     */
+    @Override
+    public Collection<DepartmentAVGsalary> getDepartmentsAVGSalary() {
+        LOGGER.debug("getDepartmentsAVGSalary");
+        Collection<DepartmentAVGsalary> departments = namedParameterJdbcTemplate.getJdbcOperations().query(departmentAvgSelect, BeanPropertyRowMapper.newInstance(DepartmentAVGsalary.class));
+        return departments;
+    }
+
 }

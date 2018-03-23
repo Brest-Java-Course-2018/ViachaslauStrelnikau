@@ -5,8 +5,6 @@ import org.junit.Test;
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
 
-import static org.junit.Assert.*;
-
 public class DepartmentValidatorTest {
 
     /**

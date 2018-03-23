@@ -1,6 +1,7 @@
 package com.epam.brest.dao;
 
 import com.epam.brest.model.Department;
+import com.epam.brest.model.DepartmentAVGsalary;
 
 import java.util.Collection;
 
@@ -40,5 +41,11 @@ public interface DepartmentDao {
      *
      */
     void removeDepartmentById(final int departmentid);
+    /**
+     * method getDepartments is created to get all departments.
+     *
+     * @return Collection  of all Departments avg Salary
+     */
+    Collection<DepartmentAVGsalary> getDepartmentsAVGSalary();
 
 }

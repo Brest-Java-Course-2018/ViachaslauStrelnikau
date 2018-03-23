@@ -1,6 +1,5 @@
 package com.epam.brest.service;
 
-import com.epam.brest.dao.DepartmentDaoImpl;
 import com.epam.brest.model.Department;
 import com.epam.brest.model.DepartmentAVGsalary;
 import org.junit.Assert;

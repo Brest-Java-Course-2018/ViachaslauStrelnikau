@@ -1,6 +1,5 @@
 package com.epam.brest.service;
 
-import com.epam.brest.dao.DepartmentAVGsalaryDao;
 import com.epam.brest.dao.DepartmentDao;
 import com.epam.brest.model.Department;
 import com.epam.brest.model.DepartmentAVGsalary;
@@ -16,8 +15,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
     private DepartmentDao departmentDao;
-    @Autowired
-    private DepartmentAVGsalaryDao departmentAVGsalaryDao;
 
     public DepartmentServiceImpl(DepartmentDao departmentDao) {
         this.departmentDao = departmentDao;
@@ -63,7 +60,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Collection<DepartmentAVGsalary> getDepartmentsAVGSalary() {
         LOGGER.debug("DepartmentService.getDepartmentsAVGSalary");
-        return departmentAVGsalaryDao.getDepartmentsAVGSalary();
+        return departmentDao.getDepartmentsAVGSalary();
     }
     /**
      * method removeDepartmentById is created to remove department from record.

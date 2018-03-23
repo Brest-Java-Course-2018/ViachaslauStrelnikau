@@ -1,6 +1,7 @@
 package com.epam.brest.dao;
 
 import com.epam.brest.model.Department;
+import com.epam.brest.model.DepartmentAVGsalary;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -117,5 +118,13 @@ public class DepartmentDaoImplTest {
         int size_before=departments.size();
         departmentDAO.removeDepartmentById(obj.getDepartmentId());
         Assert.assertTrue((size_before-1)== departmentDAO.getDepartments().size());
+    }
+    /**
+     * Testing getDepartmentsAVGSalary() method of DepartmentAVGsalaryDao.
+     */
+    @Test
+    public void getAvgDepartmentsSalary() {
+        Collection<DepartmentAVGsalary> departmentsAVGSalary = departmentDAO.getDepartmentsAVGSalary();
+        Assert.assertFalse(departmentsAVGSalary.isEmpty());
     }
 }

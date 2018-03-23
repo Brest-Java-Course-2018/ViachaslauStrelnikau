@@ -21,8 +21,8 @@
         <property name="password" value=""/>
     </bean>
     <jdbc:initialize-database data-source="dataSource">
-        <jdbc:script location="classpath:create-tables.sql"/>
-        <jdbc:script location="classpath:data-script.sql"/>
+        <jdbc:script location="classpath:/sample-db/create-tables.sql"/>
+        <jdbc:script location="classpath:/sample-db/data-script.sql"/>
     </jdbc:initialize-database>
     <!-- Use spring servlet for all requests, including static resources -->
     <mvc:default-servlet-handler/>
@@ -40,15 +40,12 @@
     <bean name="departmentDao" class="com.epam.brest.dao.DepartmentDaoImpl">
         <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
-    <bean name="departmentAvgDao" class="com.epam.brest.dao.DepartmentAVGsalaryDaoImpl">
-        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
-    </bean>
-    <bean name="employeeDao" class="com.epam.brest.dao.EmployeeDaoImpl">
-        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
-    </bean>
-
     <bean id="departmentService" class="com.epam.brest.service.DepartmentServiceImpl">
         <constructor-arg ref="departmentDao"/>
+    </bean>
+
+    <bean name="employeeDao" class="com.epam.brest.dao.EmployeeDaoImpl">
+        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
     <bean id="employeeService" class="com.epam.brest.service.EmployeeServiceImpl">
         <constructor-arg ref="employeeDao"/>

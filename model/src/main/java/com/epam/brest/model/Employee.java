@@ -1,6 +1,8 @@
 package com.epam.brest.model;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * *

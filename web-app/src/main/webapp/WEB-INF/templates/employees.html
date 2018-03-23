@@ -18,23 +18,19 @@
 <body>
 
 <!--Top navibar-->
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark text-light">
-    <!--<button class="navbar-toggler"-->
-            <!--type="button"-->
-            <!--data-toggle="collapse"-->
-            <!--data-target="#navbarsNav">-->
-        <!--<span class="navbar-toggler-icon"></span>-->
-    <!--</button>-->
+<div class="container-fluid">
+<nav class="navbar navbar-expand-sm navbar-dark bg-info text-light">
     <a href="employees.html" th:href="'/employees'" class="navbar-brand"><img src="../../resources/static/images/icon.svg" width="64" height="32"> </a>
-    <h1 class="display-4">HR</h1>
+    <h1 class="display">HR</h1>
     <div class="navbar-nav">
         <a class="nav-item nav-link " href="departments.html" th:href="'/departments'">Departments </a>
         <a class="nav-item nav-link active" href="employees.html" th:href="'/employees'">Employees<span class="sr-only">(current)</span></a>
     </div>
 </nav>
-
+</div>
 <header>
-    <nav class=" p-0 pl-2 navbar navbar-expand-sm navbar-light bg-light text-dark">
+    <div class="container-fluid">
+    <nav class=" p-0 pl-4 navbar navbar-expand-sm navbar-light bg-light text-dark">
         <a href="employees.html" th:href="'/employees'" class="navbar-brand text-uppercase mr-auto">
             EMPLOYEES
         </a>
@@ -48,32 +44,15 @@
             </li>
         </ul>
     </nav>
+    </div>
 </header>
 <!--modal-delete-dialog-->
 <section id="departmets">
-    <div class="modal fade" id="ConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete record</h5>
-                    <button type="button" class="Cancel" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Are you sure, you want to delete this record?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" id="departmentId" name="departmentId"  href="" role="button" >Delete</a>
-                </div>
-            </div>
-        </div>
-    </div>
     <!--main body-->
     <div class="container-fluid">
         <div class="row">
             <div class="col">
+                <div class="card">
                 <table class="table table-striped">
                     <thead class="thead-inverse">
                     <tr>
@@ -104,9 +83,30 @@
 
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
 
+    </div>
+    </div>
+    <div class="modal fade" id="ConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete record</h5>
+                    <button type="button" class="Cancel" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure, you want to delete this record?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" id="departmentId" name="departmentId"  href="" role="button" >Delete</a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 <script src="../../resources/static/js/jquery.min.js"
@@ -127,5 +127,6 @@
 
     });
 </script>
+
 </body>
 </html>
