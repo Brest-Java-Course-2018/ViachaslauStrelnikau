@@ -19,7 +19,7 @@
     <bean id="RestTemplateMock" class="org.easymock.EasyMock" factory-method="createMock">
         <constructor-arg value="org.springframework.web.client.RestTemplate"/>
     </bean>
-    <bean id="depardtmentService" class="com.epam.brest.client_rest.DepartmentConsumerRest">
+    <bean id="departmentService" class="com.epam.brest.client_rest.DepartmentConsumerRest">
         <constructor-arg index="0" value="${PROTOCAL}://${HOST}:${PORT}/${point.departments}"/>
         <constructor-arg index="1" ref="RestTemplateMock"/>
     </bean>

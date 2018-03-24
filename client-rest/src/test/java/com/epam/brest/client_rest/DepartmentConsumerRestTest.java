@@ -12,10 +12,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -23,7 +21,6 @@ import java.util.Collection;
 import java.util.List;
 
 import static org.easymock.EasyMock.*;
-import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring-context-test.xml")
 public class DepartmentConsumerRestTest {
@@ -32,7 +29,7 @@ public class DepartmentConsumerRestTest {
     private static DepartmentAVGsalary  DTO2;
     private static Department department;
     @Autowired
-    DepartmentService depardtmentService;
+    DepartmentService departmentService;
     @Autowired
     RestTemplate RestTemplateMock;
     @Before
@@ -65,7 +62,7 @@ public class DepartmentConsumerRestTest {
        EasyMock.expect(RestTemplateMock.getForEntity(anyString(),anyObject())).andReturn(responseEntity);
        replay(RestTemplateMock);
 
-        Collection<DepartmentAVGsalary> departmentAVG= depardtmentService.getDepartmentsAVGSalary();
+        Collection<DepartmentAVGsalary> departmentAVG= departmentService.getDepartmentsAVGSalary();
 
         Assert.assertNotNull(departmentAVG);
         Assert.assertEquals(2,departmentAVG.size());
@@ -74,11 +71,11 @@ public class DepartmentConsumerRestTest {
     public void getDepartmentByID()
     {
 
-        ResponseEntity responseEntity =new ResponseEntity(department, HttpStatus.FOUND);
+        ResponseEntity responseEntity =new ResponseEntity(department, HttpStatus.OK);
         EasyMock.expect(RestTemplateMock.getForEntity(anyString(),anyObject())).andReturn(responseEntity);
         replay(RestTemplateMock);
 
-        Department  result= depardtmentService.getDepartmentById(3);
+        Department  result= departmentService.getDepartmentById(3);
         Assert.assertNotNull(result);
         Assert.assertEquals(result.getDepartmentName(),"Test3");
 
@@ -89,7 +86,7 @@ public class DepartmentConsumerRestTest {
         ResponseEntity responseEntity =new ResponseEntity(department, HttpStatus.FOUND);
         EasyMock.expect(RestTemplateMock.postForEntity(anyString(),anyObject(),anyObject())).andReturn(responseEntity);
         replay(RestTemplateMock);
-        Department  result= depardtmentService.addDepartment(department);
+        Department  result= departmentService.addDepartment(department);
         Assert.assertNotNull(result);
         Assert.assertEquals(result.getDepartmentId(),3);
     }

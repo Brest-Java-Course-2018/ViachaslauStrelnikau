@@ -26,8 +26,7 @@ public class DepartmentConsumerRest implements DepartmentService {
 
     @Override
     public Department getDepartmentById(int departmentId) {
-        ResponseEntity responseEntity=restTemplate.
-                postForEntity((url+"/"+departmentId),departmentId,Department.class);
+        ResponseEntity responseEntity=restTemplate.getForEntity(url+"/"+departmentId,Department.class);
         Department department=(Department) responseEntity.getBody();
         return department;
     }
