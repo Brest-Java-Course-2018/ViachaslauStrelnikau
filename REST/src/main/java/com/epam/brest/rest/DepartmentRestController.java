@@ -1,6 +1,7 @@
 package com.epam.brest.rest;
 
 import com.epam.brest.model.Department;
+import com.epam.brest.model.DepartmentAVGsalary;
 import com.epam.brest.service.DepartmentService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,11 +18,12 @@ public class DepartmentRestController {
     private DepartmentService departmentService;
 
     @GetMapping(value = "/departments")
-    public Collection<Department> getDepartments()
+    public Collection<DepartmentAVGsalary> getDepartments()
     {
         LOGGER.debug("REST getDepartments");
-        return departmentService.getDepartments();
+        return departmentService.getDepartmentsAVGSalary();
     }
+
     @GetMapping(value = "/departments/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     public Department getdepartmentById(@PathVariable(value = "id") Integer id)
@@ -29,6 +31,7 @@ public class DepartmentRestController {
         LOGGER.debug("REST getdepartmentById {}",id);
         return departmentService.getDepartmentById(id);
     }
+
     @PostMapping(value = "/departments")
     @ResponseStatus(HttpStatus.CREATED)
     public Department addDepartment(@RequestBody Department department)
@@ -36,6 +39,7 @@ public class DepartmentRestController {
         LOGGER.debug("REST addDepartment {}",department);
         return departmentService.addDepartment(department);
     }
+
     @DeleteMapping(value = "/departments/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     public void deleteDepartmentById(@PathVariable(value = "id") Integer id)
