@@ -50,7 +50,7 @@
         <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
 
-    <bean id="departmentService" class="com.epam.brest.service.DepartmentServiceImpl">
+    <bean id="departmentService1" class="com.epam.brest.service.DepartmentServiceImpl">
         <constructor-arg ref="departmentDao"/>
     </bean>
 
@@ -58,7 +58,7 @@
         <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
 
-     <bean id="employeeService" class="com.epam.brest.service.EmployeeServiceImpl">
+     <bean id="employeeService1" class="com.epam.brest.service.EmployeeServiceImpl">
         <constructor-arg ref="employeeDao"/>
     </bean>
 
@@ -73,9 +73,25 @@
         <!--<jdbc:script location="classpath:sample-db/data-script.sql"/>-->
     <!--</jdbc:initialize-database>-->
 
-
-
     <!---->
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="departmentService" class="com.epam.brest.client_rest.DepartmentConsumerRest">
+        <constructor-arg index="0" value="${PROTOCAL}://${HOST}:${PORT}/${point.departments}"/>
+        <constructor-arg ref="restTemplate"/>
+    </bean>
+    <bean id="employeeService" class="com.epam.brest.client_rest.EmployeeConsumerRest">
+        <constructor-arg index="0" value="${PROTOCAL}://${HOST}:${PORT}/${point.employees}"/>
+        <constructor-arg ref="restTemplate"/>
+    </bean>
     <!---->
 
 
@@ -89,6 +105,7 @@
 
             <value>classpath:sql.properties</value>
             <value>classpath:application.properties</value>
+            <value>classpath:rest.properties</value>
             <!--<value>classpath:i18n/messages.properties</value>-->
         </list>
     </property>

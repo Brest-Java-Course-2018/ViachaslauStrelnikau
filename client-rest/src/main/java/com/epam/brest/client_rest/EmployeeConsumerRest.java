@@ -15,9 +15,9 @@ public class EmployeeConsumerRest implements EmployeeService {
     private RestTemplate restTemplate;
     private String url;
 
-    public EmployeeConsumerRest(RestTemplate restTemplate, String url) {
-        this.restTemplate = restTemplate;
+    public EmployeeConsumerRest(String url, RestTemplate restTemplate) {
         this.url = url;
+        this.restTemplate = restTemplate;
     }
 
     @Override

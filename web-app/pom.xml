@@ -29,7 +29,10 @@
             <groupId>com.epam.brest</groupId>
             <artifactId>service</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.epam.brest</groupId>
+            <artifactId>client-rest</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.epam.brest</groupId>
             <artifactId>test_db</artifactId>

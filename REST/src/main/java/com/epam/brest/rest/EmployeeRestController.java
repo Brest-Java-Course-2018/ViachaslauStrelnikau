@@ -27,7 +27,7 @@ public class EmployeeRestController {
         return employeeService.getEmployees();
     }
 
-    @GetMapping(value = "employees/{id}")
+    @GetMapping(value = "/employees/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     Employee getEmployeeById(@PathVariable(value = "id") Integer id)
     {
@@ -35,7 +35,7 @@ public class EmployeeRestController {
         return employeeService.getEmployeeById(id);
     }
 
-    @PostMapping(value = "employees")
+    @PostMapping(value = "/employees")
     @ResponseStatus(HttpStatus.CREATED)
     Employee addEmployee(@RequestBody Employee employee)
     {
@@ -43,15 +43,17 @@ public class EmployeeRestController {
         return employeeService.addEmployee(employee);
     }
 
-    @PostMapping(value = "employees/{id}")
+
+    @PostMapping(value = "/employees/{id}")
     @ResponseStatus(HttpStatus.OK)
     void updateEmployee(@RequestBody Employee employee, @PathVariable(value = "id") Integer id)
     {
         LOGGER.debug("REST updateEmployee {}",employee);
         employeeService.updateEmployee(employee);
+
     }
 
-    @DeleteMapping(value = "employees/{id}")
+    @DeleteMapping(value = "/employees/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     void deleteEmployee(@PathVariable(value="id") Integer id)
     {

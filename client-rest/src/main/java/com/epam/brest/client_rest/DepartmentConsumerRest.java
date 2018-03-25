@@ -58,5 +58,6 @@ public class DepartmentConsumerRest implements DepartmentService {
     @Override
     public void updateDepartment(Department department) {
         restTemplate.postForEntity(url+"/"+department.getDepartmentId(),department,Department.class);
+
     }
 }
