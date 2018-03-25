@@ -51,6 +51,9 @@
         <constructor-arg ref="employeeDao"/>
     </bean>
 
+    <bean id="employeeRestController" class="com.epam.brest.rest.EmployeeRestController">
+        <property name="employeeService" ref="employeeService"/>
+    </bean>
 
     <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
         <property name="locations" >

@@ -60,7 +60,8 @@ public class DepartmentRestControllerTest {
     public void teardown()
     {
         EasyMock.verify(departmentService);
-    //    EasyMock.verify(departmentService);
+        EasyMock.verify(departmentService);
+        EasyMock.reset(departmentService);
     }
 
         @Test

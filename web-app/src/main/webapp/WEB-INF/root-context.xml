@@ -73,6 +73,12 @@
         <!--<jdbc:script location="classpath:sample-db/data-script.sql"/>-->
     <!--</jdbc:initialize-database>-->
 
+
+
+    <!---->
+    <!---->
+
+
     <context:component-scan base-package="com.epam.brest.web_app.*"/>
 
     <!--<context:property-placeholder location="classpath:application.properties"/>-->

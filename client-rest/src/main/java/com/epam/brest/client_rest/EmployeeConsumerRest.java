@@ -22,7 +22,7 @@ public class EmployeeConsumerRest implements EmployeeService {
 
     @Override
     public List<Employee> getEmployees() {
-
+        LOGGER.debug("EmployeeConsumerRest.getEmployees");
         ResponseEntity responseEntity = restTemplate.getForEntity(url,List.class);
         List<Employee> employees = (List<Employee>)responseEntity.getBody();
         return employees;
@@ -30,6 +30,7 @@ public class EmployeeConsumerRest implements EmployeeService {
 
     @Override
     public Employee getEmployeeById(int employeeId) {
+        LOGGER.debug("EmployeeConsumerRest.getEmployeeById {}",employeeId);
         ResponseEntity<Employee> responseEntity = restTemplate.getForEntity(url+"/"+employeeId,Employee.class);
         Employee employee = responseEntity.getBody();
         return  employee;
@@ -37,6 +38,7 @@ public class EmployeeConsumerRest implements EmployeeService {
 
     @Override
     public Employee addEmployee(Employee employee) {
+        LOGGER.debug("EmployeeConsumerRest.addEmployee {}",employee);
         ResponseEntity<Employee> responseEntity = restTemplate.postForEntity(url,employee,Employee.class);
         Employee resultRmployee = responseEntity.getBody();
         return  resultRmployee;
@@ -44,12 +46,14 @@ public class EmployeeConsumerRest implements EmployeeService {
 
     @Override
     public void removeEmployeeById(int employeeId) {
+        LOGGER.debug("EmployeeConsumerRest.removeEmployeeById {}",employeeId);
         restTemplate.delete(url+"/"+employeeId);
     }
 
 
     @Override
     public void updateEmployee(Employee employee) {
+        LOGGER.debug("EmployeeConsumerRest.updateEmployee {}",employee);
         restTemplate.postForEntity(url+"/"+employee.getDepartmentId(),employee,Employee.class);
     }
 

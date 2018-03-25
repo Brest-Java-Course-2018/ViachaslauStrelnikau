@@ -1,11 +1,9 @@
 package com.epam.brest.rest;
 
-import com.epam.brest.model.Department;
 import com.epam.brest.model.Employee;
 import com.epam.brest.service.EmployeeService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +13,12 @@ import java.util.List;
 @RestController
 public class EmployeeRestController {
     private static final Logger LOGGER =LogManager.getLogger();
-    @Autowired
-    EmployeeService employeeService;
+
+    private EmployeeService employeeService;
+
+    public void setEmployeeService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @GetMapping(value = "/employees")
     List<Employee> getEmployees()
