@@ -23,17 +23,15 @@ public class DepartmentConsumerRest implements DepartmentService {
     public void updateDepartmentDescription(int departmentId, String newDescription) {
 
     }
-
+    @Override
+    public Collection<Department> getDepartments() {
+        return null;
+    }
     @Override
     public Department getDepartmentById(int departmentId) {
         ResponseEntity responseEntity=restTemplate.getForEntity(url+"/"+departmentId,Department.class);
         Department department=(Department) responseEntity.getBody();
         return department;
-    }
-
-    @Override
-    public Collection<Department> getDepartments() {
-        return null;
     }
 
     @Override
@@ -47,7 +45,7 @@ public class DepartmentConsumerRest implements DepartmentService {
 
     @Override
     public void removeDepartmentById(int departmentid) {
-
+        restTemplate.delete(url+"/"+departmentid);
     }
 
     @Override
@@ -59,6 +57,6 @@ public class DepartmentConsumerRest implements DepartmentService {
 
     @Override
     public void updateDepartment(Department department) {
-
+        restTemplate.postForEntity(url+"/"+department.getDepartmentId(),department,Department.class);
     }
 }

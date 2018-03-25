@@ -25,4 +25,22 @@
     </bean>
 
 
+
+
+
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="departmentServiceReal" class="com.epam.brest.client_rest.DepartmentConsumerRest">
+        <constructor-arg index="0" value="${PROTOCAL}://${HOST}:${PORT}/${point.departments}"/>
+        <constructor-arg ref="restTemplate"/>
+    </bean>
+
 </beans>

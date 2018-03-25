@@ -29,6 +29,8 @@ public class DepartmentConsumerRestTest {
     private static DepartmentAVGsalary  DTO2;
     private static Department department;
     @Autowired
+    DepartmentService departmentServiceReal;
+    @Autowired
     DepartmentService departmentService;
     @Autowired
     RestTemplate RestTemplateMock;
@@ -90,5 +92,17 @@ public class DepartmentConsumerRestTest {
         Assert.assertNotNull(result);
         Assert.assertEquals(result.getDepartmentId(),3);
     }
+//    @Test
+//    public void test()
+//    {
+//        Department department = new Department("test","test");
+//        department.setDepartmentId(3);
+//        departmentServiceReal.removeDepartmentById(4);
+//        departmentServiceReal.updateDepartment(department);
+//
+//        Collection<DepartmentAVGsalary> departmentAVG= departmentServiceReal.getDepartmentsAVGSalary();
+//
+//
+//    }
 
 }
