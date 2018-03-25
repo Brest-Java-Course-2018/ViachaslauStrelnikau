@@ -39,6 +39,7 @@ public class DepartmentRestController {
         LOGGER.debug("REST addDepartment {}",department);
         return departmentService.addDepartment(department);
     }
+
     @PostMapping(value = "/departments/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void updateDepartment(@PathVariable(value = "id") Integer id, @RequestBody Department department)
@@ -46,6 +47,7 @@ public class DepartmentRestController {
         LOGGER.debug("REST updateDepartment {}",id);
         departmentService.updateDepartment(department);
     }
+
     @DeleteMapping(value = "/departments/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     public void deleteDepartmentById(@PathVariable(value = "id") Integer id)

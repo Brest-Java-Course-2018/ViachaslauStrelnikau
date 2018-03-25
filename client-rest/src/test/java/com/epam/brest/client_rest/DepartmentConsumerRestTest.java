@@ -25,9 +25,10 @@ import static org.easymock.EasyMock.*;
 @ContextConfiguration(locations = "classpath:spring-context-test.xml")
 public class DepartmentConsumerRestTest {
 
-  private static DepartmentAVGsalary DTO1;
+    private static DepartmentAVGsalary DTO1;
     private static DepartmentAVGsalary  DTO2;
     private static Department department;
+    private static final int ID=1;
     @Autowired
     DepartmentService departmentServiceReal;
     @Autowired
@@ -92,6 +93,26 @@ public class DepartmentConsumerRestTest {
         Assert.assertNotNull(result);
         Assert.assertEquals(result.getDepartmentId(),3);
     }
+    @Test
+    public void removeDepartment()
+    {
+        ResponseEntity responseEntity =new ResponseEntity(HttpStatus.OK);
+        RestTemplateMock.delete(anyString());
+        replay(RestTemplateMock);
+        departmentService.removeDepartmentById(ID);
+
+    }
+    @Test
+    public void updateDepartment()
+    {
+        ResponseEntity responseEntity =new ResponseEntity(department, HttpStatus.OK);
+        EasyMock.expect(RestTemplateMock.postForEntity(anyString(),anyObject(),anyObject())).andReturn(responseEntity);
+        replay(RestTemplateMock);
+        departmentService.updateDepartment(department);
+        Assert.assertEquals(responseEntity.getStatusCode(),HttpStatus.OK);
+    }
+
+
 //    @Test
 //    public void test()
 //    {
