@@ -17,6 +17,10 @@ public class DepartmentRestController {
     @Autowired
     private DepartmentService departmentService;
 
+    public void setDepartmentService(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
+
     @GetMapping(value = "/departments")
     public Collection<DepartmentAVGsalary> getDepartments()
     {
