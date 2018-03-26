@@ -60,8 +60,7 @@
             <list>
 
                 <value>classpath:sql.properties</value>
-                <!--<value>classpath:application.properties</value>-->
-                <!--<value>classpath:i18n/messages.properties</value>-->
+
             </list>
         </property>
         <property name="ignoreUnresolvablePlaceholders" value="true"/>

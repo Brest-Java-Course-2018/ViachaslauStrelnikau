@@ -37,7 +37,8 @@ public class DepartmentRestController {
     public Department addDepartment(@RequestBody Department department)
     {
         LOGGER.debug("REST addDepartment {}",department);
-        return departmentService.addDepartment(department);
+        Department department_res=departmentService.addDepartment(department);
+        return department_res;
     }
 
     @PostMapping(value = "/departments/{id}")

@@ -70,21 +70,11 @@ public class EmployeeController {
     @GetMapping(value = "/editEmployee/{id}")
     public String editEmployee(@PathVariable Integer id, final Model model) {
         LOGGER.debug("EmployeeController.editEmployee {}",id);
-        String DepartmentName = "";
         Employee employee = employeeService.getEmployeeById(id);
         Collection<Department> departments = departmentService.getDepartments();
-        // Getting departmentName for employee
-        for (Department department : departments
-                ) {
-            if (department.getDepartmentId() == employee.getDepartmentId()) {
-                DepartmentName = department.getDepartmentName();
-            }
-        }
         model.addAttribute("employee", employee);
-//        model.addAttribute("Title", "Edit Employee");
         model.addAttribute("isNew", false);
         model.addAttribute("departments", departments);
-        model.addAttribute("DepartmentName", DepartmentName);
         return "editEmployee";
     }
     /**
