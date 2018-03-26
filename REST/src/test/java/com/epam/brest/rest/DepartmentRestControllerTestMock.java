@@ -3,7 +3,6 @@ package com.epam.brest.rest;
 import com.epam.brest.model.Department;
 import com.epam.brest.model.DepartmentAVGsalary;
 import com.epam.brest.service.DepartmentService;
-import javafx.application.Application;
 import org.easymock.EasyMock;
 import org.hamcrest.Matchers;
 import org.junit.After;
@@ -128,27 +127,27 @@ public class DepartmentRestControllerTestMock {
         ).andDo(print())
                 .andExpect(status().isFound ());
     }
-//    @Test
-//    public void updateDepartmentById() throws Exception {
-//
-//        Department department = new Department(
-//                DEPARTMENTNAME, DESCRIPTION);
-//        department.setDepartmentId(DEPARTMENTID);
-//
-//        MockdepartmentService.updateDepartment(department);
-//        EasyMock.expectLastCall();
-//
-//        EasyMock.replay(MockdepartmentService);
-//
-//        mockMvc.perform(
-//                post("/departments/"+DEPARTMENTID)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content("{\"departmentId\":1," +
-//                                "\"departmentName\":\"Java\"," +
-//                                "\"description\":\"Java department\"}")
-//                        .accept(MediaType.APPLICATION_JSON)
-//        ).andDo(print()).andExpect(status().isOk());
-//    }
+    @Test
+    public void updateDepartmentById() throws Exception {
+
+        Department department = new Department(
+                DEPARTMENTNAME, DESCRIPTION);
+        department.setDepartmentId(DEPARTMENTID);
+
+        MockdepartmentService.updateDepartment(EasyMock.anyObject());
+        EasyMock.expectLastCall();
+
+        EasyMock.replay(MockdepartmentService);
+
+        mockMvc.perform(
+                post("/departments/"+DEPARTMENTID)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"departmentId\":1," +
+                                "\"departmentName\":\"Java\"," +
+                                "\"description\":\"Java department\"}")
+                        .accept(MediaType.APPLICATION_JSON)
+        ).andDo(print()).andExpect(status().isOk());
+    }
 //    @Test
 //    public void addDepartmentTest() throws Exception {
 //        Department department1 = new Department();
