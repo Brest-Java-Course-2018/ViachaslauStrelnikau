@@ -3,6 +3,7 @@ package com.epam.brest.rest;
 import com.epam.brest.model.Department;
 import com.epam.brest.model.DepartmentAVGsalary;
 import com.epam.brest.service.DepartmentService;
+import com.google.gson.Gson;
 import org.easymock.EasyMock;
 import org.hamcrest.Matchers;
 import org.junit.After;
@@ -19,12 +20,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:rest-spring-test.xml"})
@@ -136,98 +134,14 @@ public class DepartmentRestControllerTestMock {
 
         MockdepartmentService.updateDepartment(EasyMock.anyObject());
         EasyMock.expectLastCall();
-
         EasyMock.replay(MockdepartmentService);
 
+        Gson gson = new Gson();
         mockMvc.perform(
                 post("/departments/"+DEPARTMENTID)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"departmentId\":1," +
-                                "\"departmentName\":\"Java\"," +
-                                "\"description\":\"Java department\"}")
+                        .content(gson.toJson(department))
                         .accept(MediaType.APPLICATION_JSON)
         ).andDo(print()).andExpect(status().isOk());
     }
-//    @Test
-//    public void addDepartmentTest() throws Exception {
-//        Department department1 = new Department();
-//        department1.setDepartmentId(ID);
-//        department1.setDepartmentName("Test");
-//        department1.setDescription("test description");
-//
-//        EasyMock.expect(MockdepartmentService.addDepartment(new Department("1","1"))).andReturn(department1);
-//        EasyMock.replay(MockdepartmentService);
-//
-//        mockMvc.perform(
-//                post("/departments")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content("{\"departmentName\":\"1\"," +
-//                                "\"description\":\"1\"}")
-//                        .accept(MediaType.APPLICATION_JSON)
-//        ).andDo(print())
-//                .andExpect(status().isCreated ())
-//                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-//                .andExpect(jsonPath("departmentId", Matchers.is(ID)))
-//                .andExpect(jsonPath("departmentName", Matchers.is("1")))
-//                .andExpect(jsonPath("description", Matchers.is("1")));
-//    }
-
-//    @Test
-//    public void addDepartmentTest() throws Exception {
-//        Department department1 = new Department(
-//                DEPARTMENTNAME, DESCRIPTION);
-//        department1.setDepartmentId(DEPARTMENTID);
-//
-//        EasyMock.expect(MockdepartmentService.addDepartment(new Department(
-//                DEPARTMENTNAME, DESCRIPTION))).andReturn(department1);
-//        EasyMock.replay(MockdepartmentService);
-//
-//        mockMvc.perform(
-//                post("/departments")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content("{\"departmentName\":\"Java\"," +
-//                                "\"description\":\"Java department\"}")
-//                        .accept(MediaType.APPLICATION_JSON)
-//        ).andDo(print())
-//                .andExpect(status().isCreated ())
-//                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-//                .andExpect(jsonPath("departmentId", Matchers.is(1)))
-//                .andExpect(jsonPath("departmentName", Matchers.is("Java")))
-//                .andExpect(jsonPath("description", Matchers.is("Java department")));
-//
-//
-//        EasyMock.verify(MockdepartmentService);
-//    }
-//    @Test
-//    public void updateDepartment() throws Exception {
-//
-//        departmentService.updateDepartment(department);
-//        EasyMock.expectLastCall();
-//        EasyMock.replay(departmentService);
-//
-////        mockMvc.perform(
-////                post("/departments/{id}",department.getDepartmentId())
-//                        .contentType(MediaType.APPLICATION_JSON_UTF8)
-//                        .content(String.valueOf(jsonPath("departmentId", Matchers.is(5))))
-//                        .content(String.valueOf(jsonPath("departmentName", Matchers.is("Test"))))
-//                        .content(String.valueOf(jsonPath("description", Matchers.is("test description")))))
-////                .andDo(print()).andExpect(status().isOk());;
-//
-//
-//        mockMvc.perform(
-//                post("/departments/5")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content("{\"departmentId\":5," +
-//                                "\"departmentName\":\"Test\"," +
-//                                "\"description\":\"test description\"}")
-//                        .accept(MediaType.APPLICATION_JSON)
-//        ).andDo(print()).andExpect(status().isOk());
-//        EasyMock.verify(departmentService);
-////        ).andDo(print())
-////                .andExpect(status().isOk ())
-////                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-////                .andExpect(jsonPath("departmentId", Matchers.is(5)))
-////                .andExpect(jsonPath("departmentName", Matchers.is("Test")))
-////                .andExpect(jsonPath("description", Matchers.is("test description")));
-//    }
 }

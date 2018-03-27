@@ -11,7 +11,6 @@ import java.util.List;
 
 public class DepartmentConsumerRest implements DepartmentService {
     private String url;
-
     private RestTemplate restTemplate;
 
     public DepartmentConsumerRest(String url, RestTemplate restTemplate) {

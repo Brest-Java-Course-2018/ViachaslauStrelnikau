@@ -21,6 +21,7 @@ public class EmployeeRestController {
     }
 
     @GetMapping(value = "/employees")
+    @ResponseStatus(HttpStatus.OK)
     List<Employee> getEmployees()
     {
         LOGGER.debug("REST getEmployees");

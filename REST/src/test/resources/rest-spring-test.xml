@@ -10,6 +10,13 @@
         <constructor-arg value="com.epam.brest.service.DepartmentService"/>
     </bean>
 
+    <bean id="MockemployeeService" class="org.easymock.EasyMock" factory-method="createMock">
+        <constructor-arg value="com.epam.brest.service.EmployeeService"/>
+    </bean>
+
+    <bean id="employeeRestController" class="com.epam.brest.rest.EmployeeRestController">
+        <property name="employeeService" ref="MockemployeeService"/>
+    </bean>
     <context:component-scan base-package="com.epam.brest.rest"/>
 
 </beans>

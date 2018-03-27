@@ -26,16 +26,16 @@ public class ErrorController extends RuntimeException {
     }
 
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(NotFound.class)
-    public String ErrorPage(Model model) {
-
-                String errorMsg = "Http Error Code: 404. Resource not found";
-                model.addAttribute  ("Title","404");
-                model.addAttribute  ("Text",errorMsg);
-
-               return "exception";
-    }
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    @ExceptionHandler(NotFound.class)
+//    public String ErrorPage(Model model) {
+//
+//                String errorMsg = "Http Error Code: 404. Resource not found";
+//                model.addAttribute  ("Title","404");
+//                model.addAttribute  ("Text",errorMsg);
+//
+//               return "exception";
+//    }
 
 }
 
