@@ -1,0 +1,16 @@
+<nav class="pl-2 navbar navbar-expand-sm navbar-dark bg-info text-light  p-0">
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a routerLink="/" class="navbar-brand"><img src="assets/image/icon.svg" height="32" width="64"></a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <a class="nav-item nav-link"
+         routerLink="/departments"
+         [routerLinkActive]="'active'">Departments</a>
+      <a class="nav-item nav-link"
+         routerLink="/employees"
+         [routerLinkActive]="'active'">Employees</a>
+    </ul>
+  </div>
+</nav>
