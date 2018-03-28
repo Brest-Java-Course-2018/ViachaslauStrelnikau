@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
+@CrossOrigin
 @RestController
 public class DepartmentRestController {
     private static final Logger LOGGER= LogManager.getLogger();
