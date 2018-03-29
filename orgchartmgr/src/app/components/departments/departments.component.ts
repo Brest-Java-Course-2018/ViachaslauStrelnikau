@@ -1,25 +1,27 @@
 import {Component, OnInit} from '@angular/core';
+import {Observable} from "rxjs/Observable";
+
 import {DepartmentService} from "../../services/department.service";
+import {DepartmentDto} from "../../model/department-dto";
 
 @Component({
- selector: 'app-departments',
- templateUrl: './departments.component.html',
- styleUrls: ['./departments.component.css']
+  selector: 'app-departments',
+  templateUrl: './departments.component.html',
+  styleUrls: ['./departments.component.css']
 })
 export class DepartmentsComponent implements OnInit {
 
- constructor(private departmentService: DepartmentService) {
- }
+  dtos: Observable<Array<DepartmentDto>>;
 
- ngOnInit() {
-   this.getDepartmentDTOs();
- }
+  constructor(private departmentService: DepartmentService) {
+  }
 
- getDepartmentDTOs() {
-   this.departmentService.getDepartmentDTOs()
-     .subscribe(
-       data => console.log(JSON.stringify(data)),
-       error => console.log('Server error')
-     )
- }
+  ngOnInit() {
+    this.dtos = this.getDepartmentDTOs();
+  }
+
+  getDepartmentDTOs() {
+    return this.departmentService.getDepartmentDTOs();
+  }
 }
+

@@ -3,8 +3,8 @@ import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http"
 import {Observable} from "rxjs/Observable";
 import {catchError, map, tap} from "rxjs/operators";
 import {_throw} from "rxjs/observable/throw";
-
 import {DepartmentDto} from "../model/department-dto";
+
 
 @Injectable()
 export class DepartmentService {
@@ -42,4 +42,5 @@ export class DepartmentService {
 	console.error(errorMessage);
 	return _throw(errorMessage);
   }
+
 }
