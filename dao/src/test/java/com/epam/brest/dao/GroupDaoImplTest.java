@@ -75,7 +75,6 @@ public class GroupDaoImplTest {
     {
         Group group = new Group(SHORTNAME,FULLNAME,DESCRIPTION);
         groupDao.addGroup(group);
-        Group group2 = new Group(SHORTNAME,FULLNAME,DESCRIPTION);
         groupDao.addGroup(group);
     }
     @Test
@@ -99,6 +98,12 @@ public class GroupDaoImplTest {
     @Test
     public void removeGroup()
     {
+        Group group = new Group(SHORTNAME,FULLNAME,DESCRIPTION);
+        Group group_out = groupDao.addGroup(group);
+        int size_before=groupDao.getallGroupsDTO().size();
+        groupDao.deleteGroup(group_out.getGroupId());
+        int size_after=groupDao.getallGroupsDTO().size();
 
+        Assert.assertTrue(size_before==size_after+1);
     }
 }

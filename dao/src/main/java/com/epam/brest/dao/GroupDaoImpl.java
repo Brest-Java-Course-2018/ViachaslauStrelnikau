@@ -156,12 +156,12 @@ public class GroupDaoImpl implements GroupDao {
     /**
      * method deleteGroup remove Group record from database.
      *
-     * @param id id of record to remove
+     * @param groupId id of record to remove
      */
     @Override
-    public void deleteGroup(int id) {
-        LOGGER.debug("GroupDao deleteGroup {}", id);
-        namedParameterJdbcTemplate.getJdbcOperations().update(sql_removeGroup, id);
+    public void deleteGroup(int groupId) {
+        LOGGER.debug("GroupDao deleteGroup {}", groupId);
+        namedParameterJdbcTemplate.getJdbcOperations().update(sql_removeGroup, groupId);
     }
 
 }
