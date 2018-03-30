@@ -1,19 +1,18 @@
-drop table if exists department;
-create table department (
-department_id int not null auto_increment,
-department_name varchar(255) not null,
-description varchar(255) null,
-primary key(department_id)
+DROP TABLE IF EXISTS groups;
+CREATE TABLE groups (
+  groupId INT NOT NULL AUTO_INCREMENT,
+  shortName VARCHAR(255) NOT NULL,
+  fullName VARCHAR(255) NOT NULL,
+  description VARCHAR(255) NULL,
+  PRIMARY KEY (groupId)
 );
-
-drop table if exists employee;
-create table employee (
-employee_id int not null auto_increment,
-employee_name varchar(255) not null,
-employeeEmail varchar(255) null,
-employeeSalary int not null,
-department_id  int NOT NULL,
-primary key(employee_id),
-  CONSTRAINT FK_employeeid_departmentid
-  FOREIGN KEY (department_id) REFERENCES department(department_id)
+DROP TABLE IF EXISTS students;
+CREATE TABLE students (
+  studentId INT NOT NULL AUTO_INCREMENT,
+  studentName VARCHAR(255) NOT NULL,
+  studentBirth DATE NOT NULL,
+  studentAvgMarks  DOUBLE NOT NULL,
+  groupId INT,
+  PRIMARY KEY (studentId),
+  FOREIGN KEY (groupId) REFERENCES groups(groupId)
 );

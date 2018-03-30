@@ -3,25 +3,15 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
-
     <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
-
-
-    <bean name="departmentDao" class="com.epam.brest.dao.DepartmentDaoImpl">
-        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
-    </bean>
-
-    <bean name="employeeDao" class="com.epam.brest.dao.EmployeeDaoImpl">
-        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
-    </bean>
-
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-
-
+    <bean name="groupDao" class="com.epam.brest.dao.GroupDaoImpl">
+        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+    </bean>
 </beans>

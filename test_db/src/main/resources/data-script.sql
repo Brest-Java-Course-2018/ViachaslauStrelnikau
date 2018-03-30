@@ -1,21 +1,20 @@
-insert into department(department_name,description)
-values ('Destribution','Destribute something');
+INSERT INTO groups (shortName, fullName,description)
+VALUES ('A12', 'Architecture 12', 'Learn Architecture');
+INSERT INTO groups (shortName, fullName,description)
+VALUES ('A17', 'Architecture 17', 'Learn Architecture');
+INSERT INTO groups (shortName, fullName,description)
+VALUES ('E30', 'Electronics and programming', 'Learn programable microcontrollers');
+INSERT INTO groups (shortName, fullName,description)
+VALUES ('R15', 'Roads 5', 'Learn roads building');
 
-insert into department(department_name,description)
-values ('Support','Support something');
-
-insert into department(department_name,description)
-values ('Development','Develop something');
-
-insert into department(department_name,description)
-values ('HR','HR something');
-
-insert into employee(employee_name,employeeEmail,employeeSalary,department_id)
-values ('Vasia Pupkin','Vasia@mail.ru',1000, 1);
-insert into employee(employee_name,employeeEmail,employeeSalary,department_id)
-values ('Petis Petin','Petis@mail.ru',2000, 2);
-insert into employee(employee_name,employeeEmail,employeeSalary,department_id)
-values ('Kolia Kolin','Kolia@mail.ru',3000, 1);
-
-
+INSERT INTO students (studentName, studentBirth,studentAvgMarks,groupId)
+VALUES ('Ivan Ivanov', '1985-12-01',7.3,1);
+INSERT INTO students (studentName, studentBirth,studentAvgMarks,groupId)
+VALUES ('Petr Petrov', '1985-01-30',6.2,1);
+INSERT INTO students (studentName, studentBirth,studentAvgMarks,groupId)
+VALUES ('Sidor Sidorov', '1995-03-01',5.2,2);
+INSERT INTO students (studentName, studentBirth,studentAvgMarks,groupId)
+VALUES ('Semen Semenov', '1987-04-02',9.3,3);
+INSERT INTO students (studentName, studentBirth,studentAvgMarks,groupId)
+VALUES ('Kostia Kostin', '1983-07-22',7.3,3);
 
