@@ -70,6 +70,14 @@ public class GroupDaoImplTest {
         Assert.assertTrue(group_out.getDescription().equals(DESCRIPTION));
 
     }
+    @Test(expected = IllegalArgumentException.class)
+    public void addGroup2()
+    {
+        Group group = new Group(SHORTNAME,FULLNAME,DESCRIPTION);
+        groupDao.addGroup(group);
+        Group group2 = new Group(SHORTNAME,FULLNAME,DESCRIPTION);
+        groupDao.addGroup(group);
+    }
     @Test
     public void updateGroup()
     {
@@ -86,7 +94,6 @@ public class GroupDaoImplTest {
         Assert.assertTrue(group_out.getShortName().equals(group_out.getShortName()));
         Assert.assertTrue(group_out.getFullName().equals(group_out.getFullName()));
         Assert.assertTrue(group_out.getDescription().equals(group_out.getDescription()));
-
     }
 
     @Test
