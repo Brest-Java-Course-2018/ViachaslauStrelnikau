@@ -37,7 +37,8 @@ public class StudentDTO {
      * @param studentAvgMarks Students average marks
      * @param groupName       group name
      */
-    public StudentDTO(int studentId, String studentName, Date studentBirth, double studentAvgMarks, String groupName) {
+    public StudentDTO(final int studentId, final String studentName, final Date studentBirth,
+                      final double studentAvgMarks, final String groupName) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.studentBirth = studentBirth;
@@ -71,47 +72,47 @@ public class StudentDTO {
         return groupName;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(final int studentId) {
         this.studentId = studentId;
     }
 
-    public void setStudentName(String studentName) {
+    public void setStudentName(final String studentName) {
         this.studentName = studentName;
     }
 
-    public void setStudentBirth(Date studentBirth) {
+    public void setStudentBirth(final Date studentBirth) {
         this.studentBirth = studentBirth;
     }
 
-    public void setStudentAvgMarks(double studentAvgMarks) {
+    public void setStudentAvgMarks(final double studentAvgMarks) {
         this.studentAvgMarks = studentAvgMarks;
     }
 
-    public void setGroupName(String groupName) {
+    public void setGroupName(final String groupName) {
         this.groupName = groupName;
     }
 
     @Override
     public String toString() {
-        return "StudentDTO{" +
-                "studentId=" + studentId +
-                ", studentName='" + studentName + '\'' +
-                ", studentBirth=" + studentBirth +
-                ", studentAvgMarks=" + studentAvgMarks +
-                ", groupName='" + groupName + '\'' +
-                '}';
+        return "StudentDTO{"
+                + "studentId=" + studentId
+                + ", studentName='" + studentName + '\''
+                + ", studentBirth=" + studentBirth
+                + ", studentAvgMarks=" + studentAvgMarks
+                + ", groupName='" + groupName + '\''
+                + '}';
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StudentDTO that = (StudentDTO) o;
-        return studentId == that.studentId &&
-                Double.compare(that.studentAvgMarks, studentAvgMarks) == 0 &&
-                Objects.equals(studentName, that.studentName) &&
-                Objects.equals(studentBirth, that.studentBirth) &&
-                Objects.equals(groupName, that.groupName);
+        return studentId == that.studentId
+                && Double.compare(that.studentAvgMarks, studentAvgMarks) == 0
+                && Objects.equals(studentName, that.studentName)
+                && Objects.equals(studentBirth, that.studentBirth)
+                && Objects.equals(groupName, that.groupName);
     }
 
     @Override

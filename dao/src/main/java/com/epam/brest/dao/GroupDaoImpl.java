@@ -23,22 +23,39 @@ public class GroupDaoImpl implements GroupDao {
     public static final String GROUP_SHORT_NAME = "shortName";
     public static final String GROUP_FULLNAME = "fullName";
     public static final String DESCRIPTION = "description";
-
+    /**
+     * Property statement to select all Group DAO records.
+     */
     @Value("${group.dto}")
     private String sql_groupDAOselect;
-
+    /**
+     * Property statement to select Group DAO record by id.
+     */
     @Value("${group.getgroupbyid}")
     private String sql_groupById;
-
+    /**
+     * Property statement to check is record in the base.
+     */
     @Value("${group.checkgroupid}")
     private String sql_checkGroup;
-
+    /**
+     * Property statement to check is record with such names in the base.
+     */
+    @Value("${group.cheackname}")
+    private String sql_checkGroupbyName;
+    /**
+     * Property statement to add record into the base.
+     */
     @Value("${group.addrecord}")
     private String sql_addGroup;
-
+    /**
+     * Property statement to update record in the base.
+     */
     @Value("${group.updaterecord}")
     private String sql_updateGroup;
-
+    /**
+     * Property statement to remove record from the base.
+     */
     @Value("${group.remove}")
     private String sql_removeGroup;
     /**
@@ -104,7 +121,7 @@ public class GroupDaoImpl implements GroupDao {
         mapSqlParameterSource.addValue(GROUP_SHORT_NAME, group.getShortName());
         mapSqlParameterSource.addValue(GROUP_FULLNAME, group.getFullName());
 
-        Integer result = namedParameterJdbcTemplate.queryForObject(sql_addGroup, mapSqlParameterSource, Integer.class);
+        Integer result = namedParameterJdbcTemplate.queryForObject(sql_checkGroupbyName, mapSqlParameterSource, Integer.class);
 
         if (result == 0) {
             mapSqlParameterSource.addValue(DESCRIPTION, group.getDescription());
@@ -130,17 +147,10 @@ public class GroupDaoImpl implements GroupDao {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(GROUP_SHORT_NAME, group.getShortName());
         mapSqlParameterSource.addValue(GROUP_FULLNAME, group.getFullName());
-        Integer result = namedParameterJdbcTemplate.queryForObject(sql_addGroup, mapSqlParameterSource, Integer.class);
+        mapSqlParameterSource.addValue(DESCRIPTION, group.getDescription());
+        mapSqlParameterSource.addValue(GROUP_ID, group.getGroupId());
 
-        if (result == 0) {
-            mapSqlParameterSource.addValue(DESCRIPTION, group.getDescription());
-            mapSqlParameterSource.addValue(GROUP_ID, group.getGroupId());
-            namedParameterJdbcTemplate.update(sql_updateGroup, mapSqlParameterSource);
-        } else {
-            LOGGER.error("GroupDao addGroup - Record with this name is in base");
-            throw new IllegalArgumentException("Record with this name is in base");
-        }
-
+        namedParameterJdbcTemplate.update(sql_updateGroup, mapSqlParameterSource);
     }
 
     /**

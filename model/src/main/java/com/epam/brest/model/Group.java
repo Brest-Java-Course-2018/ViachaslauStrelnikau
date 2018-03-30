@@ -9,27 +9,28 @@ public class Group {
     /**
      * Property groupId.
      */
-    int groupId;
+    private int groupId;
     /**
      * Property shortName.
      */
-    String shortName;
+    private String shortName;
     /**
      * Property fullName.
      */
-    String fullName;
+    private String fullName;
     /**
      * Property description.
      */
-    String description;
+    private String description;
 
     /**
      * Group class constructor with params
-     * @param shortName short name of group
-     * @param fullName full name of group
+     *
+     * @param shortName   short name of group
+     * @param fullName    full name of group
      * @param description description of the student group
      */
-    public Group(String shortName, String fullName, String description) {
+    public Group(final String shortName, final String fullName, final String description) {
         this.shortName = shortName;
         this.fullName = fullName;
         this.description = description;
@@ -57,41 +58,41 @@ public class Group {
         return description;
     }
 
-    public void setGroupId(int groupId) {
+    public void setGroupId(final int groupId) {
         this.groupId = groupId;
     }
 
-    public void setShortName(String shortName) {
+    public void setShortName(final String shortName) {
         this.shortName = shortName;
     }
 
-    public void setFullName(String fullName) {
+    public void setFullName(final String fullName) {
         this.fullName = fullName;
     }
 
-    public void setAverageMarks(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
     @Override
     public String toString() {
-        return "Group{" +
-                "groupId=" + groupId +
-                ", shortName='" + shortName + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", description=" + description +
-                '}';
+        return "Group{"
+                + "groupId=" + groupId
+                + ", shortName='" + shortName + '\''
+                + ", fullName='" + fullName + '\''
+                + ", description=" + description
+                + '}';
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Group group = (Group) o;
-        return groupId == group.groupId &&
-                Objects.equals(shortName, group.shortName) &&
-                Objects.equals(fullName, group.fullName) &&
-                Objects.equals(description, group.description);
+        return groupId == group.groupId
+                && Objects.equals(shortName, group.shortName)
+                && Objects.equals(fullName, group.fullName)
+                && Objects.equals(description, group.description);
     }
 
     @Override

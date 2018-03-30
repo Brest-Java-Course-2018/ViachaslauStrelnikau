@@ -37,7 +37,7 @@ public class Student {
      * @param studentAvgMarks Students average marks
      * @param groupId         ID of students group
      */
-    public Student(String studentName, Date studentBirth, double studentAvgMarks, int groupId) {
+    public Student(final String studentName, final Date studentBirth, final double studentAvgMarks, final int groupId) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.studentBirth = studentBirth;
@@ -71,47 +71,47 @@ public class Student {
         return groupId;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(final int studentId) {
         this.studentId = studentId;
     }
 
-    public void setStudentName(String studentName) {
+    public void setStudentName(final String studentName) {
         this.studentName = studentName;
     }
 
-    public void setStudentBirth(Date studentBirth) {
+    public void setStudentBirth(final Date studentBirth) {
         this.studentBirth = studentBirth;
     }
 
-    public void setStudentAvgMarks(double studentAvgMarks) {
+    public void setStudentAvgMarks(final double studentAvgMarks) {
         this.studentAvgMarks = studentAvgMarks;
     }
 
-    public void setGroupId(int groupId) {
+    public void setGroupId(final int groupId) {
         this.groupId = groupId;
     }
 
     @Override
     public String toString() {
-        return "Student{" +
-                "studentId=" + studentId +
-                ", studentName='" + studentName + '\'' +
-                ", studentBirth=" + studentBirth +
-                ", studentAvgMarks=" + studentAvgMarks +
-                ", groupId=" + groupId +
-                '}';
+        return "Student{"
+                + "studentId=" + studentId
+                + ", studentName='" + studentName + '\''
+                + ", studentBirth=" + studentBirth
+                + ", studentAvgMarks=" + studentAvgMarks
+                + ", groupId=" + groupId
+                + '}';
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return Double.compare(student.studentAvgMarks, studentAvgMarks) == 0 &&
-                Objects.equals(studentId, student.studentId) &&
-                Objects.equals(studentName, student.studentName) &&
-                Objects.equals(studentBirth, student.studentBirth) &&
-                Objects.equals(groupId, student.groupId);
+        return Double.compare(student.studentAvgMarks, studentAvgMarks) == 0
+                && Objects.equals(studentId, student.studentId)
+                && Objects.equals(studentName, student.studentName)
+                && Objects.equals(studentBirth, student.studentBirth)
+                && Objects.equals(groupId, student.groupId);
     }
 
     @Override
