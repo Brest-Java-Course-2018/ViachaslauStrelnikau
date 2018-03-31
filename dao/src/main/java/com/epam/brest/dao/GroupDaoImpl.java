@@ -61,6 +61,7 @@ public class GroupDaoImpl implements GroupDao {
     /**
      * Property namedParameterJdbcTemplate.
      */
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     /**
      * method setNamedParameterJdbcTemplate seter method for namedParameterJdbcTemplate property.
      *
@@ -69,8 +70,6 @@ public class GroupDaoImpl implements GroupDao {
     public void setNamedParameterJdbcTemplate(final NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
-
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     /**
      * method getallGroupsDTO gets all group DTO objects.
@@ -93,7 +92,7 @@ public class GroupDaoImpl implements GroupDao {
      * @return Group searched group
      */
     @Override
-    public Group getGroupById(int id) {
+    public Group getGroupById(final int id) {
         LOGGER.debug("GroupDao getGroupById {}", id);
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource(GROUP_ID, id);
@@ -115,7 +114,7 @@ public class GroupDaoImpl implements GroupDao {
      * @return Group added group
      */
     @Override
-    public Group addGroup(Group group) {
+    public Group addGroup(final Group group) {
         LOGGER.debug("GroupDao addGroup {}", group);
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue(GROUP_SHORT_NAME, group.getShortName());
@@ -141,7 +140,7 @@ public class GroupDaoImpl implements GroupDao {
      * @param group group
      */
     @Override
-    public void updateGroup(Group group) {
+    public void updateGroup(final Group group) {
         LOGGER.debug("GroupDao updateGroup {}", group);
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
@@ -159,7 +158,7 @@ public class GroupDaoImpl implements GroupDao {
      * @param groupId id of record to remove
      */
     @Override
-    public void deleteGroup(int groupId) {
+    public void removeGroup(final int groupId) {
         LOGGER.debug("GroupDao deleteGroup {}", groupId);
         namedParameterJdbcTemplate.getJdbcOperations().update(sql_removeGroup, groupId);
     }

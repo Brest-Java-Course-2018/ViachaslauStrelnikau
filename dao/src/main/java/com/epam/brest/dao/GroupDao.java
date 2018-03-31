@@ -6,10 +6,37 @@ import com.epam.brest.model.Group;
 import java.util.Collection;
 
 public interface GroupDao {
+    /**
+     * method getallGroupsDTO gets all group DTO objects.
+     *
+     * @return Collection of group DTO
+     */
     Collection<GroupDTO> getallGroupsDTO();
+    /**
+     * method getGroupById returns group by its ID.
+     *
+     * @param id id of group
+     * @return Group searched group
+     */
     Group getGroupById(int id);
+    /**
+     * method addGroup addes Griup record to database.
+     *
+     * @param group group
+     * @return Group added group
+     */
     Group addGroup(Group group);
+    /**
+     * method updateGroup update Group record in database.
+     *
+     * @param group group
+     */
     void updateGroup(Group group);
-    void deleteGroup(int id);
+    /**
+     * method deleteGroup remove Group record from database.
+     *
+     * @param groupId id of record to remove
+     */
+    void removeGroup(int groupId);
 }
 

@@ -26,7 +26,7 @@ public class StudentDTO {
     /**
      * Property groupName.
      */
-    private String groupName;
+    private String fullName;
 
     /**
      * StudentDTO class constructor with params
@@ -35,15 +35,15 @@ public class StudentDTO {
      * @param studentName     Full name of student
      * @param studentBirth    Date of birth of the student
      * @param studentAvgMarks Students average marks
-     * @param groupName       group name
+     * @param fullName       group name
      */
     public StudentDTO(final int studentId, final String studentName, final Date studentBirth,
-                      final double studentAvgMarks, final String groupName) {
+                      final double studentAvgMarks, final String fullName) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.studentBirth = studentBirth;
         this.studentAvgMarks = studentAvgMarks;
-        this.groupName = groupName;
+        this.fullName = fullName;
     }
 
     /**
@@ -68,8 +68,8 @@ public class StudentDTO {
         return studentAvgMarks;
     }
 
-    public String getGroupName() {
-        return groupName;
+    public String getFullName() {
+        return fullName;
     }
 
     public void setStudentId(final int studentId) {
@@ -88,8 +88,8 @@ public class StudentDTO {
         this.studentAvgMarks = studentAvgMarks;
     }
 
-    public void setGroupName(final String groupName) {
-        this.groupName = groupName;
+    public void setFullName(final String fullName) {
+        this.fullName = fullName;
     }
 
     @Override
@@ -99,7 +99,7 @@ public class StudentDTO {
                 + ", studentName='" + studentName + '\''
                 + ", studentBirth=" + studentBirth
                 + ", studentAvgMarks=" + studentAvgMarks
-                + ", groupName='" + groupName + '\''
+                + ", groupName='" + fullName + '\''
                 + '}';
     }
 
@@ -112,12 +112,12 @@ public class StudentDTO {
                 && Double.compare(that.studentAvgMarks, studentAvgMarks) == 0
                 && Objects.equals(studentName, that.studentName)
                 && Objects.equals(studentBirth, that.studentBirth)
-                && Objects.equals(groupName, that.groupName);
+                && Objects.equals(fullName, that.fullName);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(studentId, studentName, studentBirth, studentAvgMarks, groupName);
+        return Objects.hash(studentId, studentName, studentBirth, studentAvgMarks, fullName);
     }
 }

@@ -13,8 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:dao.xml", "classpath:test-dao.xml", "classpath:test-db-spring.xml"})
 @Rollback
@@ -33,54 +31,71 @@ public class GroupDaoImplTest {
     @Autowired
     GroupDao groupDao;
 
+    /**
+     * getallGroupsDTO method test
+     */
     @Test
     public void getallGroupDTOTest() {
         Collection<GroupDTO> groupDTOS = groupDao.getallGroupsDTO();
         Assert.assertFalse(groupDTOS.isEmpty());
     }
 
+    /**
+     * getGroupById method test
+     */
     @Test
     public void getgroupByIdTest() {
-        Group group = new Group(SHORTNAME,FULLNAME,DESCRIPTION);
+        Group group = new Group(SHORTNAME, FULLNAME, DESCRIPTION);
         Group group_out = groupDao.addGroup(group);
-        Group groupbyId=groupDao.getGroupById(group_out.getGroupId());
+        Group groupbyId = groupDao.getGroupById(group_out.getGroupId());
 
         Assert.assertTrue(groupbyId.getShortName().equals(SHORTNAME));
         Assert.assertTrue(groupbyId.getFullName().equals(FULLNAME));
         Assert.assertTrue(groupbyId.getDescription().equals(DESCRIPTION));
     }
 
+    /**
+     * getGroupById method test
+     */
     @Test(expected = IllegalArgumentException.class)
     public void getgroupByIdTest2() {
         Group group = groupDao.getGroupById(GROUPID);
     }
 
+    /**
+     * addGroup method test
+     */
     @Test
-    public void addGroup()
-    {
-        Group group = new Group(SHORTNAME,FULLNAME,DESCRIPTION);
+    public void addGroup() {
+        Group group = new Group(SHORTNAME, FULLNAME, DESCRIPTION);
         int size_before = groupDao.getallGroupsDTO().size();
         Group group_out = groupDao.addGroup(group);
         int size_after = groupDao.getallGroupsDTO().size();
 
-        Assert.assertTrue(size_before+1==size_after);
+        Assert.assertTrue(size_before + 1 == size_after);
         Assert.assertNotNull(group_out);
         Assert.assertTrue(group_out.getShortName().equals(SHORTNAME));
         Assert.assertTrue(group_out.getFullName().equals(FULLNAME));
         Assert.assertTrue(group_out.getDescription().equals(DESCRIPTION));
 
     }
+
+    /**
+     * addGroup method test
+     */
     @Test(expected = IllegalArgumentException.class)
-    public void addGroup2()
-    {
-        Group group = new Group(SHORTNAME,FULLNAME,DESCRIPTION);
+    public void addGroup2() {
+        Group group = new Group(SHORTNAME, FULLNAME, DESCRIPTION);
         groupDao.addGroup(group);
         groupDao.addGroup(group);
     }
+
+    /**
+     * updateGroup method test
+     */
     @Test
-    public void updateGroup()
-    {
-        Group group = new Group(SHORTNAME,FULLNAME,DESCRIPTION);
+    public void updateGroup() {
+        Group group = new Group(SHORTNAME, FULLNAME, DESCRIPTION);
         Group group_out = groupDao.addGroup(group);
         group_out.setShortName(SHORTNAME2);
         group_out.setFullName(FULLNAME2);
@@ -88,22 +103,24 @@ public class GroupDaoImplTest {
 
         groupDao.updateGroup(group_out);
 
-        Group group_upd=groupDao.getGroupById(group_out.getGroupId());
+        Group group_upd = groupDao.getGroupById(group_out.getGroupId());
 
         Assert.assertTrue(group_out.getShortName().equals(group_out.getShortName()));
         Assert.assertTrue(group_out.getFullName().equals(group_out.getFullName()));
         Assert.assertTrue(group_out.getDescription().equals(group_out.getDescription()));
     }
 
+    /**
+     * removeGroup method test
+     */
     @Test
-    public void removeGroup()
-    {
-        Group group = new Group(SHORTNAME,FULLNAME,DESCRIPTION);
+    public void removeGroup() {
+        Group group = new Group(SHORTNAME, FULLNAME, DESCRIPTION);
         Group group_out = groupDao.addGroup(group);
-        int size_before=groupDao.getallGroupsDTO().size();
-        groupDao.deleteGroup(group_out.getGroupId());
-        int size_after=groupDao.getallGroupsDTO().size();
+        int size_before = groupDao.getallGroupsDTO().size();
+        groupDao.removeGroup(group_out.getGroupId());
+        int size_after = groupDao.getallGroupsDTO().size();
 
-        Assert.assertTrue(size_before==size_after+1);
+        Assert.assertTrue(size_before == size_after + 1);
     }
 }

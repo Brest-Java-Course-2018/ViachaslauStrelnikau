@@ -14,4 +14,8 @@
     <bean name="groupDao" class="com.epam.brest.dao.GroupDaoImpl">
         <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
+    <bean name="studentDao" class="com.epam.brest.dao.StudentDaoImpl">
+        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+    </bean>
+
 </beans>
