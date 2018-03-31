@@ -35,7 +35,7 @@ public class StudentDaoImplTest {
     }
 
     /**
-     * getallStudentsDTO method test
+     * getFilteredStudentsDTO method test
      */
     @Test
     public void getFiltedStudentstest() throws ParseException {
@@ -49,6 +49,15 @@ public class StudentDaoImplTest {
                 .getFilteredStudentsDTO(dateFromSql, dateToSql);
 
         Assert.assertNotNull(studentDTOS);
+    }
+    /**
+     * getFilteredStudentsDTO method test
+     */
+    @Test
+    public void getFiltedStudentstest2() throws ParseException {
+        int size=studentDao.getallStudentsDTO().size();
+        int sizeNull=studentDao.getFilteredStudentsDTO(null,null).size();
+        Assert.assertTrue(size==sizeNull);
     }
 
     /**
