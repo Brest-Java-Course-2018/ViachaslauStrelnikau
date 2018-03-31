@@ -16,8 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:test-db-spring.xml", "classpath:dao.xml", "classpath:test-dao.xml"})
 @Rollback
@@ -33,6 +31,23 @@ public class StudentDaoImplTest {
     @Test
     public void getallStudentstest() {
         Collection<StudentDTO> studentDTOS = studentDao.getallStudentsDTO();
+        Assert.assertNotNull(studentDTOS);
+    }
+
+    /**
+     * getallStudentsDTO method test
+     */
+    @Test
+    public void getFiltedStudentstest() throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Date dateFrom = simpleDateFormat.parse("31.05.1990");
+        Date dateTo = simpleDateFormat.parse("31.05.2100");
+        java.sql.Date dateFromSql = new java.sql.Date(dateFrom.getTime());
+        java.sql.Date dateToSql = new java.sql.Date(dateTo.getTime());
+
+        Collection<StudentDTO> studentDTOS = studentDao
+                .getFilteredStudentsDTO(dateFromSql, dateToSql);
+
         Assert.assertNotNull(studentDTOS);
     }
 
@@ -91,5 +106,53 @@ public class StudentDaoImplTest {
         studentDao.getStudentById(100000);
     }
 
+    /**
+     * updateStudent method test
+     */
+    @Test
+    public void updateStudent() throws ParseException {
+        Student student = new Student();
+        student.setStudentName("Ivan Ivanov");
+        student.setStudentAvgMarks(7.2);
+        student.setGroupId(1);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Date date = simpleDateFormat.parse("31.05.1990");
+        student.setStudentBirth(new java.sql.Date(date.getTime()));
+        Student student_out = studentDao.addStudent(student);
+
+        student_out.setStudentName("Test");
+        student_out.setStudentAvgMarks(0);
+        date = simpleDateFormat.parse("31.05.1995");
+        student_out.setStudentBirth(new java.sql.Date(date.getTime()));
+        studentDao.updateStudent(student_out);
+
+        Student updatedStudent = studentDao.getStudentById(student_out.getStudentId());
+
+        Assert.assertTrue(updatedStudent.getStudentId() == student_out.getStudentId());
+        Assert.assertTrue(updatedStudent.getGroupId() == student_out.getGroupId());
+        Assert.assertTrue(updatedStudent.getStudentAvgMarks() == student_out.getStudentAvgMarks());
+        Assert.assertTrue(updatedStudent.getStudentBirth().equals(student_out.getStudentBirth()));
+        Assert.assertTrue(updatedStudent.getStudentName().equals(student_out.getStudentName()));
+    }
+
+    /**
+     * removeStudent method test
+     */
+    @Test
+    public void removeStudent() throws ParseException {
+        Student student = new Student();
+        student.setStudentName("Ivan Ivanov");
+        student.setStudentAvgMarks(7.2);
+        student.setGroupId(1);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Date date = simpleDateFormat.parse("31.05.1990");
+        student.setStudentBirth(new java.sql.Date(date.getTime()));
+        Student student_out = studentDao.addStudent(student);
+
+        int size_brefore = studentDao.getallStudentsDTO().size();
+        studentDao.removeStudent(student_out.getStudentId());
+        int size_after = studentDao.getallStudentsDTO().size();
+        Assert.assertTrue(size_after + 1 == size_brefore);
+    }
 
 }

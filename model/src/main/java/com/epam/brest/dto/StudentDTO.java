@@ -35,7 +35,7 @@ public class StudentDTO {
      * @param studentName     Full name of student
      * @param studentBirth    Date of birth of the student
      * @param studentAvgMarks Students average marks
-     * @param fullName       group name
+     * @param fullName        group name
      */
     public StudentDTO(final int studentId, final String studentName, final Date studentBirth,
                       final double studentAvgMarks, final String fullName) {

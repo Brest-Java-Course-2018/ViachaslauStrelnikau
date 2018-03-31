@@ -1,6 +1,7 @@
 package com.epam.brest.dao;
 
 import com.epam.brest.dto.GroupDTO;
+import com.epam.brest.dto.GroupDTOlite;
 import com.epam.brest.model.Group;
 import org.junit.Assert;
 import org.junit.Test;
@@ -37,6 +38,15 @@ public class GroupDaoImplTest {
     @Test
     public void getallGroupDTOTest() {
         Collection<GroupDTO> groupDTOS = groupDao.getallGroupsDTO();
+        Assert.assertFalse(groupDTOS.isEmpty());
+    }
+
+    /**
+     * getallGroupsDTOlite method test
+     */
+    @Test
+    public void getallGroupDTOliteTest() {
+        Collection<GroupDTOlite> groupDTOS = groupDao.getallGroupsDTOlite();
         Assert.assertFalse(groupDTOS.isEmpty());
     }
 

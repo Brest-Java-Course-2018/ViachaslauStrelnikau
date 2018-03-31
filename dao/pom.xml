@@ -54,5 +54,5 @@
             <artifactId>log4j-jcl</artifactId>
         </dependency>
     </dependencies>
-    
+
 </project>

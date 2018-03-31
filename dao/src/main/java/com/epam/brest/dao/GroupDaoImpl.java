@@ -1,6 +1,7 @@
 package com.epam.brest.dao;
 
 import com.epam.brest.dto.GroupDTO;
+import com.epam.brest.dto.GroupDTOlite;
 import com.epam.brest.model.Group;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,6 +29,11 @@ public class GroupDaoImpl implements GroupDao {
      */
     @Value("${group.dto}")
     private String sql_groupDAOselect;
+    /**
+     * Property statement to select all Group DAO records.
+     */
+    @Value("${group.dtolite}")
+    private String sql_groupDAOLiteselect;
     /**
      * Property statement to select Group DAO record by id.
      */
@@ -62,6 +68,7 @@ public class GroupDaoImpl implements GroupDao {
      * Property namedParameterJdbcTemplate.
      */
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
     /**
      * method setNamedParameterJdbcTemplate seter method for namedParameterJdbcTemplate property.
      *
@@ -81,6 +88,20 @@ public class GroupDaoImpl implements GroupDao {
         LOGGER.debug("GroupDao getallGroups");
         Collection<GroupDTO> groupDTOS = namedParameterJdbcTemplate.getJdbcOperations()
                 .query(sql_groupDAOselect, BeanPropertyRowMapper.newInstance(GroupDTO.class));
+
+        return groupDTOS;
+    }
+
+    /**
+     * method getallGroupsDTOlite gets all group DTOlite objects.
+     *
+     * @return Collection of group DTOlite
+     */
+    @Override
+    public Collection<GroupDTOlite> getallGroupsDTOlite() {
+        LOGGER.debug("GroupDao getallGroupsDTOlite");
+        Collection<GroupDTOlite> groupDTOS = namedParameterJdbcTemplate.getJdbcOperations()
+                .query(sql_groupDAOLiteselect, BeanPropertyRowMapper.newInstance(GroupDTOlite.class));
 
         return groupDTOS;
     }
@@ -153,7 +174,7 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     /**
-     * method deleteGroup remove Group record from database.
+     * method removeGroup remove Group record from database.
      *
      * @param groupId id of record to remove
      */
