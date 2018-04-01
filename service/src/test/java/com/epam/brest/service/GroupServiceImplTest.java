@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
 public class GroupServiceImplTest {
 
     @Autowired
-    GroupService groupService;
+    private GroupService groupService;
 
     @Autowired
     private GroupDao mockGroupDao;
@@ -35,7 +35,9 @@ public class GroupServiceImplTest {
 
     private static GroupDTOlite groupDTOlite;
     private static GroupDTOlite groupDTOlite2;
-
+    /**
+     * Test set up.
+     */
     @Before
     public void testSetUp() {
         group = new Group();
@@ -68,31 +70,37 @@ public class GroupServiceImplTest {
         groupDTOlite2.setGroupId(2);
         groupDTOlite2.setFullName("Test2");
     }
-
+    /**
+     * Test clean.
+     */
     @After
     public void TestClear() {
         EasyMock.verify(mockGroupDao);
         EasyMock.reset(mockGroupDao);
     }
-
+    /**
+     * getallGroupsDTO method test.
+     */
     @Test
     public void getAllDTOServiceTest() {
         EasyMock.expect(mockGroupDao.getallGroupsDTO()).andReturn(Arrays.asList(groupDTO, groupDTO2));
         EasyMock.replay(mockGroupDao);
 
         groupService.getallGroupsDTO();
-
     }
-
+    /**
+     * getallGroupsDTOlite method test.
+     */
     @Test
     public void getallGroupsDTOliteTest() {
         EasyMock.expect(mockGroupDao.getallGroupsDTOlite()).andReturn(Arrays.asList(groupDTOlite, groupDTOlite2));
         EasyMock.replay(mockGroupDao);
 
         groupService.getallGroupsDTOlite();
-
     }
-
+    /**
+     * getGroupById method test.
+     */
     @Test
     public void getGroupByIdTest() {
         EasyMock.expect(mockGroupDao.getGroupById(1)).andReturn(group);
@@ -100,7 +108,9 @@ public class GroupServiceImplTest {
 
         groupService.getGroupById(1);
     }
-
+    /**
+     * addGroup method test.
+     */
     @Test
     public void addGroupTest() {
         EasyMock.expect(mockGroupDao.addGroup(group)).andReturn(group2);
@@ -109,7 +119,9 @@ public class GroupServiceImplTest {
         groupService.addGroup(group);
 
     }
-
+    /**
+     * updateGroup method test.
+     */
     @Test
     public void updateGroupTest() {
         mockGroupDao.updateGroup(group);
@@ -117,7 +129,9 @@ public class GroupServiceImplTest {
 
         groupService.updateGroup(group);
     }
-
+    /**
+     * removeGroup method test.
+     */
     @Test
     public void removeGroup() {
         mockGroupDao.removeGroup(1);

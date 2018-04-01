@@ -33,7 +33,7 @@ public class GroupDaoImplTest {
     GroupDao groupDao;
 
     /**
-     * getallGroupsDTO method test
+     * getallGroupsDTO method test.
      */
     @Test
     public void getallGroupDTOTest() {
@@ -42,7 +42,7 @@ public class GroupDaoImplTest {
     }
 
     /**
-     * getallGroupsDTOlite method test
+     * getallGroupsDTOlite method test.
      */
     @Test
     public void getallGroupDTOliteTest() {
@@ -51,7 +51,7 @@ public class GroupDaoImplTest {
     }
 
     /**
-     * getGroupById method test
+     * getGroupById method test.
      */
     @Test
     public void getgroupByIdTest() {
@@ -65,7 +65,7 @@ public class GroupDaoImplTest {
     }
 
     /**
-     * getGroupById method test
+     * getGroupById method test.
      */
     @Test(expected = IllegalArgumentException.class)
     public void getgroupByIdTest2() {
@@ -73,7 +73,7 @@ public class GroupDaoImplTest {
     }
 
     /**
-     * addGroup method test
+     * addGroup method test.
      */
     @Test
     public void addGroup() {
@@ -91,7 +91,7 @@ public class GroupDaoImplTest {
     }
 
     /**
-     * addGroup method test
+     * addGroup method test.
      */
     @Test(expected = IllegalArgumentException.class)
     public void addGroup2() {
@@ -101,7 +101,7 @@ public class GroupDaoImplTest {
     }
 
     /**
-     * updateGroup method test
+     * updateGroup method test.
      */
     @Test
     public void updateGroup() {
@@ -115,13 +115,13 @@ public class GroupDaoImplTest {
 
         Group group_upd = groupDao.getGroupById(group_out.getGroupId());
 
-        Assert.assertTrue(group_out.getShortName().equals(group_out.getShortName()));
-        Assert.assertTrue(group_out.getFullName().equals(group_out.getFullName()));
-        Assert.assertTrue(group_out.getDescription().equals(group_out.getDescription()));
+        Assert.assertTrue(group_upd.getShortName().equals(group_out.getShortName()));
+        Assert.assertTrue(group_upd.getFullName().equals(group_out.getFullName()));
+        Assert.assertTrue(group_upd.getDescription().equals(group_out.getDescription()));
     }
 
     /**
-     * removeGroup method test
+     * removeGroup method test.
      */
     @Test
     public void removeGroup() {

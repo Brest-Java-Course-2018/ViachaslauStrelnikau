@@ -6,7 +6,15 @@
     <bean name="mockGroupDao" class="org.easymock.EasyMock" factory-method="createMock">
         <constructor-arg value="com.epam.brest.dao.GroupDao"/>
     </bean>
+    <bean name="mockStudentDao" class="org.easymock.EasyMock" factory-method="createMock">
+        <constructor-arg value="com.epam.brest.dao.StudentDao"/>
+    </bean>
+
     <bean id="groupService" class="com.epam.brest.service.GroupServiceImpl">
         <constructor-arg ref="mockGroupDao"/>
+    </bean>
+
+    <bean id="studentService" class="com.epam.brest.service.StudentServiceImpl">
+        <constructor-arg ref="mockStudentDao"/>
     </bean>
 </beans>

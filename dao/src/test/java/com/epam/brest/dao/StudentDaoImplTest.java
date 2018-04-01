@@ -24,7 +24,7 @@ public class StudentDaoImplTest {
     StudentDao studentDao;
 
     /**
-     * getallStudentsDTO method test
+     * getallStudentsDTO method test.
      */
     @Test
     public void getallStudentstest() {
@@ -33,7 +33,7 @@ public class StudentDaoImplTest {
     }
 
     /**
-     * getFilteredStudentsDTO method test
+     * getFilteredStudentsDTO method test.
      */
     @Test
     public void getFiltedStudentstest() throws ParseException {
@@ -49,7 +49,7 @@ public class StudentDaoImplTest {
         Assert.assertNotNull(studentDTOS);
     }
     /**
-     * getFilteredStudentsDTO method test
+     * getFilteredStudentsDTO method test.
      */
     @Test
     public void getFiltedStudentstest2() throws ParseException {
@@ -59,7 +59,7 @@ public class StudentDaoImplTest {
     }
 
     /**
-     * addStudent method test
+     * addStudent method test.
      */
     @Test
     public void addStudent() throws ParseException {
@@ -83,7 +83,7 @@ public class StudentDaoImplTest {
     }
 
     /**
-     * getStudentById method test
+     * getStudentById method test.
      */
     @Test
     public void getStudentByIdTest() throws ParseException {
@@ -106,7 +106,7 @@ public class StudentDaoImplTest {
     }
 
     /**
-     * getStudentById method test
+     * getStudentById method test.
      */
     @Test(expected = IllegalArgumentException.class)
     public void getStudentByIdTest2() {
@@ -114,7 +114,7 @@ public class StudentDaoImplTest {
     }
 
     /**
-     * updateStudent method test
+     * updateStudent method test.
      */
     @Test
     public void updateStudent() throws ParseException {
@@ -143,7 +143,7 @@ public class StudentDaoImplTest {
     }
 
     /**
-     * removeStudent method test
+     * removeStudent method test.
      */
     @Test
     public void removeStudent() throws ParseException {
