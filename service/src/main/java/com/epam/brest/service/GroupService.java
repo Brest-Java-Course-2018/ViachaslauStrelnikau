@@ -5,7 +5,9 @@ import com.epam.brest.dto.GroupDTOlite;
 import com.epam.brest.model.Group;
 
 import java.util.Collection;
-
+/**
+ * interface GroupService provides a group service interface.
+ */
 public interface GroupService {
     /**
      * method getallGroupsDTO gets all group DTO objects.

@@ -10,17 +10,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.sql.Date;
 import java.text.ParseException;
 import java.util.Collection;
-
+/**
+ * Class StudentService provedes a student service implementation.
+ */
 public class StudentServiceImpl implements StudentService {
-
-    private final static Logger LOGGER = LogManager.getLogger();
+    /**
+     * Logger initilization.
+     */
+    private static final  Logger LOGGER = LogManager.getLogger();
+    /**
+     * studentDao property.
+     */
     @Autowired
     StudentDao studentDao;
 
-    public StudentServiceImpl(StudentDao studentDao) {
+    /**
+     * method StudentServiceImpl constructor.
+     *
+     * @param studentDao DAO of student objects
+     */
+    public StudentServiceImpl(final StudentDao studentDao) {
         this.studentDao = studentDao;
     }
 
+    /**
+     * method getallStudentsDTO gets all students.
+     *
+     * @return Collection of student DTO
+     */
     @Override
     public Collection<StudentDTO> getallStudentsDTO() {
         LOGGER.debug("StudentService getallStudentsDTO");
@@ -28,6 +45,14 @@ public class StudentServiceImpl implements StudentService {
         return studentDTOS;
     }
 
+    /**
+     * method getFilteredStudentsDTO gets all students which date of birth is beatwen entered dates.
+     *
+     * @param dateFrom begin date interval
+     * @param dateTo   ebd date interval
+     * @return Collection of student DTO
+     * @throws ParseException data parse exception
+     */
     @Override
     public Collection<StudentDTO> getFilteredStudentsDTO(final Date dateFrom, final Date dateTo) throws ParseException {
         LOGGER.debug("StudentService getFilteredStudentsDTO dateFrom-{}, dateTo -{}", dateFrom, dateTo);
@@ -35,6 +60,12 @@ public class StudentServiceImpl implements StudentService {
         return studentDTOS;
     }
 
+    /**
+     * method getStudentById returns student by its ID.
+     *
+     * @param id id of student
+     * @return Student searched student
+     */
     @Override
     public Student getStudentById(final int id) {
         LOGGER.debug("StudentService getStudentById -{}", id);
@@ -42,19 +73,35 @@ public class StudentServiceImpl implements StudentService {
         return student;
     }
 
+    /**
+     * method addStudent addes student record to database.
+     *
+     * @param student student
+     * @return Student added student
+     */
     @Override
     public Student addStudent(final Student student) {
         LOGGER.debug("StudentService addStudent - {}", student);
-        Student student_out = studentDao.addStudent(student);
-        return student_out;
+        Student studentout = studentDao.addStudent(student);
+        return studentout;
     }
 
+    /**
+     * method updateStudent updates student record in the database.
+     *
+     * @param student student
+     */
     @Override
     public void updateStudent(final Student student) {
         LOGGER.debug("StudentService updateStudent - {}", student);
         studentDao.updateStudent(student);
     }
 
+    /**
+     * method removeStudent remove student record from database.
+     *
+     * @param id id of record to remove
+     */
     @Override
     public void removeStudent(final int id) {
         LOGGER.debug("StudentService removeStudent - {}", id);

@@ -7,6 +7,9 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.util.Collection;
 
+/**
+ * interface StudentService provides a student service interface.
+ */
 public interface StudentService {
     /**
      * method getallStudentsDTO gets all students.
@@ -21,6 +24,7 @@ public interface StudentService {
      * @param dateFrom begin date interval
      * @param dateTo   ebd date interval
      * @return Collection of student DTO
+     * @throws ParseException data parse exception
      */
     Collection<StudentDTO> getFilteredStudentsDTO(Date dateFrom, Date dateTo) throws ParseException;
 

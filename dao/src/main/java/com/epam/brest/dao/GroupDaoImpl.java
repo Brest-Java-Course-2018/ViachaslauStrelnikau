@@ -14,16 +14,19 @@ import org.springframework.jdbc.support.KeyHolder;
 
 import java.util.Collection;
 
+/**
+ * class GroupDaoImpl is designed to implement GroupDao methods.
+ */
 public class GroupDaoImpl implements GroupDao {
     /**
      * Logger initilization.
      */
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static final String GROUP_ID = "groupId";
-    public static final String GROUP_SHORT_NAME = "shortName";
-    public static final String GROUP_FULLNAME = "fullName";
-    public static final String DESCRIPTION = "description";
+    private static final String GROUP_ID = "groupId";
+    private static final String GROUP_SHORT_NAME = "shortName";
+    private static final String GROUP_FULLNAME = "fullName";
+    private static final String DESCRIPTION = "description";
     /**
      * Property statement to select all Group DAO records.
      */

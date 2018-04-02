@@ -10,12 +10,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 
+/**
+ * Class GroupServiceImpl provides a group service implementation.
+ */
 public class GroupServiceImpl implements GroupService {
+    /**
+     * Logger initilization.
+     */
     private static final Logger LOGGER = LogManager.getLogger();
-
+    /**
+     * groupDao property.
+     */
     @Autowired
     private GroupDao groupDao;
 
+    /**
+     * method GroupServiceImpl constructor.
+     *
+     * @param groupDao DAO of group objects
+     */
     public GroupServiceImpl(final GroupDao groupDao) {
         this.groupDao = groupDao;
     }
@@ -62,8 +75,8 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public Group addGroup(final Group group) {
         LOGGER.debug("GroupService addGroup - {}", group);
-        Group group_out = groupDao.addGroup(group);
-        return group_out;
+        Group groupout = groupDao.addGroup(group);
+        return groupout;
     }
     /**
      * method updateGroup update Group record in database.

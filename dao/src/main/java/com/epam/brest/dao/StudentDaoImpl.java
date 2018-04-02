@@ -16,11 +16,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 
+/**
+ * class StudentDaoImpl is designed to implement StudentDao methods.
+ */
 public class StudentDaoImpl implements StudentDao {
     /**
      * Logger initilization.
      */
     private static final Logger LOGGER = LogManager.getLogger();
+
     private static final String STUDENTID = "studentId";
     private static final String STUDENT_NAME = "studentName";
     private static final String STUDENT_BIRTH = "studentBirth";
@@ -29,18 +33,39 @@ public class StudentDaoImpl implements StudentDao {
     private static final String DATEFROM = "dateFrom";
     private static final String DATETO = "dateTo";
 
+    /**
+     * SQL statement to select all student DTO.
+     */
     @Value("${student.dto}")
     private String sql_studentsdto;
+    /**
+     * SQL statement to select all student DTO in some interval date of birth.
+     */
     @Value("${student.dtofiltered}")
     private String sql_studentsdto_filtered;
+    /**
+     * SQL statement to check student record by its id.
+     */
     @Value("${student.checkstudentid}")
     private String sql_chseckstudentid;
+    /**
+     * SQL statement to select student record by id.
+     */
     @Value("${student.getbyid}")
     private String sql_getstudentbyid;
+    /**
+     * SQL statement to add student record to database.
+     */
     @Value("${student.addrecord}")
     private String sql_addstudent;
+    /**
+     * SQL statement to update student record in the database.
+     */
     @Value("${student.update}")
     private String sql_updatestudent;
+    /**
+     * SQL statement to remove student record from the database.
+     */
     @Value("${student.remove}")
     private String sql_removestudent;
     /**
@@ -77,6 +102,7 @@ public class StudentDaoImpl implements StudentDao {
      * @param dateFrom begin date interval
      * @param dateTo   ebd date interval
      * @return Collection of student DTO
+     * @throws ParseException data parse exception
      */
     @Override
     public Collection<StudentDTO> getFilteredStudentsDTO(Date dateFrom, Date dateTo) throws ParseException {
