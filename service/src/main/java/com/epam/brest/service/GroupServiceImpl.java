@@ -16,7 +16,7 @@ public class GroupServiceImpl implements GroupService {
     @Autowired
     private GroupDao groupDao;
 
-    public GroupServiceImpl(GroupDao groupDao) {
+    public GroupServiceImpl(final GroupDao groupDao) {
         this.groupDao = groupDao;
     }
     /**
@@ -48,7 +48,7 @@ public class GroupServiceImpl implements GroupService {
      * @return Group searched group
      */
     @Override
-    public Group getGroupById(int id) {
+    public Group getGroupById(final int id) {
         LOGGER.debug("GroupService getGroupById - {}", id);
         Group group = groupDao.getGroupById(id);
         return group;
@@ -60,7 +60,7 @@ public class GroupServiceImpl implements GroupService {
      * @return Group added group
      */
     @Override
-    public Group addGroup(Group group) {
+    public Group addGroup(final Group group) {
         LOGGER.debug("GroupService addGroup - {}", group);
         Group group_out = groupDao.addGroup(group);
         return group_out;
@@ -71,7 +71,7 @@ public class GroupServiceImpl implements GroupService {
      * @param group group
      */
     @Override
-    public void updateGroup(Group group) {
+    public void updateGroup(final Group group) {
         LOGGER.debug("GroupService updateGroup - {}", group);
         groupDao.updateGroup(group);
     }
@@ -81,7 +81,7 @@ public class GroupServiceImpl implements GroupService {
      * @param groupId id of record to remove
      */
     @Override
-    public void removeGroup(int groupId) {
+    public void removeGroup(final int groupId) {
         LOGGER.debug("GroupService removeGroup - {}", groupId);
         groupDao.removeGroup(groupId);
     }

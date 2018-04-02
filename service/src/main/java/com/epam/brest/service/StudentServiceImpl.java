@@ -29,34 +29,34 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Collection<StudentDTO> getFilteredStudentsDTO(Date dateFrom, Date dateTo) throws ParseException {
+    public Collection<StudentDTO> getFilteredStudentsDTO(final Date dateFrom, final Date dateTo) throws ParseException {
         LOGGER.debug("StudentService getFilteredStudentsDTO dateFrom-{}, dateTo -{}", dateFrom, dateTo);
         Collection<StudentDTO> studentDTOS = studentDao.getFilteredStudentsDTO(dateFrom, dateTo);
         return studentDTOS;
     }
 
     @Override
-    public Student getStudentById(int id) {
+    public Student getStudentById(final int id) {
         LOGGER.debug("StudentService getStudentById -{}", id);
         Student student = studentDao.getStudentById(id);
         return student;
     }
 
     @Override
-    public Student addStudent(Student student) {
+    public Student addStudent(final Student student) {
         LOGGER.debug("StudentService addStudent - {}", student);
         Student student_out = studentDao.addStudent(student);
         return student_out;
     }
 
     @Override
-    public void updateStudent(Student student) {
+    public void updateStudent(final Student student) {
         LOGGER.debug("StudentService updateStudent - {}", student);
         studentDao.updateStudent(student);
     }
 
     @Override
-    public void removeStudent(int id) {
+    public void removeStudent(final int id) {
         LOGGER.debug("StudentService removeStudent - {}", id);
         studentDao.removeStudent(id);
     }
