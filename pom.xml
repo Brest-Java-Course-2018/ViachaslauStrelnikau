@@ -16,6 +16,7 @@
         <module>dao</module>
         <module>test_db</module>
         <module>service</module>
+        <module>rest</module>
     </modules>
 
     <distributionManagement>
@@ -54,6 +55,16 @@
             <dependency>
                 <groupId>com.epam.brest</groupId>
                 <artifactId>dao</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.brest</groupId>
+                <artifactId>service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.brest</groupId>
+                <artifactId>rest</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Spring-->
