@@ -63,7 +63,7 @@ public class GroupRestController {
         groupService.updateGroup(group);
     }
     @DeleteMapping (value = "/groups/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.FOUND)
     public void removeGrouprest(@PathVariable(value = "id")Integer id)
     {
         LOGGER.debug("GroupRestController removeGrouprest - {}",id);
