@@ -173,7 +173,7 @@
                 <groupId>com.epam.brest</groupId>
                 <artifactId>test_db</artifactId>
                 <version>${project.version}</version>
-                <scope>test</scope>
+                <!--<scope>test</scope>-->
             </dependency>
 
             <dependency>
@@ -458,7 +458,7 @@
                 <configuration>
                     <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                 </configuration>
-                <version>RELEASE</version>
+                <version>2.9</version>
             </plugin>
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>

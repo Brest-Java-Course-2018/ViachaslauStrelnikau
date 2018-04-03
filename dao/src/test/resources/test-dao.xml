@@ -11,10 +11,10 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean name="groupDao" class="com.epam.brest.dao.GroupDaoImpl">
+    <bean id="groupDao" class="com.epam.brest.dao.GroupDaoImpl">
         <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
-    <bean name="studentDao" class="com.epam.brest.dao.StudentDaoImpl">
+    <bean id="studentDao" class="com.epam.brest.dao.StudentDaoImpl">
         <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
 
