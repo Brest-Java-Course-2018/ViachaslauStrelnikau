@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring-restclient-context.xml")
-public class GroupCounsumerRestTestMock {
+public class GroupCounsumerRestTest {
 
     @Autowired
     private GroupCounsumerRest groupservice;
