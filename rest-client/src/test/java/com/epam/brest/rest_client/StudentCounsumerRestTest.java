@@ -74,23 +74,23 @@ public class StudentCounsumerRestTest {
         Assert.assertEquals(studentDTOS1.size(),2);
     }
 
-    @Test
-    public void getFilteredStudentsDTO() {
-    }
-
-    @Test
-    public void getStudentById() {
-    }
-
-    @Test
-    public void addStudent() {
-    }
-
-    @Test
-    public void updateStudent() {
-    }
-
-    @Test
-    public void removeStudent() {
-    }
+//    @Test
+//    public void getFilteredStudentsDTO() {
+//    }
+//
+//    @Test
+//    public void getStudentById() {
+//    }
+//
+//    @Test
+//    public void addStudent() {
+//    }
+//
+//    @Test
+//    public void updateStudent() {
+//    }
+//
+//    @Test
+//    public void removeStudent() {
+//    }
 }
