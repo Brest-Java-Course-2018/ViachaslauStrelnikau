@@ -76,12 +76,12 @@ public class StudentRestController {
      * @param student record to add to database
      * @return Student added student record
      */
-    @PostMapping(value = "/students")
+    @PostMapping (value = "/students")
     @ResponseStatus(HttpStatus.CREATED)
-    public Student addStudentRest(@RequestBody final Student student) {
-        LOGGER.debug("StudentRestController addStudentRest - {}", student);
-        Student studentOut = studentService.addStudent(student);
-        return studentOut;
+    public Student addGrouprest(@RequestBody final Student student) {
+        LOGGER.debug("GroupRestController addGrouprest - {}", student);
+        Student student1 = studentService.addStudent(student);
+        return student1;
     }
     /**
      * updateStudent method that maps post request to update student record in the database.
@@ -89,7 +89,7 @@ public class StudentRestController {
      * @param id   id of updating record
      * @param student updated record
      */
-    @PostMapping(value = "/students/id")
+    @PostMapping(value = "/students/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void updateStudent(@RequestBody final Student student,@PathVariable(value = "id") final Integer id) {
         LOGGER.debug("StudentRestController updateStudent - {}", student);
@@ -101,9 +101,11 @@ public class StudentRestController {
      * @param id of record to remove
      */
     @DeleteMapping(value = "/students/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.FOUND)
     public void removeStudent(@PathVariable(value = "id") final Integer id) {
         LOGGER.debug("StudentRestController removeStudent - {}", id);
         studentService.removeStudent(id);
     }
+
 }
+

@@ -1,6 +1,8 @@
 package com.epam.brest.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Date;
 import java.util.Objects;
 
@@ -19,6 +21,7 @@ public class Student {
     /**
      * Property studentBirth students date of birth.
      */
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Europe/Minsk")
     private Date studentBirth;
     /**
      * Property studentAvgMarks.
@@ -38,7 +41,6 @@ public class Student {
      * @param groupId         ID of students group
      */
     public Student(final String studentName, final Date studentBirth, final double studentAvgMarks, final int groupId) {
-        this.studentId = studentId;
         this.studentName = studentName;
         this.studentBirth = studentBirth;
         this.studentAvgMarks = studentAvgMarks;
