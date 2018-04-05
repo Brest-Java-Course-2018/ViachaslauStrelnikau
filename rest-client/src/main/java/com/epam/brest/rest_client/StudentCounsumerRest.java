@@ -18,7 +18,7 @@ public class StudentCounsumerRest implements StudentService {
     private RestTemplate restTemplate;
     private String url;
 
-    public StudentCounsumerRest(RestTemplate restTemplate, String url) {
+    public StudentCounsumerRest(String url,RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
         this.url = url;
     }
