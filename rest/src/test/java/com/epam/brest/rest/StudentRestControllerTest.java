@@ -27,11 +27,12 @@ import java.util.Date;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 /**
  * Class StudentRestControllerTest tests StudentRestController.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:rest-test.xml","classpath:test-db-spring.xml","classpath:dao.xml"})
+@ContextConfiguration(locations = {"classpath:rest-test.xml", "classpath:test-db-spring.xml", "classpath:dao.xml"})
 @Rollback
 public class StudentRestControllerTest {
 
@@ -43,6 +44,7 @@ public class StudentRestControllerTest {
     private Student student;
 
     private MockMvc mockMvc;
+
     /**
      * Test set up method.
      */
@@ -61,13 +63,14 @@ public class StudentRestControllerTest {
         student.setStudentAvgMarks(1);
         student.setStudentName("Student1");
     }
+
     /**
      * Test get mapping of request "/students".
      */
     @Test
     public void getAllStudentsRestTest() throws Exception {
-        Collection<StudentDTO> studentDTOS =studentService.getallStudentsDTO();
-        StudentDTO studentDTO =studentDTOS.iterator().next();
+        Collection<StudentDTO> studentDTOS = studentService.getallStudentsDTO();
+        StudentDTO studentDTO = studentDTOS.iterator().next();
         mockMvc.perform(get("/students")
                 .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
@@ -78,6 +81,7 @@ public class StudentRestControllerTest {
                 .andExpect(jsonPath("$[0].studentAvgMarks", Matchers.is(studentDTO.getStudentAvgMarks())))
                 .andExpect(jsonPath("$[0].fullName", Matchers.is(studentDTO.getFullName())));
     }
+
     /**
      * Test get mapping of request "/students/{dateFrom}/{dateTo}".
      */
@@ -90,9 +94,9 @@ public class StudentRestControllerTest {
         java.sql.Date dateFromSql = new java.sql.Date(dateFrom.getTime());
         java.sql.Date dateToSql = new java.sql.Date(dateTo.getTime());
 
-        Collection<StudentDTO> studentDTOS =studentService.getFilteredStudentsDTO(dateFromSql,dateToSql);
-        StudentDTO studentDTO =studentDTOS.iterator().next();
-        mockMvc.perform(get("/students/{dateFrom}/{dateTo}",dateFromSql.getTime(),dateToSql.getTime())
+        Collection<StudentDTO> studentDTOS = studentService.getFilteredStudentsDTO(dateFromSql, dateToSql);
+        StudentDTO studentDTO = studentDTOS.iterator().next();
+        mockMvc.perform(get("/students/{dateFrom}/{dateTo}", dateFromSql.getTime(), dateToSql.getTime())
                 .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
                 .andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -103,13 +107,14 @@ public class StudentRestControllerTest {
                 .andExpect(jsonPath("$[0].fullName", Matchers.is(studentDTO.getFullName())));
 
     }
+
     /**
      * Test get mapping of request "/students/{id}".
      */
     @Test
     public void getStudentByIdRestTest() throws Exception {
         Student student1 = studentService.addStudent(student);
-        mockMvc.perform(get("/students/{id}",student1.getStudentId())
+        mockMvc.perform(get("/students/{id}", student1.getStudentId())
                 .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
                 .andExpect(status().isFound())
@@ -121,6 +126,7 @@ public class StudentRestControllerTest {
                 .andExpect(jsonPath("groupId", Matchers.is(student1.getGroupId())));
 
     }
+
     /**
      * Test post mapping of request "/students".
      */
@@ -132,10 +138,10 @@ public class StudentRestControllerTest {
         mockMvc.perform(
                 post("/students")
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .content(gson.toJson(student)  )
+                        .content(gson.toJson(student))
                         .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andDo(print())
-                .andExpect(status().isCreated ())
+                .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("studentName", Matchers.is(student.getStudentName())))
                 .andExpect(jsonPath("studentBirth", Matchers.is(student.getStudentBirth().toString())))
@@ -143,6 +149,7 @@ public class StudentRestControllerTest {
                 .andExpect(jsonPath("groupId", Matchers.is(student.getGroupId())));
 
     }
+
     /**
      * Test post mapping of request "/students/{id}".
      */
@@ -157,30 +164,31 @@ public class StudentRestControllerTest {
                 .setDateFormat("yyyy-MM-dd").create();
 
         mockMvc.perform(
-                post("/students/{id}",student1.getStudentId())
+                post("/students/{id}", student1.getStudentId())
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .content(gson.toJson(student1)  )
+                        .content(gson.toJson(student1))
                         .accept(MediaType.APPLICATION_JSON_UTF8)
         ).andDo(print())
-                .andExpect(status().isOk ());
+                .andExpect(status().isOk());
 
-        Student student2=studentService.getStudentById(student1.getStudentId());
+        Student student2 = studentService.getStudentById(student1.getStudentId());
         Assert.assertTrue(student1.getStudentName().equals(student2.getStudentName()));
-        Assert.assertTrue(student1.getStudentAvgMarks()==student2.getStudentAvgMarks());
+        Assert.assertTrue(student1.getStudentAvgMarks() == student2.getStudentAvgMarks());
     }
+
     /**
      * Test delete mapping of request "/students/{id}".
      */
     @Test
     public void removeStudent() throws Exception {
-        int size_befor= studentService.getallStudentsDTO().size();
+        int size_befor = studentService.getallStudentsDTO().size();
         mockMvc.perform(
-                delete("/students/{id}",1)
+                delete("/students/{id}", 1)
                         .accept(MediaType.APPLICATION_JSON)
         ).andDo(print())
-                .andExpect(status().isFound ());
-        int size_after=studentService.getallStudentsDTO().size();
-        Assert.assertTrue(size_after+1==size_befor);
+                .andExpect(status().isFound());
+        int size_after = studentService.getallStudentsDTO().size();
+        Assert.assertTrue(size_after + 1 == size_befor);
 
     }
 }

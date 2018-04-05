@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Date;
 import java.text.ParseException;
 import java.util.Collection;
+
 /**
  * Class StudentRestController implements student requests mapping methods.
  */
@@ -23,6 +24,7 @@ public class StudentRestController {
      */
     @Autowired
     private StudentService studentService;
+
     /**
      * setStudentService setter for studentService property.
      *
@@ -31,6 +33,7 @@ public class StudentRestController {
     public void setStudentService(final StudentService studentService) {
         this.studentService = studentService;
     }
+
     /**
      * getAllStudentsRest method maps get request to get all student DTO records.
      *
@@ -43,6 +46,7 @@ public class StudentRestController {
         Collection<StudentDTO> studentDTOS = studentService.getallStudentsDTO();
         return studentDTOS;
     }
+
     /**
      * getFilteredStudentsDTORest method maps get request to get student DTO records in entered period.
      *
@@ -57,6 +61,7 @@ public class StudentRestController {
         Collection<StudentDTO> studentDTOS = studentService.getFilteredStudentsDTO(dateFromsql, dateTosql);
         return studentDTOS;
     }
+
     /**
      * getStudentByIdRest method maps get request to get  student record by its id.
      *
@@ -70,31 +75,34 @@ public class StudentRestController {
         Student student = studentService.getStudentById(id);
         return student;
     }
+
     /**
      * addStudentRest method maps post request to add student record to database.
      *
      * @param student record to add to database
      * @return Student added student record
      */
-    @PostMapping (value = "/students")
+    @PostMapping(value = "/students")
     @ResponseStatus(HttpStatus.CREATED)
     public Student addGrouprest(@RequestBody final Student student) {
         LOGGER.debug("GroupRestController addGrouprest - {}", student);
         Student student1 = studentService.addStudent(student);
         return student1;
     }
+
     /**
      * updateStudent method that maps post request to update student record in the database.
      *
-     * @param id   id of updating record
+     * @param id      id of updating record
      * @param student updated record
      */
     @PostMapping(value = "/students/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateStudent(@RequestBody final Student student,@PathVariable(value = "id") final Integer id) {
+    public void updateStudent(@RequestBody final Student student, @PathVariable(value = "id") final Integer id) {
         LOGGER.debug("StudentRestController updateStudent - {}", student);
         studentService.updateStudent(student);
     }
+
     /**
      * removeStudent method maps delete request to remove student record from database.
      *

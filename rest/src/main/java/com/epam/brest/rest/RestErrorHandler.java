@@ -16,6 +16,7 @@ public class RestErrorHandler {
 
     /**
      * HandleDataAccessException handle ParseException.
+     *
      * @param ex ParseException
      * @return exception mesage
      */
