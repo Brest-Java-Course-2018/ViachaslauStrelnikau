@@ -17,6 +17,7 @@
         <module>test_db</module>
         <module>service</module>
         <module>rest</module>
+        <module>rest-client</module>
     </modules>
 
     <distributionManagement>
