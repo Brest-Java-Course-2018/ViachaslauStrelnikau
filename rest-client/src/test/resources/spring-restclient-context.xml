@@ -1,0 +1,25 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <bean id="placeholderConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:rest.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="restTemplateMock" class="org.easymock.EasyMock" factory-method="createMock">
+        <constructor-arg value="org.springframework.web.client.RestTemplate"/>
+    </bean>
+
+    <bean id="groupservice" class="com.epam.brest.rest_client.GroupCounsumerRest">
+        <constructor-arg index="0" value="${PROTOCAL}://${HOST}:${PORT}/${point.groups}"/>
+        <constructor-arg index="1" ref="restTemplateMock"/>
+    </bean>
+
+</beans>
