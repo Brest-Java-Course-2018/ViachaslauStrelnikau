@@ -1,6 +1,7 @@
 package com.epam.brest.rest_client;
 
 import com.epam.brest.dto.StudentDTO;
+import com.epam.brest.model.Student;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -22,6 +23,9 @@ import java.util.Date;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
+/**
+ * Class StudentCounsumerRestTest tests StudentCounsumerRest.
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-restclient-context.xml"})
 public class StudentCounsumerRestTest {
@@ -32,9 +36,13 @@ public class StudentCounsumerRestTest {
     @Autowired
     StudentCounsumerRest studentservice;
 
+    private static int ID=2;
+    private static Student student;
     private StudentDTO studentDTO;
     private StudentDTO studentDTO2;
-
+    /**
+     * testSetUp test setUp method.
+     */
     @Before
     public void testSetUp() throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -53,8 +61,17 @@ public class StudentCounsumerRestTest {
         studentDTO2.setStudentBirth(new java.sql.Date(date.getTime()));
         studentDTO2.setStudentAvgMarks(2);
         studentDTO2.setStudentName("Student2");
+        student = new Student();
+        student.setStudentId(2);
+        student.setGroupId(2);
+        date = simpleDateFormat.parse("31.05.1990");
+        student.setStudentBirth(new java.sql.Date(date.getTime()));
+        student.setStudentAvgMarks(2);
+        student.setStudentName("Student2");
     }
-
+    /**
+     * testEnd  test end method.
+     */
     @After
     public void testEnd()
     {
@@ -62,7 +79,11 @@ public class StudentCounsumerRestTest {
         reset(restTemplateMock);
     }
 
+    /**
+     * getallStudentsDTO method mock test.
+     */
     @Test
+    @SuppressWarnings("unchecked")
     public void getallStudentsDTO() {
         Collection<StudentDTO> studentDTOS = Arrays.asList(studentDTO,studentDTO2);
         ResponseEntity responseEntity = new ResponseEntity(studentDTOS, HttpStatus.OK);
@@ -73,24 +94,74 @@ public class StudentCounsumerRestTest {
         Assert.assertNotNull(studentDTOS1);
         Assert.assertEquals(studentDTOS1.size(),2);
     }
+    /**
+     * getFilteredStudentsDTO method mock test.
+     */
+    @Test
+    @SuppressWarnings("unchecked")
+    public void getFilteredStudentsDTO() throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Date date = simpleDateFormat.parse("31.05.1990");
+        java.sql.Date dateFrom=new java.sql.Date(date.getTime());
+        date = simpleDateFormat.parse("31.05.2590");
+        java.sql.Date dateTo=new java.sql.Date(date.getTime());
+        Collection<StudentDTO> studentDTOS = Arrays.asList(studentDTO,studentDTO2);
+        ResponseEntity responseEntity = new ResponseEntity(studentDTOS,HttpStatus.OK);
+        expect(restTemplateMock.getForEntity(anyString(),anyObject())).andReturn(responseEntity);
+        replay(restTemplateMock);
+        Collection<StudentDTO> studentDTOS1 = studentservice.getFilteredStudentsDTO(dateFrom,dateTo);
 
-//    @Test
-//    public void getFilteredStudentsDTO() {
-//    }
-//
-//    @Test
-//    public void getStudentById() {
-//    }
-//
-//    @Test
-//    public void addStudent() {
-//    }
-//
-//    @Test
-//    public void updateStudent() {
-//    }
-//
-//    @Test
-//    public void removeStudent() {
-//    }
+        Assert.assertNotNull(studentDTOS1);
+        Assert.assertEquals(studentDTOS1.size(),2);
+
+    }
+    /**
+     * getStudentById method mock test.
+     */
+    @Test
+    @SuppressWarnings("unchecked")
+    public void getStudentById() {
+        ResponseEntity responseEntity = new ResponseEntity(student, HttpStatus.FOUND);
+        expect(restTemplateMock.getForEntity(anyString(),anyObject())).andReturn(responseEntity);
+        replay(restTemplateMock);
+
+        Student student1 = studentservice.getStudentById(ID);
+        Assert.assertEquals(student1,student);
+    }
+    /**
+     * addStudent method mock test.
+     */
+    @Test
+    @SuppressWarnings("unchecked")
+    public void addStudent() {
+        ResponseEntity responseEntity = new ResponseEntity(student,HttpStatus.CREATED);
+        expect(restTemplateMock.postForEntity(anyString(),anyObject(),anyObject())).andReturn(responseEntity);
+        replay(restTemplateMock);
+        Student student1 = studentservice.addStudent(student);
+        Assert.assertEquals(student1,student);
+    }
+    /**
+     * updateStudent method mock test.
+     */
+    @Test
+    @SuppressWarnings("unchecked")
+    public void updateStudent() {
+        ResponseEntity responseEntity = new ResponseEntity(HttpStatus.OK);
+        expect(restTemplateMock.postForEntity(anyString(),anyObject(),anyObject())).andReturn(responseEntity);
+        replay(restTemplateMock);
+        studentservice.updateStudent(student);
+        Assert.assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
+    }
+    /**
+     * removeStudent method mock test.
+     */
+    @Test
+    public void removeStudent() {
+        ResponseEntity responseEntity = new ResponseEntity(HttpStatus.FOUND);
+        restTemplateMock.delete(anyString());
+        replay(restTemplateMock);
+
+        studentservice.removeStudent(ID);
+        Assert.assertEquals(responseEntity.getStatusCode(), HttpStatus.FOUND);
+    }
 }

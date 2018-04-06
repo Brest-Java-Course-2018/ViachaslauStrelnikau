@@ -37,9 +37,11 @@ public class GroupCounsumerRest implements GroupService {
      * @return Collection of GroupsDTO objects
      */
     @Override
+    @SuppressWarnings("unchecked")
     public Collection<GroupDTO> getallGroupsDTO() {
         LOGGER.debug("GroupCounsumerRest getallGroupsDTO");
-        ResponseEntity<Collection> responseEntity = restTemplate.getForEntity(url, Collection.class);
+        ResponseEntity<Collection> responseEntity =
+                restTemplate.getForEntity(url, Collection.class);
         Collection<GroupDTO> groupDTOs = (Collection<GroupDTO>) responseEntity.getBody();
         return groupDTOs;
     }
@@ -50,10 +52,13 @@ public class GroupCounsumerRest implements GroupService {
      * @return Collection of GroupDTOlite objects
      */
     @Override
+    @SuppressWarnings("unchecked")
     public Collection<GroupDTOlite> getallGroupsDTOlite() {
         LOGGER.debug("GroupCounsumerRest getallGroupsDTO");
-        ResponseEntity<Collection> responseEntity = restTemplate.getForEntity(url, Collection.class);
-        Collection<GroupDTOlite> groupDTOlites = (Collection<GroupDTOlite>) responseEntity.getBody();
+        ResponseEntity<Collection> responseEntity =
+                restTemplate.getForEntity(url, Collection.class);
+        Collection<GroupDTOlite> groupDTOlites =
+                (Collection<GroupDTOlite>) responseEntity.getBody();
         return groupDTOlites;
     }
 
@@ -66,7 +71,8 @@ public class GroupCounsumerRest implements GroupService {
     @Override
     public Group getGroupById(int id) {
         LOGGER.debug("GroupCounsumerRest getGroupById - {}", id);
-        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/" + id, Group.class);
+        ResponseEntity responseEntity =
+                restTemplate.getForEntity(url + "/" + id, Group.class);
         Group group = (Group) responseEntity.getBody();
         return group;
     }
@@ -80,7 +86,8 @@ public class GroupCounsumerRest implements GroupService {
     @Override
     public Group addGroup(Group group) {
         LOGGER.debug("GroupCounsumerRest addGroup - {}", group);
-        ResponseEntity responseEntity = restTemplate.postForEntity(url, group, Group.class);
+        ResponseEntity responseEntity =
+                restTemplate.postForEntity(url, group, Group.class);
         Group group1 = (Group) responseEntity.getBody();
         return group1;
     }
@@ -93,7 +100,8 @@ public class GroupCounsumerRest implements GroupService {
     @Override
     public void updateGroup(Group group) {
         LOGGER.debug("GroupCounsumerRest updateGroup - {}", group);
-        restTemplate.postForEntity(url + "/" + group.getGroupId(), group, Group.class);
+        restTemplate
+                .postForEntity(url + "/" + group.getGroupId(), group, Group.class);
     }
 
     /**

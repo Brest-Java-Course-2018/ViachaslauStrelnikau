@@ -22,6 +22,9 @@ import java.util.Collection;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
+/**
+ * Class GroupCounsumerRestTest tests GroupCounsumerRest.
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring-restclient-context.xml")
 public class GroupCounsumerRestTest {
@@ -86,6 +89,7 @@ public class GroupCounsumerRestTest {
      * getallGroupsDTO mock test
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void getallGroupsDTO() {
 
         Collection<GroupDTO> groupDTOS = Arrays.asList(groupDTO, groupDTO2);
@@ -103,6 +107,7 @@ public class GroupCounsumerRestTest {
      * getallGroupsDTOlite mock test
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void getallGroupsDTOlite() {
 
         Collection<GroupDTOlite> groupDTOlites = Arrays.asList(groupDTOlite, groupDTOlite2);
@@ -119,6 +124,7 @@ public class GroupCounsumerRestTest {
      * getGroupById mock test
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void getGroupById() {
         ResponseEntity responseEntity = new ResponseEntity(group, HttpStatus.FOUND);
         EasyMock.expect(restTemplateMock.getForEntity(anyString(), anyObject())).andReturn(responseEntity);
@@ -133,6 +139,7 @@ public class GroupCounsumerRestTest {
      * addGroup mock test
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void addGroup() {
         ResponseEntity responseEntity = new ResponseEntity(group, HttpStatus.CREATED);
         EasyMock.expect(restTemplateMock.postForEntity(anyString(), anyObject(), anyObject())).andReturn(responseEntity);
@@ -148,6 +155,7 @@ public class GroupCounsumerRestTest {
      * updateGroup mock test
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void updateGroup() {
         ResponseEntity responseEntity = new ResponseEntity(HttpStatus.OK);
         EasyMock.expect(restTemplateMock.postForEntity(anyString(), anyObject(), anyObject())).andReturn(responseEntity);
