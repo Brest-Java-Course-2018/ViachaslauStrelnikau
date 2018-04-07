@@ -29,9 +29,9 @@ public class StudentServiceImpl implements StudentService {
      *
      * @param studentDao DAO of student objects
      */
-    public StudentServiceImpl(final StudentDao studentDao) {
-        this.studentDao = studentDao;
-    }
+//    public StudentServiceImpl(final StudentDao studentDao) {
+//        this.studentDao = studentDao;
+//    }
 
     /**
      * method getallStudentsDTO gets all students.

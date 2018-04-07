@@ -29,9 +29,9 @@ public class GroupRestController {
      *
      * @param groupService groupService
      */
-    public void setGroupService(final GroupService groupService) {
-        this.groupService = groupService;
-    }
+//    public void setGroupService(final GroupService groupService) {
+//        this.groupService = groupService;
+//    }
 
     /**
      * getGroupsDTOrest method maps get request to get all group DTO records.

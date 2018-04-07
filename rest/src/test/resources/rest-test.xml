@@ -10,9 +10,9 @@
         <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
     <bean id="studentService" class="com.epam.brest.service.StudentServiceImpl">
-        <constructor-arg ref="studentDAO"/>
+        <!--<constructor-arg ref="studentDAO"/>-->
     </bean>
     <bean id="studentRestController" class="com.epam.brest.rest.StudentRestController">
-        <property name="studentService" ref="studentService"/>
+        <!--<property name="studentService" ref="studentService"/>-->
     </bean>
 </beans>

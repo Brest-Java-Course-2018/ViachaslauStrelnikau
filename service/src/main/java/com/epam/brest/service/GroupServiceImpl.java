@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Collection;
 
 /**
- * Class GroupServiceImpl provides a group service implementation.
+ * Class GroupServiceImpl provedes a group service implementation.
  */
 public class GroupServiceImpl implements GroupService {
     /**
@@ -29,9 +29,9 @@ public class GroupServiceImpl implements GroupService {
      *
      * @param groupDao DAO of group objects
      */
-    public GroupServiceImpl(final GroupDao groupDao) {
-        this.groupDao = groupDao;
-    }
+//    public GroupServiceImpl(final GroupDao groupDao) {
+//        this.groupDao = groupDao;
+//    }
     /**
      * method getallGroupsDTO gets all group DTO objects.
      *

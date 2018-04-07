@@ -11,10 +11,10 @@
     </bean>
 
     <bean id="groupService" class="com.epam.brest.service.GroupServiceImpl">
-        <constructor-arg ref="mockGroupDao"/>
+        <!--<constructor-arg ref="mockGroupDao"/>-->
     </bean>
 
     <bean id="studentService" class="com.epam.brest.service.StudentServiceImpl">
-        <constructor-arg ref="mockStudentDao"/>
+        <!--<constructor-arg ref="mockStudentDao"/>-->
     </bean>
 </beans>

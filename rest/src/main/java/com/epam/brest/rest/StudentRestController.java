@@ -30,9 +30,9 @@ public class StudentRestController {
      *
      * @param studentService studentService
      */
-    public void setStudentService(final StudentService studentService) {
-        this.studentService = studentService;
-    }
+//    public void setStudentService(final StudentService studentService) {
+//        this.studentService = studentService;
+//    }
 
     /**
      * getAllStudentsRest method maps get request to get all student DTO records.
