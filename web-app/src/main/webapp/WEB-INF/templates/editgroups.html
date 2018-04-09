@@ -62,7 +62,7 @@
             <ul class="p-0 pr-4 navbar-nav float-right">
                 <li class="nav-item">
                     <a href="groups.html"
-                       th:href="@{/saveGroup}"
+                       th:href="@{/groups}"
                        th:onclick="@{document.forms['groupForm'].submit(); return false;}"
                        class="btn btn-sm btn-outline-secondary"
                        data-toggle="tooltip" data-placement="top"
@@ -79,10 +79,10 @@
     <div class="container-fluid">
     <div class="card">
         <div class="card-body">
-            <form id="employeeForm"
+            <form id="groupForm"
                   th:object="${group}"
                   action="groups.html"
-                  th:action="@{/saveGroup}"
+                  th:action="@{${#httpServletRequest.servletPath}}"
                   th:method="@{post}">
                 <input id="field_groupId"
                        name="field_groupId"

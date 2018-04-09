@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collection;
 
@@ -39,6 +40,11 @@ public class GroupController {
         model.addAttribute("group",group);
         return "editgroups";
     }
-
-
+    @PostMapping(value = "/groups/{id}")
+    public String updateGroup(Group group)
+    {
+        LOGGER.debug("GroupController - updateGroup:{}",group);
+        groupService.updateGroup(group);
+        return "redirect:/groups";
+    }
 }
