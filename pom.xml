@@ -18,6 +18,7 @@
         <module>service</module>
         <module>rest</module>
         <module>rest-client</module>
+        <module>web-app</module>
     </modules>
 
     <distributionManagement>
@@ -66,6 +67,16 @@
             <dependency>
                 <groupId>com.epam.brest</groupId>
                 <artifactId>rest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.brest</groupId>
+                <artifactId>rest-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.epam.brest</groupId>
+                <artifactId>web-app</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Spring-->

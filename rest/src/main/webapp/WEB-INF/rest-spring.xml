@@ -39,13 +39,13 @@
         <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
     <bean id="groupService" class="com.epam.brest.service.GroupServiceImpl">
-        <constructor-arg ref="groupDao"/>
+        <!--<constructor-arg ref="groupDao"/>-->
     </bean>
     <bean id="studentDAO" class="com.epam.brest.dao.StudentDaoImpl">
         <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
     </bean>
     <bean id="studentService" class="com.epam.brest.service.StudentServiceImpl">
-        <constructor-arg ref="studentDAO"/>
+        <!--<constructor-arg ref="studentDAO"/>-->
     </bean>
 
     <!--SQL statements placeholder-->
