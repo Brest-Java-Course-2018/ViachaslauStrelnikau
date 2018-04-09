@@ -82,8 +82,8 @@
                             <td th:unless="${group.groupAvgMarks} == -1" th:text="${group.groupAvgMarks}"></td>
 
                             <td th:if="${group.groupAvgMarks} == -1">
-                                <a href="editGroups.html"
-                                   th:href="'/editGroup/' + ${group.groupId}"
+                                <a href="editgroups.html"
+                                   th:href="'/groups/' + ${group.groupId}"
                                    class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"
                                    data-placement="top"
                                    title="Edit record" th:title="#{edit_button}"><i class="fa fa-pencil"></i> <span
@@ -98,8 +98,8 @@
                             </td>
 
                             <td th:unless="${group.groupAvgMarks} == -1">
-                                <a href="editDepartment.html"
-                                   th:href="'/editDepartment/' + ${group.groupId}"
+                                <a href="editgroups.html"
+                                   th:href="'/groups/' + ${group.groupId}"
                                    class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"
                                    data-placement="top"
                                    title="Edit record" th:title="#{edit_button}"><i class="fa fa-pencil"></i> <span
