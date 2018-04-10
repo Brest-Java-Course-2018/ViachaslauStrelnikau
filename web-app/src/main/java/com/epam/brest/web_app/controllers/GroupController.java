@@ -55,17 +55,6 @@ public class GroupController {
         model.addAttribute("group",group);
         return "editgroups";
     }
-
-    @GetMapping(value = "/addGroup")
-    public String newGroup( Model model)
-    {
-        LOGGER.debug("GroupController - newGroup:{}");
-        Group group= new Group();
-        model.addAttribute("group",group);
-        model.addAttribute("isNew",true);
-        return "editgroups";
-    }
-
     @PostMapping(value = "/groups/{id}")
     public String updateGroup(@Valid Group group,BindingResult result,Model model)
     {
@@ -82,8 +71,17 @@ public class GroupController {
             return "redirect:/groups";
         }
     }
+    @GetMapping(value = "/addGroup")
+    public String newGroup( Model model)
+    {
+        LOGGER.debug("GroupController - newGroup:{}");
+        Group group= new Group();
+        model.addAttribute("group",group);
+        model.addAttribute("isNew",true);
+        return "editgroups";
+    }
     @PostMapping(value = "/addGroup")
-    public String addGroup(@Valid Group group,Model model,BindingResult result)
+    public String addGroup(@Valid Group group,BindingResult result,Model model)
     {
         LOGGER.debug("GroupController - addGroup:{}",group);
         if(result.hasErrors())
@@ -98,6 +96,7 @@ public class GroupController {
             return "redirect:/groups";
         }
     }
+
     @GetMapping(value = "/groups/{id}/delete")
     public String deleteGroup(@PathVariable(value = "id") Integer id)
     {
