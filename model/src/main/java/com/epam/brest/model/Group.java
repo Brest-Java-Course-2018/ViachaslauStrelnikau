@@ -1,5 +1,6 @@
 package com.epam.brest.model;
 
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
@@ -13,14 +14,17 @@ public class Group {
     /**
      * Property shortName.
      */
+    @Size(min = 2, max = 50)
     private String shortName;
     /**
      * Property fullName.
      */
+    @Size(min = 2, max = 255)
     private String fullName;
     /**
      * Property description.
      */
+    @Size(min = 2, max = 255)
     private String description;
 
     /**
