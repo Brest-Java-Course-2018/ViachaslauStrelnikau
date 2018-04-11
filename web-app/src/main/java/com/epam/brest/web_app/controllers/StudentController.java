@@ -1,6 +1,8 @@
 package com.epam.brest.web_app.controllers;
 
+import com.epam.brest.dto.GroupDTOlite;
 import com.epam.brest.dto.StudentDTO;
+import com.epam.brest.model.Student;
 import com.epam.brest.service.GroupService;
 import com.epam.brest.service.StudentService;
 import org.apache.logging.log4j.LogManager;
@@ -8,8 +10,12 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 @Controller
@@ -22,12 +28,40 @@ public class StudentController {
     GroupService groupService;
 
     @GetMapping(value = "/students")
-    public String showStudents(Model model)
-    {
+    public String showStudents(Model model) {
         LOGGER.debug("StudentController - showStudents");
-        Collection<StudentDTO> studentDTOS =studentService.getallStudentsDTO();
-        model.addAttribute("students",studentDTOS);
+        Collection<StudentDTO> studentDTOS = studentService.getallStudentsDTO();
+        model.addAttribute("students", studentDTOS);
         return "students";
+    }
+
+    @GetMapping(value = "/students/{id}")
+    public String editStudent(@PathVariable(value = "id") Integer id, Model model) {
+        LOGGER.debug("StudentController - editStudent:{}", id);
+        Student student = studentService.getStudentById(id);
+        Collection<GroupDTOlite> groupDTOlites = groupService.getallGroupsDTOlite();
+        model.addAttribute("isNew", false);
+        model.addAttribute("student", student);
+        model.addAttribute("groups", groupDTOlites);
+        return "editstudents";
+    }
+
+    @PostMapping(value = "/students/{id}")
+    public String updateStudent(@PathVariable(value = "id") Integer id, Model model, @Valid Student student, BindingResult bindingResult) {
+        LOGGER.debug("StudentController - updateStudent:{}", id);
+        if (bindingResult.hasErrors()) {
+            LOGGER.error("StudentController - updateStudent - validation error -{}", student);
+            Collection<GroupDTOlite> groupDTOlites = groupService.getallGroupsDTOlite();
+            model.addAttribute("isNew", false);
+            model.addAttribute("student", student);
+            model.addAttribute("groups", groupDTOlites);
+            return "editstudents";
+
+        } else {
+
+            studentService.updateStudent(student);
+            return "redirect:/students";
+        }
     }
 
 }

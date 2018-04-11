@@ -27,79 +27,86 @@ public class GroupController {
     GroupService groupService;
 
     /**
-     * Method groups mapping /groups get request to display groupDTO records.
+     * Method groups maps /groups get request to display groupDTO records.
+     *
      * @param model model data
      * @return view string
      */
     @GetMapping(value = "/groups")
-    public String groups (final Model model)
-    {
+    public String groups(final Model model) {
         LOGGER.debug("GroupController - groups");
-        Collection<GroupDTO> groupDTOS= groupService.getallGroupsDTO();
-        model.addAttribute("groups",groupDTOS);
+        Collection<GroupDTO> groupDTOS = groupService.getallGroupsDTO();
+        model.addAttribute("groups", groupDTOS);
         return "groups";
     }
 
     /**
-     * Method editGroup mapping /groups/{id} get request.
-     * @param id of iditing record
+     * Method editGroup maps /groups/{id} get request and display group edit window.
+     *
+     * @param id    of editing record
      * @param model model data
-     * @return
+     * @return view string
      */
     @GetMapping(value = "/groups/{id}")
-    public String editGroup(@PathVariable(value = "id") Integer id, Model model)
-    {
-        LOGGER.debug("GroupController - editGroup:{}",id);
+    public String editGroup(@PathVariable(value = "id") Integer id, Model model) {
+        LOGGER.debug("GroupController - editGroup:{}", id);
         Group group = groupService.getGroupById(id);
-        model.addAttribute("isNew",false);
-        model.addAttribute("group",group);
+        model.addAttribute("isNew", false);
+        model.addAttribute("group", group);
         return "editgroups";
     }
+
+    /**
+     * Method updateGroup maps /groups/{id} post request and updates group record in database.
+     * @param group updating group
+     * @param result group validation result
+     * @param model model data
+     * @return view string
+     */
     @PostMapping(value = "/groups/{id}")
-    public String updateGroup(@Valid Group group,BindingResult result,Model model)
-    {
-        LOGGER.debug("GroupController - updateGroup:{}",group);
-        if(result.hasErrors())
-        {
-            LOGGER.error("GroupController - updateGroup:{}",group);
-            model.addAttribute("group",group);
-            model.addAttribute("isNew",false);
+    public String updateGroup(@Valid Group group, BindingResult result, Model model) {
+        LOGGER.debug("GroupController - updateGroup:{}", group);
+        if (result.hasErrors()) {
+            LOGGER.error("GroupController - updateGroup - validation error:{}", group);
+            model.addAttribute("group", group);
+            model.addAttribute("isNew", false);
             return "editgroups";
-        }
-        else {
+        } else {
             groupService.updateGroup(group);
             return "redirect:/groups";
         }
     }
+
+    /**
+     * Method newGroup maps /addGroup get request and display group add window.
+     * @param model model data
+     * @return view string
+     */
     @GetMapping(value = "/addGroup")
-    public String newGroup( Model model)
-    {
+    public String newGroup(Model model) {
         LOGGER.debug("GroupController - newGroup:{}");
-        Group group= new Group();
-        model.addAttribute("group",group);
-        model.addAttribute("isNew",true);
+        Group group = new Group();
+        model.addAttribute("group", group);
+        model.addAttribute("isNew", true);
         return "editgroups";
     }
+
     @PostMapping(value = "/addGroup")
-    public String addGroup(@Valid Group group,BindingResult result,Model model)
-    {
-        LOGGER.debug("GroupController - addGroup:{}",group);
-        if(result.hasErrors())
-        {
-            LOGGER.error("GroupController - addGroup:{}",group);
-            model.addAttribute("group",group);
-            model.addAttribute("isNew",true);
+    public String addGroup(@Valid Group group, BindingResult result, Model model) {
+        LOGGER.debug("GroupController - addGroup:{}", group);
+        if (result.hasErrors()) {
+            LOGGER.error("GroupController - addGroup - validation error:{}", group);
+            model.addAttribute("group", group);
+            model.addAttribute("isNew", true);
             return "editgroups";
-        }
-        else {
+        } else {
             groupService.addGroup(group);
             return "redirect:/groups";
         }
     }
 
     @GetMapping(value = "/groups/{id}/delete")
-    public String deleteGroup(@PathVariable(value = "id") Integer id)
-    {
+    public String deleteGroup(@PathVariable(value = "id") Integer id) {
         groupService.removeGroup(id);
         return "redirect:/groups";
     }

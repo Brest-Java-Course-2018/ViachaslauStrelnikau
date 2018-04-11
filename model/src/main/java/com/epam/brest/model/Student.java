@@ -3,6 +3,10 @@ package com.epam.brest.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -17,15 +21,19 @@ public class Student {
     /**
      * Property studentName.
      */
+    @Size(min = 2, max = 50)
     private String studentName;
     /**
      * Property studentBirth students date of birth.
      */
+    @Past
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Europe/Minsk")
     private Date studentBirth;
     /**
      * Property studentAvgMarks.
      */
+    @DecimalMin("1")
+    @DecimalMax("10")
     private double studentAvgMarks;
     /**
      * Property groupId.

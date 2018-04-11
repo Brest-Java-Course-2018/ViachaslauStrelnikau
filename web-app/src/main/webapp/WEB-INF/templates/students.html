@@ -47,7 +47,7 @@
             </a>
 
 <!--Date picker-->
-            <form
+
             <div class="p-0 pl-4 navbar navbar-expand-sm navbar-light bg-light text-dark">
                 <label for="dateFrom" th:text="#{student.dateFrom}">dateFrom_temp</label>
                 <input type="date" id="dateFrom" name="bday" max="3000-12-31"
@@ -55,7 +55,7 @@
             </div>
             <div class="p-0 pl-4 navbar navbar-expand-sm navbar-light bg-light text-dark">
 
-                <label for="dateTo" th:text="#{student.dateFrom}">dateTo_temp</label>
+                <label for="dateTo" th:text="#{student.dateTo}">dateTo_temp</label>
                 <input type="date" id="dateTo" name="bday" min="1000-01-01"
                        max="3000-12-31" class="form-control">
             </div>
@@ -92,7 +92,7 @@
                         <tbody>
                         <tr th:each="student : ${students}">
                             <td th:text="${student.studentName}">Vasia Pupkin_temp</td>
-                            <td th:date="${student.studentBirth}">12.01.1998</td>
+                            <td th:text="${#dates.format(student.studentBirth, 'dd-MM-yyyy')}">12.01.1998_temp</td>
                             <td th:text="${student.studentAvgMarks}">5.8</td>
                             <td th:text="${student.fullName}">Architecture 12_temp</td>
 
