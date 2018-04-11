@@ -21,7 +21,7 @@
 
     <!--Top navibar-->
     <nav class="navbar navbar-expand-sm navbar-dark bg-info text-light">
-        <a href="departments.html" class="navbar-brand"><img src="../../resources/static/images/icon.svg" width="64"
+        <a href="students.html.html" class="navbar-brand"><img src="../../resources/static/images/icon.svg" width="64"
                                                              height="64"> </a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -101,8 +101,9 @@
                         <p></p>
 
                         <!--students birthday-->
+
                         <label for="studentBirth" th:text="#{student.edit_birth}">birth_temp</label>
-                        <input type="date" class="form-control" id="studentBirth" name="studentBirth" max="3000-12-31"
+                        <input type="date" class="form-control col-lg-2" id="studentBirth" name="studentBirth" max="3000-12-31"
                                min="1000-01-01"
                                th:field="*{studentBirth}">
 

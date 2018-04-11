@@ -64,7 +64,7 @@ public class GroupController {
      * @return view string
      */
     @PostMapping(value = "/groups/{id}")
-    public String updateGroup(@Valid Group group, BindingResult result, Model model) {
+    public String updateGroup(@PathVariable(value = "id") Integer id,@Valid Group group, BindingResult result, Model model) {
         LOGGER.debug("GroupController - updateGroup:{}", group);
         if (result.hasErrors()) {
             LOGGER.error("GroupController - updateGroup - validation error:{}", group);
@@ -91,6 +91,13 @@ public class GroupController {
         return "editgroups";
     }
 
+    /**
+     * Method addGroup maps /addGroup post request add group record to database.
+     * @param group group record
+     * @param result result of validation
+     * @param model model data
+     * @return view string
+     */
     @PostMapping(value = "/addGroup")
     public String addGroup(@Valid Group group, BindingResult result, Model model) {
         LOGGER.debug("GroupController - addGroup:{}", group);
@@ -105,6 +112,11 @@ public class GroupController {
         }
     }
 
+    /**
+     * Method deleteGroup maps /groups/{id}/delete request to delete record from database.
+     * @param id id of removing record
+     * @return view string
+     */
     @GetMapping(value = "/groups/{id}/delete")
     public String deleteGroup(@PathVariable(value = "id") Integer id) {
         groupService.removeGroup(id);

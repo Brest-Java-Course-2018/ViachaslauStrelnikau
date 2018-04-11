@@ -63,5 +63,43 @@ public class StudentController {
             return "redirect:/students";
         }
     }
+    @GetMapping(value = "/addStudent")
+    public String newStudent(Model model)
+    {
+        LOGGER.debug("StudentController - newStudent");
+        Student student = new Student();
+        Collection<GroupDTOlite> groupDTOlites = groupService.getallGroupsDTOlite();
+        model.addAttribute("groups", groupDTOlites);
+        model.addAttribute("isNew",true);
+        model.addAttribute("student",student);
+        return "editstudents";
+    }
+
+    @PostMapping(value = "/addStudent")
+    public String addStudent(Model model,@Valid Student student, BindingResult bindingResult)
+    {
+        LOGGER.debug("StudentController - addStudent - {}",student);
+        if(bindingResult.hasErrors())
+        {
+            LOGGER.debug("StudentController - addStudent");
+            Collection<GroupDTOlite> groupDTOlites = groupService.getallGroupsDTOlite();
+            model.addAttribute("groups", groupDTOlites);
+            model.addAttribute("isNew",true);
+            model.addAttribute("student",student);
+            return "editstudents";
+        }
+        else
+        {
+            studentService.addStudent(student);
+            return "redirect:/students";
+        }
+    }
+    @GetMapping(value = "/students/{id}/delete")
+    public String removeStudent(@PathVariable(value = "id")Integer id)
+    {
+        LOGGER.debug("StudentController - removeStudent - {}",id);
+        studentService.removeStudent(id);
+        return "redirect:/students";
+    }
 
 }
