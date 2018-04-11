@@ -42,8 +42,8 @@ public class GroupController {
 
     /**
      * Method editGroup mapping /groups/{id} get request.
-     * @param id
-     * @param model
+     * @param id of iditing record
+     * @param model model data
      * @return
      */
     @GetMapping(value = "/groups/{id}")

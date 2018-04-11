@@ -91,7 +91,7 @@
 
                 <div class="form-group">
 
-                    <label for="shortName">Name</label>
+                    <label for="shortName" th:text="#{group.short_name}">Name_temp</label>
                     <input type="text" class="form-control" id="shortName" th:placeholder="#{group.edit_short_name}"
                            th:field="*{shortName}">
                     <label class="d-none d-sm-inline text-danger"
@@ -100,7 +100,7 @@
                            th:text="#{group.short_name_error}">error</label>
                     <p></p>
 
-                    <label for="fullName">Name</label>
+                    <label for="fullName" th:text="#{group.full_name}">fullName_temp</label>
                     <input type="text" class="form-control" id="fullName" th:placeholder="#{group.edit_full_name}"
                            th:field="*{fullName}">
                     <label class="d-none d-sm-inline text-danger"
@@ -110,7 +110,7 @@
                     <p></p>
                     <p></p>
 
-                    <label for="description">Name</label>
+                    <label for="description" th:text="#{group.edit_description}">description_temp</label>
                     <input type="text" class="form-control" id="description" th:placeholder="#{group.edit_description}"
                            th:field="*{description}">
                     <label class="d-none d-sm-inline text-danger"

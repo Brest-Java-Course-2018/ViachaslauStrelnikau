@@ -29,9 +29,9 @@
         <h1 class="display" th:text="#{logo}">Groups-Students-temp</h1>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <a class="nav-item nav-link active" href="groups.html " th:href="'/groups' " th:text="#{grHead}">Groups_temp
+                <a class="nav-item nav-link" href="groups.html " th:href="'/groups' " th:text="#{grHead}">Groups_temp
                     <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="students.html" th:href="'/students'" th:text="#{studHead}">Students_temp</a>
+                <a class="nav-item nav-link active" href="students.html" th:href="'/students'" th:text="#{studHead}">Students_temp</a>
             </ul>
         </div>
     </nav>
@@ -42,16 +42,30 @@
     <div class="container-fluid">
         <nav class=" p-0 pl-4 navbar navbar-expand-sm navbar-light bg-light text-dark">
             <a href="groups.html" th:href="'/groups'" class="navbar-brand text-uppercase mr-auto"
-               th:text="#{grHeadCAPS}">
-                GROUPS_temp
+               th:text="#{stHeadCAPS}">
+                STUDENTS_temp
             </a>
+
+<!--Date picker-->
+            <form
+            <div class="p-0 pl-4 navbar navbar-expand-sm navbar-light bg-light text-dark">
+                <label for="dateFrom" th:text="#{student.dateFrom}">dateFrom_temp</label>
+                <input type="date" id="dateFrom" name="bday" max="3000-12-31"
+                       min="1000-01-01" class="form-control">
+            </div>
+            <div class="p-0 pl-4 navbar navbar-expand-sm navbar-light bg-light text-dark">
+
+                <label for="dateTo" th:text="#{student.dateFrom}">dateTo_temp</label>
+                <input type="date" id="dateTo" name="bday" min="1000-01-01"
+                       max="3000-12-31" class="form-control">
+            </div>
 
             <!--right Add button -->
             <ul class="p-0 pr-4 navbar-nav float-right">
                 <li class="nav-item">
-                    <a href="#" th:href="'/addGroup'" class="btn btn-sm btn-outline-secondary"
+                    <a href="#" th:href="'/addStudent'" class="btn btn-sm btn-outline-secondary"
                        data-toggle="tooltip" data-placement="top"
-                       title="Add group"><i class="fa fa-plus" th:text="#{add_button}">
+                       title="Add student"><i class="fa fa-plus" th:text="#{add_button}">
                     </i></a>
                 </li>
             </ul>
@@ -60,7 +74,7 @@
 </header>
 
 <!--main body-->
-<section id="groups">
+<section id="students">
     <div class="container-fluid">
         <div class="row">
             <div class="col">
@@ -68,38 +82,23 @@
                     <table class="table table-striped">
                         <thead class="thead-inverse">
                         <tr>
-                            <th th:text="#{group.short_name}">Short_name_temp</th>
-                            <th th:text="#{group.full_name}">Name_temp</th>
-                            <th th:text="#{group.avg_marks}">Average marks_temp</th>
+                            <th th:text="#{student.name}">Student name_temp</th>
+                            <th th:text="#{student.birth}">Date if birth_temp</th>
+                            <th th:text="#{student.avg_marks}">Average marks_temp</th>
+                            <th th:text="#{student.group_name}">Group_temp</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="group : ${groups}">
-                            <td th:text="${group.shortName}">A12_temp</td>
-                            <td th:text="${group.fullName}">Architecture 12_temp</td>
-                            <td th:if="${group.groupAvgMarks} == -1" th:text="0">3.3_temp</td>
-                            <td th:unless="${group.groupAvgMarks} == -1" th:text="${group.groupAvgMarks}"></td>
+                        <tr th:each="student : ${students}">
+                            <td th:text="${student.studentName}">Vasia Pupkin_temp</td>
+                            <td th:date="${student.studentBirth}">12.01.1998</td>
+                            <td th:text="${student.studentAvgMarks}">5.8</td>
+                            <td th:text="${student.fullName}">Architecture 12_temp</td>
 
-                            <td th:if="${group.groupAvgMarks} == -1">
-                                <a href="editgroups.html"
-                                   th:href="'/groups/' + ${group.groupId}"
-                                   class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"
-                                   data-placement="top"
-                                   title="Edit record" th:title="#{edit_button}"><i class="fa fa-pencil"></i> <span
-                                        class="d-none d-md-inline" th:text="#{edit_button}"> Edit_temp</span></a>
-
-                                <span data-toggle="modal" data-target="#ConfirmDelete">
-                            <a href="#" class="open-DelDialog btn btn-sm btn-outline-secondary" data-toggle="tooltip"
-                               data-placement="top" th:data-id=${group.groupId}
-                               title="Delete record" th:title="#{delete_button}">
-                                <i class="fa fa-remove"></i><span class="d-none d-md-inline" th:text="#{delete_button}"> Delete_temp</span></a>
-                                </span>
-                            </td>
-
-                            <td th:unless="${group.groupAvgMarks} == -1">
-                                <a href="editgroups.html"
-                                   th:href="'/groups/' + ${group.groupId}"
+                            <td >
+                                <a href="editstudents.html"
+                                   th:href="'/students/' + ${student.studentId}"
                                    class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"
                                    data-placement="top"
                                    title="Edit record" th:title="#{edit_button}"><i class="fa fa-pencil"></i> <span
@@ -107,7 +106,7 @@
 
 
                                 <a href="#" class="open-DelDialog btn btn-sm btn-outline-secondary disabled"
-                                   data-toggle="tooltip" data-placement="top" th:data-id=${group.groupId}
+                                   data-toggle="tooltip" data-placement="top" th:data-id=${student.studentId}
                                    title="Delete record" th:title="#{delete_button}">
                                     <i class="fa fa-remove"></i><span class="d-none d-md-inline"
                                                                       th:text="#{delete_button}"> Delete_temp</span></a>
@@ -167,5 +166,7 @@
         $(".modal-footer #groupId").attr("href", '/groups/' + recordID+'/delete');
     });
 </script>
+
+
 </body>
 </html>

@@ -51,6 +51,10 @@
         <constructor-arg index="0" value="${PROTOCAL}://${HOST}:${PORT}/${point.groups}"/>
         <constructor-arg index="1" ref="restTemplate"/>
     </bean>
+    <bean id="studentService" class="com.epam.brest.rest_client.StudentCounsumerRest">
+        <constructor-arg index="0" value="${PROTOCAL}://${HOST}:${PORT}/${point.students}"/>
+        <constructor-arg index="1" ref="restTemplate"/>
+    </bean>
     <!--Localization-->
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="i18n.messages" />
