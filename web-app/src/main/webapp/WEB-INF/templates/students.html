@@ -48,19 +48,37 @@
 
 <!--Date picker-->
 
-            <div class="p-0 pl-4 navbar navbar-expand-sm navbar-light bg-light text-dark">
+            <form id="dateInterval"
+                  th:object="${datesInterval}"
+                  action="students.html"
+                  th:action="@{/filtrStudents}"
+                  th:method="@{post}">
+                <div class="p-0 pr-4 navbar navbar-expand-md  navbar-light bg-light text-dark">
                 <label for="dateFrom" th:text="#{student.dateFrom}">dateFrom_temp</label>
-                <input type="date" id="dateFrom" name="bday" max="3000-12-31"
-                       min="1000-01-01" class="form-control">
-            </div>
-            <div class="p-0 pl-4 navbar navbar-expand-sm navbar-light bg-light text-dark">
+                <input type="date"  id="dateFrom" name="dateFrom" max="3000-12-31"
+                       min="1000-01-01"
+                       th:field="*{dateFrom}">
 
                 <label for="dateTo" th:text="#{student.dateTo}">dateTo_temp</label>
-                <input type="date" id="dateTo" name="bday" min="1000-01-01"
-                       max="3000-12-31" class="form-control">
-            </div>
+                <input type="date"  id="dateTo" name="dateTo" max="3000-12-31"
+                       min="1000-01-01"
+                       th:field="*{dateTo}">
+                </div>
 
-            <!--right Add button -->
+            </form>
+
+            <ul class="p-0 pr-4 pl-4 navbar-nav float-right">
+                <li class="nav-item">
+                    <a href="students.html"
+                       th:href="@{/filtrStudents}"
+                       th:onclick="@{document.forms['dateInterval'].submit(); return false;}"
+                       class="btn btn-sm btn-outline-secondary"
+                       data-toggle="tooltip" data-placement="top"
+                       title="Filter" th:text="#{students.button_filter}"><i class="fa fa-filter">
+                    </i>filter_temp</a>
+                </li>
+            </ul>
+
             <ul class="p-0 pr-4 navbar-nav float-right">
                 <li class="nav-item">
                     <a href="#" th:href="'/addStudent'" class="btn btn-sm btn-outline-secondary"
@@ -105,11 +123,12 @@
                                         class="d-none d-md-inline" th:text="#{edit_button}"> Edit_temp</span></a>
 
 
-                                <a href="#" class="open-DelDialog btn btn-sm btn-outline-secondary disabled"
-                                   data-toggle="tooltip" data-placement="top" th:data-id=${student.studentId}
-                                   title="Delete record" th:title="#{delete_button}">
-                                    <i class="fa fa-remove"></i><span class="d-none d-md-inline"
-                                                                      th:text="#{delete_button}"> Delete_temp</span></a>
+                                <span data-toggle="modal" data-target="#ConfirmDelete">
+                            <a href="#" class="open-DelDialog btn btn-sm btn-outline-secondary" data-toggle="tooltip"
+                               data-placement="top" th:data-id=${student.studentId}
+                               title="Delete record" th:title="#{delete_button}">
+                                <i class="fa fa-remove"></i><span class="d-none d-md-inline" th:text="#{delete_button}"> Delete_temp</span></a>
+                                </span>
                             </td>
                         </tr>
                         </tbody>

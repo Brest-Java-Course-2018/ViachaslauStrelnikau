@@ -55,8 +55,12 @@ public class StudentRestController {
     @GetMapping(value = "/students/{dateFrom}/{dateTo}")
     @ResponseStatus(HttpStatus.OK)
     Collection<StudentDTO> getFilteredStudentsDTORest(@PathVariable(value = "dateFrom") final Long dateFrom, @PathVariable(value = "dateTo") final Long dateTo) throws ParseException {
-        Date dateFromsql = new Date(dateFrom.longValue());
-        Date dateTosql = new Date(dateTo.longValue());
+        Date dateFromsql=null;
+        Date dateTosql=null;
+        if(dateFrom!=0)
+            dateFromsql = new Date(dateFrom.longValue());
+        if(dateTo!=0)
+            dateTosql = new Date(dateTo.longValue());
         LOGGER.debug("StudentRestController getFilteredStudentsDTORest dateFrom - {},dateTo-", dateFromsql, dateTosql);
         Collection<StudentDTO> studentDTOS = studentService.getFilteredStudentsDTO(dateFromsql, dateTosql);
         return studentDTOS;

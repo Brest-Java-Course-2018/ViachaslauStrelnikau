@@ -56,13 +56,22 @@ public class StudentCounsumerRest implements StudentService {
     @SuppressWarnings("unchecked")
     public Collection<StudentDTO> getFilteredStudentsDTO(Date dateFrom, Date dateTo)  {
         LOGGER.debug("StudentCounsumerRest getFilteredStudentsDTO from:{},to:{}", dateFrom, dateTo);
-        Date dateFromSql = new Date(dateFrom.getTime());
-        Date dateToSql = new Date(dateTo.getTime());
+       // Date dateFromSql = new Date(dateFrom.getTime());
+   //     Date dateToSql = new Date(dateTo.getTime());
+        String dateFromStr="";
+        String dateToStr="";
+        if(dateFrom==null)dateFromStr="/0";
+        else
+            dateFromStr="/"+dateFrom.getTime();
+        if(dateTo==null)dateToStr="/0";
+        else
+            dateToStr="/"+dateTo.getTime();
+
         ResponseEntity responseEntity =
-                restTemplate.getForEntity(url + "/" + dateFromSql + "/" + dateToSql, Collection.class);
-        Collection<StudentDTO> studentDTOS =
+                restTemplate.getForEntity(url + dateFromStr+ dateToStr, Collection.class);
+        Collection<StudentDTO> groupDTOs =
                 (Collection<StudentDTO>) responseEntity.getBody();
-        return studentDTOS;
+        return groupDTOs;
     }
 
     /**
