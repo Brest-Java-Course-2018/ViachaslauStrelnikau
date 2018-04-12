@@ -58,6 +58,10 @@
                 <input type="date"  id="dateFrom" name="dateFrom" max="3000-12-31"
                        min="1000-01-01"
                        th:field="*{dateFrom}">
+                    <label class="d-none d-sm-inline text-danger"
+                           for="dateFrom"
+                           th:if="${#fields.hasErrors('dateFrom')}"
+                           th:text="#{student.name_error}">error</label>
 
                 <label for="dateTo" th:text="#{student.dateTo}">dateTo_temp</label>
                 <input type="date"  id="dateTo" name="dateTo" max="3000-12-31"

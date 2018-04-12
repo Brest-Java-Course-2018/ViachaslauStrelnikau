@@ -55,6 +55,7 @@
         <constructor-arg index="0" value="${PROTOCAL}://${HOST}:${PORT}/${point.students}"/>
         <constructor-arg index="1" ref="restTemplate"/>
     </bean>
+
     <!--Localization-->
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="i18n.messages" />

@@ -38,4 +38,11 @@ public class Interval {
         this.dateTo = dateTo;
     }
 
+    @Override
+    public String toString() {
+        return "Interval{" +
+                "dateFrom=" + dateFrom +
+                ", dateTo=" + dateTo +
+                '}';
+    }
 }

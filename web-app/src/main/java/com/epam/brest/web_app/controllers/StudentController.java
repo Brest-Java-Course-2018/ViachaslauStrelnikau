@@ -3,6 +3,7 @@ package com.epam.brest.web_app.controllers;
 import com.epam.brest.dto.GroupDTOlite;
 import com.epam.brest.dto.StudentDTO;
 import com.epam.brest.model.Interval;
+import com.epam.brest.model.IntervalValidator;
 import com.epam.brest.model.Student;
 import com.epam.brest.service.GroupService;
 import com.epam.brest.service.StudentService;
@@ -69,9 +70,10 @@ public class StudentController {
 
     /**
      * Method updateStudent maps /students/{id} post request and save edited record to database.
-     * @param id  id of editing record
-     * @param model model data
-     * @param student edited record
+     *
+     * @param id            id of editing record
+     * @param model         model data
+     * @param student       edited record
      * @param bindingResult validation results
      * @return view string
      */
@@ -95,6 +97,7 @@ public class StudentController {
 
     /**
      * Method newStudent maps /addStudent get request and display student add window.
+     *
      * @param model model data
      * @return view string
      */
@@ -111,8 +114,9 @@ public class StudentController {
 
     /**
      * Method addStudent maps /addStudent post request and save new students record to database.
-     * @param model model data
-     * @param student edited record
+     *
+     * @param model         model data
+     * @param student       edited record
      * @param bindingResult validation results
      * @return view string
      */
@@ -134,6 +138,7 @@ public class StudentController {
 
     /**
      * Method removeStudent maps /students/{id}/delete request to delete record from database.
+     *
      * @param id id of removing record
      * @return view string
      */
@@ -146,9 +151,19 @@ public class StudentController {
 
     @PostMapping(value = "/filtrStudents")
     public String filtrStudents(Model model, Interval datesInterval, BindingResult bindingResult) throws ParseException {
+
+        LOGGER.debug("StudentController - filtrStudents - {}", datesInterval);
         Date dateFrom = datesInterval.getDateFrom();
         Date dateTo = datesInterval.getDateTo();
-        Collection<StudentDTO> studentDTOS = (Collection<StudentDTO>) studentService.getFilteredStudentsDTO(dateFrom, dateTo);
+        IntervalValidator intervalValidator = new IntervalValidator();
+        intervalValidator.validate(datesInterval, bindingResult);
+        Collection<StudentDTO> studentDTOS;
+        if (bindingResult.hasErrors()) {
+            LOGGER.error("StudentController - filtrStudents - dateFrom less then dateTo {}", datesInterval);
+            studentDTOS = studentService.getallStudentsDTO();
+        } else {
+            studentDTOS = studentService.getFilteredStudentsDTO(dateFrom, dateTo);
+        }
         model.addAttribute("students", studentDTOS);
         model.addAttribute("datesInterval", datesInterval);
         return "students";
