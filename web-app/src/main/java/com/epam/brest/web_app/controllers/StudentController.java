@@ -149,6 +149,15 @@ public class StudentController {
         return "redirect:/students";
     }
 
+    /**
+     * Method filtrStudents maps post request to display StudentDTO records in entered time interval.
+     *
+     * @param model         model data
+     * @param datesInterval time interval object
+     * @param bindingResult validation results
+     * @return view string
+     * @throws ParseException date Parse exception
+     */
     @PostMapping(value = "/filtrStudents")
     public String filtrStudents(Model model, Interval datesInterval, BindingResult bindingResult) throws ParseException {
 
@@ -161,6 +170,7 @@ public class StudentController {
         if (bindingResult.hasErrors()) {
             LOGGER.error("StudentController - filtrStudents - dateFrom less then dateTo {}", datesInterval);
             studentDTOS = studentService.getallStudentsDTO();
+            model.addAttribute("isError", true);
         } else {
             studentDTOS = studentService.getFilteredStudentsDTO(dateFrom, dateTo);
         }

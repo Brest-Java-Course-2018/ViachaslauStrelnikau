@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HR Test Template</title>
+    <title>Students-Groups-Avg Marks</title>
     <link rel="stylesheet"
           href="../../resources/static/css/font-awesome.min.css"
           th:href="@{/resources/static/css/font-awesome.min.css}">
@@ -47,7 +47,7 @@
                 <li class="nav-item">
                     <a href="groups.html" th:href="'/groups'" class="btn btn-sm btn-outline-secondary"
                        data-toggle="tooltip" data-placement="top"
-                       title="Back"><i class="fa fa-arrow-circle-left">
+                       title="Back" th:title="#{back}"><i class="fa fa-arrow-circle-left">
 
                     </i></a>
                 </li>
@@ -66,8 +66,8 @@
                        th:onclick="@{document.forms['groupForm'].submit(); return false;}"
                        class="btn btn-sm btn-outline-secondary"
                        data-toggle="tooltip" data-placement="top"
-                       title="Save"><i class="fa fa-save">
-                    </i>Save</a>
+                       title="Save" th:title="#{save_record}"><i class="fa fa-save" th:text="#{save_record}">
+                    </i></a>
                 </li>
             </ul>
 

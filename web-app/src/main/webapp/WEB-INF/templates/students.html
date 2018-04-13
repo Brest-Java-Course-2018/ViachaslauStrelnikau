@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HR Test Template</title>
+    <title>Students-Groups-Avg Marks</title>
     <link rel="stylesheet"
           href="../../resources/static/css/font-awesome.min.css"
           th:href="@{/resources/static/css/font-awesome.min.css}">
@@ -53,15 +53,17 @@
                   action="students.html"
                   th:action="@{/filtrStudents}"
                   th:method="@{post}">
+
                 <div class="p-0 pr-4 navbar navbar-expand-md  navbar-light bg-light text-dark">
+
                 <label for="dateFrom" th:text="#{student.dateFrom}">dateFrom_temp</label>
                 <input type="date"  id="dateFrom" name="dateFrom" max="3000-12-31"
                        min="1000-01-01"
                        th:field="*{dateFrom}">
                     <label class="d-none d-sm-inline text-danger"
-                           for="dateFrom"
-                           th:if="${#fields.hasErrors('dateFrom')}"
-                           th:text="#{student.name_error}">error</label>
+                           for="dateInterval"
+                           th:if="${isError} == true"
+                           th:text="#{students.filter_error}">error_temp</label>
 
                 <label for="dateTo" th:text="#{student.dateTo}">dateTo_temp</label>
                 <input type="date"  id="dateTo" name="dateTo" max="3000-12-31"
@@ -78,7 +80,7 @@
                        th:onclick="@{document.forms['dateInterval'].submit(); return false;}"
                        class="btn btn-sm btn-outline-secondary"
                        data-toggle="tooltip" data-placement="top"
-                       title="Filter" th:text="#{students.button_filter}"><i class="fa fa-filter">
+                       title="Filter" th:title="#{students.button_filter}" th:text="#{students.button_filter}"><i class="fa fa-filter">
                     </i>filter_temp</a>
                 </li>
             </ul>
@@ -87,7 +89,7 @@
                 <li class="nav-item">
                     <a href="#" th:href="'/addStudent'" class="btn btn-sm btn-outline-secondary"
                        data-toggle="tooltip" data-placement="top"
-                       title="Add student"><i class="fa fa-plus" th:text="#{add_button}">
+                       title="Add student" th:title="#{add_button}"><i class="fa fa-plus" th:text="#{add_button}">
                     </i></a>
                 </li>
             </ul>
