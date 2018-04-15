@@ -13,4 +13,8 @@
     </bean>
     <bean id="homeController" class="com.epam.brest.web_app.controllers.HomeController"/>
 
+    <bean id="errorController" class="com.epam.brest.web_app.controllers.ErrorController"/>
+
+    <bean id="exceptionThrowingController" class="com.epam.brest.web_app.controllers.ExceptionThrowingController"/>
+
 </beans>
