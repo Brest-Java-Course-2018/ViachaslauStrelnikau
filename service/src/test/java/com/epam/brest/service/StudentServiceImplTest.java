@@ -19,14 +19,20 @@ import java.util.Collection;
 import java.util.Date;
 
 import static org.junit.Assert.*;
-
+/**
+ * Test StudentServiceImpl class.
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:service-mock-test.xml"})
 public class StudentServiceImplTest {
-
+    /**
+     * StudentService object injection.
+     */
     @Autowired
     StudentService studentService;
-
+    /**
+     * StudentDao object injection.
+     */
     @Autowired
     StudentDao mockStudentDao;
 

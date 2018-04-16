@@ -7,12 +7,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.client.RestClientException;
 
+/**
+ * ExceptionThrowingController MVC controller.
+ * additional controller that help to test ErrorController
+ */
 @Controller
 public class ExceptionThrowingController {
     @GetMapping(value = "/exceptionTrow")
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public @ResponseBody
-    String  find() throws Exception {
+    String  find() {
         throw new RestClientException("global_error_test");
     }
 }

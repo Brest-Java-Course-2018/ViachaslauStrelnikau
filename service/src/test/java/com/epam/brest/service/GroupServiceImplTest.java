@@ -17,13 +17,20 @@ import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test GroupServiceImpl class.
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:service-mock-test.xml"})
 public class GroupServiceImplTest {
-
+    /**
+     * GroupService object injection.
+     */
     @Autowired
     private GroupService groupService;
-
+    /**
+     * GroupDao object injection.
+     */
     @Autowired
     private GroupDao mockGroupDao;
 

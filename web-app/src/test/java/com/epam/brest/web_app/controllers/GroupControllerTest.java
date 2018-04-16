@@ -3,39 +3,40 @@ package com.epam.brest.web_app.controllers;
 import com.epam.brest.dto.GroupDTO;
 import com.epam.brest.model.Group;
 import com.epam.brest.service.GroupService;
-import com.google.gson.Gson;
 import org.easymock.EasyMock;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.validation.BindingResult;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.easymock.EasyMock.anyInt;
-import static org.easymock.EasyMock.anyObject;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ * Test GroupController class.
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring-webapp-test.xml")
 public class GroupControllerTest {
 
+    /**
+     * GroupService object injection.
+     */
     @Autowired
     GroupService groupCounsumerRestMock;
-
+    /**
+     * GroupController object injection.
+     */
     @Autowired
     GroupController groupController;
 
@@ -48,7 +49,9 @@ public class GroupControllerTest {
     private static Group group2;
     private static Group group_empty;
     private static Group valid_group;
-
+    /**
+     * Test set up.
+     */
     @Before
     public void testSetUp()
     {
@@ -85,12 +88,11 @@ public class GroupControllerTest {
 
         group_empty= new Group();
     }
-    @After
-    public void testClear()
-    {
-//        EasyMock.verify(groupCounsumerRestMock);
-//        EasyMock.reset(groupCounsumerRestMock);
-    }
+
+    /**
+     * Method groups tests groups method of GroupController.
+     * @throws Exception exception
+     */
     @Test
     public void groups() throws Exception {
         Collection<GroupDTO> groupDTOS=Arrays.asList(groupDTO,groupDTO2);
@@ -104,6 +106,10 @@ public class GroupControllerTest {
         EasyMock.reset(groupCounsumerRestMock);
     }
 
+    /**
+     * Method editGroup tests editGroup method of GroupController.
+     * @throws Exception exception
+     */
     @Test
     public void editGroup() throws Exception {
 
@@ -118,17 +124,20 @@ public class GroupControllerTest {
         EasyMock.reset(groupCounsumerRestMock);
     }
 
+    /**
+     * Method updateGroup tests updateGroup method of GroupController.
+     * @throws Exception exception
+     */
     @Test
     public void updateGroup() throws Exception {
-        groupCounsumerRestMock.updateGroup(anyObject());
+        groupCounsumerRestMock.updateGroup(group);
         EasyMock.replay(groupCounsumerRestMock);
-        Gson gson = new Gson();
-        String test=gson.toJson(group);
         mockMvc.perform(
                 post("/groups/{id}", ID)
-                        .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .content(gson.toJson(group))
-                        .accept(MediaType.APPLICATION_JSON_UTF8)
+                        .param("groupId",Integer.toString(group.getGroupId()))
+                        .param("shortName",group.getShortName())
+                        .param("fullName",group.getFullName())
+                        .param("description",group.getDescription())
         ).andDo(print())
                 .andExpect(status().isFound())
                 .andExpect(view().name("redirect:/groups"));
@@ -136,7 +145,10 @@ public class GroupControllerTest {
         EasyMock.verify(groupCounsumerRestMock);
         EasyMock.reset(groupCounsumerRestMock);
     }
-
+    /**
+     * Method newGroup tests newGroup method of GroupController.
+     * @throws Exception exception
+     */
     @Test
     public void newGroup() throws Exception {
         mockMvc.perform(get("/addGroup/"))
@@ -146,17 +158,21 @@ public class GroupControllerTest {
                 .andExpect(model().attribute("group",group_empty ));
     }
 
+    /**
+     * Method addGroup tests addGroup method of GroupController.
+     * @throws Exception exception
+     */
     @Test
     public void addGroup() throws Exception {
-        EasyMock.expect(groupCounsumerRestMock.addGroup(anyObject())).andReturn(group);
+        EasyMock.expect(groupCounsumerRestMock.addGroup(group2)).andReturn(group);
         EasyMock.replay(groupCounsumerRestMock);
 
-        Gson gson = new Gson();
         mockMvc.perform(
                 post("/addGroup")
-                        .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .content(gson.toJson(group2))
-                        .accept(MediaType.APPLICATION_JSON_UTF8)
+                        .param("groupId",Integer.toString(group2.getGroupId()))
+                        .param("shortName",group2.getShortName())
+                        .param("fullName",group2.getFullName())
+                        .param("description",group2.getDescription())
         ).andDo(print())
                 .andExpect(status().isFound());
 
@@ -164,9 +180,13 @@ public class GroupControllerTest {
         EasyMock.reset(groupCounsumerRestMock);
     }
 
+    /**
+     * Method deleteGroup tests deleteGroup method of GroupController.
+     * @throws Exception exception
+     */
     @Test
     public void deleteGroup() throws Exception {
-        groupCounsumerRestMock.removeGroup(anyInt());
+        groupCounsumerRestMock.removeGroup(ID);
         EasyMock.replay(groupCounsumerRestMock);
         mockMvc.perform(get("/groups/{id}/delete",ID))
                 .andExpect(status().isFound())
