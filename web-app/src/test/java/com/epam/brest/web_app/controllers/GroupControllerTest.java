@@ -5,7 +5,6 @@ import com.epam.brest.model.Group;
 import com.epam.brest.service.GroupService;
 import com.google.gson.Gson;
 import org.easymock.EasyMock;
-import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,18 +15,19 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.validation.BindingResult;
 
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.easymock.EasyMock.anyInt;
 import static org.easymock.EasyMock.anyObject;
-import static org.hamcrest.EasyMock2Matchers.equalTo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring-webapp-test.xml")
@@ -47,6 +47,7 @@ public class GroupControllerTest {
     private static Group group;
     private static Group group2;
     private static Group group_empty;
+    private static Group valid_group;
 
     @Before
     public void testSetUp()
@@ -76,6 +77,11 @@ public class GroupControllerTest {
         group2.setFullName("Test1");
         group2.setShortName("T1");
         group2.setDescription("Test");
+
+        valid_group = new Group();
+        valid_group.setFullName("T");
+        valid_group.setShortName("Q2");
+        valid_group.setDescription("Z2");
 
         group_empty= new Group();
     }
@@ -117,6 +123,7 @@ public class GroupControllerTest {
         groupCounsumerRestMock.updateGroup(anyObject());
         EasyMock.replay(groupCounsumerRestMock);
         Gson gson = new Gson();
+        String test=gson.toJson(group);
         mockMvc.perform(
                 post("/groups/{id}", ID)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -125,6 +132,7 @@ public class GroupControllerTest {
         ).andDo(print())
                 .andExpect(status().isFound())
                 .andExpect(view().name("redirect:/groups"));
+
         EasyMock.verify(groupCounsumerRestMock);
         EasyMock.reset(groupCounsumerRestMock);
     }
@@ -155,8 +163,16 @@ public class GroupControllerTest {
         EasyMock.verify(groupCounsumerRestMock);
         EasyMock.reset(groupCounsumerRestMock);
     }
-//
-//    @Test
-//    public void deleteGroup() {
-//    }
+
+    @Test
+    public void deleteGroup() throws Exception {
+        groupCounsumerRestMock.removeGroup(anyInt());
+        EasyMock.replay(groupCounsumerRestMock);
+        mockMvc.perform(get("/groups/{id}/delete",ID))
+                .andExpect(status().isFound())
+                .andExpect(view().name("redirect:/groups"));
+        EasyMock.verify(groupCounsumerRestMock);
+        EasyMock.reset(groupCounsumerRestMock);
+    }
+
 }
