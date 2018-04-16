@@ -6,11 +6,14 @@
     <bean id="groupCounsumerRestMock" class="org.easymock.EasyMock" factory-method="createMock">
         <constructor-arg value="com.epam.brest.rest_client.GroupCounsumerRest"/>
     </bean>
-
-
-    <bean id="groupController" class="com.epam.brest.web_app.controllers.GroupController">
-
+    <bean id="studenCounsumerRestMock" class="org.easymock.EasyMock" factory-method="createMock">
+        <constructor-arg value="com.epam.brest.rest_client.StudentCounsumerRest"/>
     </bean>
+
+    <bean id="groupController" class="com.epam.brest.web_app.controllers.GroupController"/>
+
+    <bean id="studentController" class="com.epam.brest.web_app.controllers.StudentController"/>
+
     <bean id="homeController" class="com.epam.brest.web_app.controllers.HomeController"/>
 
     <bean id="errorController" class="com.epam.brest.web_app.controllers.ErrorController"/>

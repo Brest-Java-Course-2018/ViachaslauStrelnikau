@@ -17,8 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
-
-import static org.junit.Assert.*;
 /**
  * Test StudentServiceImpl class.
  */
@@ -35,6 +33,7 @@ public class StudentServiceImplTest {
      */
     @Autowired
     StudentDao mockStudentDao;
+
 
     private StudentDTO studentDTO;
     private StudentDTO studentDTO2;

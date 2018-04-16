@@ -33,12 +33,12 @@ public class GroupControllerTest {
      * GroupService object injection.
      */
     @Autowired
-    GroupService groupCounsumerRestMock;
+    private GroupService groupCounsumerRestMock;
     /**
      * GroupController object injection.
      */
     @Autowired
-    GroupController groupController;
+    private GroupController groupController;
 
     private MockMvc mockMvc;
 
@@ -116,7 +116,7 @@ public class GroupControllerTest {
         EasyMock.expect(groupCounsumerRestMock.getGroupById(ID)).andReturn(group);
         EasyMock.replay(groupCounsumerRestMock);
         mockMvc.perform(get("/groups/"+ID))
-                .andExpect(status().isOk())
+                .andExpect(status().isFound())
                 .andExpect(view().name("editgroups"))
                 .andExpect(model().attribute("isNew",false ))
                 .andExpect(model().attribute("group",group ));

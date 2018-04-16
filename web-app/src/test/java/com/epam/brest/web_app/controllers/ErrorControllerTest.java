@@ -27,12 +27,12 @@ public class ErrorControllerTest {
      * ErrorController object injection.
      */
     @Autowired
-    ErrorController errorController;
+    private ErrorController errorController;
     /**
      * ExceptionThrowingController object injection.
      */
     @Autowired
-    ExceptionThrowingController exceptionThrowingController;
+    private ExceptionThrowingController exceptionThrowingController;
 
     private MockMvc mockMvc;
 

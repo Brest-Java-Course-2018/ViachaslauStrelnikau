@@ -21,7 +21,6 @@ import java.util.Collection;
 import java.util.Date;
 
 import static org.easymock.EasyMock.*;
-import static org.junit.Assert.*;
 
 /**
  * Class StudentCounsumerRestTest tests StudentCounsumerRest.
