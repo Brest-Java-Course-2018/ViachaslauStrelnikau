@@ -41,7 +41,7 @@ public class StudentCounsumerRestTest {
     private StudentDTO studentDTO;
     private StudentDTO studentDTO2;
     /**
-     * testSetUp test setUp method.
+     * testSetUp- test setUp method.
      */
     @Before
     public void testSetUp() throws ParseException {

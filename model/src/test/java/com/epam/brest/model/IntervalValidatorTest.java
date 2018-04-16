@@ -7,13 +7,16 @@ import org.junit.runner.RunWith;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
 
+import javax.validation.constraints.AssertTrue;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.junit.Assert.*;
 
-
+/**
+ * Test IntervalValidator class
+ */
 public class IntervalValidatorTest {
 
 
@@ -21,6 +24,9 @@ public class IntervalValidatorTest {
     private Interval interval;
     private Errors errors;
 
+    /**
+     * testSetUp - test setUp method.
+     */
     @Before
     public void testSetUp() throws ParseException {
 
@@ -36,13 +42,33 @@ public class IntervalValidatorTest {
         errors = new BeanPropertyBindingResult(interval, "interval");
     }
 
+    /**
+     * Method validate tests validate method.
+     */
     @Test
     public void validate() {
 
         intervalValidator.validate(interval, errors);
         Assert.assertTrue(errors.hasErrors());
         Assert.assertTrue(errors.getErrorCount() == 1);
-        //   Assert.assertTrue(errors.getGlobalError().equals("DateFrom is after the DateTo"));
+        Assert.assertTrue(errors.getGlobalError().getDefaultMessage().equals("DateFrom is after the DateTo"));
+    }
 
+    /**
+     * Method supporttest tests support method.
+     */
+    @Test
+    public void supporttest() {
+
+        Assert.assertTrue(intervalValidator.supports(Interval.class));
+    }
+
+    /**
+     * Method supporttest tests support method.
+     */
+    @Test
+    public void supporttest2() {
+
+        Assert.assertFalse(intervalValidator.supports(Group.class));
     }
 }
