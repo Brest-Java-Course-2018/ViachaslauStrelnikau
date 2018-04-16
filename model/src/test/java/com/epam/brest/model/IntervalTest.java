@@ -41,8 +41,12 @@ public class IntervalTest {
     public void intervaltest()
     {
         Interval interval = new Interval();
+        Interval interval1 = new Interval(dateFrom,dateTo);
         interval.setDateFrom(dateFrom);
         interval.setDateTo(dateTo);
+
+        Assert.assertEquals(interval1.getDateFrom(),dateFrom);
+        Assert.assertEquals(interval1.getDateTo(),dateTo);
 
         Assert.assertEquals(interval.getDateFrom(),dateFrom);
         Assert.assertEquals(interval.getDateTo(),dateTo);
