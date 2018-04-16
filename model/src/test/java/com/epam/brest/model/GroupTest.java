@@ -8,7 +8,7 @@ import java.util.Objects;
 import static org.junit.Assert.*;
 
 /**
- * Test Group class
+ * Test Group class.
  */
 public class GroupTest {
 
@@ -17,6 +17,9 @@ public class GroupTest {
     private static String FULLNAME = "test group";
     private static String DESCRIPTION = "description";
 
+    /**
+     * Method grouptest tests all methods of Group class.
+     */
     @Test
     public void grouptest()
     {

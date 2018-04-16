@@ -15,7 +15,7 @@ import java.util.Date;
 import static org.junit.Assert.*;
 
 /**
- * Test IntervalValidator class
+ * Test IntervalValidator class.
  */
 public class IntervalValidatorTest {
 
