@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Objects;
 
 import static org.junit.Assert.*;
 
@@ -17,6 +18,8 @@ public class IntervalTest {
 
     private static Date dateFrom;
     private static Date dateTo;
+    private static Interval interval;
+    private static Interval interval1;
     private static String string;
     /**
      * testSetUp - test setUp method.
@@ -32,7 +35,6 @@ public class IntervalTest {
                 "dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +
                 '}';
-
     }
     /**
      * Method grouptest tests all methods of Interval class.
@@ -51,6 +53,8 @@ public class IntervalTest {
         Assert.assertEquals(interval.getDateFrom(),dateFrom);
         Assert.assertEquals(interval.getDateTo(),dateTo);
         Assert.assertEquals(interval.toString(),string);
+        Assert.assertEquals(interval,interval1);
+        Assert.assertEquals(interval.hashCode(), Objects.hash(dateFrom,dateTo));
     }
 
 }
