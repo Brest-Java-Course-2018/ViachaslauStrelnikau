@@ -9,14 +9,14 @@ import org.springframework.web.client.RestClientException;
 
 /**
  * ExceptionThrowingController MVC controller.
- * additional controller that help to test ErrorController
+ * additional controller that help to test
  */
 @Controller
 public class ExceptionThrowingController {
     @GetMapping(value = "/exceptionTrow")
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public @ResponseBody
-    String  find() {
+    String  find() throws Exception {
         throw new RestClientException("global_error_test");
     }
 }

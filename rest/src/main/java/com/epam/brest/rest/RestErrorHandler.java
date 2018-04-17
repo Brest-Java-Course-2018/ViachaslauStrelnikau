@@ -8,23 +8,21 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.text.ParseException;
-
 @ControllerAdvice
 public class RestErrorHandler {
     private static final Logger LOGGER = LogManager.getLogger();
 
     /**
-     * HandleDataAccessException handle ParseException.
+     * HandleException method handle Exception.
      *
-     * @param ex ParseException
+     * @param ex Exception
      * @return exception mesage
      */
-    @ExceptionHandler(ParseException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public @ResponseBody
-    String HandleParseException(ParseException ex) {
-        LOGGER.debug("ParseException: {}", ex.getLocalizedMessage());
-        return "ParseException:";
+    String HandleException(Exception ex) {
+        LOGGER.debug("Exception: {}",ex.getMessage());
+        return "Exception:"+ex.getMessage();
     }
 }

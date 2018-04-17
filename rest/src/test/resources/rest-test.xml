@@ -15,4 +15,5 @@
     <bean id="studentRestController" class="com.epam.brest.rest.StudentRestController">
         <!--<property name="studentService" ref="studentService"/>-->
     </bean>
+    <bean id="errorController" class="com.epam.brest.rest.RestErrorHandler"/>
 </beans>
