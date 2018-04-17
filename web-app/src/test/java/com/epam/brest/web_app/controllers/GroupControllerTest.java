@@ -14,9 +14,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.Errors;
-
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -30,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Test GroupController class.
+ * Test GroupControllerTest class.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring-webapp-test.xml")
@@ -46,6 +43,11 @@ public class GroupControllerTest {
      */
     @Autowired
     private GroupController groupController;
+    /**
+     * Validator object injection.
+     */
+    @Autowired
+    private Validator validator;
 
     private MockMvc mockMvc;
 
@@ -57,8 +59,7 @@ public class GroupControllerTest {
     private static Group group2;
     private static Group group_empty;
     private static Group valid_group;
-    @Autowired
-    private Validator validator;
+
     /**
      * Test set up.
      */

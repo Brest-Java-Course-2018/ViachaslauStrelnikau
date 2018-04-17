@@ -43,6 +43,7 @@ public class StudentController {
      * @return view string
      */
     @GetMapping(value = "/students")
+    @ResponseStatus(HttpStatus.OK)
     public String showStudents(Model model) {
         LOGGER.debug("StudentController - showStudents");
         Collection<StudentDTO> studentDTOS = studentService.getallStudentsDTO();
@@ -81,6 +82,7 @@ public class StudentController {
      * @return view string
      */
     @PostMapping(value = "/students/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public String updateStudent(@PathVariable(value = "id") Integer id, Model model, @Valid Student student, BindingResult bindingResult) {
         LOGGER.debug("StudentController - updateStudent:{}", id);
         if (bindingResult.hasErrors()) {
@@ -105,6 +107,7 @@ public class StudentController {
      * @return view string
      */
     @GetMapping(value = "/addStudent")
+    @ResponseStatus(HttpStatus.OK)
     public String newStudent(Model model) {
         LOGGER.debug("StudentController - newStudent");
         Student student = new Student();
@@ -147,6 +150,7 @@ public class StudentController {
      * @return view string
      */
     @GetMapping(value = "/students/{id}/delete")
+    @ResponseStatus(HttpStatus.FOUND)
     public String removeStudent(@PathVariable(value = "id") Integer id) {
         LOGGER.debug("StudentController - removeStudent - {}", id);
         studentService.removeStudent(id);
@@ -163,6 +167,7 @@ public class StudentController {
      * @throws ParseException date Parse exception
      */
     @PostMapping(value = "/filtrStudents")
+    @ResponseStatus(HttpStatus.OK)
     public String filtrStudents(Model model, Interval datesInterval, BindingResult bindingResult) throws ParseException {
 
         LOGGER.debug("StudentController - filtrStudents - {}", datesInterval);

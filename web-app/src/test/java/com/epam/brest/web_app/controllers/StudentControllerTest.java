@@ -7,6 +7,7 @@ import com.epam.brest.model.Student;
 import com.epam.brest.service.GroupService;
 import com.epam.brest.service.StudentService;
 import org.easymock.EasyMock;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,11 +18,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -30,18 +34,33 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+/**
+ * Test StudentControllerTest class.
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring-webapp-test.xml")
 public class StudentControllerTest {
 
+    /**
+     * StudentService object injection.
+     */
     @Autowired
     private StudentService studenCounsumerRestMock;
-
+    /**
+     * GroupService object injection.
+     */
     @Autowired
     private GroupService groupCounsumerRestMock;
-
+    /**
+     * StudentController object injection.
+     */
     @Autowired
     private StudentController studentController;
+    /**
+     * Validator object injection.
+     */
+    @Autowired
+    private Validator validator;
 
     private MockMvc mockMvc;
 
@@ -54,6 +73,7 @@ public class StudentControllerTest {
     private static Student student;
     private static Student student_in;
     private static Student student_empty;
+    private static Student student_violation;
     private static final int ID = 1;
 
     private static java.sql.Date dateFrom;
@@ -62,7 +82,9 @@ public class StudentControllerTest {
     private static java.sql.Date dateToError;
     private static Interval interval;
     private static Interval intervalError;
-
+    /**
+     * Test set up.
+     */
     @Before
     public void testSetUp() throws ParseException {
         mockMvc = MockMvcBuilders.standaloneSetup(studentController)
@@ -94,6 +116,14 @@ public class StudentControllerTest {
         student.setStudentAvgMarks(2);
         student.setStudentName("Student2");
 
+        student_violation = new Student();
+        student_violation.setStudentId(1);
+        student_violation.setGroupId(2);
+        date = simpleDateFormat.parse("31.05.1990");
+        student_violation.setStudentBirth(new java.sql.Date(date.getTime()));
+        student_violation.setStudentAvgMarks(0);
+        student_violation.setStudentName("S");
+
         student_in = new Student();
         student_in.setGroupId(2);
         date = simpleDateFormat.parse("31.05.1990");
@@ -119,9 +149,12 @@ public class StudentControllerTest {
         dateToError = new java.sql.Date(dateF.getTime());
         interval = new Interval(dateFrom, dateTo);
         intervalError = new Interval(dateTo, dateFrom);
-
     }
 
+    /**
+     * Method showStudents tests showStudents method of StudentController.
+     * @throws Exception exception
+     */
     @Test
     public void showStudents() throws Exception {
         Collection<StudentDTO> studentDTOS = Arrays.asList(studentDTO, studentDTO2);
@@ -135,6 +168,10 @@ public class StudentControllerTest {
         EasyMock.reset(studenCounsumerRestMock);
     }
 
+    /**
+     * Method editStudent tests editStudent method of StudentController.
+     * @throws Exception exception
+     */
     @Test
     public void editStudent() throws Exception {
         Collection<GroupDTOlite> groupDTOlites = Arrays.asList(groupDTOlite, groupDTOlite2);
@@ -152,8 +189,14 @@ public class StudentControllerTest {
 
     }
 
+    /**
+     * Method updateStudent tests updateStudent method of StudentController.
+     * @throws Exception exception
+     */
     @Test
     public void updateStudent() throws Exception {
+        Set<ConstraintViolation<Student>> violations = validator.validate(student);
+        Assert.assertTrue(violations.isEmpty());
         studenCounsumerRestMock.updateStudent(student);
         EasyMock.replay(studenCounsumerRestMock);
         mockMvc.perform(post("/students/" + ID)
@@ -163,12 +206,44 @@ public class StudentControllerTest {
                 .param("studentAvgMarks", Double.toString(student.getStudentAvgMarks()))
                 .param("groupId", Integer.toString(student.getGroupId())))
                 .andDo(print())
-                .andExpect(status().isFound())
+                .andExpect(status().isOk())
                 .andExpect(view().name("redirect:/students"));
         EasyMock.verify(studenCounsumerRestMock);
         EasyMock.reset(studenCounsumerRestMock);
     }
 
+    /**
+     * Method updateStudent tests updateStudent method of StudentController.
+     * when violation error occurs
+     * @throws Exception exception
+     */
+    @Test
+    public void updateStudentViolation() throws Exception {
+        Set<ConstraintViolation<Student>> violations = validator.validate(student_violation);
+        Assert.assertFalse(violations.isEmpty());
+        Collection<GroupDTOlite> groupDTOlites = Arrays.asList(groupDTOlite, groupDTOlite2);
+        EasyMock.expect(groupCounsumerRestMock.getallGroupsDTOlite()).andReturn(groupDTOlites);
+        EasyMock.replay(groupCounsumerRestMock);
+        mockMvc.perform(post("/students/" + ID)
+                .param("studentId", Integer.toString(student_violation.getStudentId()))
+                .param("studentName", student_violation.getStudentName())
+                .param("studentBirth", student_violation.getStudentBirth().toString())
+                .param("studentAvgMarks", Double.toString(student_violation.getStudentAvgMarks()))
+                .param("groupId", Integer.toString(student_violation.getGroupId())))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("editstudents"))
+                .andExpect(model().attribute("isNew", false))
+                .andExpect(model().attribute("student", student_violation))
+                .andExpect(model().attribute("groups", groupDTOlites));
+        EasyMock.verify(groupCounsumerRestMock);
+        EasyMock.reset(groupCounsumerRestMock);
+    }
+
+    /**
+     * Method newStudent tests newStudent method of StudentController.
+     * @throws Exception exception
+     */
     @Test
     public void newStudent() throws Exception {
         Collection<GroupDTOlite> groupDTOlites = Arrays.asList(groupDTOlite, groupDTOlite2);
@@ -185,6 +260,10 @@ public class StudentControllerTest {
 
     }
 
+    /**
+     * Method addStudent tests addStudent method of StudentController.
+     * @throws Exception exception
+     */
     @Test
     public void addStudent() throws Exception {
         EasyMock.expect(studenCounsumerRestMock.addStudent(student_in)).andReturn(student);
@@ -202,6 +281,38 @@ public class StudentControllerTest {
         EasyMock.reset(studenCounsumerRestMock);
     }
 
+    /**
+     * Method addStudent tests addStudent method of StudentController.
+     * when violation error occurs
+     * @throws Exception exception
+     */
+    @Test
+    public void addStudentViaolation() throws Exception {
+        Set<ConstraintViolation<Student>> violations = validator.validate(student_violation);
+        Assert.assertFalse(violations.isEmpty());
+        Collection<GroupDTOlite> groupDTOlites = Arrays.asList(groupDTOlite, groupDTOlite2);
+        EasyMock.expect(groupCounsumerRestMock.getallGroupsDTOlite()).andReturn(groupDTOlites);
+        EasyMock.replay(groupCounsumerRestMock);
+        mockMvc.perform(post("/addStudent")
+                .param("studentId", Integer.toString(student_violation.getStudentId()))
+                .param("studentName", student_violation.getStudentName())
+                .param("studentBirth", student_violation.getStudentBirth().toString())
+                .param("studentAvgMarks", Double.toString(student_violation.getStudentAvgMarks()))
+                .param("groupId", Integer.toString(student_violation.getGroupId())))
+                .andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(view().name("editstudents"))
+                .andExpect(model().attribute("isNew", true))
+                .andExpect(model().attribute("student", student_violation))
+                .andExpect(model().attribute("groups", groupDTOlites));
+        EasyMock.verify(groupCounsumerRestMock);
+        EasyMock.reset(groupCounsumerRestMock);
+    }
+
+    /**
+     * Method removeStudent tests removeStudent method of StudentController.
+     * @throws Exception exception
+     */
     @Test
     public void removeStudent() throws Exception {
         studenCounsumerRestMock.removeStudent(ID);
@@ -213,6 +324,10 @@ public class StudentControllerTest {
         EasyMock.reset(studenCounsumerRestMock);
     }
 
+    /**
+     * Method filtrStudents tests filtrStudents method of StudentController.
+     * @throws Exception exception
+     */
     @Test
     public void filtrStudents() throws Exception {
         Collection<StudentDTO> studentDTOS = Arrays.asList(studentDTO, studentDTO2);
@@ -229,6 +344,12 @@ public class StudentControllerTest {
         EasyMock.verify(studenCounsumerRestMock);
         EasyMock.reset(studenCounsumerRestMock);
     }
+
+    /**
+     * Method filtrStudents tests filtrStudents method of StudentController.
+     * when violation error occurs
+     * @throws Exception exception
+     */
     @Test
     public void filtrStudentsValidatorTest() throws Exception {
         Collection<StudentDTO> studentDTOS = Arrays.asList(studentDTO, studentDTO2);
