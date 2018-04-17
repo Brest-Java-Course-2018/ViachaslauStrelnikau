@@ -35,6 +35,7 @@ public class GroupController {
      * @return view string
      */
     @GetMapping(value = "/groups")
+    @ResponseStatus(HttpStatus.OK)
     public String groups(final Model model) {
         LOGGER.debug("GroupController - groups");
         Collection<GroupDTO> groupDTOS = groupService.getallGroupsDTO();
@@ -67,6 +68,7 @@ public class GroupController {
      * @return view string
      */
     @PostMapping(value = "/groups/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public String updateGroup(@PathVariable(value = "id") Integer id,@Valid Group group, BindingResult result, Model model) {
         LOGGER.debug("GroupController - updateGroup:{}", group);
         if (result.hasErrors()) {
@@ -86,6 +88,7 @@ public class GroupController {
      * @return view string
      */
     @GetMapping(value = "/addGroup")
+    @ResponseStatus(HttpStatus.OK)
     public String newGroup(Model model) {
         LOGGER.debug("GroupController - newGroup:{}");
         Group group = new Group();
@@ -102,6 +105,7 @@ public class GroupController {
      * @return view string
      */
     @PostMapping(value = "/addGroup")
+    @ResponseStatus(HttpStatus.CREATED)
     public String addGroup(@Valid Group group, BindingResult result, Model model) {
         LOGGER.debug("GroupController - addGroup:{}", group);
         if (result.hasErrors()) {
@@ -121,6 +125,7 @@ public class GroupController {
      * @return view string
      */
     @GetMapping(value = "/groups/{id}/delete")
+    @ResponseStatus(HttpStatus.FOUND)
     public String deleteGroup(@PathVariable(value = "id") Integer id) {
         groupService.removeGroup(id);
         return "redirect:/groups";

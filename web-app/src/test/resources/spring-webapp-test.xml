@@ -20,4 +20,6 @@
 
     <bean id="exceptionThrowingController" class="com.epam.brest.web_app.controllers.ExceptionThrowingController"/>
 
+    <bean id="validator"  class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
 </beans>

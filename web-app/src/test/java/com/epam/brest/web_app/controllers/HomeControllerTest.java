@@ -25,8 +25,9 @@ public class HomeControllerTest {
      * HomeController object injection.
      */
     @Autowired
-    HomeController homeController;
+    private HomeController homeController;
 
+    private static String testRef;
     private MockMvc mockMvc;
     /**
      * Test set up.
@@ -36,6 +37,7 @@ public class HomeControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(homeController)
                 .setMessageConverters(new MappingJackson2HttpMessageConverter())
                 .build();
+        testRef="someref";
     }
 
     /**
@@ -45,7 +47,7 @@ public class HomeControllerTest {
     @Test
     public void defaultPageRedirect() throws Exception {
 
-        mockMvc.perform(get("/asdasd"))
+        mockMvc.perform(get("/"+testRef))
                 .andExpect(status().isOk())
                 .andExpect(view().name("redirect:groups"));
     }

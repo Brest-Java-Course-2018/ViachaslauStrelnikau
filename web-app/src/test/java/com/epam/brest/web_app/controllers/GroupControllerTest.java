@@ -4,6 +4,7 @@ import com.epam.brest.dto.GroupDTO;
 import com.epam.brest.model.Group;
 import com.epam.brest.service.GroupService;
 import org.easymock.EasyMock;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,9 +14,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.Errors;
 
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Set;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -42,6 +49,7 @@ public class GroupControllerTest {
 
     private MockMvc mockMvc;
 
+
     private static final int ID=1;
     private static GroupDTO groupDTO;
     private static GroupDTO groupDTO2;
@@ -49,6 +57,8 @@ public class GroupControllerTest {
     private static Group group2;
     private static Group group_empty;
     private static Group valid_group;
+    @Autowired
+    private Validator validator;
     /**
      * Test set up.
      */
@@ -83,8 +93,8 @@ public class GroupControllerTest {
 
         valid_group = new Group();
         valid_group.setFullName("T");
-        valid_group.setShortName("Q2");
-        valid_group.setDescription("Z2");
+        valid_group.setShortName("Q");
+        valid_group.setDescription("Z");
 
         group_empty= new Group();
     }
@@ -130,6 +140,8 @@ public class GroupControllerTest {
      */
     @Test
     public void updateGroup() throws Exception {
+        Set<ConstraintViolation<Group>> violations = validator.validate(group);
+        Assert.assertTrue(violations.isEmpty());
         groupCounsumerRestMock.updateGroup(group);
         EasyMock.replay(groupCounsumerRestMock);
         mockMvc.perform(
@@ -139,11 +151,33 @@ public class GroupControllerTest {
                         .param("fullName",group.getFullName())
                         .param("description",group.getDescription())
         ).andDo(print())
-                .andExpect(status().isFound())
+                .andExpect(status().isOk())
                 .andExpect(view().name("redirect:/groups"));
 
         EasyMock.verify(groupCounsumerRestMock);
         EasyMock.reset(groupCounsumerRestMock);
+    }
+
+    /**
+     * Method updateGroupValidation tests updateGroup method of GroupController.
+     * when violation error occurs
+     * @throws Exception exception
+     */
+    @Test
+    public void updateGroupValidation() throws Exception {
+        Set<ConstraintViolation<Group>> violations = validator.validate(valid_group);
+        Assert.assertFalse(violations.isEmpty());
+        mockMvc.perform(
+                post("/groups/{id}", ID)
+                        .param("groupId",Integer.toString(valid_group.getGroupId()))
+                        .param("shortName",valid_group.getShortName())
+                        .param("fullName",valid_group.getFullName())
+                        .param("description",valid_group.getDescription())
+        ).andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(view().name("editgroups"))
+                .andExpect(model().attribute("isNew",false ))
+                .andExpect(model().attribute("group",valid_group ));
     }
     /**
      * Method newGroup tests newGroup method of GroupController.
@@ -164,6 +198,8 @@ public class GroupControllerTest {
      */
     @Test
     public void addGroup() throws Exception {
+        Set<ConstraintViolation<Group>> violations = validator.validate(group);
+        Assert.assertTrue(violations.isEmpty());
         EasyMock.expect(groupCounsumerRestMock.addGroup(group2)).andReturn(group);
         EasyMock.replay(groupCounsumerRestMock);
 
@@ -174,10 +210,32 @@ public class GroupControllerTest {
                         .param("fullName",group2.getFullName())
                         .param("description",group2.getDescription())
         ).andDo(print())
-                .andExpect(status().isFound());
+                .andExpect(status().isCreated());
 
         EasyMock.verify(groupCounsumerRestMock);
         EasyMock.reset(groupCounsumerRestMock);
+    }
+
+    /**
+     * Method addGroupViolation tests addGroup method of GroupController.
+     * when violation error occurs
+     * @throws Exception exception
+     */
+    @Test
+    public void addGroupViolation() throws Exception {
+        Set<ConstraintViolation<Group>> violations = validator.validate(valid_group);
+        Assert.assertFalse(violations.isEmpty());
+        mockMvc.perform(
+                post("/addGroup")
+                        .param("groupId",Integer.toString(valid_group.getGroupId()))
+                        .param("shortName",valid_group.getShortName())
+                        .param("fullName",valid_group.getFullName())
+                        .param("description",valid_group.getDescription())
+        ).andDo(print())
+                .andExpect(status().isCreated())
+                .andExpect(view().name("editgroups"))
+                .andExpect(model().attribute("isNew",true ))
+                .andExpect(model().attribute("group",valid_group ));
     }
 
     /**
