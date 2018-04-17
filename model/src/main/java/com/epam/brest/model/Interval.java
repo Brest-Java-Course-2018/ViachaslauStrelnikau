@@ -1,6 +1,8 @@
 package com.epam.brest.model;
 
 import java.sql.Date;
+import java.util.Objects;
+
 /**
  * Interval class
  */
@@ -44,5 +46,20 @@ public class Interval {
                 "dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Interval interval = (Interval) o;
+        return Objects.equals(dateFrom, interval.dateFrom) &&
+                Objects.equals(dateTo, interval.dateTo);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(dateFrom, dateTo);
     }
 }

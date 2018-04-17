@@ -2,6 +2,7 @@ package com.epam.brest.web_app.controllers;
 
 import com.epam.brest.dto.GroupDTOlite;
 import com.epam.brest.dto.StudentDTO;
+import com.epam.brest.model.Interval;
 import com.epam.brest.model.Student;
 import com.epam.brest.service.GroupService;
 import com.epam.brest.service.StudentService;
@@ -47,19 +48,26 @@ public class StudentControllerTest {
     private static GroupDTOlite groupDTOlite;
     private static GroupDTOlite groupDTOlite2;
 
-    private StudentDTO studentDTO;
-    private StudentDTO studentDTO2;
+    private static StudentDTO studentDTO;
+    private static StudentDTO studentDTO2;
 
-    private Student student;
-    private Student student_in;
-    private Student student_empty;
-    private static final int ID=1;
+    private static Student student;
+    private static Student student_in;
+    private static Student student_empty;
+    private static final int ID = 1;
+
+    private static java.sql.Date dateFrom;
+    private static java.sql.Date dateTo;
+    private static java.sql.Date dateFromError;
+    private static java.sql.Date dateToError;
+    private static Interval interval;
+    private static Interval intervalError;
 
     @Before
     public void testSetUp() throws ParseException {
-     mockMvc= MockMvcBuilders.standaloneSetup(studentController)
-             .setMessageConverters(new MappingJackson2HttpMessageConverter())
-             .build();
+        mockMvc = MockMvcBuilders.standaloneSetup(studentController)
+                .setMessageConverters(new MappingJackson2HttpMessageConverter())
+                .build();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
         studentDTO = new StudentDTO();
@@ -93,7 +101,7 @@ public class StudentControllerTest {
         student_in.setStudentAvgMarks(2);
         student_in.setStudentName("Student2");
 
-        student_empty= new Student();
+        student_empty = new Student();
 
         groupDTOlite = new GroupDTOlite();
         groupDTOlite.setGroupId(1);
@@ -103,49 +111,57 @@ public class StudentControllerTest {
         groupDTOlite2.setGroupId(2);
         groupDTOlite2.setFullName("Test2");
 
+        Date dateF = simpleDateFormat.parse("31.05.1990");
+        Date dateT = simpleDateFormat.parse("31.05.1999");
+        dateFrom = new java.sql.Date(dateF.getTime());
+        dateTo = new java.sql.Date(dateT.getTime());
+        dateFromError = new java.sql.Date(dateT.getTime());
+        dateToError = new java.sql.Date(dateF.getTime());
+        interval = new Interval(dateFrom, dateTo);
+        intervalError = new Interval(dateTo, dateFrom);
+
     }
+
     @Test
     public void showStudents() throws Exception {
-        Collection<StudentDTO> studentDTOS = Arrays.asList(studentDTO,studentDTO2);
+        Collection<StudentDTO> studentDTOS = Arrays.asList(studentDTO, studentDTO2);
         EasyMock.expect(studenCounsumerRestMock.getallStudentsDTO()).andReturn(studentDTOS);
         EasyMock.replay(studenCounsumerRestMock);
         mockMvc.perform(get("/students/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("students"))
-                .andExpect(model().attribute("students",studentDTOS));
+                .andExpect(model().attribute("students", studentDTOS));
         EasyMock.verify(studenCounsumerRestMock);
         EasyMock.reset(studenCounsumerRestMock);
     }
 
     @Test
     public void editStudent() throws Exception {
-        Collection<GroupDTOlite> groupDTOlites = Arrays.asList(groupDTOlite,groupDTOlite2);
+        Collection<GroupDTOlite> groupDTOlites = Arrays.asList(groupDTOlite, groupDTOlite2);
         EasyMock.expect(groupCounsumerRestMock.getallGroupsDTOlite()).andReturn(groupDTOlites);
         EasyMock.expect(studenCounsumerRestMock.getStudentById(ID)).andReturn(student);
-        EasyMock.replay(studenCounsumerRestMock);
-        EasyMock.replay(groupCounsumerRestMock);
-        mockMvc.perform(get("/students/"+ID))
+        EasyMock.replay(studenCounsumerRestMock, groupCounsumerRestMock);
+        mockMvc.perform(get("/students/" + ID))
                 .andExpect(status().isFound())
                 .andExpect(view().name("editstudents"))
-                .andExpect(model().attribute("isNew",false ))
-                .andExpect(model().attribute("student",student ))
-                .andExpect(model().attribute("groups",groupDTOlites ));
-        EasyMock.verify(groupCounsumerRestMock);
-        EasyMock.verify(studenCounsumerRestMock);
-        EasyMock.reset(studenCounsumerRestMock);
-        EasyMock.reset(groupCounsumerRestMock);
+                .andExpect(model().attribute("isNew", false))
+                .andExpect(model().attribute("student", student))
+                .andExpect(model().attribute("groups", groupDTOlites));
+        EasyMock.verify(studenCounsumerRestMock, groupCounsumerRestMock);
+        EasyMock.reset(studenCounsumerRestMock, groupCounsumerRestMock);
+
     }
 
     @Test
     public void updateStudent() throws Exception {
         studenCounsumerRestMock.updateStudent(student);
         EasyMock.replay(studenCounsumerRestMock);
-        mockMvc.perform(post("/students/"+ID)
-                .param("studentId",Integer.toString( student.getStudentId()))
-                .param("studentName",student.getStudentName())
-                .param("studentBirth",student.getStudentBirth().toString())
-                .param("studentAvgMarks",Double.toString( student.getStudentAvgMarks()))
-                .param("groupId",Integer.toString( student.getGroupId())))
+        mockMvc.perform(post("/students/" + ID)
+                .param("studentId", Integer.toString(student.getStudentId()))
+                .param("studentName", student.getStudentName())
+                .param("studentBirth", student.getStudentBirth().toString())
+                .param("studentAvgMarks", Double.toString(student.getStudentAvgMarks()))
+                .param("groupId", Integer.toString(student.getGroupId())))
                 .andDo(print())
                 .andExpect(status().isFound())
                 .andExpect(view().name("redirect:/students"));
@@ -155,17 +171,17 @@ public class StudentControllerTest {
 
     @Test
     public void newStudent() throws Exception {
-//        Collection<GroupDTOlite> groupDTOlites = Arrays.asList(groupDTOlite,groupDTOlite2);
-//        EasyMock.expect(groupCounsumerRestMock.getallGroupsDTOlite()).andReturn(groupDTOlites);
-//        EasyMock.replay(groupCounsumerRestMock);
-//        mockMvc.perform(get("/addStudent"))
-//                .andExpect(status().isOk())
-//                .andExpect(view().name("editstudents"))
-//                .andExpect(model().attribute("isNew",true ))
-//                .andExpect(model().attribute("student",student_empty ))
-//                .andExpect(model().attribute("groups",groupDTOlites ));
-//        EasyMock.verify(groupCounsumerRestMock);
-//        EasyMock.reset(groupCounsumerRestMock);
+        Collection<GroupDTOlite> groupDTOlites = Arrays.asList(groupDTOlite, groupDTOlite2);
+        EasyMock.expect(groupCounsumerRestMock.getallGroupsDTOlite()).andReturn(groupDTOlites);
+        EasyMock.replay(groupCounsumerRestMock);
+        mockMvc.perform(get("/addStudent"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("editstudents"))
+                .andExpect(model().attribute("isNew", true))
+                .andExpect(model().attribute("student", student_empty))
+                .andExpect(model().attribute("groups", groupDTOlites));
+        EasyMock.verify(groupCounsumerRestMock);
+        EasyMock.reset(groupCounsumerRestMock);
 
     }
 
@@ -174,11 +190,11 @@ public class StudentControllerTest {
         EasyMock.expect(studenCounsumerRestMock.addStudent(student_in)).andReturn(student);
         EasyMock.replay(studenCounsumerRestMock);
         mockMvc.perform(post("/addStudent")
-                .param("studentId",Integer.toString( student_in.getStudentId()))
-                .param("studentName",student_in.getStudentName())
-                .param("studentBirth",student_in.getStudentBirth().toString())
-                .param("studentAvgMarks",Double.toString( student_in.getStudentAvgMarks()))
-                .param("groupId",Integer.toString( student_in.getGroupId())))
+                .param("studentId", Integer.toString(student_in.getStudentId()))
+                .param("studentName", student_in.getStudentName())
+                .param("studentBirth", student_in.getStudentBirth().toString())
+                .param("studentAvgMarks", Double.toString(student_in.getStudentAvgMarks()))
+                .param("groupId", Integer.toString(student_in.getGroupId())))
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(view().name("redirect:/students"));
@@ -190,15 +206,44 @@ public class StudentControllerTest {
     public void removeStudent() throws Exception {
         studenCounsumerRestMock.removeStudent(ID);
         EasyMock.replay(studenCounsumerRestMock);
-        mockMvc.perform(get("/students/{id}/delete",ID))
+        mockMvc.perform(get("/students/{id}/delete", ID))
                 .andExpect(status().isFound())
                 .andExpect(view().name("redirect:/students"));
         EasyMock.verify(studenCounsumerRestMock);
         EasyMock.reset(studenCounsumerRestMock);
     }
 
-//    @Test
-//    public void filtrStudents() {
-//
-//    }
+    @Test
+    public void filtrStudents() throws Exception {
+        Collection<StudentDTO> studentDTOS = Arrays.asList(studentDTO, studentDTO2);
+        EasyMock.expect(studenCounsumerRestMock.getFilteredStudentsDTO(dateFrom, dateTo)).andReturn(studentDTOS);
+        EasyMock.replay(studenCounsumerRestMock);
+        mockMvc.perform(post("/filtrStudents")
+                .param("dateFrom", dateFrom.toString())
+                .param("dateTo", dateTo.toString()))
+
+                .andExpect(status().isOk())
+                .andExpect(view().name("students"))
+                .andExpect(model().attribute("students", studentDTOS))
+                .andExpect(model().attribute("datesInterval", interval));
+        EasyMock.verify(studenCounsumerRestMock);
+        EasyMock.reset(studenCounsumerRestMock);
+    }
+    @Test
+    public void filtrStudentsValidatorTest() throws Exception {
+        Collection<StudentDTO> studentDTOS = Arrays.asList(studentDTO, studentDTO2);
+        EasyMock.expect(studenCounsumerRestMock.getallStudentsDTO()).andReturn(studentDTOS);
+        EasyMock.replay(studenCounsumerRestMock);
+        mockMvc.perform(post("/filtrStudents")
+                .param("dateFrom", dateFromError.toString())
+                .param("dateTo", dateToError.toString()))
+
+                .andExpect(status().isOk())
+                .andExpect(view().name("students"))
+                .andExpect(model().attribute("isError", true))
+                .andExpect(model().attribute("students", studentDTOS))
+                .andExpect(model().attribute("datesInterval", intervalError));
+        EasyMock.verify(studenCounsumerRestMock);
+        EasyMock.reset(studenCounsumerRestMock);
+    }
 }
