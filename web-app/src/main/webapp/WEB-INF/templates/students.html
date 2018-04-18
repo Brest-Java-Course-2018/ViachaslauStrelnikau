@@ -88,7 +88,7 @@
 
             <ul class="p-0 pr-4 navbar-nav float-right">
                 <li class="nav-item">
-                    <a href="#" th:href="'/addStudent'" class="btn btn-sm btn-outline-secondary"
+                    <a href="#" th:href="@{/addStudent}" class="btn btn-sm btn-outline-secondary"
                        data-toggle="tooltip" data-placement="top"
                        title="Add student" th:title="#{add_button}"><i class="fa fa-plus" th:text="#{add_button}">
                     </i></a>
@@ -166,7 +166,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" th:text="#{cancel_button}">
                     Cancel_temp</button>
 
-                <a class=" btn btn-primary" id="groupId"  name="groupId" href="" role="button"
+                <a class=" btn btn-primary" id="groupId"  name="groupId" href="" th:href="@{/delete/{iddd}(iddd=${id})}" role="button"
                    th:text="#{delete_button}">Delete</a>
 
 
@@ -186,11 +186,14 @@
         $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
-<script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
     $(document).on("click", ".open-DelDialog", function () {
+        var url=[[@{/students}]]+"/";
         var recordID = $(this).data('id');
-        $(".modal-footer #groupId").attr("href", '/students/' + recordID+'/delete');
+        $(".modal-footer #groupId").attr("href",url+ recordID+'/delete');
     });
+    /*]]>*/
 </script>
 
 

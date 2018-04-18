@@ -47,6 +47,6 @@ public class HomeControllerTest {
     public void defaultPageRedirect() throws Exception {
 
         mockMvc.perform(get("/"+testRef))
-                .andExpect(view().name("redirect:groups"));
+                .andExpect(view().name("redirect:/groups"));
     }
 }

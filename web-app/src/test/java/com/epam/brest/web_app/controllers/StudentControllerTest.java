@@ -206,7 +206,7 @@ public class StudentControllerTest {
                 .param("studentAvgMarks", Double.toString(student.getStudentAvgMarks()))
                 .param("groupId", Integer.toString(student.getGroupId())))
                 .andDo(print())
-                .andExpect(status().isOk())
+                .andExpect(status().isFound())
                 .andExpect(view().name("redirect:/students"));
         EasyMock.verify(studenCounsumerRestMock);
         EasyMock.reset(studenCounsumerRestMock);
@@ -275,7 +275,7 @@ public class StudentControllerTest {
                 .param("studentAvgMarks", Double.toString(student_in.getStudentAvgMarks()))
                 .param("groupId", Integer.toString(student_in.getGroupId())))
                 .andDo(print())
-                .andExpect(status().isCreated())
+                .andExpect(status().isFound())
                 .andExpect(view().name("redirect:/students"));
         EasyMock.verify(studenCounsumerRestMock);
         EasyMock.reset(studenCounsumerRestMock);
@@ -300,7 +300,7 @@ public class StudentControllerTest {
                 .param("studentAvgMarks", Double.toString(student_violation.getStudentAvgMarks()))
                 .param("groupId", Integer.toString(student_violation.getGroupId())))
                 .andDo(print())
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(view().name("editstudents"))
                 .andExpect(model().attribute("isNew", true))
                 .andExpect(model().attribute("student", student_violation))

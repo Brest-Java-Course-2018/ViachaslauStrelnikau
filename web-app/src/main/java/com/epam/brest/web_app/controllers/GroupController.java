@@ -68,7 +68,6 @@ public class GroupController {
      * @return view string
      */
     @PostMapping(value = "/groups/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public String updateGroup(@PathVariable(value = "id") Integer id,@Valid Group group, BindingResult result, Model model) {
         LOGGER.debug("GroupController - updateGroup:{}", group);
         if (result.hasErrors()) {
@@ -105,7 +104,6 @@ public class GroupController {
      * @return view string
      */
     @PostMapping(value = "/addGroup")
-    @ResponseStatus(HttpStatus.CREATED)
     public String addGroup(@Valid Group group, BindingResult result, Model model) {
         LOGGER.debug("GroupController - addGroup:{}", group);
         if (result.hasErrors()) {

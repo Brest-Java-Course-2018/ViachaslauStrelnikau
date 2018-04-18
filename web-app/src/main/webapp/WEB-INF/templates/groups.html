@@ -162,11 +162,14 @@
     })
 </script>
 
-<script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
     $(document).on("click", ".open-DelDialog", function () {
-        var recordID = $(this).data('id');
-        $(".modal-footer #groupId").attr("href",'/groups/' + recordID+'/delete');
-    });
+        var url=[[@{/groups}]]+"/";
+            var recordID = $(this).data('id');
+            $(".modal-footer #groupId").attr("href",url+ recordID+'/delete');
+        });
+    /*]]>*/
 </script>
 </body>
 </html>

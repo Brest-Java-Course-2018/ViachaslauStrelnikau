@@ -82,7 +82,6 @@ public class StudentController {
      * @return view string
      */
     @PostMapping(value = "/students/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public String updateStudent(@PathVariable(value = "id") Integer id, Model model, @Valid Student student, BindingResult bindingResult) {
         LOGGER.debug("StudentController - updateStudent:{}", id);
         if (bindingResult.hasErrors()) {
@@ -127,7 +126,6 @@ public class StudentController {
      * @return view string
      */
     @PostMapping(value = "/addStudent")
-    @ResponseStatus(HttpStatus.CREATED)
     public String addStudent(Model model, @Valid Student student, BindingResult bindingResult) {
         LOGGER.debug("StudentController - addStudent - {}", student);
         if (bindingResult.hasErrors()) {
