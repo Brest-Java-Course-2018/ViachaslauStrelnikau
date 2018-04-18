@@ -21,17 +21,18 @@
 
     <!--Top navibar-->
     <nav class="navbar navbar-expand-sm navbar-dark bg-info text-light">
-        <a href="groups.html" class="navbar-brand"><img src="../../resources/static/images/icon.svg" width="64"
-                                                             height="64"> </a>
+        <a href="groups.html" th:href="@{/groups}" class="navbar-brand"><img src="../../resources/static/images/icon.svg"
+                                                                             th:src="@{/resources/static/images/icon.svg}"
+                                                                             width="64" height="64"> </a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <h1 class="display" th:text="#{logo}">Groups-Students-temp</h1>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <a class="nav-item nav-link active" href="groups.html " th:href="'/groups' " th:text="#{grHead}">Groups_temp
+                <a class="nav-item nav-link active" href="groups.html " th:href="@{/groups}" th:text="#{grHead}">Groups_temp
                     <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="students.html" th:href="'/students'" th:text="#{studHead}">Students_temp</a>
+                <a class="nav-item nav-link" href="students.html" th:href="@{/students}" th:text="#{studHead}">Students_temp</a>
             </ul>
         </div>
     </nav>
@@ -49,7 +50,7 @@
             <!--right Add button -->
             <ul class="p-0 pr-4 navbar-nav float-right">
                 <li class="nav-item">
-                    <a href="#" th:href="'/addGroup'" class="btn btn-sm btn-outline-secondary"
+                    <a href="#" th:href="@{/addGroup}" class="btn btn-sm btn-outline-secondary"
                        data-toggle="tooltip" data-placement="top"
                        title="Add group_temp" th:title="#{new_group}"><i class="fa fa-plus" th:text="#{add_button}">
                     </i></a>
@@ -83,7 +84,7 @@
 
                             <td th:if="${group.groupAvgMarks} == -1">
                                 <a href="editgroups.html"
-                                   th:href="'/groups/' + ${group.groupId}"
+                                   th:href="@{'/groups/' + ${group.groupId}}"
                                    class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"
                                    data-placement="top"
                                    title="Edit record" th:title="#{edit_button}"><i class="fa fa-pencil"></i> <span
@@ -99,7 +100,7 @@
 
                             <td th:unless="${group.groupAvgMarks} == -1">
                                 <a href="editgroups.html"
-                                   th:href="'/groups/' + ${group.groupId}"
+                                   th:href="@{'/groups/' + ${group.groupId}}"
                                    class="btn btn-sm btn-outline-secondary" data-toggle="tooltip"
                                    data-placement="top"
                                    title="Edit record" th:title="#{edit_button}"><i class="fa fa-pencil"></i> <span
@@ -141,9 +142,8 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" th:text="#{cancel_button}">
                     Cancel_temp</button>
 
-                <a class=" btn btn-primary" id="groupId"  name="groupId" href="" role="button"
+                <a class=" btn btn-primary" id="groupId"  name="groupId" href="" th:href="''" role="button"
                    th:text="#{delete_button}">Delete</a>
-
 
             </div>
         </div>
@@ -161,10 +161,11 @@
         $('[data-toggle="tooltip"]').tooltip()
     })
 </script>
+
 <script>
     $(document).on("click", ".open-DelDialog", function () {
         var recordID = $(this).data('id');
-        $(".modal-footer #groupId").attr("href", '/groups/' + recordID+'/delete');
+        $(".modal-footer #groupId").attr("href",'/groups/' + recordID+'/delete');
     });
 </script>
 </body>
