@@ -88,5 +88,6 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>rest</finalName>
     </build>
 </project>
