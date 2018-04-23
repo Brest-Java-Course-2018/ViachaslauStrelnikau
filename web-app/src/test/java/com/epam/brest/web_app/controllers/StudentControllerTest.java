@@ -161,7 +161,6 @@ public class StudentControllerTest {
         EasyMock.expect(studenCounsumerRestMock.getallStudentsDTO()).andReturn(studentDTOS);
         EasyMock.replay(studenCounsumerRestMock);
         mockMvc.perform(get("/students/"))
-                .andExpect(status().isOk())
                 .andExpect(view().name("students"))
                 .andExpect(model().attribute("students", studentDTOS));
         EasyMock.verify(studenCounsumerRestMock);
@@ -179,7 +178,6 @@ public class StudentControllerTest {
         EasyMock.expect(studenCounsumerRestMock.getStudentById(ID)).andReturn(student);
         EasyMock.replay(studenCounsumerRestMock, groupCounsumerRestMock);
         mockMvc.perform(get("/students/" + ID))
-                .andExpect(status().isFound())
                 .andExpect(view().name("editstudents"))
                 .andExpect(model().attribute("isNew", false))
                 .andExpect(model().attribute("student", student))
@@ -206,7 +204,6 @@ public class StudentControllerTest {
                 .param("studentAvgMarks", Double.toString(student.getStudentAvgMarks()))
                 .param("groupId", Integer.toString(student.getGroupId())))
                 .andDo(print())
-                .andExpect(status().isFound())
                 .andExpect(view().name("redirect:/students"));
         EasyMock.verify(studenCounsumerRestMock);
         EasyMock.reset(studenCounsumerRestMock);
@@ -231,7 +228,6 @@ public class StudentControllerTest {
                 .param("studentAvgMarks", Double.toString(student_violation.getStudentAvgMarks()))
                 .param("groupId", Integer.toString(student_violation.getGroupId())))
                 .andDo(print())
-                .andExpect(status().isOk())
                 .andExpect(view().name("editstudents"))
                 .andExpect(model().attribute("isNew", false))
                 .andExpect(model().attribute("student", student_violation))
@@ -250,7 +246,6 @@ public class StudentControllerTest {
         EasyMock.expect(groupCounsumerRestMock.getallGroupsDTOlite()).andReturn(groupDTOlites);
         EasyMock.replay(groupCounsumerRestMock);
         mockMvc.perform(get("/addStudent"))
-                .andExpect(status().isOk())
                 .andExpect(view().name("editstudents"))
                 .andExpect(model().attribute("isNew", true))
                 .andExpect(model().attribute("student", student_empty))
@@ -275,7 +270,6 @@ public class StudentControllerTest {
                 .param("studentAvgMarks", Double.toString(student_in.getStudentAvgMarks()))
                 .param("groupId", Integer.toString(student_in.getGroupId())))
                 .andDo(print())
-                .andExpect(status().isFound())
                 .andExpect(view().name("redirect:/students"));
         EasyMock.verify(studenCounsumerRestMock);
         EasyMock.reset(studenCounsumerRestMock);
@@ -300,7 +294,6 @@ public class StudentControllerTest {
                 .param("studentAvgMarks", Double.toString(student_violation.getStudentAvgMarks()))
                 .param("groupId", Integer.toString(student_violation.getGroupId())))
                 .andDo(print())
-                .andExpect(status().isOk())
                 .andExpect(view().name("editstudents"))
                 .andExpect(model().attribute("isNew", true))
                 .andExpect(model().attribute("student", student_violation))
@@ -318,7 +311,6 @@ public class StudentControllerTest {
         studenCounsumerRestMock.removeStudent(ID);
         EasyMock.replay(studenCounsumerRestMock);
         mockMvc.perform(get("/students/{id}/delete", ID))
-                .andExpect(status().isFound())
                 .andExpect(view().name("redirect:/students"));
         EasyMock.verify(studenCounsumerRestMock);
         EasyMock.reset(studenCounsumerRestMock);
@@ -337,7 +329,6 @@ public class StudentControllerTest {
                 .param("dateFrom", dateFrom.toString())
                 .param("dateTo", dateTo.toString()))
 
-                .andExpect(status().isOk())
                 .andExpect(view().name("students"))
                 .andExpect(model().attribute("students", studentDTOS))
                 .andExpect(model().attribute("datesInterval", interval));
@@ -359,7 +350,6 @@ public class StudentControllerTest {
                 .param("dateFrom", dateFromError.toString())
                 .param("dateTo", dateToError.toString()))
 
-                .andExpect(status().isOk())
                 .andExpect(view().name("students"))
                 .andExpect(model().attribute("isError", true))
                 .andExpect(model().attribute("students", studentDTOS))

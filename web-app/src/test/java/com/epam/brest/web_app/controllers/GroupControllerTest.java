@@ -110,7 +110,6 @@ public class GroupControllerTest {
         EasyMock.expect(groupCounsumerRestMock.getallGroupsDTO()).andReturn(groupDTOS);
         EasyMock.replay(groupCounsumerRestMock);
         mockMvc.perform(get("/groups/"))
-                .andExpect(status().isOk())
                 .andExpect(view().name("groups"))
                 .andExpect(model().attribute("groups",groupDTOS ));
         EasyMock.verify(groupCounsumerRestMock);
@@ -127,7 +126,6 @@ public class GroupControllerTest {
         EasyMock.expect(groupCounsumerRestMock.getGroupById(ID)).andReturn(group);
         EasyMock.replay(groupCounsumerRestMock);
         mockMvc.perform(get("/groups/"+ID))
-                .andExpect(status().isFound())
                 .andExpect(view().name("editgroups"))
                 .andExpect(model().attribute("isNew",false ))
                 .andExpect(model().attribute("group",group ));
@@ -152,8 +150,8 @@ public class GroupControllerTest {
                         .param("fullName",group.getFullName())
                         .param("description",group.getDescription())
         ).andDo(print())
-                .andExpect(status().isFound());
-              //  .andExpect(view().name("redirect:/groups"));
+           //     .andExpect(status().isFound())
+                .andExpect(view().name("redirect:/groups"));
 
         EasyMock.verify(groupCounsumerRestMock);
         EasyMock.reset(groupCounsumerRestMock);
@@ -175,7 +173,6 @@ public class GroupControllerTest {
                         .param("fullName",valid_group.getFullName())
                         .param("description",valid_group.getDescription())
         ).andDo(print())
-                .andExpect(status().isOk())
                 .andExpect(view().name("editgroups"))
                 .andExpect(model().attribute("isNew",false ))
                 .andExpect(model().attribute("group",valid_group ));
@@ -187,7 +184,6 @@ public class GroupControllerTest {
     @Test
     public void newGroup() throws Exception {
         mockMvc.perform(get("/addGroup/"))
-                .andExpect(status().isOk())
                 .andExpect(view().name("editgroups"))
                 .andExpect(model().attribute("isNew",true ))
                 .andExpect(model().attribute("group",group_empty ));
@@ -211,7 +207,8 @@ public class GroupControllerTest {
                         .param("fullName",group2.getFullName())
                         .param("description",group2.getDescription())
         ).andDo(print())
-                .andExpect(status().isFound());
+            //    .andExpect(status().isFound());
+            .andExpect(view().name("redirect:/groups"));
 
         EasyMock.verify(groupCounsumerRestMock);
         EasyMock.reset(groupCounsumerRestMock);
@@ -233,7 +230,6 @@ public class GroupControllerTest {
                         .param("fullName",valid_group.getFullName())
                         .param("description",valid_group.getDescription())
         ).andDo(print())
-                .andExpect(status().isOk())
                 .andExpect(view().name("editgroups"))
                 .andExpect(model().attribute("isNew",true ))
                 .andExpect(model().attribute("group",valid_group ));
@@ -248,7 +244,6 @@ public class GroupControllerTest {
         groupCounsumerRestMock.removeGroup(ID);
         EasyMock.replay(groupCounsumerRestMock);
         mockMvc.perform(get("/groups/{id}/delete",ID))
-                .andExpect(status().isFound())
                 .andExpect(view().name("redirect:/groups"));
         EasyMock.verify(groupCounsumerRestMock);
         EasyMock.reset(groupCounsumerRestMock);

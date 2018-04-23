@@ -10,14 +10,12 @@ import com.epam.brest.service.StudentService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.validation.Valid;
 import java.sql.Date;
@@ -43,7 +41,6 @@ public class StudentController {
      * @return view string
      */
     @GetMapping(value = "/students")
-    @ResponseStatus(HttpStatus.OK)
     public String showStudents(Model model) {
         LOGGER.debug("StudentController - showStudents");
         Collection<StudentDTO> studentDTOS = studentService.getallStudentsDTO();
@@ -61,7 +58,6 @@ public class StudentController {
      * @return view string
      */
     @GetMapping(value = "/students/{id}")
-    @ResponseStatus(HttpStatus.FOUND)
     public String editStudent(@PathVariable(value = "id") Integer id, Model model) {
         LOGGER.debug("StudentController - editStudent:{}", id);
         Student student = studentService.getStudentById(id);
@@ -106,7 +102,6 @@ public class StudentController {
      * @return view string
      */
     @GetMapping(value = "/addStudent")
-    @ResponseStatus(HttpStatus.OK)
     public String newStudent(Model model) {
         LOGGER.debug("StudentController - newStudent");
         Student student = new Student();
@@ -148,7 +143,6 @@ public class StudentController {
      * @return view string
      */
     @GetMapping(value = "/students/{id}/delete")
-    @ResponseStatus(HttpStatus.FOUND)
     public String removeStudent(@PathVariable(value = "id") Integer id) {
         LOGGER.debug("StudentController - removeStudent - {}", id);
         studentService.removeStudent(id);
@@ -165,7 +159,6 @@ public class StudentController {
      * @throws ParseException date Parse exception
      */
     @PostMapping(value = "/filtrStudents")
-    @ResponseStatus(HttpStatus.OK)
     public String filtrStudents(Model model, Interval datesInterval, BindingResult bindingResult) throws ParseException {
 
         LOGGER.debug("StudentController - filtrStudents - {}", datesInterval);
