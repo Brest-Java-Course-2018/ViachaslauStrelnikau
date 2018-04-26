@@ -48,9 +48,13 @@ https://travis-ci.org/Brest-Java-Course-2018/ViachaslauStrelnikau/
     
 ####6.Use embedded jetty server for WEB application test 
 
-   Set varible PORT, in rest.properties in rest-client module, equal 8088
+   Set variable PORT, in rest.properties in rest-client module, equal 8088
    
-   Set varible App, in rest.properties in rest-client module, empty
+   Set variable App, in rest.properties in rest-client module, to empty value
+   
+   mvn -pl rest-client/ clean install
+   
+   mvn -pl web-app/ clean install
    
    mvn -pl web-app/ jetty:run
 
