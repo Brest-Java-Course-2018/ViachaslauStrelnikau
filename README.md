@@ -61,3 +61,25 @@ https://travis-ci.org/Brest-Java-Course-2018/ViachaslauStrelnikau/
    Once started, the application should be available at:
 
    http://localhost:8080
+   
+   #EXTJS
+   
+   ####1)Install ruby
+   ubuntu:
+   sudo apt-get install ruby-full
+   ####2) download Sencha cmd
+   ubuntu:
+   http://cdn.sencha.com/cmd/6.6.0.13/no-jre/SenchaCmd-6.6.0.13-linux-amd64.sh.zip
+   ####3) unzip archive
+   ####4) install Sencha Cmd from unziped file
+   ####5) reboot
+   ####6) download extJS GPL SDK and unpack it
+   https://ext4all.com/ext/download/ext-6.2.0-gpl.zip
+   
+   run: sencha config --prop {path-to-sdk}\ext-6.2.0 --save
+   ####6) go to EXTjs folder of an application
+   ####7) run: sencha workspace init
+   ####8) goto Extjs/BizDash folder of an application
+   ####9) run sencha app watch
+   ####10) App will be available at http://localhost:1841/BizDash
+   ####11) App is expecting server at localhost:8088
