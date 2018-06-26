@@ -150,7 +150,7 @@ public class GroupRestControllerTest {
         mockMvc.perform(get("/groups/{id}", ID)
                 .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
-                .andExpect(status().isFound())
+                .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("groupId", Matchers.is(11)))
                 .andExpect(jsonPath("shortName", Matchers.is("T1")))
@@ -211,6 +211,6 @@ public class GroupRestControllerTest {
         mockMvc.perform(delete("/groups/{id}", ID)
                 .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
-                .andExpect(status().isFound());
+                .andExpect(status().isOk());
     }
 }
