@@ -15,6 +15,7 @@ import java.util.Collection;
 /**
  * Class GroupRestController implements group requests mapping methods.
  */
+@CrossOrigin
 @RestController
 public class GroupRestController {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -68,7 +69,7 @@ public class GroupRestController {
      * @return Group object
      */
     @GetMapping(value = "/groups/{id}")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public Group getGroupByIdrest(@PathVariable(value = "") final Integer id) {
         LOGGER.debug("GroupRestController getGroupByIdrest - {}", id);
         Group group = groupService.getGroupById(id);
@@ -108,7 +109,7 @@ public class GroupRestController {
      * @param id of record to remove
      */
     @DeleteMapping(value = "/groups/{id}")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public void removeGrouprest(@PathVariable(value = "id") final Integer id) {
         LOGGER.debug("GroupRestController removeGrouprest - {}", id);
         groupService.removeGroup(id);

@@ -16,6 +16,7 @@ import java.util.Collection;
 /**
  * Class StudentRestController implements student requests mapping methods.
  */
+@CrossOrigin
 @RestController
 public class StudentRestController {
     private static final Logger LOGGER = LogManager.getLogger();
