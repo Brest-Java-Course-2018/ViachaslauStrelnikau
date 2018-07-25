@@ -1,3 +1,18 @@
+function loadLocale() {
+    var lang = localStorage ? (localStorage.getItem('user-lang') || 'en') : 'en',
+        file = Ext.util.Format.format("resources/locale/{0}.js", lang);
+    extJsFile = Ext.util.Format.format("resources/locale/{0}.js", lang);
+    Ext.Loader.loadScript({
+            url: extJsFile, scope: this,
+            onLoad: function () {
+
+                console.log('Lang file successfully load!' + file);
+            }
+        }
+    );
+}
+
+loadLocale();
 /**
  * The main application class. An instance of this class is created by app.js when it
  * calls Ext.application(). This is the ideal place to handle application launch and

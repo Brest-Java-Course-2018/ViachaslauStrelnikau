@@ -10,11 +10,11 @@ Ext.define('BizDash.view.main.Main', {
     xtype: 'app-main',
 
     requires: [
-        'BizDash.store.LangStore',
         'BizDash.view.main.ListGroups',
         'BizDash.view.main.ListStudents',
         'BizDash.view.main.MainController',
         'BizDash.view.main.MainModel',
+        'BizDash.view.main.locale.Translation',
         'Ext.plugin.Viewport',
         'Ext.window.MessageBox'
     ],
@@ -33,9 +33,7 @@ Ext.define('BizDash.view.main.Main', {
             align: 'stretch'
         },
         title: {
-            bind: {
-                text: '{name}'
-            },
+            text: translations.logo,
             flex: 0
         },
         iconCls: 'fa-graduation-cap'
@@ -51,29 +49,7 @@ Ext.define('BizDash.view.main.Main', {
 
         items: [
             {
-                xtype: 'combobox',
-                id: 'langcombo',
-                fieldLabel: '<span style="color: rgb(255, 255, 255); padding-left: 2px;">Language</span>',
-                labelAlign: 'top',
-                editable: false,
-                displayField: 'lang',
-                store: {
-                    type: 'language'
-                },
-                queryMode: 'local',
-                listeners: {
-                    afterrender: function () {
-                        var rec = this.store.find('id', navigator.language);
-                        if (rec != -1) {
-                            console.log(this.store.getAt(rec));
-                            this.setValue(this.store.getAt(rec).get('lang'));
-                            console.log(this);
-                        }
-                        else {
-                            value : navigator.language;
-                        }
-                    }
-                }
+                xtype:'translation'
             }
         ]
     },
@@ -107,7 +83,8 @@ Ext.define('BizDash.view.main.Main', {
 
     items: [{
 
-        title: 'Groups',
+       // title: 'Groups',
+        title: translations.groups,
         iconCls: 'fa-users',
         layout: 'fit',
         // The following grid shares a store with the classic version's grid as well!
@@ -115,7 +92,8 @@ Ext.define('BizDash.view.main.Main', {
             xtype: 'listgroups'
         }]
     }, {
-        title: 'Students',
+        //title: 'Students',
+        title: translations.students,
         iconCls: 'fa-user',
         items: [{
             xtype: 'liststudents'
@@ -123,7 +101,8 @@ Ext.define('BizDash.view.main.Main', {
 
     },
         {
-            title: 'About',
+            //title: 'About',
+            title: translations.about,
             iconCls: 'fa-anchor',
             bind: {
                 html: '{loremIpsum}'
