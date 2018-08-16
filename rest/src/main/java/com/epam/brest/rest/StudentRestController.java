@@ -62,7 +62,7 @@ public class StudentRestController {
             dateFromsql = new Date(dateFrom.longValue());
         if(dateTo!=0)
             dateTosql = new Date(dateTo.longValue());
-        LOGGER.debug("StudentRestController getFilteredStudentsDTORest dateFrom - {},dateTo-", dateFromsql, dateTosql);
+        LOGGER.debug("StudentRestController getFilteredStudentsDTORest dateFrom - {},dateTo-{}", dateFromsql, dateTosql);
         Collection<StudentDTO> studentDTOS = studentService.getFilteredStudentsDTO(dateFromsql, dateTosql);
         return studentDTOS;
     }

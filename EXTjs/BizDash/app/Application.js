@@ -35,17 +35,25 @@ Ext.define('BizDash.Application', {
         // TODO: add global / shared stores here
     ],
 
-    launch: function () {
-        // TODO - Launch the application
+    init: function () {
+        this.splashscreen = Ext.getBody().mask(  translations.loadingApp, 'splashscreen' );
     },
-
-    onAppUpdate: function () {
-        Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
-            function (choice) {
-                if (choice === 'yes') {
-                    window.location.reload();
-                }
-            }
-        );
+    launch: function () {
+        this.splashscreen.fadeOut({
+            duration: 0,
+            remove:true
+        });
+        Ext.create(BizDash.view.login.Login);
+        // TODO - Launch the application
     }
+
+    // onAppUpdate: function () {
+    //     Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
+    //         function (choice) {
+    //             if (choice === 'yes') {
+    //                 window.location.reload();
+    //             }
+    //         }
+    //     );
+    // }
 });

@@ -216,6 +216,10 @@
             // Remove this entry to individually load sources from the framework.
             {
                 "path": "${framework.dir}/build/ext-all-rtl-debug.js"
+            },
+            {
+                "path": "app/CustomVTypes.js",
+                "includeInBundle": true
             }
         ],
         "requires": [

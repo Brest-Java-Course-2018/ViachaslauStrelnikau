@@ -48,6 +48,13 @@
         <!--<constructor-arg ref="studentDAO"/>-->
     </bean>
 
+    <bean id="userDAO" class="com.epam.brest.dao.UserDaoImpl">
+        <property name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+    </bean>
+    <bean id="userService" class="com.epam.brest.service.UserServiceImpl">
+        <!--<constructor-arg ref="studentDAO"/>-->
+    </bean>
+
     <!--SQL statements placeholder-->
     <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
         <property name="locations" >

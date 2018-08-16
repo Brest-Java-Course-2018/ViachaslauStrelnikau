@@ -16,3 +16,12 @@ CREATE TABLE students (
   PRIMARY KEY (studentId),
   FOREIGN KEY (groupId) REFERENCES groups(groupId)
 );
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+  userId INT NOT NULL AUTO_INCREMENT,
+  userName VARCHAR(255) NOT NULL,
+  userPassword VARCHAR(255) NOT NULL,
+  PRIMARY KEY (userId),
+  UNIQUE (userName)
+);

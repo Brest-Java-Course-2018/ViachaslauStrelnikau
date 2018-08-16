@@ -8,6 +8,7 @@
 Ext.define('BizDash.view.main.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'app-main',
+    plugins: 'viewport',
 
     requires: [
         'BizDash.view.main.ListGroups',

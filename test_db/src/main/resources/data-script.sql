@@ -18,3 +18,9 @@ VALUES ('Semen Semenov', '1987-04-02',9.3,3);
 INSERT INTO students (studentName, studentBirth,studentAvgMarks,groupId)
 VALUES ('Kostia Kostin', '1983-07-22',7.3,3);
 
+INSERT INTO users (userName, userPassword)
+VALUES ('loiane', '$2a$10$2a4e8803c91cc5edca222evoNPfhdRyGEG9RZcg7.qGqTjuCgXKda');
+INSERT INTO users (userName, userPassword)
+VALUES ('Stepan', 'pass');
+INSERT INTO users (userName, userPassword)
+VALUES ('Fedor', 'pass');

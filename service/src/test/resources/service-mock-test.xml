@@ -10,12 +10,19 @@
     <bean id="mockStudentDao" class="org.easymock.EasyMock" factory-method="createMock">
         <constructor-arg value="com.epam.brest.dao.StudentDao"/>
     </bean>
+    <bean id="mockUserDao" class="org.easymock.EasyMock" factory-method="createMock">
+        <constructor-arg value="com.epam.brest.dao.UserDao"/>
+    </bean>
 
     <bean id="groupService" class="com.epam.brest.service.GroupServiceImpl">
         <!--<constructor-arg ref="mockGroupDao"/>-->
     </bean>
 
     <bean id="studentService" class="com.epam.brest.service.StudentServiceImpl">
+        <!--<constructor-arg ref="mockStudentDao"/>-->
+    </bean>
+
+    <bean id="userService" class="com.epam.brest.service.UserServiceImpl">
         <!--<constructor-arg ref="mockStudentDao"/>-->
     </bean>
 </beans>
