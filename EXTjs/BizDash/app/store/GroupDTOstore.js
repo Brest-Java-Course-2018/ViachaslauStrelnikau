@@ -13,6 +13,7 @@ Ext.define('BizDash.store.GroupDTOstore', {
     model: 'BizDash.model.GroupDTO',
     proxy: {
         type: 'rest',
+        rootProperty: 'data',
         url: 'http://127.0.0.1:8088/groups'
     }
 });

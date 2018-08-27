@@ -39,6 +39,11 @@ Ext.define('BizDash.model.Group', {
             type: 'json',
             clientIdProperty: 'groupId',
             writeAllFields:true
+        },
+        listeners: {
+            exception: function(proxy, response, operation){ //#6
+                Packt.util.Util.showErrorMsg(response.responseText);
+            }
         }
     }
 

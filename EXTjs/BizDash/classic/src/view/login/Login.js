@@ -7,7 +7,8 @@ Ext.define('BizDash.view.login.Login', {
     xtype: 'login-dialog',             // #3
 
     requires: [
-        'BizDash.view.login.LoginController'
+        'BizDash.view.login.LoginController',
+        'BizDash.view.main.locale.Translation'
     ],
     controller: 'login',
 
@@ -18,7 +19,7 @@ Ext.define('BizDash.view.login.Login', {
         type: 'fit'                    // #7
     },
     iconCls: 'fa fa-key fa-lg',        // #8
-    title: 'Login',                    // #9
+    title: translations.login,                    // #9
     closeAction: 'hide',               // #10
     closable: false,                   // #11
     draggable: true,                  // #12
@@ -32,7 +33,7 @@ Ext.define('BizDash.view.login.Login', {
             defaults: {             //#16
                 xtype: 'textfield', //#17
                 anchor: '100%',     //#18
-                labelWidth: 60,      //#19
+                labelWidth: 100,      //#19
                 allowBlank: false, // #21
                 vtype: 'alphanum', // #22
                 minLength: 3,      // #23
@@ -45,7 +46,7 @@ Ext.define('BizDash.view.login.Login', {
             items: [
                 {
                     name: 'user',
-                    fieldLabel: 'User',
+                    fieldLabel: translations.user,
                     id: 'user',
                     maxLength: 25,
                     value: "loiane",
@@ -53,10 +54,10 @@ Ext.define('BizDash.view.login.Login', {
                 {
                     inputType: 'password',
                     name: 'password',
-                    fieldLabel: 'password',
+                    fieldLabel: translations.password,
                     id: 'password',
                     maxLength: 15,
-                    value: 'Packt123@1',
+                    value: 'Packt123@',
                     vtype: 'customPass'
                 }
             ],
@@ -65,11 +66,12 @@ Ext.define('BizDash.view.login.Login', {
                     xtype: 'toolbar',
                     dock: 'bottom',
                     items: [
+                        {xtype:'translation'},
                         {xtype: 'tbfill'},
                         {
                             xtype: 'button', //#26
                             iconCls: 'fa fa-times fa-lg',
-                            text: 'Cancel',
+                            text: translations.cancel,
                             listeners: {
                                 click: 'onButtonClickCancel'
                             }
@@ -78,7 +80,7 @@ Ext.define('BizDash.view.login.Login', {
                             xtype: 'button', //#27
                             formBind: true,  //#28
                             iconCls: 'fa fa-sign-in fa-lg',
-                            text: 'Submit',
+                            text: translations.submit,
                             listeners: {
                                 click: 'onButtonClickSubmit'
                             }

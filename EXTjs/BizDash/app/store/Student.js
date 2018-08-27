@@ -23,6 +23,11 @@ Ext.define('BizDash.store.Student', {
         },
         writer: {
             type: 'json'
+        },
+        listeners: {
+            exception: function(proxy, response, operation){ //#6
+                Packt.util.Util.showErrorMsg(response.responseText);
+            }
         }
     }
 });

@@ -13,7 +13,7 @@ Ext.define('BizDash.model.GroupDTO', {
         { name: 'fullName',      type: 'string' },
         { name: 'groupAvgMarks',    type: 'string' }
 
-    ],
+    ]
 
     /*
     Uncomment to add validation rules

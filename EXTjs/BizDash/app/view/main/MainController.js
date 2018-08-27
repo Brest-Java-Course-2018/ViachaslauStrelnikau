@@ -11,5 +11,9 @@ Ext.define('BizDash.view.main.MainController', {
 
     onClickButton:function () {
         console.log('Button clicked');
+    },
+    
+    onLogout:function () {
+        window.location.reload();
     }
 });

@@ -37,7 +37,20 @@ Ext.define('BizDash.view.main.Main', {
             text: translations.logo,
             flex: 0
         },
-        iconCls: 'fa-graduation-cap'
+        iconCls: 'fa-graduation-cap',
+        items: [
+            {
+                xtype:'button',
+                itemId:'logout',
+                text:translations.logout,
+                reference:'logout',
+                iconCls:'fa fa-sign-out fa-lg buttonIcon',
+                listeners:{
+                    click:'onLogout'
+                }
+
+            }
+        ]
     },
 
     tabBar: {

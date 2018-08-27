@@ -10,10 +10,7 @@ Ext.define('BizDash.view.login.CapsLockTooltip', {
     dismissDelay: 0,
     autoHide: false,
 
-    title: '<div class="fa fa-exclamation-triangle"> Caps Lock is On</div>',
-    html: '<div>Having Caps Lock on may cause you to enter ' +
-    'your password incorrectly.</div><br/>' +
-    '<div>You should press Caps Lock to turn it off ' +
-    'before entering your password.</div>'
+    title: '<div class="fa fa-exclamation-triangle">'+ translations.capsLockTitle+'</div>',
+    html:  translations.capsLockMsg1+translations.capsLockMsg2+translations.capsLockMsg3+translations.capsLockMsg4
 
 });
