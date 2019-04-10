@@ -16,4 +16,5 @@ translations = {
     capsLockMsg3: 'You should press Caps Lock to turn it ',
     capsLockMsg4: 'off before entering your password.',
     passworderror:'Not a valid password.',
+    menu:'Menu'
 };

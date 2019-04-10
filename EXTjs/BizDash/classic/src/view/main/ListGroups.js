@@ -26,12 +26,14 @@ Ext.define('BizDash.view.main.ListGroups', {
     }],
     columnLines: true,
 
-
     columns: [
         {text: 'Group Id', dataIndex: 'groupId', align: 'right'},
         {text: 'Full Name', dataIndex: 'fullName', flex: 1, align: 'right'},
         {
-            text: 'Group Avg Marks', dataIndex: 'groupAvgMarks', flex: 1, align: 'right',
+            text: 'Group Avg Marks',
+            dataIndex: 'groupAvgMarks',
+            flex: 1,
+            align: 'right',
             renderer: function (val) {
                 if (val == -1) return 0;
                 else  return val;

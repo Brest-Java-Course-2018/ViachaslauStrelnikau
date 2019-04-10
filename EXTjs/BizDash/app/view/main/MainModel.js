@@ -9,7 +9,7 @@ Ext.define('BizDash.view.main.MainModel', {
 
     data: {
         name: 'Students,<p>Groups,<p>Avg Marks',
-        loremIpsum: 'Group User managment test project.'
+        about: 'Group User managment test project.'
     }
     //TODO - add data, formulas and/or methods to support your view
 });

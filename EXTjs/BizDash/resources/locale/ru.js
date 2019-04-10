@@ -15,5 +15,6 @@ translations = {
     capsLockMsg2: 'некоректному вводу пароля.',
     capsLockMsg3: 'Следует отключить Caps Lock  ',
     capsLockMsg4: 'перед вводом пароля.',
-    passworderror: 'не четкий пароль'
+    passworderror: 'не четкий пароль',
+    menu:'Меню'
 };

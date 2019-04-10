@@ -7,8 +7,8 @@
  */
 Ext.define('BizDash.view.main.Main', {
     extend: 'Ext.tab.Panel',
-    xtype: 'app-main',
-    plugins: 'viewport',
+    xtype: 'main',
+    // plugins: 'viewport',
 
     requires: [
         'BizDash.view.main.ListGroups',
@@ -40,13 +40,13 @@ Ext.define('BizDash.view.main.Main', {
         iconCls: 'fa-graduation-cap',
         items: [
             {
-                xtype:'button',
-                itemId:'logout',
-                text:translations.logout,
-                reference:'logout',
-                iconCls:'fa fa-sign-out fa-lg buttonIcon',
-                listeners:{
-                    click:'onLogout'
+                xtype: 'button',
+                itemId: 'logout',
+                text: translations.logout,
+                reference: 'logout',
+                iconCls: 'fa fa-sign-out fa-lg buttonIcon',
+                listeners: {
+                    click: 'onLogout'
                 }
 
             }
@@ -63,7 +63,7 @@ Ext.define('BizDash.view.main.Main', {
 
         items: [
             {
-                xtype:'translation'
+                xtype: 'translation'
             }
         ]
     },
@@ -97,7 +97,6 @@ Ext.define('BizDash.view.main.Main', {
 
     items: [{
 
-       // title: 'Groups',
         title: translations.groups,
         iconCls: 'fa-users',
         layout: 'fit',
@@ -106,7 +105,6 @@ Ext.define('BizDash.view.main.Main', {
             xtype: 'listgroups'
         }]
     }, {
-        //title: 'Students',
         title: translations.students,
         iconCls: 'fa-user',
         items: [{
@@ -115,11 +113,10 @@ Ext.define('BizDash.view.main.Main', {
 
     },
         {
-            //title: 'About',
             title: translations.about,
             iconCls: 'fa-anchor',
             bind: {
-                html: '{loremIpsum}'
+                html: '{about}'
             }
         }
     ]

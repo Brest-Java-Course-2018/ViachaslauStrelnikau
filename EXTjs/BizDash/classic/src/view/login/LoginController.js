@@ -6,9 +6,10 @@ Ext.define('BizDash.view.login.LoginController', {
     alias: 'controller.login',
 
     requires: [
+        'BizDash.util.SessionMonitor',
         'BizDash.util.Util',
         'BizDash.view.login.CapsLockTooltip',
-        'BizDash.view.main.Main',
+        'BizDash.view.main.MainMenu',
         'Ext.form.action.Action'
     ],
     onTextFieldKeyPress: function (field, e, options) {
@@ -88,7 +89,8 @@ Ext.define('BizDash.view.login.LoginController', {
         var view = this.getView();
         view.unmask();
         view.close();
-        Ext.create('BizDash.view.main.Main');
+        Ext.create('BizDash.view.main.MainMenu');
+        BizDash.util.SessionMonitor.start();
 
     }, // #10
 
