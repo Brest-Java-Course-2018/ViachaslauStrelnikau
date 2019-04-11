@@ -7,7 +7,7 @@ import { GroupsComponent } from './components/groups/groups.component';
 import {HttpClientModule} from "@angular/common/http";
 import {GroupServiceService} from "./service/group-service.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule, MatIconModule, MatListModule, MatToolbarModule} from "@angular/material";
+import {MaterialModule} from "../../projects/material/src/public_api";
 
 @NgModule({
   declarations: [
@@ -15,11 +15,8 @@ import {MatCardModule, MatIconModule, MatListModule, MatToolbarModule} from "@an
     GroupsComponent
   ],
   imports: [
-    MatCardModule,
-    MatListModule,
-    MatIconModule,
+    MaterialModule,
     BrowserModule,
-    MatToolbarModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule

@@ -20,9 +20,11 @@
     ],
     "paths": {
       "material": [
+        "dist/material",
         "dist/material"
       ],
       "material/*": [
+        "dist/material/*",
         "dist/material/*"
       ]
     }

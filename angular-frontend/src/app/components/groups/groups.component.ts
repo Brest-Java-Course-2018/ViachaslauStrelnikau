@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GroupServiceService} from "../../service/group-service.service";
 import {GroupDto} from "../../model/group-dto";
-import {Observable} from "rxjs";
+import {MatTableDataSource} from "@angular/material";
 
 @Component({
   selector: 'app-groups',
@@ -10,8 +10,11 @@ import {Observable} from "rxjs";
 })
 export class GroupsComponent implements OnInit {
   groups:GroupDto[]=[];
+  dataSource = new MatTableDataSource<GroupDto>(this.groups);
+  displayedColumns: string[] = ['groupId', 'shortName', 'fullName', 'groupAvgMarks'];
   constructor(private groupService:GroupServiceService) {}
 
+  title='Student management app';
   ngOnInit() {
     this.getGroups();
   }
@@ -21,6 +24,8 @@ export class GroupsComponent implements OnInit {
 
   this.groupService.getGroups().subscribe(data => {
     this.groups = data;
+    this.dataSource= new MatTableDataSource<GroupDto>(this.groups);
+    console.log(this.displayedColumns);
   });
 
   }
