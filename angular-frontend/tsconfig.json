@@ -26,6 +26,12 @@
       "material/*": [
         "dist/material/*",
         "dist/material/*"
+      ],
+      "components": [
+        "dist/components"
+      ],
+      "components/*": [
+        "dist/components/*"
       ]
     }
   }
