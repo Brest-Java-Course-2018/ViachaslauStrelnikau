@@ -40,7 +40,9 @@ export class GroupsComponent implements OnInit {
 
       if(result)
       {
-        console.log('DELETE!!!!!!!!!'+input);
+        this.groupService.removeGroup(input).subscribe(response=>{
+          this.getGroups();
+        });
       }
     });
   }
