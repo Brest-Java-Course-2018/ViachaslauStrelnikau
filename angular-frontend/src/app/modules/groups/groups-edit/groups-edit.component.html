@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Short Name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Full Name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Input">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="Description" matTextareaAutosize matAutosizeMinRows=5 matAutosizeMaxRows=10></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onNoClick()">OK</button>
+</div>
