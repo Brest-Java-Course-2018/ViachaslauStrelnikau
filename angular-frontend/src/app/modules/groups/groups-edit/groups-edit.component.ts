@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {Group} from "../../../model/group";
 
 @Component({
   selector: 'app-groups-edit',
@@ -8,19 +9,17 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 })
 export class GroupsEditComponent implements OnInit {
 
-
   title;
   constructor(
     public dialogRef: MatDialogRef<GroupsEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:number) {
+    @Inject(MAT_DIALOG_DATA) public data: Group) {
   }
-
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   ngOnInit() {
-    this.title=this.data?'Edit '+this.data+' record':'Add record';
+    this.title=this.data.groupId?'Edit '+this.data.groupId+' record':'Add record';
   }
 
 }

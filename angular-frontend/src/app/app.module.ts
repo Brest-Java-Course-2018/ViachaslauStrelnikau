@@ -12,6 +12,7 @@ import {ComponentsModule} from "../../projects/components/src/lib/components.mod
 import { MDirective } from './m.directive';
 import {GroupsListComponent} from "./modules/groups/groups-list/groups-list.component";
 import {GroupsEditComponent} from "./modules/groups/groups-edit/groups-edit.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,9 +28,11 @@ import {GroupsEditComponent} from "./modules/groups/groups-edit/groups-edit.comp
     MaterialModule,
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule
   ],
   providers: [GroupServiceService],
   bootstrap: [AppComponent]
