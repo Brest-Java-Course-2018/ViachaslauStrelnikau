@@ -21,16 +21,17 @@ export class GroupsListComponent implements OnInit {
   }
 
   title = 'Student management app';
-
+  loading =false;
   ngOnInit() {
     this.getGroups();
   }
 
-
   getGroups() {
+    this.loading=true;
     this.groupService.getGroups().subscribe(data => {
       this.groups = data;
-    });
+      this.loading=false;
+    },error1 => this.handleError(error1));
   }
 
   openDeleteDialog(input: string) {
@@ -41,6 +42,7 @@ export class GroupsListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
       if (result) {
+        this.loading =true;
         this.groupService.removeGroup(input).subscribe(response => {
           this.getGroups();
         }, error1 => {
@@ -51,10 +53,13 @@ export class GroupsListComponent implements OnInit {
   }
 
   openEditDialog(input: string) {
+
     let groupModel: Group;
     if (input) {
+      this.loading=true;
       this.groupService.getGroup(input).subscribe(response => {
         groupModel = response;
+        this.loading=false;
         const dialogRef = this.deleteDialog.open(GroupsEditComponent, {
           data: groupModel,
           width: '250px',
@@ -107,7 +112,7 @@ export class GroupsListComponent implements OnInit {
     else {
       errorMessage = `Backend returned code ${err.status}, body was: ${err.error}`;
     }
-
+    this.loading=false;
     console.error(errorMessage);
   }
 
