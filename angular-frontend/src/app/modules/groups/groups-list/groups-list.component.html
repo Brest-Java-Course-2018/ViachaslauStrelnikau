@@ -2,8 +2,8 @@
   <img src="../../../assets/icon.svg" alt="Logo">
   {{title}}
   <!--<button class="btn btn-block btn-outline-primary" (click)="changeCategory()">Home</button>-->
-  <button mat-button>Groups</button>
-  <button mat-button>Students</button>
+  <button mat-button (click)="getGroups()">Groups</button>
+  <nav><button class="nav-link" mat-button [routerLink]=studentspath routerLinkActive="active">Students</button></nav>
 </mat-toolbar>
 <mat-toolbar class="toolbar-second-row" color="accent">
   <button mat-button (click)="openEditDialog()">

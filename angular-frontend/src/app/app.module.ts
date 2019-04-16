@@ -7,34 +7,35 @@ import {HttpClientModule} from "@angular/common/http";
 import {GroupServiceService} from "./service/group-service.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from "../../projects/material/src/public_api";
-import {DeleteDialogComponent} from "../../projects/components/src/lib/delete-dialog/delete-dialog.component";
 import {ComponentsModule} from "../../projects/components/src/lib/components.module";
 import { MDirective } from './m.directive';
-import {GroupsListComponent} from "./modules/groups/groups-list/groups-list.component";
-import {GroupsEditComponent} from "./modules/groups/groups-edit/groups-edit.component";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {GroupsModule} from "./modules/groups/groups.module";
+import {StudentsModule} from "./modules/students/students.module";
+import {ReactiveFormsModule} from "@angular/forms";
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material";
+import {MomentDateAdapter} from "@angular/material-moment-adapter";
+import {MY_FORMATS} from "./model/formats";
 @NgModule({
   declarations: [
     AppComponent,
-    MDirective,
-    GroupsListComponent,
-    GroupsEditComponent
+    MDirective
   ],
-  entryComponents: [
-    DeleteDialogComponent,
-    GroupsEditComponent
-  ],
+
   imports: [
     MaterialModule,
+    GroupsModule,
+    StudentsModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ComponentsModule,
     ReactiveFormsModule
   ],
-  providers: [GroupServiceService],
+  providers: [GroupServiceService,
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

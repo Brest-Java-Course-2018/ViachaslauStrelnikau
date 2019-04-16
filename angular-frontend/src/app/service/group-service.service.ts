@@ -16,6 +16,7 @@ export class GroupServiceService {
     let result=this.httpClient.get(BASE_URL+num);
     return result as Observable<Group>
   }
+
   getGroups(): Observable<GroupDto[]>
   {
     let result=this.httpClient.get(BASE_URL);

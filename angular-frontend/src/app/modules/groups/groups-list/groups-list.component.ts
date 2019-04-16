@@ -21,6 +21,7 @@ export class GroupsListComponent implements OnInit {
   }
 
   title = 'Student management app';
+  studentspath='/students';
   loading =false;
   ngOnInit() {
     this.getGroups();
@@ -115,5 +116,4 @@ export class GroupsListComponent implements OnInit {
     this.loading=false;
     console.error(errorMessage);
   }
-
 }
