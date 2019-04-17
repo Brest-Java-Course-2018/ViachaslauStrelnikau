@@ -3,7 +3,7 @@
 <div mat-dialog-content>
   <mat-form-field>
     <input matInput id="shortName" name="shortName"
-           required minlength="4" maxlength="50"
+           required minlength="1" maxlength="50"
            placeholder="Short Name"  [(ngModel)]="data.shortName" #shortName="ngModel">
     <div *ngIf="shortName.invalid && (shortName.dirty || shortName.touched)"
          class="alert alert-danger">
@@ -11,7 +11,7 @@
         field is required.
       </div>
       <div *ngIf="shortName.errors.minlength">
-        Name must be at least 4 characters long.
+        Name must be at least 1 character long.
       </div>
       <div *ngIf="shortName.errors.maxlength">
         Name must less than 50 characters long.
@@ -20,7 +20,7 @@
   </mat-form-field>
   <mat-form-field>
     <input matInput id="fullName" name="fullName"
-           required minlength="4" maxlength="255"
+           required minlength="1" maxlength="255"
            placeholder="Full Name" [(ngModel)]="data.fullName" #fullName="ngModel">
     <div *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)"
          class="alert alert-danger">
@@ -28,7 +28,7 @@
         field is required.
       </div>
       <div *ngIf="fullName.errors.minlength">
-        Name must be at least 4 characters long.
+        Name must be at least 1 character long.
       </div>
       <div *ngIf="fullName.errors.maxlength">
         Name must less than 255 characters long.

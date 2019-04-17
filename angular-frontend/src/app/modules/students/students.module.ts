@@ -5,6 +5,8 @@ import { StudentsEditComponent } from './students-edit/students-edit.component';
 import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {MaterialModule} from "../../../../projects/material/src/public_api";
+import {DeleteDialogComponent} from "../../../../projects/components/src/lib/delete-dialog/delete-dialog.component";
+import {ErrorDialogComponent} from "../../../../projects/components/src/lib/error-dialog/error-dialog.component";
 
 
 @NgModule({
@@ -14,6 +16,10 @@ import {MaterialModule} from "../../../../projects/material/src/public_api";
     MaterialModule,
     FormsModule,
     RouterModule
-  ]
+  ],
+  entryComponents: [
+    DeleteDialogComponent,
+  ErrorDialogComponent,
+  StudentsEditComponent]
 })
 export class StudentsModule { }

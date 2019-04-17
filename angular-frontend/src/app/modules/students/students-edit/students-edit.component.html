@@ -1,3 +1,68 @@
-<p>
-  students-edit works!
-</p>
+<form #myForm="ngForm">
+  <h1 mat-dialog-title>{{title}}</h1>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput id="studentName" name="studentName"
+             required minlength="1" maxlength="50"
+             placeholder="Students name"  [(ngModel)]="data.studentName" #studentName="ngModel">
+      <div *ngIf="shortName.invalid && (studentName.dirty || studentName.touched)"
+           class="alert alert-danger">
+        <div *ngIf="studentName.errors.required">
+          field is required.
+        </div>
+        <div *ngIf="studentName.errors.minlength">
+          Name must be at least 1 character long.
+        </div>
+        <div *ngIf="studentName.errors.maxlength">
+          Name must less than 50 characters long.
+        </div>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput id="fullName" name="fullName"
+             required minlength="1" maxlength="50"
+             placeholder="Students full name"  [(ngModel)]="data.fullName" #fullName="ngModel">
+      <div *ngIf="shortName.invalid && (fullName.dirty || fullName.touched)"
+           class="alert alert-danger">
+        <div *ngIf="fullName.errors.required">
+          field is required.
+        </div>
+        <div *ngIf="fullName.errors.minlength">
+          Name must be at least 1 character long.
+        </div>
+        <div *ngIf="fullName.errors.maxlength">
+          Name must less than 255 characters long.
+        </div>
+      </div>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput id="studentAvgMarks" name="studentAvgMarks"
+             placeholder="Average mark"  [(ngModel)]="data.studentAvgMarks">
+    </mat-form-field>
+
+
+    <mat-form-field>
+    <textarea matInput id="description" name="description"
+              required minlength="4" maxlength="255"
+              placeholder="Description" matTextareaAutosize matAutosizeMinRows=5 matAutosizeMaxRows=10 [(ngModel)]="data.description" #description="ngModel"></textarea>
+      <div *ngIf="description.invalid && (description.dirty || description.touched)"
+           class="alert alert-danger">
+        <div *ngIf="description.errors.required">
+          field is required.
+        </div>
+        <div *ngIf="description.errors.minlength">
+          Name must be at least 4 characters long.
+        </div>
+        <div *ngIf="description.errors.maxlength">
+          Name must less than 255 characters long.
+        </div>
+      </div>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button  (click)="onNoClick()">Cancel</button>
+    <button  type="submit" mat-button [mat-dialog-close]=data cdkFocusInitial [disabled]="!myForm.valid">Ok</button>
+  </div>
+</form>

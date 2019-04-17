@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
-import {GroupServiceService} from "./service/group-service.service";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from "../../projects/material/src/public_api";
 import {ComponentsModule} from "../../projects/components/src/lib/components.module";
@@ -32,7 +31,7 @@ import {MY_FORMATS} from "./model/formats";
     ComponentsModule,
     ReactiveFormsModule
   ],
-  providers: [GroupServiceService,
+  providers: [
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
   ],

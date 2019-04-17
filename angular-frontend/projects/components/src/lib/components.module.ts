@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { ComponentsComponent } from './components.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import {MaterialModule} from "../../../material/src/lib/material.module";
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 
 @NgModule({
-  declarations: [ComponentsComponent, DeleteDialogComponent],
+  declarations: [ DeleteDialogComponent, ErrorDialogComponent],
   imports: [MaterialModule
   ],
-  exports: [ComponentsComponent,DeleteDialogComponent]
+  exports: [DeleteDialogComponent]
 })
 export class ComponentsModule { }

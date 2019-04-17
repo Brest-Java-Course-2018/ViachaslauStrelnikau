@@ -16,13 +16,15 @@ export class GroupsListComponent implements OnInit {
 
   groups: GroupDto[] = [];
   displayedColumns: string[] = ['groupId', 'shortName', 'fullName', 'groupAvgMarks', 'star'];
+  title = 'Student management app';
+  studentspath='/students';
+  groupspath='/groups';
+  loading =false;
 
   constructor(private groupService: GroupServiceService, public deleteDialog: MatDialog) {
   }
 
-  title = 'Student management app';
-  studentspath='/students';
-  loading =false;
+
   ngOnInit() {
     this.getGroups();
   }

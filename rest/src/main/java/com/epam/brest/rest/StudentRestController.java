@@ -74,7 +74,7 @@ public class StudentRestController {
      * @return student object
      */
     @GetMapping(value = "/students/{id}")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     Student getStudentByIdRest(@PathVariable(value = "id") final Integer id) {
         LOGGER.debug("StudentRestController getStudentByIdRest - {}", id);
         Student student = studentService.getStudentById(id);
@@ -114,7 +114,7 @@ public class StudentRestController {
      * @param id of record to remove
      */
     @DeleteMapping(value = "/students/{id}")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public void removeStudent(@PathVariable(value = "id") final Integer id) {
         LOGGER.debug("StudentRestController removeStudent - {}", id);
         studentService.removeStudent(id);

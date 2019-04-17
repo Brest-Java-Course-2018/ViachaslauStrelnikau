@@ -1,9 +1,8 @@
 <mat-toolbar color="primary" class="mat-elevation-z4">
-  <img src="../../../assets/icon.svg" alt="Logo">
+  <img src="/angular-frontend/src/assets/icon.svg" alt="Logo">
   {{title}}
-  <!--<button class="btn btn-block btn-outline-primary" (click)="changeCategory()">Home</button>-->
-  <button mat-button (click)="getGroups()">Groups</button>
-  <nav><button class="nav-link" mat-button [routerLink]=studentspath routerLinkActive="active">Students</button></nav>
+  <button mat-button [routerLink]=groupspath routerLinkActive="active">Groups</button>
+  <button class="nav-link" mat-button [routerLink]=studentspath routerLinkActive="active">Students</button>
 </mat-toolbar>
 <mat-toolbar class="toolbar-second-row" color="accent">
   <button mat-button (click)="openEditDialog()">
