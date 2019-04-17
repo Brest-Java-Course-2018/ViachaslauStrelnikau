@@ -7,6 +7,7 @@ import {MatDialog, MatInput} from "@angular/material";
 import {ErrorDialogComponent} from "../../../../../projects/components/src/lib/error-dialog/error-dialog.component";
 import {Student} from "../../../model/student";
 import {StudentsEditComponent} from "../students-edit/students-edit.component";
+import {GroupDtoLite} from "../../../model/group-dto-lite";
 
 @Component({
   selector: 'app-students-list',
@@ -17,6 +18,7 @@ export class StudentsListComponent implements OnInit {
 
 
   students: StudentDto[] = [];
+
   displayedColumns: string[] = ['studentId', 'studentName', 'studentBirth', 'studentAvgMarks', 'fullName', 'star'];
   loading = false;
   studentspath = '/students';
@@ -31,7 +33,10 @@ export class StudentsListComponent implements OnInit {
     read: MatInput
   }) toInput: MatInput;
 
-  constructor(private studentsService: StudentsService, public deleteDialog: MatDialog, public errorDialog: MatDialog) {
+  constructor(private studentsService: StudentsService,
+
+              public deleteDialog: MatDialog,
+              public errorDialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -47,6 +52,8 @@ export class StudentsListComponent implements OnInit {
     });
     this.loading = false;
   }
+
+
 
   openDeleteDialog(input: string) {
     this.loading = true;
@@ -70,10 +77,11 @@ export class StudentsListComponent implements OnInit {
     this.loading = true;
     this.studentsService.getStudent(input).subscribe(response => {
       studentModel = response;
+      console.log(studentModel);
       this.loading = false;
       const dialogRef = this.deleteDialog.open(StudentsEditComponent, {
         data: studentModel,
-        width: '250px',
+        width: '300px',
       });
       dialogRef.afterClosed().subscribe(result => {
         studentModel = result;
@@ -96,20 +104,16 @@ export class StudentsListComponent implements OnInit {
         data: "Input date interval",
         width: '300px',
       });
-    }
-    else
-    {
-      let strDate1='0';
-      let strDate2='/0';
-      if (typeof this.fromInput.value != 'undefined'&& this.fromInput.value!=null)
-      {
-        strDate1=this.fromInput.value.valueOf();
+    } else {
+      let strDate1 = '0';
+      let strDate2 = '/0';
+      if (typeof this.fromInput.value != 'undefined' && this.fromInput.value != null) {
+        strDate1 = this.fromInput.value.valueOf();
       }
-      if (typeof this.toInput.value != 'undefined' && this.toInput.value !=null)
-      {
-        strDate2='/'+this.toInput.value.valueOf();
+      if (typeof this.toInput.value != 'undefined' && this.toInput.value != null) {
+        strDate2 = '/' + this.toInput.value.valueOf();
       }
-      this.studentsService.getFilteredStudents(strDate1,strDate2).subscribe(data => {
+      this.studentsService.getFilteredStudents(strDate1, strDate2).subscribe(data => {
         this.students = data;
       }, error1 => {
         this.errorDialogHandle(error1)
@@ -127,7 +131,7 @@ export class StudentsListComponent implements OnInit {
   errorDialogHandle(error: HttpErrorResponse) {
     this.loading = false;
     console.error(error.message);
-    this.deleteDialog.open(ErrorDialogComponent, {
+    this.errorDialog.open(ErrorDialogComponent, {
       data: error.message,
       width: '300px',
     });

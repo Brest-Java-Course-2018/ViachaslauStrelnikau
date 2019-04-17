@@ -3,7 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {GroupDto} from "../model/group-dto";
 import {Group} from "../model/group";
+import {GroupDtoLite} from "../model/group-dto-lite";
 const BASE_URL='http://127.0.0.1:8088/groups/';
+const BASE_URL_DTO='http://127.0.0.1:8088/groupsdto/';
 @Injectable({
   providedIn: 'root'
 })
@@ -34,6 +36,12 @@ export class GroupServiceService {
   updateGroup(group:Group)
   {
     return this.httpClient.post(BASE_URL+group.groupId,group);
+  }
+
+  getGroupsList():Observable<GroupDtoLite[]>
+  {
+    let result=this.httpClient.get(BASE_URL_DTO);
+    return result as Observable<GroupDtoLite[]>
   }
 
 }

@@ -1,14 +1,15 @@
 <mat-toolbar color="primary" class="mat-elevation-z4">
-  <img src="/angular-frontend/src/assets/icon.svg" alt="Logo">
+  <img src="../../../assets/icon.svg" alt="Logo">
   {{title}}
   <button mat-button [routerLink]=groupspath routerLinkActive="active">Groups</button>
   <button class="nav-link" mat-button [routerLink]=studentspath routerLinkActive="active">Students</button>
 </mat-toolbar>
-<mat-toolbar class="toolbar-second-row" color="accent">
+<mat-toolbar class="toolbar-second-row"   color="accent" >
   <button mat-button (click)="openEditDialog()">
     <mat-icon>plus_one</mat-icon>
     ADD
   </button>
+  <span class="fill-remaining-space"></span>
   <mat-form-field color="accent">
     <mat-label>Date from</mat-label>
     <input #fromInput matInput [matDatepicker]="picker1" disabled>
