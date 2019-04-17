@@ -30,10 +30,16 @@ export class StudentsService {
     return this.httpClient.delete(BASE_URL+num);
   }
 
-  updateGroup(student:Student)
+  updateStudent(student:Student)
   {
     return this.httpClient.post(BASE_URL+student.studentId,student);
   }
+
+  addStudent(student:Student)
+  {
+    return this.httpClient.post(BASE_URL,student);
+  }
+
 
   getFilteredStudents(dateFrom:string,dateTo:string): Observable<StudentDto[]>
   {

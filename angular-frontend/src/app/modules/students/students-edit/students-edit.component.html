@@ -21,20 +21,21 @@
 
     <mat-form-field color="accent">
       <mat-label>Date of birth</mat-label>
-      <input   matInput [matDatepicker]="picker1" [(ngModel)]="data.studentBirth" id="studentBirth" name="studentBirth" disabled required>
+      <input   matInput [matDatepicker]="picker1" [(ngModel)]="data.studentBirth" id="studentBirth" name="studentBirth" readonly="true"  required>
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+      <mat-datepicker #picker1 disabled="false" required></mat-datepicker>
     </mat-form-field>
 
 
     <mat-form-field>
-      <input matInput id="studentAvgMarks" name="studentAvgMarks"
+      <input matInput type="number" id="studentAvgMarks" name="studentAvgMarks"
+             required  min=0 max=10
              placeholder="Average mark"  [(ngModel)]="data.studentAvgMarks">
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Favorite car</mat-label>
-      <select matNativeControl [(ngModel)]="data.groupId" name="car">
+      <mat-label>Group</mat-label>
+      <select matNativeControl [(ngModel)]="data.groupId" name="car" required>
         <option value="" selected></option>
         <option *ngFor="let group of groupsList" [value]="group.groupId">
           {{group.fullName}}

@@ -7,7 +7,6 @@ import {MatDialog, MatInput} from "@angular/material";
 import {ErrorDialogComponent} from "../../../../../projects/components/src/lib/error-dialog/error-dialog.component";
 import {Student} from "../../../model/student";
 import {StudentsEditComponent} from "../students-edit/students-edit.component";
-import {GroupDtoLite} from "../../../model/group-dto-lite";
 
 @Component({
   selector: 'app-students-list',
@@ -74,28 +73,51 @@ export class StudentsListComponent implements OnInit {
 
   openEditDialog(input: string) {
     let studentModel: Student;
-    this.loading = true;
-    this.studentsService.getStudent(input).subscribe(response => {
-      studentModel = response;
-      console.log(studentModel);
-      this.loading = false;
+
+    if (input) {
+      this.loading = true;
+      this.studentsService.getStudent(input).subscribe(response => {
+        studentModel = response;
+        console.log(studentModel);
+        this.loading = false;
+        const dialogRef = this.deleteDialog.open(StudentsEditComponent, {
+          data: studentModel,
+          width: '300px',
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          studentModel = result;
+          if (studentModel && studentModel.studentId) {
+            this.studentsService.updateStudent(studentModel).subscribe(response => {
+              this.getStudents();
+            }, error1 => {
+              this.errorDialogHandle(error1);
+            });
+          }
+        });
+      }, error1 => {
+        this.errorDialogHandle(error1);
+      });
+    }
+    else
+    {
       const dialogRef = this.deleteDialog.open(StudentsEditComponent, {
-        data: studentModel,
+        data: {},
         width: '300px',
       });
       dialogRef.afterClosed().subscribe(result => {
         studentModel = result;
-        if (studentModel && studentModel.studentId) {
-          this.studentsService.updateGroup(studentModel).subscribe(response => {
+
+        if (studentModel && !studentModel.studentId) {
+          this.studentsService.addStudent(studentModel).subscribe(response => {
             this.getStudents();
           }, error1 => {
             this.errorDialogHandle(error1);
           });
         }
+      }, error1 => {
+        this.errorDialogHandle(error1);
       });
-    }, error1 => {
-      this.errorDialogHandle(error1);
-    });
+    }
   }
 
   filterList() {
