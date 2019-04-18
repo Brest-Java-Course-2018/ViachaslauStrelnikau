@@ -45,13 +45,13 @@ export class StudentsListComponent implements OnInit {
   getStudents() {
     this.loading = true;
     this.studentsService.getStudents().subscribe(data => {
+      this.loading = false;
       this.students = data;
     }, error1 => {
       this.errorDialogHandle(error1)
     });
-    this.loading = false;
-  }
 
+  }
 
 
   openDeleteDialog(input: string) {
@@ -63,7 +63,7 @@ export class StudentsListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.loading = true;
-        this.studentsService.removeStudent(input).subscribe(response => {
+        this.studentsService.removeStudent(input).subscribe(() => {
           this.loading = false;
           this.getStudents();
         }, error1 => this.errorDialogHandle(error1));
@@ -78,7 +78,6 @@ export class StudentsListComponent implements OnInit {
       this.loading = true;
       this.studentsService.getStudent(input).subscribe(response => {
         studentModel = response;
-        console.log(studentModel);
         this.loading = false;
         const dialogRef = this.deleteDialog.open(StudentsEditComponent, {
           data: studentModel,
@@ -87,7 +86,8 @@ export class StudentsListComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
           studentModel = result;
           if (studentModel && studentModel.studentId) {
-            this.studentsService.updateStudent(studentModel).subscribe(response => {
+            this.studentsService.updateStudent(studentModel).subscribe(() => {
+              this.loading = false;
               this.getStudents();
             }, error1 => {
               this.errorDialogHandle(error1);
@@ -108,7 +108,7 @@ export class StudentsListComponent implements OnInit {
         studentModel = result;
 
         if (studentModel && !studentModel.studentId) {
-          this.studentsService.addStudent(studentModel).subscribe(response => {
+          this.studentsService.addStudent(studentModel).subscribe(() => {
             this.getStudents();
           }, error1 => {
             this.errorDialogHandle(error1);

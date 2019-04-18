@@ -40,13 +40,13 @@ export class GroupsListComponent implements OnInit {
   openDeleteDialog(input: string) {
     const dialogRef = this.deleteDialog.open(DeleteDialogComponent, {
       data: input,
-      width: '250px',
+      width: '300px',
     });
     dialogRef.afterClosed().subscribe(result => {
 
       if (result) {
         this.loading =true;
-        this.groupService.removeGroup(input).subscribe(response => {
+        this.groupService.removeGroup(input).subscribe(() => {
           this.getGroups();
         }, error1 => {
           this.handleError(error1);
@@ -65,12 +65,12 @@ export class GroupsListComponent implements OnInit {
         this.loading=false;
         const dialogRef = this.deleteDialog.open(GroupsEditComponent, {
           data: groupModel,
-          width: '250px',
+          width: '300px',
         });
         dialogRef.afterClosed().subscribe(result => {
           groupModel = result;
           if (groupModel && groupModel.groupId) {
-            this.groupService.updateGroup(groupModel).subscribe(response => {
+            this.groupService.updateGroup(groupModel).subscribe(() => {
               this.getGroups();
             }, error1 => {
               this.handleError(error1);
@@ -84,13 +84,13 @@ export class GroupsListComponent implements OnInit {
 
       const dialogRef = this.deleteDialog.open(GroupsEditComponent, {
         data: {},
-        width: '250px',
+        width: '300x',
       });
       dialogRef.afterClosed().subscribe(result => {
         groupModel = result;
 
         if (groupModel && !groupModel.groupId) {
-          this.groupService.addGroup(groupModel).subscribe(response => {
+          this.groupService.addGroup(groupModel).subscribe(() => {
             this.getGroups();
           }, error1 => {
             this.handleError(error1);
