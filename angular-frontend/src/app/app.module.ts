@@ -33,7 +33,7 @@ import {MY_FORMATS} from "./model/formats";
   ],
   providers: [
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS}
   ],
   bootstrap: [AppComponent]
 })

@@ -1,9 +1,17 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { GroupServiceService } from './group-service.service';
+import {GroupServiceService} from './group-service.service';
+import {HttpClientModule} from "@angular/common/http";
 
 describe('GroupServiceService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(() => TestBed.configureTestingModule({
+
+    imports: [
+      HttpClientModule
+    ],
+    providers: [HttpClientModule]
+
+  }));
 
   it('should be created', () => {
     const service: GroupServiceService = TestBed.get(GroupServiceService);
