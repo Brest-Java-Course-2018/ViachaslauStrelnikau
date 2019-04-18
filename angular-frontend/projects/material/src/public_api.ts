@@ -1,5 +1,5 @@
 /*
- * Public API Surface of material
+ * Library for material components
  */
 
 export {MaterialModule} from './lib/material.module';

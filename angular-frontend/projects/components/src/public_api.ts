@@ -1,6 +1,5 @@
 /*
- * Public API Surface of components
+ * Library for common components
  */
-
 
 export {ComponentsModule} from './lib/components.module';

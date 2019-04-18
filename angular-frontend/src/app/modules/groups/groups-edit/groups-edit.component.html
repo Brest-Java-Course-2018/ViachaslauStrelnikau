@@ -1,6 +1,7 @@
 <form #myForm="ngForm">
 <h1 mat-dialog-title>{{title}}</h1>
 <div mat-dialog-content >
+  <!--Short Name-->
   <mat-form-field>
     <input matInput id="shortName" name="shortName"
            required minlength="1" maxlength="50"
@@ -18,6 +19,7 @@
       </div>
     </div>
   </mat-form-field>
+  <!--Full Name-->
   <mat-form-field >
     <input matInput id="fullName" name="fullName"
            required minlength="1" maxlength="255"
@@ -34,8 +36,8 @@
         Name must less than 255 characters long.
       </div>
     </div>
-
   </mat-form-field>
+  <!--Description-->
   <mat-form-field>
     <textarea matInput id="description" name="description"
               required minlength="4" maxlength="255"

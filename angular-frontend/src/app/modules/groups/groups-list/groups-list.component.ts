@@ -1,3 +1,6 @@
+/**
+ * logic for group table view
+ */
 import {Component, OnInit} from '@angular/core';
 import {GroupDto} from "../../../model/group-dto";
 import {GroupServiceService} from "../../../service/group-service.service";
@@ -17,36 +20,42 @@ export class GroupsListComponent implements OnInit {
   groups: GroupDto[] = [];
   displayedColumns: string[] = ['groupId', 'shortName', 'fullName', 'groupAvgMarks', 'star'];
   title = 'Student management app';
-  studentspath='/students';
-  groupspath='/groups';
-  loading =false;
+  studentspath = '/students';
+  groupspath = '/groups';
+  loading = false;
 
   constructor(private groupService: GroupServiceService, public deleteDialog: MatDialog) {
   }
-
 
   ngOnInit() {
     this.getGroups();
   }
 
+  /**
+   * gets groups list
+   */
   getGroups() {
-    this.loading=true;
+    this.loading = true;
     this.groupService.getGroups().subscribe(data => {
       this.groups = data;
-      this.loading=false;
-    },error1 => this.handleError(error1));
+      this.loading = false;
+    }, error1 => this.handleError(error1));
   }
 
-  openDeleteDialog(input: string) {
+  /**
+   * delete group record
+   * @param id group ID
+   */
+  openDeleteDialog(id: string) {
     const dialogRef = this.deleteDialog.open(DeleteDialogComponent, {
-      data: input,
+      data: id,
       width: '300px',
     });
     dialogRef.afterClosed().subscribe(result => {
 
       if (result) {
-        this.loading =true;
-        this.groupService.removeGroup(input).subscribe(() => {
+        this.loading = true;
+        this.groupService.removeGroup(id).subscribe(() => {
           this.getGroups();
         }, error1 => {
           this.handleError(error1);
@@ -55,14 +64,19 @@ export class GroupsListComponent implements OnInit {
     });
   }
 
-  openEditDialog(input: string) {
+  /**
+   *  add/edit Group record
+   * @param id group id
+   */
+  openEditDialog(id: string) {
 
     let groupModel: Group;
-    if (input) {
-      this.loading=true;
-      this.groupService.getGroup(input).subscribe(response => {
+    if (id) {
+      //edit
+      this.loading = true;
+      this.groupService.getGroup(id).subscribe(response => {
         groupModel = response;
-        this.loading=false;
+        this.loading = false;
         const dialogRef = this.deleteDialog.open(GroupsEditComponent, {
           data: groupModel,
           width: '300px',
@@ -81,7 +95,7 @@ export class GroupsListComponent implements OnInit {
         this.handleError(error1);
       });
     } else {
-
+//add
       const dialogRef = this.deleteDialog.open(GroupsEditComponent, {
         data: {},
         width: '300x',
@@ -102,6 +116,10 @@ export class GroupsListComponent implements OnInit {
     }
   }
 
+  /**
+   * handles http errors
+   * @param err  HttpErrorResponse
+   */
   handleError(err: HttpErrorResponse) {
     console.log('error!');
     let errorMessage: string;
@@ -115,7 +133,7 @@ export class GroupsListComponent implements OnInit {
     else {
       errorMessage = `Backend returned code ${err.status}, body was: ${err.error}`;
     }
-    this.loading=false;
+    this.loading = false;
     console.error(errorMessage);
   }
 }

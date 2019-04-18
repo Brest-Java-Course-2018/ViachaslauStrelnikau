@@ -33,7 +33,6 @@ export class StudentsListComponent implements OnInit {
   }) toInput: MatInput;
 
   constructor(private studentsService: StudentsService,
-
               public deleteDialog: MatDialog,
               public errorDialog: MatDialog) {
   }
@@ -42,6 +41,9 @@ export class StudentsListComponent implements OnInit {
     this.getStudents();
   }
 
+  /**
+   * get students list
+   */
   getStudents() {
     this.loading = true;
     this.studentsService.getStudents().subscribe(data => {
@@ -53,17 +55,20 @@ export class StudentsListComponent implements OnInit {
 
   }
 
-
-  openDeleteDialog(input: string) {
+  /**
+   * delete student record
+   * @param id student ID
+   */
+  openDeleteDialog(id: string) {
     this.loading = true;
     const dialogRef = this.deleteDialog.open(DeleteDialogComponent, {
-      data: input,
+      data: id,
       width: '300px',
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.loading = true;
-        this.studentsService.removeStudent(input).subscribe(() => {
+        this.studentsService.removeStudent(id).subscribe(() => {
           this.loading = false;
           this.getStudents();
         }, error1 => this.errorDialogHandle(error1));
@@ -71,12 +76,17 @@ export class StudentsListComponent implements OnInit {
     });
   }
 
-  openEditDialog(input: string) {
+  /**
+   * add/edit student record
+   * @param id student ID
+   */
+  openEditDialog(id: string) {
     let studentModel: Student;
 
-    if (input) {
+    if (id) {
+      //edit
       this.loading = true;
-      this.studentsService.getStudent(input).subscribe(response => {
+      this.studentsService.getStudent(id).subscribe(response => {
         studentModel = response;
         this.loading = false;
         const dialogRef = this.deleteDialog.open(StudentsEditComponent, {
@@ -97,9 +107,8 @@ export class StudentsListComponent implements OnInit {
       }, error1 => {
         this.errorDialogHandle(error1);
       });
-    }
-    else
-    {
+    } else {
+      //add
       const dialogRef = this.deleteDialog.open(StudentsEditComponent, {
         data: {},
         width: '300px',
@@ -120,6 +129,9 @@ export class StudentsListComponent implements OnInit {
     }
   }
 
+  /**
+   * filters students records by birth date interval
+   */
   filterList() {
     if (typeof this.fromInput.value == 'undefined' && typeof this.toInput.value == 'undefined') {
       this.deleteDialog.open(ErrorDialogComponent, {
@@ -143,13 +155,19 @@ export class StudentsListComponent implements OnInit {
     }
   }
 
+  /**
+   * clears date filter
+   */
   clearFilter() {
     this.fromInput.value = '';
     this.toInput.value = '';
     this.getStudents();
   }
 
-
+  /**
+   * handles http errors
+   * @param error HttpErrorResponse
+   */
   errorDialogHandle(error: HttpErrorResponse) {
     this.loading = false;
     console.error(error.message);

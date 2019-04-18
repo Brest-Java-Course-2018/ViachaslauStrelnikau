@@ -5,7 +5,6 @@ import {GroupServiceService} from "../../../service/group-service.service";
 import {GroupDtoLite} from "../../../model/group-dto-lite";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ErrorDialogComponent} from "../../../../../projects/components/src/lib/error-dialog/error-dialog.component";
-import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-students-edit',
@@ -24,15 +23,23 @@ export class StudentsEditComponent implements OnInit {
     private groupsService: GroupServiceService) {
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+
 
   ngOnInit() {
     this.getGroupsList();
     this.title=this.data.groupId?'Edit '+this.data.studentId+' record':'Add record';
   }
 
+  /**
+   * on edit window close
+   */
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  /**
+   * gets brief groups list
+   */
   getGroupsList() {
     this.loading = true;
     this.groupsService.getGroupsList().subscribe(data => {
@@ -44,6 +51,10 @@ export class StudentsEditComponent implements OnInit {
     this.loading = false;
   }
 
+  /**
+   * handles http errors
+   * @param error HttpErrorResponse
+   */
   errorDialogHandle(error: HttpErrorResponse) {
     this.loading = false;
     console.error(error.message);

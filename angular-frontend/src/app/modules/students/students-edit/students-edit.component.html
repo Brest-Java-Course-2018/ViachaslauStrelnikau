@@ -1,6 +1,7 @@
 <form #myForm="ngForm">
   <h1 mat-dialog-title>{{title}}</h1>
   <div mat-dialog-content>
+    <!--Students name-->
     <mat-form-field>
       <input matInput id="studentName" name="studentName"
              required minlength="1" maxlength="50"
@@ -18,7 +19,7 @@
         </div>
       </div>
     </mat-form-field>
-
+<!--Date of birth-->
     <mat-form-field color="accent">
       <mat-label>Date of birth</mat-label>
       <input   matInput [matDatepicker]="picker1" [(ngModel)]="data.studentBirth" id="studentBirth" name="studentBirth" readonly="true"  required>
@@ -26,13 +27,14 @@
       <mat-datepicker #picker1 disabled="false" required></mat-datepicker>
     </mat-form-field>
 
-
+<!--Average mark-->
     <mat-form-field>
       <input matInput type="number" id="studentAvgMarks" name="studentAvgMarks"
              required  min=0 max=10
              placeholder="Average mark"  [(ngModel)]="data.studentAvgMarks">
     </mat-form-field>
 
+    <!--Group ComboBox-->
     <mat-form-field>
       <mat-label>Group</mat-label>
       <select matNativeControl [(ngModel)]="data.groupId" name="car" required>
@@ -42,8 +44,8 @@
         </option>
       </select>
     </mat-form-field>
-
   </div>
+
   <div mat-dialog-actions>
     <button mat-button  (click)="onNoClick()">Cancel</button>
     <button  type="submit" mat-button [mat-dialog-close]=data cdkFocusInitial [disabled]="!myForm.valid">Ok</button>

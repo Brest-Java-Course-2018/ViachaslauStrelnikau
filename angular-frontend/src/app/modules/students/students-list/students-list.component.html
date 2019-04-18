@@ -10,6 +10,7 @@
     ADD
   </button>
   <span class="fill-remaining-space"></span>
+  <!--Date filter-->
   <mat-form-field color="accent">
     <mat-label>Date from</mat-label>
     <input #fromInput matInput [matDatepicker]="picker1" disabled>
@@ -23,47 +24,49 @@
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
     <mat-datepicker #picker2 disabled="false"></mat-datepicker>
   </mat-form-field>
+  <!--Date filter buttons-->
   <button mat-button (click)="filterList(picker1,picker2)">
     <mat-icon>filter_list</mat-icon>
     Filter
   </button>
-
   <button mat-button (click)="clearFilter()">
     Clear Filter
   </button>
+
 </mat-toolbar>
 
 <table mat-table *ngIf="students.length>0" [dataSource]="students" class="mat-elevation-z8">
-  <!-- Position Column -->
+  <!-- Student id -->
   <ng-container matColumnDef="studentId">
     <th mat-header-cell *matHeaderCellDef> Student id</th>
     <td mat-cell *matCellDef="let element"> {{element.studentId}} </td>
   </ng-container>
 
-  <!-- Name Column -->
+  <!-- Student name -->
   <ng-container matColumnDef="studentName">
     <th mat-header-cell *matHeaderCellDef> Student name</th>
     <td mat-cell *matCellDef="let element"> {{element.studentName}} </td>
   </ng-container>
 
-  <!-- Weight Column -->
+  <!-- Date of birth -->
   <ng-container matColumnDef="studentBirth">
     <th mat-header-cell *matHeaderCellDef>Date of birth</th>
     <td mat-cell *matCellDef="let element">   {{ element.studentBirth| date:'dd.MM.yyyy'}}</td>
   </ng-container>
 
-  <!-- Symbol Column -->
+  <!-- Average mark -->
   <ng-container matColumnDef="studentAvgMarks">
     <th mat-header-cell *matHeaderCellDef>Average mark</th>
     <td mat-cell *matCellDef="let element"> {{element.studentAvgMarks}} </td>
   </ng-container>
 
+  <!--Full name-->
   <ng-container matColumnDef="fullName">
     <th mat-header-cell *matHeaderCellDef>Full name</th>
     <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
   </ng-container>
 
-
+<!--Edit/Delete Buttons-->
   <ng-container matColumnDef="star" stickyEnd>
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
