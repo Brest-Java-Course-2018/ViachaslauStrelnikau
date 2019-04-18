@@ -117,7 +117,7 @@ public class StudentRestControllerTest {
         mockMvc.perform(get("/students/{id}", student1.getStudentId())
                 .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
-                .andExpect(status().isFound())
+                .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("studentId", Matchers.is(student1.getStudentId())))
                 .andExpect(jsonPath("studentName", Matchers.is(student1.getStudentName())))
@@ -186,7 +186,7 @@ public class StudentRestControllerTest {
                 delete("/students/{id}", 1)
                         .accept(MediaType.APPLICATION_JSON)
         ).andDo(print())
-                .andExpect(status().isFound());
+                .andExpect(status().isOk());
         int size_after = studentService.getallStudentsDTO().size();
         Assert.assertTrue(size_after + 1 == size_befor);
 
