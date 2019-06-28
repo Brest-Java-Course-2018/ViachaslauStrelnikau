@@ -50,29 +50,29 @@ https://travis-ci.org/Brest-Java-Course-2018/ViachaslauStrelnikau/
     
 ####6.Use embedded jetty server for WEB application test 
 
-   Set variable PORT, in rest.properties in rest-client module, equal 8088
+    Set variable PORT, in rest.properties in rest-client module, equal 8088
    
-   Set variable App, in rest.properties in rest-client module, to empty value
+    Set variable App, in rest.properties in rest-client module, to empty value
    
-   mvn -pl rest-client/ clean install
+    mvn -pl rest-client/ clean install
    
-   mvn -pl web-app/ clean install
+    mvn -pl web-app/ clean install
    
-   mvn -pl web-app/ jetty:run
+    mvn -pl web-app/ jetty:run
 
-   Once started, the application should be available at:
+    Once started, the application should be available at:
 
-   http://localhost:8080
+    http://localhost:8080
    
    #EXTJS
    
 ####1.Install ruby
-   ubuntu:
-   sudo apt-get install ruby-full
+    ubuntu:
+    sudo apt-get install ruby-full
    
 ####2. download Sencha cmd
-   ubuntu:
-   http://cdn.sencha.com/cmd/6.6.0.13/no-jre/SenchaCmd-6.6.0.13-linux-amd64.sh.zip
+    ubuntu:
+    http://cdn.sencha.com/cmd/6.6.0.13/no-jre/SenchaCmd-6.6.0.13-linux-amd64.sh.zip
    
 ####3. unzip archive
 
@@ -82,10 +82,10 @@ https://travis-ci.org/Brest-Java-Course-2018/ViachaslauStrelnikau/
 
 ####6. download extJS GPL SDK and unpack it
 
-   https://ext4all.com/ext/download/ext-6.2.0-gpl.zip  
-   run: sencha config --prop {path-to-sdk}\ext-6.2.0 --save
+    https://ext4all.com/ext/download/ext-6.2.0-gpl.zip  
+    run: sencha config --prop {path-to-sdk}\ext-6.2.0 --save
    
-####6. go to EXTjs folder of an application
+####6. go to EXTjs application folder
 
 ####7. run: sencha workspace init
 
@@ -96,3 +96,8 @@ https://travis-ci.org/Brest-Java-Course-2018/ViachaslauStrelnikau/
 ####10. App will be available at http://localhost:1841/BizDash
 
 ####11. App is expecting server at localhost:8088
+
+
+   #Reactive Mongo
+    
+###1

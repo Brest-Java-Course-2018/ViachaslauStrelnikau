@@ -19,6 +19,7 @@
         <module>rest</module>
         <module>rest-client</module>
         <module>web-app</module>
+        <module>reactive-mongo-backend</module>
     </modules>
 
     <distributionManagement>
