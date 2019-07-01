@@ -4,20 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Group class
- */
 @Data
-@Document
-@AllArgsConstructor
 @NoArgsConstructor
-public class Group {
+@AllArgsConstructor
+public class GroupDto {
+
     /**
      * Property groupId.
      */
@@ -38,11 +32,4 @@ public class Group {
      */
     @Size(min = 2, max = 255)
     private String description;
-
-    /**
-     * Property group average marks .
-     */
-    private double groupAvgMarks;
-
-    private List<Student> students = new ArrayList<>();
 }

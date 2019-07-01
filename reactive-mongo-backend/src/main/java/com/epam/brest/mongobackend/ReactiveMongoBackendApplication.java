@@ -25,18 +25,18 @@ public class ReactiveMongoBackendApplication {
     @Bean
     public CommandLineRunner commandLineRunner(ReactiveGroupRepository groupRepository, ReactiveStudentRepository studentRepository) throws ParseException {
         SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-mm-dd");
-        Student st1=new Student("1","Ivan Ivanov",dateFormat.parse("1985-12-01"),7.3);
-        Student st2=new Student("2","Petr Petrov",dateFormat.parse("1985-01-30"),3.3);
-        Student st3=new Student("3","Sidor Sidorov",dateFormat.parse("1995-03-01"),2.1);
-        Student st4=new Student("4","Semen Semenov",dateFormat.parse("1987-04-02"),4.3);
-        Student st5=new Student("5","Kostia Kostin",dateFormat.parse("1983-07-22"),9.7);
-        Group[] groupsArr= {new Group("1","A12","Architecture 12","Learn Architecture",
+        Student st1=new Student("1","Ivan Ivanov",dateFormat.parse("1985-12-01"),7.3,"1","Architecture 12");
+        Student st2=new Student("2","Petr Petrov",dateFormat.parse("1985-01-30"),3.3,"1","Architecture 12");
+        Student st3=new Student("3","Sidor Sidorov",dateFormat.parse("1995-03-01"),2.1,"2","Architecture 17");
+        Student st4=new Student("4","Semen Semenov",dateFormat.parse("1987-04-02"),4.3,"2","Architecture 17");
+        Student st5=new Student("5","Kostia Kostin",dateFormat.parse("1983-07-22"),9.7,"3","Roads 5");
+        Group[] groupsArr= {new Group("1","A12","Architecture 12","Learn Architecture",5.3,
                 Arrays.asList(st1, st2)),
-                new Group("2","A17","Architecture 17","Learn Architecture",
+                new Group("2","A17","Architecture 17","Learn Architecture",7,
                         Arrays.asList( st3,st4)),
-                new Group("3","R15","Roads 5","Learn roads building",
+                new Group("3","R15","Roads 5","Learn roads building",9.7,
                         Arrays.asList(st5)),
-                new Group("4","E30","Electronics and programming","Learn programable microcontrollers",
+                new Group("4","E30","Electronics and programming","Learn programable microcontrollers",-1,
                         Arrays.asList())};
 
         return strings -> {

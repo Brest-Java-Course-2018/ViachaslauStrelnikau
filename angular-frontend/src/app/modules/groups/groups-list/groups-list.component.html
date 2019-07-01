@@ -49,7 +49,7 @@
           <mat-icon>delete</mat-icon>
           Delete
         </mat-button-toggle>
-        <mat-button-toggle value="delete"  (click)="openDeleteDialog(element.groupId)" *ngIf="element.groupAvgMarks<0" disabled="false">
+        <mat-button-toggle value="delete"  (click)="openDeleteDialog(element.groupId)" *ngIf="element.groupAvgMarks<=0" disabled="false">
           <mat-icon>delete</mat-icon>
           Delete</mat-button-toggle>
       </mat-button-toggle-group>

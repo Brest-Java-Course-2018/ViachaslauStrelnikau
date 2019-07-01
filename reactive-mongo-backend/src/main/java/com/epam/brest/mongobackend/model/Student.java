@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.DecimalMax;
@@ -12,7 +13,6 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Student class
@@ -25,6 +25,7 @@ public class Student {
     /**
      * Property studentId.
      */
+    @Id
     private String studentId;
     /**
      * Property studentName.
@@ -44,5 +45,12 @@ public class Student {
     @DecimalMax("10")
     private double studentAvgMarks;
 
-
+    /**
+     * Property groupId.
+     */
+    private String groupId;
+    /**
+     * Property fullName.
+     */
+    private String fullName;
 }
