@@ -45,4 +45,17 @@ public class Group {
     private double groupAvgMarks;
 
     private List<Student> students = new ArrayList<>();
+
+    public void updateAvgMark()
+    {
+        double avg=0;
+        setGroupAvgMarks(avg);
+        for (Student student:getStudents()) {
+            avg+=student.getStudentAvgMarks();
+        }
+
+        if(getStudents().size()>0)
+            setGroupAvgMarks(avg/getStudents().size());
+
+    }
 }
