@@ -33,7 +33,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <h2.version>1.4.196</h2.version>
         <spring.version>4.3.14.RELEASE</spring.version>
-        <log4j2.version>2.9.1</log4j2.version>
+        <log4j2.version>2.13.3</log4j2.version>
         <thymeleaf-spring4.version>3.0.9.RELEASE</thymeleaf-spring4.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
         <jackson-core.version>2.9.8</jackson-core.version>
